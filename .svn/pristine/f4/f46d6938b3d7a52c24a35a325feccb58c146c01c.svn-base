@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class ProjectCM : BaseCreateModel
+    {
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        [Display(Name = "项目名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Remote("CodeIsExists", "ProjectManagement", ErrorMessage = "{0}已存在", AdditionalFields = "ID")]
+        public string ProjectName { get; set; }
+
+        /// <summary>
+        /// 广告图片
+        /// </summary>
+        [Display(Name = "广告图片")]
+        public string AdvertisingImge { get; set; }
+
+        /// <summary>
+        /// 省
+        /// </summary>
+        [Display(Name = "省")]
+        [MaxLength(8, ErrorMessage = "{0}不能多于8位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string ProvinceCode { get; set; }
+
+        /// <summary>
+        /// 市
+        /// </summary>
+        [Display(Name = "市")]
+        [MaxLength(8, ErrorMessage = "{0}不能多于8位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string CityCode { get; set; }
+
+        /// <summary>
+        /// 项目金额
+        /// </summary>
+        [Display(Name = "项目金额")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public decimal ProjectAmount { get; set; }
+
+        /// <summary>
+        /// 剩余认筹额度
+        /// </summary>
+        //[Display(Name = "剩余认筹额度")]
+        //public decimal ResidueAmount { get; set; }
+
+        /// <summary>
+        /// 活动开始日期
+        /// </summary>
+        [Display(Name = "开始日期")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public DateTime StartTime { get; set; }
+
+        /// <summary>
+        /// 截止日期
+        /// </summary>
+        [Display(Name = "截止日期")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public DateTime Deadline { get; set; }
+
+        /// <summary>
+        /// 简短描述
+        /// </summary>
+        [Display(Name = "简短描述")]
+        [MaxLength(1024, ErrorMessage = "{0}不能多于1024字")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 广告图片
+        /// </summary>
+        [Display(Name = "广告图片")]
+        public List<string> AdvertisingImgList { get; set; }
+
+        /// <summary>
+        /// 认筹金额
+        /// </summary>
+        //[Display(Name = "认筹金额")]
+        //[Required(ErrorMessage = "{0}不能为空")]
+        //public int GuaranteeAmount { get; set; }
+
+        /// <summary>
+        /// 冻结月数
+        /// </summary>
+        //[Display(Name = "冻结月数")]
+        //[Required(ErrorMessage = "{0}不能为空")]
+        //public int GuaranteeMonth { get; set; }
+    }
+}

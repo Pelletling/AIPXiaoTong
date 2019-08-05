@@ -1,0 +1,60 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    var merchantInfo = ViewBag.MerchantInfo;
+
+    var merchantlist = ViewBag.MerchantList as List<MerchantLM>;
+}
+@model TLTPreferencesCM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商户名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" name="MerchantInfo" id="MerchantInfo" class="input-text" readonly="readonly" value="@merchantInfo" />
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>通联通商户ID：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltMerchantId, new { @class = "input-text", placeholder = "通联通商户ID" })
+                @Html.ValidationMessageFor(t => t.TltMerchantId)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>通联通用户名：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltUserName, new { @class = "input-text", placeholder = "通联通用户名" })
+                @Html.ValidationMessageFor(t => t.TltUserName)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>密码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltUserPassword, new { @class = "input-text", placeholder = "密码" })
+                @Html.ValidationMessageFor(t => t.TltUserPassword)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>私钥密码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltPrivateKeyPassword, new { @class = "input-text", placeholder = "私钥密码" })
+                @Html.ValidationMessageFor(t => t.TltPrivateKeyPassword)
+            </div>
+        </div>
+
+        <div class="row cl fixed-bottom">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

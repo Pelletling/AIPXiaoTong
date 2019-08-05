@@ -1,0 +1,47 @@
+﻿
+@using AIPXiaoTong.Model;
+@using AIPXiaoTong.Model.Site;
+@using Framework.Common;
+@using Framework.Models;
+@{
+    var merchantList = ViewBag.MerchantList as List<MerchantLM>;
+
+}
+@model ProceedsTypeCM
+
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>收款类型：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Type, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Type)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户信息：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.MerchantID, merchantList.OrderBy(t => t.Name).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.Name }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.MerchantID)
+                </span>
+            </div>
+        </div>
+
+
+
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+
+
+
+

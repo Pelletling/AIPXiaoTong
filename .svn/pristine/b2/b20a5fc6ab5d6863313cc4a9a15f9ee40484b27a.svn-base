@@ -1,0 +1,43 @@
+﻿@using AIPXiaoTong.Model.Admin;
+@using AIPXiaoTong.Model;
+
+@{
+    var merchantList = ViewBag.MerchantList as List<MerchantLM>;
+}
+
+
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <label>商户名称:</label>
+            <span class="select-box inline">
+                <select id="MerchantID" name="MerchantID" style="width:120px;" class="select">
+                    <option value=""></option>
+                    @for (int i = 0; i < merchantList.Count; i++)
+                    {
+                        <option value="@merchantList[i].ID">@merchantList[i].Name</option>
+                    }
+                </select>
+            </span>
+
+            <label>项目名称:</label><input type="text" name="ProjetName" id="ProjetName" style="width:120px" class="input-text">
+
+            <label>状态:</label>
+            <span class="select-box inline">
+                <select id="Status" name="Status" style="width:80px;" class="select">
+                    <option value=""></option>
+                    <option value="1">审核通过</option>
+                    <option value="0">待审核</option>
+                    <option value="-1">审核未通过</option>
+                </select>
+            </span>
+            @Html.Partial("_Query")
+        }
+    </div>
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>
+

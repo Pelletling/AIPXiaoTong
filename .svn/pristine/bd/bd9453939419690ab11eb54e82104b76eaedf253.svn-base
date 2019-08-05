@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+
+namespace GuangDaAPI.Model
+{
+    [XmlRoot("Message")]
+    public class BFinFundServiceReqRequest : IBaseRequest<BFinFundServiceReqResponse>
+    {
+        /// <summary>
+        /// 对账
+        /// </summary>
+        public BFinFundServiceReqRequest()
+        {
+            Head = new HEAD();
+            Body = new BODY();
+        }
+
+        [XmlIgnore]
+        public string Method { get { return "BFinFundServiceReq"; } }
+
+        public Dictionary<string, string> GetBody()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            dic.Add("QryDate", Body.QryDate);
+            dic.Add("ServiceId", Body.ServiceId);
+
+            return dic;
+        }
+
+        [XmlElement("Head")]
+        public HEAD Head { get; set; }
+
+        [XmlElement("Body")]
+        public BODY Body { get; set; }
+
+        public class BODY
+        {
+            /// <summary>
+            /// 交易所属日期（该日期表示请求的是哪天的文件，如不送，默认前一天）
+            /// </summary>
+            [XmlElement("QryDate")]
+            public string QryDate { get; set; }
+
+            /// <summary>
+            /// 请求服务ID
+            /// BMerCheckFileReq--根据光大系统时间生成对账文件
+            /// BMerCheckJnlFileReq--根据商户时间生成对账文件
+            /// BMerCheck4ForeignCashFileReq-结汇业务对账文件请求服务
+            /// </summary>
+            [XmlElement("ServiceId")]
+            public string ServiceId { get; set; }
+        }
+    }
+}

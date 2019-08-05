@@ -1,0 +1,405 @@
+﻿using Framework.Common;
+using GuangDaAPI;
+using GuangDaAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace GuangDaTest
+{
+    class Program
+    {
+        static GuangDaExec guangDaExec;
+        static string userid = "tlzfsh";
+        static string pwd = "111111";
+        static string cifClientId = "81ac0a0c2f038fd5";
+
+        static void Main(string[] args)
+        {
+            guangDaExec = new GuangDaExec(userid, AppDomain.CurrentDomain.BaseDirectory + userid + ".pfx", pwd, true);
+
+            //开户
+            //Create();
+
+            //2.59.	鉴权开户接口
+            //Create1();
+
+            //2.60.	开户查询接口
+            //Create1Check();
+
+            //上传身份证
+            //UploadIdCardImage();
+
+            //充值
+            //var bTrsInResponse = Recharge();
+
+            //冻结
+            //var currentFundFreezeResponse = Freeze();
+
+            //解冻
+            //var unfrozenFixedDepositResponse = Unfreeze(currentFundFreezeResponse.Body.CoPatrnerJnlNo);
+
+            //提现（5万以下）
+            //var eComGAmountResponse = SmallWithdraw();
+
+            //提现（5万以上）
+            //var bJUnionPayPaymentResponse = LargeWithdraw();
+
+            //var response = BTrsVeriAmount();
+
+            //pinyin();
+
+            BCifAcNoAmount();
+
+            //QueryFreezeCombination();
+
+            //CheckFile();
+
+            Console.WriteLine("OK");
+            Console.ReadKey();
+        }
+
+        public static void pinyin()
+        {
+            string s = "强";
+
+            Console.WriteLine(s.GetPinYin());
+        }
+
+        public static bool xml()
+        {
+            string xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Message><Head><ReqJnlNo>201811151429400256</ReqJnlNo><ResJnlNo>3905251</ResJnlNo><ResTime>2018-11-15 14:05:47</ResTime><ResCode>000000</ResCode><ResMsg></ResMsg></Head><Body><CoPatrnerJnlNo>201811151429400466</CoPatrnerJnlNo><EbankJnlNo>3905251</EbankJnlNo><CifClientId>6d57392972f663e6</CifClientId><Amount>10.02</Amount><TrsType>0</TrsType><Currency>CNY</Currency><CebTrsTime>2018-11-15 14:05:47</CebTrsTime><Remark>资金转入</Remark><Reserve1>901f37023575</Reserve1><Reserve2></Reserve2><Reserve3></Reserve3></Body></Message>";
+
+            //xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Message><Head><ReqJnlNo>201811151429400256</ReqJnlNo><ResJnlNo>3905251</ResJnlNo><ResTime>2018-11-15 14:05:47</ResTime><ResCode>000000</ResCode><ResMsg></ResMsg></Head></Message>";
+
+            var result = XmlHelper.XmlDeserialize<BTrsInResponse>(xml);
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// 开户
+        /// </summary>
+        /// <returns></returns>
+        public static string Create()
+        {
+            BCifAcctNoOpenRequest request = new BCifAcctNoOpenRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();//"t1541553972983s1";
+
+            request.Body.CifAddr = "北京市复兴门外大街";
+            request.Body.CifClientId = cifClientId;
+            request.Body.CifEnName = "quanyi";
+            request.Body.CifIdExpiredDate = "20190909";
+            request.Body.CifName = "廖一";
+            request.Body.CifPhoneCode = "15600110011";
+            request.Body.CifPostCode = "100000";
+            request.Body.IdNo = "460031198806150013";
+            request.Body.IdType = "P00";
+            request.Body.OperateType = "0";
+            request.Body.ProvinceCode = "110000";
+            request.Body.CityCode = "1101001";
+            request.Body.NetCheckFlag = "0";
+            request.Body.BankCardPhoneCode = "15600110011";
+            request.Body.BankCardType = "1";
+            request.Body.BankAcNo = "6212260200000110001";
+            request.Body.BankName = "工商银行";
+            request.Body.SubBranchName = "北京分行";
+            request.Body.OpenChannel = "1";
+
+            var result = guangDaExec.Exec(request) as BCifAcctNoOpenResponse;
+
+            return "OK";
+        }
+
+        /// <summary>
+        /// 开户
+        /// </summary>
+        /// <returns></returns>
+        public static string Create1()
+        {
+            AuthenticationToOpenAccountRequest request = new AuthenticationToOpenAccountRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CoPatrnerJnlNo = GuidHelper.GenUniqueId();
+            request.Body.CifName = "张三";
+            request.Body.CifClientId = GuidHelper.To16String();
+            request.Body.IdType = "P00";
+            request.Body.IdNo = "110101199003074477";
+            request.Body.BankCardPhoneCode = "17620132005";
+            request.Body.CifPhoneCode = "17620132005";
+            request.Body.CifIdExpiredDate = "20190909";
+            request.Body.CifAddr = "北京市复兴门外大街";
+            request.Body.CifPostCode = "100000";
+            request.Body.CifEnName = "liaoyz";
+            request.Body.CifENFName = "liaoyz";
+            request.Body.OperateType = "0";
+            request.Body.NetCheckFlag = "0";
+            request.Body.BankCardType = "1";
+            request.Body.BankAcNo = "6212260200000110002";
+            request.Body.BankName = "工商银行";
+            request.Body.SubBranchName = "北京分行";
+            request.Body.OpenChannel = "1";
+            request.Body.BookDate = DateTime.Now.ToString("yyyyMMdd");
+
+            var result = guangDaExec.Exec(request) as AuthenticationToOpenAccountResponse;
+
+            return "IsOK:" + result.IsOK;
+        }
+
+        /// <summary>
+        /// 开户查询
+        /// </summary>
+        /// <returns></returns>
+        public static string Create1Check()
+        {
+            AuthenticationToOpenAccountCheckRequest request = new AuthenticationToOpenAccountCheckRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CoPatrnerJnlNo = GuidHelper.GenUniqueId();
+            request.Body.CifClientId = cifClientId;
+            request.Body.BookDate = DateTime.Now.ToString("yyyyMMdd");
+
+            var result = guangDaExec.Exec(request) as AuthenticationToOpenAccountCheckResponse;
+
+            return "IsOK:" + result.IsOK;
+        }
+
+        /// <summary>
+        /// 身份证上传
+        /// </summary>
+        /// <returns></returns>
+        public static string UploadIdCardImage()
+        {
+            UploadIdCardImageRequest request = new UploadIdCardImageRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.IdCardFront = Framework.Common.ImageHelper.ToBase64(@"D:\MyProject\AIPXiaoTong\GuangDaTest\bin\Debug\QQ1.png");
+            request.Body.IdCardBehind = Framework.Common.ImageHelper.ToBase64(@"D:\MyProject\AIPXiaoTong\GuangDaTest\bin\Debug\QQ2.png");
+            request.Body.CifClientId = cifClientId;
+
+            var result = guangDaExec.Exec(request) as UploadIdCardImageResponse;
+
+            return "OK";
+        }
+
+        /// <summary>
+        /// 充值
+        /// </summary>
+        /// <returns></returns>
+        public static BTrsInResponse Recharge()
+        {
+            BTrsInRequest request = new BTrsInRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CoPatrnerJnlNo = GuidHelper.GenUniqueId();
+            request.Body.TrsDate = DateTime.Now.ToString("yyyyMMdd");
+            request.Body.CifClientId = cifClientId;
+            request.Body.Amount = "10.02";
+            request.Body.TrsType = "0";
+            request.Body.Currency = "CNY";
+            request.Body.Remark = "资金转入";
+            request.Body.Reserve1 = "";
+            request.Body.Reserve2 = "";
+            request.Body.Reserve3 = "";
+
+            var result = guangDaExec.Exec(request) as BTrsInResponse;
+
+            return result;
+        }
+
+        /// <summary>
+        /// 冻结
+        /// </summary>
+        /// <returns></returns>
+        public static CurrentFundFreezeResponse Freeze()
+        {
+            CurrentFundFreezeRequest request = new CurrentFundFreezeRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CoPatrnerJnlNo = GuidHelper.GenUniqueId();
+            request.Body.TrsDate = DateTime.Now.ToString("yyyyMMdd");
+            request.Body.CifClientId = cifClientId;
+            request.Body.FreezeType = "0";
+            request.Body.Currency = "CNY";
+            request.Body.CEFlag = "0";
+            request.Body.ThawDate = DateTime.Now.AddDays(1).ToString("yyyyMMdd");
+            request.Body.Amount = "10.02";
+            request.Body.ProtocolNo = "";
+            request.Body.GroupNo = "";
+            request.Body.TravelStartDay = "";
+            request.Body.TravelEndDay = "";
+            request.Body.ProtocolDate = "";
+            request.Body.Remark = "";
+            request.Body.Reserve1 = "";
+            request.Body.Reserve2 = "";
+            request.Body.Reserve3 = "";
+            request.Body.Reserve4 = "";
+            request.Body.Reserve5 = "";
+
+            var result = guangDaExec.Exec(request) as CurrentFundFreezeResponse;
+
+            return result;
+        }
+
+        /// <summary>
+        /// 解冻
+        /// </summary>
+        /// <returns></returns>
+        public static UnfrozenFixedDepositResponse Unfreeze(string coPatrnerJnlNo)
+        {
+            UnfrozenFixedDepositRequest request = new UnfrozenFixedDepositRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.TrsDate = "20181115";
+            request.Body.CoPatrnerJnlNo = coPatrnerJnlNo;
+            request.Body.ManageFlag = "5";
+            request.Body.Currency = "CNY";
+
+            var result = guangDaExec.Exec(request) as UnfrozenFixedDepositResponse;
+
+            return result;
+        }
+
+        /// <summary>
+        /// 提现，五万以下
+        /// </summary>
+        /// <returns></returns>
+        public static EComGAmountResponse SmallWithdraw()
+        {
+            EComGAmountRequest request = new EComGAmountRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.Amount = "0.02";
+            request.Body.CifClientId = cifClientId;
+            request.Body.Currency = "CNY";
+            request.Body.ChannelSeq = GuidHelper.GenUniqueId();
+            request.Body.TrsDate = DateTime.Now.ToString("yyyyMMdd");
+            request.Body.WDType = "1";
+            request.Body.Remark = "提现";
+            request.Body.WDName = "李安安";
+            request.Body.IdType = "P00";
+            request.Body.IdNo = "110101199003071292";
+            request.Body.WDAcNo = "6212260200000110005";
+            request.Body.WDBankNo = "102100099996";
+            request.Body.WDInnerBankFlag = "1";
+            request.Body.Reserve1 = "";
+            request.Body.Reserve2 = "";
+            request.Body.Reserve3 = "";
+
+            var result = guangDaExec.Exec(request) as EComGAmountResponse;
+
+            return result;
+        }
+
+        /// <summary>
+        /// 提现，五万以上
+        /// </summary>
+        /// <returns></returns>
+        public static BJUnionPayPaymentResponse LargeWithdraw()
+        {
+            BJUnionPayPaymentRequest request = new BJUnionPayPaymentRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CifClientId = cifClientId;
+            request.Body.CoPatrnerJnlNo = GuidHelper.GenUniqueId();
+            request.Body.TrsDate = DateTime.Now.ToString("yyyyMMdd");
+            request.Body.Currency = "CNY";
+            request.Body.AcNo = "460031198806150013";
+            request.Body.PayeeName = "廖一";
+            request.Body.PayeeBankName = "工商银行";
+            request.Body.PayeeBankNo = "102100099996";
+            request.Body.AcType = "2";
+            request.Body.Amount = "0.1";
+            request.Body.TransferFee = "0";
+            request.Body.Remark = "提现";
+            request.Body.Reserve1 = "";
+            request.Body.Reserve2 = "";
+            request.Body.Reserve3 = "";
+            request.Body.Reserve4 = "";
+            request.Body.Reserve5 = "";
+
+            var result = guangDaExec.Exec(request) as BJUnionPayPaymentResponse;
+
+            return result;
+        }
+
+        /// <summary>
+        /// 对账
+        /// </summary>
+        /// <returns></returns>
+        public static string CheckFile()
+        {
+            BFinFundServiceReqRequest request = new BFinFundServiceReqRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.QryDate = "20181225";
+            request.Body.ServiceId = "BMerCheckJnlFileReq";
+
+            var result = guangDaExec.Exec(request) as BFinFundServiceReqResponse;
+
+            return "OK";
+        }
+
+        /// <summary>
+        /// 2.9.资金变动查证接口
+        /// </summary>
+        /// <returns></returns>
+        public static string BTrsVeriAmount()
+        {
+            BTrsVeriAmountRequest request = new BTrsVeriAmountRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CoPatrnerJnlNo = "201812061704393760";
+            request.Body.TrsDate = "20181206";
+
+            var result = guangDaExec.Exec(request) as BTrsVeriAmountResponse;
+
+            return "OK";
+        }
+
+        public static string BCifAcNoAmount()
+        {
+            BCifAcNoAmountRequest request = new BCifAcNoAmountRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CifClientId = "81ac0a0c2f038fd5";
+
+            var result = guangDaExec.Exec(request) as BCifAcNoAmountResponse;
+
+            return "全部余额：" + result?.Body?.AcNoBlance;
+        }
+
+        public static string QueryFreezeCombination()
+        {
+            QueryFreezeCombinationRequest request = new QueryFreezeCombinationRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+            request.Body.StartCount = 0;
+            request.Body.QryCount = 99;
+            request.Body.UnfreezeDate = "20190501";
+
+            request.Body.CifClientId = "81ac0a0c2f038fd5";
+
+            var result = guangDaExec.Exec(request) as QueryFreezeCombinationResponse;
+
+            return "OK" ;
+        }
+    }
+}

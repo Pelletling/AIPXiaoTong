@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  有关如何配置 ASP.NET 应用程序的详细信息，请访问
+  https://go.microsoft.com/fwlink/?LinkId=301880
+  -->
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <connectionStrings>
+
+    <!--本地-->
+    <!--<add name="AIPXiaoTong" connectionString="data source=.;initial catalog=AIPXiaoTong;persist security info=True;user id=sa;password=123456;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" />-->
+    <add name="AIPXiaoTong" connectionString="data source=10.216.3.3;initial catalog=AIPXiaoTong;persist security info=True;user id=sa;password=Aip123456;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" />
+
+    <!--生产环境-->
+    <!--<add name="AIPXiaoTong" connectionString="data source=10.216.3.202;initial catalog=AIPXiaoTong;persist security info=True;user id=sa;password=Aip123456;MultipleActiveResultSets=True;App=EntityFramework" providerName="System.Data.SqlClient" />-->
+
+  </connectionStrings>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="vs:EnableBrowserLink" value="false" />
+
+    <!--前端图片路径-->
+    <add key="SiteImageUrl" value="http://xiaotong.test.allinpaysz.com" />
+
+    <!--通联通-->
+    <add key="TltUrl" value="https://113.108.182.3/aipg/ProcessServlet" />
+    <add key="TltMerchantId" value="200604000002376" />
+    <add key="TltUserName" value="20060400000237604" />
+    <add key="TltUserPassword" value="111111" />
+    <add key="TltPrivateKeyPassword" value="111111" />
+
+    <!--光大-->
+    <add key="GuangDa_IDImagesPath" value="\Images\GuangDaIDImages\" />
+    <add key="GuangDa_UserID" value="tlzfsh" />
+    <add key="GuangDa_PWD" value="111111" />
+
+    <!--平安-->
+    <add key="PingAn_IDImagesPath" value="\Images\PingAnIDImages\" />
+    <!--平安预下单接口信息-->
+    <add key="PingAn_OrderValidDay" value="1"/>
+    <add key="PingAn_FreezeProduct" value="1"/>
+    <add key="PingAn_AutoFreeze" value="01"/>
+    <add key="PingAn_PreparedFreezeOrderTransCode" value="001"/>
+
+    <!--测试环境-->
+    <add key="PingAn_APIUrl" value="https://bbc-stg1.pingan.com.cn/bbc/openapi/"/>
+    <add key="PingAn_APIPublicKey" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy/o0tFwhKNnT4A5XMhNlOe4vE9zMmbg6/kqWxEAO5TzALA+iJ3jp++c96PgItfOVimQhkcacV0Xenn4iK0wTIlZQtVfV0k4ZJGSNj0DGgh9GIeCf2fb0D8YJ1kgtAj8SpWh4jEae7k3onBpAMyl0+8PHUDfIcgvFArMMZiMpt5MIW9LtSHLqOcaKJGTsfdZfDcP+ve3OR+k9m1iu73PBh6wGjB9yvs/eEtL9DsQmZdOPSRr48iKdCUoXTkzbt6XP55GKX/li10m/UwdhnAo5CS8HfetesF4fDowZSNQ+tYDtSM+PgSWnESQcjSHLfdFsTiezFuINGK+JhzLTK1NQrQIDAQAB"/>
+    <add key="PingAn_APIPrivateKey" value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBB2JJ2+JVKTFF/p8YBFR2xhJYKZ36SSdffV9Aji+fq9M6IkGFE9VEbijqnoVNbBcfCeDL8+HZxg0g/gq14mmc3QFNed4rjWDawIgWOWpH661SWAmru0fxddsVfv/qPEvotpJLYLZmoB6g+wewk48QBhiZukjWK0mypj/ileUUMDecvjDB0ktP4/XUE/F+gWAL4AJdUE/UDK9KAYDRl6MSBkVPZoZVmUxQVst/1m3AENGxqJdBF8zpAwr8z3q4Yo5gtsXAUxcTWFI0Ev3LH8GVmuZA71C1zpnAWzFQ2LVgPjoFTlFiF5CJ5rlHbwVLUG4KG5pcr/gCyBRSmrqkhYJlAgMBAAECggEAMxSSQ70qAB7bo+MmZqKoMZE+h+qJ4SD+1l3SzMK9dc/XQod3OtDcOEgIKMHy8fCdwqrtdLCrM8SlQ+9unAzzVKdlsZ9SZhmFQ3S/K1U1jx1tM1EpGvR8icnnnr31YGzYfFty1SaHb19qYL6gj7YLCAPxz0IhPbBLb89DMVe4JeJTVUxKGmsZEhWz/AMbZxWH+dvQjQ174MXD0tLLgiz72Dih5qHwYBEWmkYU0t+iWWx+EEuseYvS9BRR90wQW3bGYYXMtLfkvivBSvftlndRUdEuw844GwqJaBwdGi+6jTM4yUNsosgEl8yqm0ch4bA0o7fQeKlO2z19BflPrpPzoQKBgQDSymYAzfTjYjLmwaoRnh2J2rccxGkSesUz0rUxtBsL35C5ZMiaA9KWIkKqb+tgQcOMidmytP2LbaACwdmHU1UWST9nU5c19nPQQcj+HvqfAb9DTBk+8fbnurdofwP0SuC5fKD+iU9XkIZrpE3JVduLeXDQ02BKviec0x38wOwKDQKBgQCcs8zFqvmj/L23s8Slpjl6GWbqvUNPPriA0WhT/+kMfANdNpWvH8P7UxVF08EgIbEFXgUsbSgYI90WObyoBnI+Gaes8QFeRoRFGWZXWNGm+1us2mcQ9A5u6PYIrRP8FsdJX1eM8RuV2q/qkqUEQt9WTlsyrLnmbqWnfJVDxBZ7uQKBgQCqGolcRthDkuBO1aQ/2WAu+iBhB6NfNVHkszpjpNtapoys/8beew06+OThk7XXlNqQlEHo9CPTm6DP+M1pZnc4p92RraRN+NeXDS9821UWcht93HBXGn5MnKIborx3LOHS7d8h6X7sxAWl4g6f1jh4goTnEF0ZlAB1ju0ZJjqVFQKBgAPoL7jV9Hd0O76yyrpelJxIudoscdst8yezEOjXPpZDGUpfrAe7wQUpIySkjPIiJOm/WF2tMwy3CDIfqmZ+EqcduKKFN8WD+JRId9bBrih9p+F9aIhxrVJymH/K4O6uGrXnnKU09b0cwLoWgerDSBI8zeVLjS8Dnzm3z3jrEKxxAoGAJLQNmsepFEL934zXtMteD4WWeEvM47pYZLm4g0tvQMQnSav4Xf3oTvar9VyfjXINWVrqs/qZbgjHaPGRhqXmw2RAFEkVe37Hny8uKD2i14x86Yz9u5qCveHEsPf3Gyr40JFD/zO0mt/BNezp++ECR52DewItw+yW6cIrEM+yYLE="/>
+    <add key="PingAn_RedirectUrl" value="https://test-b-fat.pingan.com.cn/bbc/index/landing.html?menuId=M001"/>
+    <add key="PingAn_ALUrl" value="https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do"/>
+    <add key="PingAn_ALReturnUrl" value="http://xiaotong.test.allinpaysz.com?orderNo="/>
+    <add key="PingAn_ALSha1Key" value="b34dc091889949cc86e85978355756b4"/>
+    <add key="PingAn_ALPublicKey" value="MIGiMA0GCSqGSIb3DQEBAQUAA4GQADCBjAKBhACGeGMZ03Z7dMDgU7CcqN7Omlto1wEg+Y6g5ZvTzplhXOHSmtkyG3b3wYVg/aQeyWt2A6r7mbLaUx9TWDIdG/gKRluR7egYY1/3Ql0yp40XFn5MLXmEKXUS9th8IvdwL2KJU7sYNpR4cQ7LT21F/E6ejsUQ9DGyr7unNE4Hfk6eRCoVvQIDAQAB"/>
+    <add key="PingAn_Channel" value="1007041"/>
+    <add key="PingAn_AccountNotifyPrivateKey" value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBB2JJ2+JVKTFF/p8YBFR2xhJYKZ36SSdffV9Aji+fq9M6IkGFE9VEbijqnoVNbBcfCeDL8+HZxg0g/gq14mmc3QFNed4rjWDawIgWOWpH661SWAmru0fxddsVfv/qPEvotpJLYLZmoB6g+wewk48QBhiZukjWK0mypj/ileUUMDecvjDB0ktP4/XUE/F+gWAL4AJdUE/UDK9KAYDRl6MSBkVPZoZVmUxQVst/1m3AENGxqJdBF8zpAwr8z3q4Yo5gtsXAUxcTWFI0Ev3LH8GVmuZA71C1zpnAWzFQ2LVgPjoFTlFiF5CJ5rlHbwVLUG4KG5pcr/gCyBRSmrqkhYJlAgMBAAECggEAMxSSQ70qAB7bo+MmZqKoMZE+h+qJ4SD+1l3SzMK9dc/XQod3OtDcOEgIKMHy8fCdwqrtdLCrM8SlQ+9unAzzVKdlsZ9SZhmFQ3S/K1U1jx1tM1EpGvR8icnnnr31YGzYfFty1SaHb19qYL6gj7YLCAPxz0IhPbBLb89DMVe4JeJTVUxKGmsZEhWz/AMbZxWH+dvQjQ174MXD0tLLgiz72Dih5qHwYBEWmkYU0t+iWWx+EEuseYvS9BRR90wQW3bGYYXMtLfkvivBSvftlndRUdEuw844GwqJaBwdGi+6jTM4yUNsosgEl8yqm0ch4bA0o7fQeKlO2z19BflPrpPzoQKBgQDSymYAzfTjYjLmwaoRnh2J2rccxGkSesUz0rUxtBsL35C5ZMiaA9KWIkKqb+tgQcOMidmytP2LbaACwdmHU1UWST9nU5c19nPQQcj+HvqfAb9DTBk+8fbnurdofwP0SuC5fKD+iU9XkIZrpE3JVduLeXDQ02BKviec0x38wOwKDQKBgQCcs8zFqvmj/L23s8Slpjl6GWbqvUNPPriA0WhT/+kMfANdNpWvH8P7UxVF08EgIbEFXgUsbSgYI90WObyoBnI+Gaes8QFeRoRFGWZXWNGm+1us2mcQ9A5u6PYIrRP8FsdJX1eM8RuV2q/qkqUEQt9WTlsyrLnmbqWnfJVDxBZ7uQKBgQCqGolcRthDkuBO1aQ/2WAu+iBhB6NfNVHkszpjpNtapoys/8beew06+OThk7XXlNqQlEHo9CPTm6DP+M1pZnc4p92RraRN+NeXDS9821UWcht93HBXGn5MnKIborx3LOHS7d8h6X7sxAWl4g6f1jh4goTnEF0ZlAB1ju0ZJjqVFQKBgAPoL7jV9Hd0O76yyrpelJxIudoscdst8yezEOjXPpZDGUpfrAe7wQUpIySkjPIiJOm/WF2tMwy3CDIfqmZ+EqcduKKFN8WD+JRId9bBrih9p+F9aIhxrVJymH/K4O6uGrXnnKU09b0cwLoWgerDSBI8zeVLjS8Dnzm3z3jrEKxxAoGAJLQNmsepFEL934zXtMteD4WWeEvM47pYZLm4g0tvQMQnSav4Xf3oTvar9VyfjXINWVrqs/qZbgjHaPGRhqXmw2RAFEkVe37Hny8uKD2i14x86Yz9u5qCveHEsPf3Gyr40JFD/zO0mt/BNezp++ECR52DewItw+yW6cIrEM+yYLE="/>
+
+
+    <!--生产环境-平安生成的秘钥对的公钥-通联生成的秘钥对的公钥-->
+    <!--<add key="PingAn_APIUrl" value="https://bbc.pingan.com.cn/bbc/openapi/"/>
+    <add key="PingAn_APIPublicKey" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhFEmavL01V8kvAqXujKUA0llqwJNFA2bgXWRz6MO/Jg/puqfjNvZXZOnEJ9eL0kj6uDCpXa7jlTIVxEXqdBRGM8yDv8VxUaBuyyG+uDHYq2MPRyLTvU24yrRIqvM4lwIc1ptkhQFV5BcOWSkBhka/VSaBpmE7hOmA5gVy0bugfIifSn5/9Ol7kbwTH164iQ2nAfw4zH2Y5xGY8Fm+YKOSv0Oq5BFZfn/JLEdsL7KHDNTV/LCORFBBxO2qbGqxkaRu1MfHAdwa4n7bBPh58s2WLqEEkAOH2YyebaoaieKec6eF4IA3Bbudgplcg9RyfoXM/qP4LjMPNu36Vxx4F1HGQIDAQAB" />
+    <add key="PingAn_APIPrivateKey" value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCPsBka+2jwh7m2LK2pfiUpFnnnJToykOja7dRrqS4JSn4uCoZQozzkNL0YcM44CRWWgipnHZPSfzijrbrG77GnGvy4JJJ1xORbPhesIFFJ2QZ6Zmp2OFe2/FUhJPjkgx7U94saerEVuBS+dmnbD2ismH+c0a6FHc0F2LCoZBlDx6FjVSEgCZ1jadL9lmSmBQkoPPLr4wVnN+Sv1nD4gy8ZYVHolOEiaE3sjMRGOtMbvZ+8sJbbthNPlKiNoKEK/7wfdQUHWVNLAo3HyygBWqFarHBTfhlkWSARwOQslYCVyt3J8DCmo/XmwnkHthfS3+cmjZc598PAmG9Tvlc1hN29AgMBAAECggEAfQVtIrQD391IckE3rVUsAi8jTEJw+9RoNy1eeXqPqtfdKDRSH9GYxrs4mQ517/2/geCqAmSS3UGCx6/+5t9iBRMPNy3jHYN+agGB2WuZLxcdctyv30Mw1u+BJsCjqziHWCg3KYf9kvdDXWFsw4UJv7tEte8f2YVPgbnEJBBMh1LO3xbvBHn/0tZq9i0nNAodsGEM+htzi20T3zDYsVn4/zA0Qe6mDwJT0lHcCwEy1NwosS2T/U3cnSU4/cMUHAelo/iEF7zfqj+tAPsqul0XCKw6TAyq//w+36iEmvjaIConDEDptpi928YcCo5sc3FM5ruoQnEFEl9FM/lTPACXJQKBgQD6bOAJ2vpBVCBS37XsB/6vUc0w9J2H0/abYhmFLLvXogis4fPbZJ1YBgN4yX9rwPtg59jd22mgxIf1sWedJFxfdqQGEvffQAix4yBC6rix/ow8FBjAAby1xH1Khx08Oj7SoYiNQZQOwdQSLLjUUn2MMYmvbdHJld6jPlcqPLQRqwKBgQCS4vJ/bm4Ns8F8Sf+RUTNSmA/QEQMH4HF5cmwZQB5xmlTV6j9Qlyje9OrW23d1B25F3WTPkMTKhbCiMzkJy4g5k4ygVaO5aIZiss/TfM2zVmH18TjKnmr7n+mXNyPshagR713yHUmrsW6jZ9srx6+sy2VW3FX/ifnnSvkNyFE2NwKBgHyu9KUzh+I69pUMmVFZca7stZMoV76nBGO85iPub+Ae5t7c6UNUxxpqdBQRjwWhYgePp+ReOCs5btAfcg1Fa1CEi4oSq6NWCH45LXjj0O2eZUgMYX5H3yNJH3CZ8S5peZn5nzlla0glrWcXKTddkvDYQUs9DHSnz9/LTC7VZnpdAoGAcVdhm2cQ0M3l/Qv0gqNPoOnpOboGxqsvpHDgbNOHKk3WLIJmfL9HMFN4anZKxSkItCxTv76Lu2JRm7c+ygodgaATIR00CrtXBw3HQ//HkhyT1n1ePyrijmskiiRoOfggakZ0DYD/+dYd80UOX8fkDMed2NqIGXjUNt8pMrNhxx0CgYBxhGDVyRrLtJLtXnuqQwnhhhfuroIc19jdriwiwjrApoRpn+Zdb9+/qKT0ZjpQLTxtLQeIvk2vZDjvPD9l8c3v3PiNqyt+5OxuezsSx4BLI+dvQkS/eOFGX0p9NXiR7spjyhDFH4gqzq7neaTuZnZI6r00lZThLy93v7KBBNJc5Q=="/>
+    <add key="PingAn_RedirectUrl" value="https://bank-static.pingan.com.cn/bbc/index/landing.html?menuId=M001"/>
+    <add key="PingAn_ALUrl" value="https://rmb.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do"/>
+    <add key="PingAn_ALReturnUrl" value="http://xiaotong.test.allinpaysz.com?orderNo="/>
+    <add key="PingAn_ALSha1Key" value="5b8e72c5888a4503b1f65a152bae55f2"/>
+    <add key="PingAn_ALPublicKey" value="MIGiMA0GCSqGSIb3DQEBAQUAA4GQADCBjAKBhACYu8INJh+etxEiHME9iO0No3DpfaxYMGwsbbFxE0NLYXjOlqQJwHUroyPw8zIxTU/FdGXl3hgWZMlx/8LtIYxUqvfU/h8me9EO7Lrxg+ADtIgXOMjiwyBkUqs6US7t5g1RvF5jHc64bupdnIhM4b2pc1oxToVc8u8unCToXnIHgUHyNQIDAQAB"/>
+    <add key="PingAn_Channel" value="1007041"/>-->
+
+    <!--生产-->
+
+  </appSettings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.7.1" />
+    <httpRuntime targetFramework="4.7.1" />
+    <httpModules>
+      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web" />
+    </httpModules>
+    <customErrors mode="Off" />
+    <sessionState timeout="120"></sessionState>
+  </system.web>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Diagnostics.DiagnosticSource" publicKeyToken="cc7b13ffcd2ddd51" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.2.1" newVersion="4.0.2.1" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" />
+        <bindingRedirect oldVersion="0.0.0.0-11.0.0.0" newVersion="11.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-1.6.5135.21930" newVersion="1.6.5135.21930" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.4.0" newVersion="5.2.4.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.webServer>
+    <modules>
+      <remove name="TelemetryCorrelationHttpModule" />
+      <add name="TelemetryCorrelationHttpModule" type="Microsoft.AspNet.TelemetryCorrelation.TelemetryCorrelationHttpModule, Microsoft.AspNet.TelemetryCorrelation" preCondition="integratedMode,managedHandler" />
+      <remove name="ApplicationInsightsWebTracking" />
+      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web" preCondition="managedHandler" />
+    </modules>
+    <validation validateIntegratedModeConfiguration="false" />
+  </system.webServer>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+    </compilers>
+  </system.codedom>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+</configuration>

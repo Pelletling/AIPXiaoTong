@@ -1,0 +1,144 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.PingAnAPI;
+using Framework.Common;
+using PingAnAPI;
+using PingAnAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class PingAnAPIService : IPingAnAPIService
+    {
+        private PingAnExec pingAnExec;
+        private static string channel = System.Configuration.ConfigurationManager.AppSettings["PingAn_Channel"].ToString();
+        private static string redirectUrl = System.Configuration.ConfigurationManager.AppSettings["PingAn_RedirectUrl"].ToString();
+        private static string returnUrl = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALReturnUrl"].ToString();
+        public PingAnAPIService()
+        {
+            var url = System.Configuration.ConfigurationManager.AppSettings["PingAn_APIUrl"].ToString();
+            var publicKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_APIPublicKey"].ToString();
+            var privateKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_APIPrivateKey"].ToString();
+            var autoLoginUrl = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALUrl"].ToString();
+            var sha1Key = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALSha1Key"].ToString();
+            var autoLoginPubKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALPublicKey"].ToString();
+
+            pingAnExec = new PingAnExec(url, publicKey, privateKey, autoLoginUrl, sha1Key, autoLoginPubKey);
+        }
+
+        /// <summary>
+        /// 预下单接口
+        /// </summary>
+        /// <returns></returns>
+        public PreparedFreezeOrderResponse PreparedFreezeOrder(OrderPaid orderPaid, PingAnOrderPaid pingAnOrderPaid)
+        {
+            PreparedFreezeOrderRequest request = new PreparedFreezeOrderRequest();
+            request.channel = pingAnOrderPaid.Channel;
+            request.userName = orderPaid.MemberName;
+            request.cardNumber = orderPaid.MemberIDNumber;
+            request.mobile = orderPaid.MemberMobile;
+            request.businessName = pingAnOrderPaid.BusinessName;
+            request.orderValidDay = pingAnOrderPaid.OrderValidDay;
+            request.freezeAmt = Convert.ToDouble(orderPaid.TransactionAmount);
+            request.freezeTimeLimit = pingAnOrderPaid.FreezeTimeLimit;
+            request.freezeProduct = pingAnOrderPaid.FreezeProduct;
+            request.autoFreeze = pingAnOrderPaid.AutoFreeze;
+            request.transCode = pingAnOrderPaid.TransCode;
+
+            var response = pingAnExec.Exec(request);
+
+            return response as PreparedFreezeOrderResponse;
+        }
+
+        /// <summary>
+        /// 免登接口
+        /// </summary>
+        /// <returns></returns>
+        public AutoLoginResponse AutoLogin(PingAnOrderPaid pingAnOrderPaid, Member member)
+        {
+            AutoLoginRequest request = new AutoLoginRequest();
+            request.accNo = pingAnOrderPaid.ClientNo;
+            request.clientIdNo = member.IDNumber;
+            request.clientIdType = "1";
+            request.clientName = member.Name;
+            request.mchId = channel;
+            request.redirectUrl = redirectUrl;
+            request.state = returnUrl + pingAnOrderPaid.BankOrderNo;
+            request.telNo = member.Mobile;
+            request.thirdMid = member.Mobile;
+            request.timestamp = ((DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000).ToString();
+            request.umCode = "";
+
+            var response = pingAnExec.GetAutoLoginPath(request);
+
+            return response as AutoLoginResponse;
+        }
+
+        /// <summary>
+        /// 查询订单接口
+        /// </summary>
+        /// <returns></returns>
+        public QueryMarginsOrderDetailResponse QueryMarginsOrderDetail(OrderPaid orderPaid)
+        {
+            QueryMarginsOrderDetailRequest request = new QueryMarginsOrderDetailRequest();
+            request.channel = channel;
+            request.bankOrderNo = orderPaid.PingAnOrderPaid.BankOrderNo;
+            request.cardNumber = orderPaid.Member.IDNumber;
+            request.accountType = "";  //1一类户2二类户
+            request.transCode = "002";
+
+            var response = pingAnExec.Exec(request);
+
+            return response as QueryMarginsOrderDetailResponse;
+        }
+
+        /// <summary>
+        /// 批量查询订单接口
+        /// </summary>
+        /// <returns></returns>
+        public QueryBatchMarginsOrderDetialResponse QueryBatchMarginsOrderDetial(QueryPingAnMarginsOrderListRequest queryPingAnMarginsOrderListRequest)
+        {
+            QueryBatchMarginsOrderDetialRequest request = new QueryBatchMarginsOrderDetialRequest();
+
+            request.channel = channel;
+            request.transCode = "018";
+            request.pageIndex = queryPingAnMarginsOrderListRequest.pageindex;
+            request.pageSize = queryPingAnMarginsOrderListRequest.pagesize;
+            request.commercialNoII = "";
+            request.commercialOrderNo = "";
+            request.bankOrderNo = queryPingAnMarginsOrderListRequest.bankorderno;
+            request.activityNo = "";
+            request.productCode = "";
+            request.cardNumber = queryPingAnMarginsOrderListRequest.cardnumber;
+            request.userName = queryPingAnMarginsOrderListRequest.username;
+            request.freezeStartTime = queryPingAnMarginsOrderListRequest.freezestarttime;
+            request.freezeEndTime = queryPingAnMarginsOrderListRequest.freezetendtime;
+
+            var response = pingAnExec.Exec(request);
+
+            return response as QueryBatchMarginsOrderDetialResponse;
+        }
+
+        /// <summary>
+        /// 解止付接口
+        /// </summary>
+        /// <returns></returns>
+        public UnFreezeMarginsOrderResponse UnFreezeMarginsOrder(OrderPaid orderPaid)
+        {
+            UnFreezeMarginsOrderRequest request = new UnFreezeMarginsOrderRequest();
+            request.channel = channel;
+            request.bankOrderNo = orderPaid.PingAnOrderPaid.BankOrderNo;
+            request.cardNumber = orderPaid.Member.IDNumber;
+            request.transCode = "004";
+
+            var response = pingAnExec.Exec(request);
+
+            return response as UnFreezeMarginsOrderResponse;
+        }
+
+    }
+}

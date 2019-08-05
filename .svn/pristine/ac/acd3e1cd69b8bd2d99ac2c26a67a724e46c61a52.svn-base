@@ -1,0 +1,66 @@
+﻿@using Framework.Common;
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    ViewBag.Title = "AccountNotify";
+}
+
+<link href="~/Content/sm.min.css" rel="stylesheet" />
+<script src="~/Scripts/zepto.js"></script>
+<script src="~/Scripts/sm.min.js"></script>
+<script src="~/Scripts/sm-extend.min.js"></script>
+
+@model AccountPingAnTransDataCM
+
+<header class="bar bar-nav">
+    <h1 class="title">账户开通</h1>
+</header>
+<div class="content">
+    @if (Model.channel != null && Model.data != null)
+    {
+        <div class="content-block-title">详细信息</div>
+        <div class="list-block">
+            <ul>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">开户人</div>
+                        <div class="item-after">@Model.data.cnName</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">转入卡号</div>
+                        <div class="item-after">@Model.data.inCardNo</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">转入账户类型</div>
+                        <div class="item-after">@Model.data.inCardNoType</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">转出卡号</div>
+                        <div class="item-after">@Model.data.outCardNo</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">金额</div>
+                        <div class="item-after">@Model.data.amount</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-block">
+            <p><a href="#" class="button button-big button-warning">立即POS刷卡转入资金 </a></p>
+        </div>
+    }
+    else
+    {
+        <div class="content-block-title">无数据</div>
+    }
+</div>

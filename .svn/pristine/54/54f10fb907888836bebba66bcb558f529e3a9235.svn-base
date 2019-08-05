@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryHouseTypeShowListRequst:BaseRequest
+    {
+        /// <summary>
+        /// 户型名称
+        /// </summary>
+        [Display(Name = "户型名称")]
+        public string houstypename { get; set; }
+
+
+        public virtual int ID { get; set; }
+        private int pageSize { get; set; }
+
+        public int PageIndex
+        {
+            get { return ID; }
+            set { ID = value; }
+        }
+
+        public int PageSize
+        {
+            get
+            {
+                if (pageSize == 0)
+                    return GlobalConfig.PageSize;
+                else
+                    return pageSize;
+            }
+
+            set
+            {
+                pageSize = value;
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryOrderHousePaymentListResponse : BaseResponse
+    {
+        public long pagecount { get; set; }
+        public long pageindex { get; set; }
+        public List<OrderHousePaymentList> orderHousePaymentList { get; set; }
+
+        public class OrderHousePaymentList
+        {
+            private string _serialnumber { get; set; }
+
+            public string serialnumber { get { return !string.IsNullOrWhiteSpace(_serialnumber) ? _serialnumber : ""; } set { _serialnumber = value; } }
+            public string merchantid { get; set; }
+            public string merchantname { get; set; }
+            public string ordernumber { get; set; }        
+            public String projectname { get; set; }
+            public string projectid { get; set; }
+            public string equipmentsnno { get; set; }
+            public string employeename { get; set; }
+            public string employeeid { get; set; }
+            public string transactionamount { get; set; }
+            public string bankcardnumber { get; set; }
+            public string membername { get; set; }
+            public string memberid { get; set; }
+            public string membermobile { get; set; }
+            public string memberidnumber { get; set; }
+            public string paymentstatus { get; set; }
+            public string paymenttype { get; set; }
+            public string status { get; set; }
+            public String paymentstatusdesc { get; set; }
+            public string paymenttypedesc { get; set; }
+            public string statusdesc { get; set; }
+            public string  remark { get; set; }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+2019-02-20 08:28:32.1590|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：QryDate=20190220&ReqId=BFinFundServiceReq&ReqJnlNo=201902200828236980&ReqTime=2019-02-20 08:28:23&ServiceId=BMerCheckJnlFileReq&UserId=tlzfsh&Sign=J9CjmlxTR9Vug3RlpN4g5%2fek6l6YN3t11lYI1DIps46iL5qx%2bF5cWCaXGhVYpFDPKcLUsarKuFovsndxkpBiR4KDLBFTiBc42rfeMTPZuWuXPOSGXOEwj4UsV3PphrQ1V1WN0MKX8W9609mnVoBougJgeomtLARPD7ZecaWoDYk%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201902200828236980</ReqJnlNo>
+<ResTime>2019-02-20 08:05:10</ResTime>
+<ResCode>000080</ResCode>
+<ResMsg>请求文件未生成</ResMsg>
+</Head>
+</Message>
+,http异常:

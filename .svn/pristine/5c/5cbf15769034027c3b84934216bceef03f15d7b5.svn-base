@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class MemberManagement : BaseEntity
+    {
+        [Display(Name = "商户ID")]
+        public long? MerchantID { get; set; }
+        /// <summary>
+        /// 会员名
+        /// </summary>
+        [Display(Name = "会员名")]
+        [Required(ErrorMessage = "{0}不能为空")]      
+        [MaxLength(16, ErrorMessage = "{0}不能多于16位")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Display(Name = "项目名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long ProjectManagementID { get; set; }
+
+        /// <summary>
+        /// 身份证
+        /// </summary>
+        [Display(Name = "身份证")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string IDNumber { get; set; }
+
+        /// <summary>
+        /// 手机号码
+        /// </summary>
+        [Required(ErrorMessage = "{0}不能为空")]
+        [Display(Name = "手机号码")]
+        [MaxLength(16, ErrorMessage = "{0}不能多于16位")]
+        public string Mobile { get; set; }
+
+        //-------------------------------------------------------------------
+
+        public virtual Merchant Merchant { get; set; }
+        public virtual ProjectManagement ProjectManagement { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjetName { get { return ProjectManagement?.ProjetName; } }
+
+    }
+}

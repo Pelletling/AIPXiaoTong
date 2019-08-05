@@ -1,0 +1,189 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.Common;
+using Framework.LambdaExpression;
+using Framework.Web.IOC;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
+
+namespace AIPXiaoTong.Service
+{
+    public class OrderPaidService : BusinessService<OrderPaid>, IOrderPaidService
+    {
+        public override Expression<Func<OrderPaid, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<OrderPaid, bool>> express = DynamicExpressions.True<OrderPaid>();
+
+            var m = model as OrderPaidQM;
+
+            if (!string.IsNullOrWhiteSpace(m.OrderNumber))
+            {
+                express = express.AndAlso(t => t.OrderNumber == m.OrderNumber.Trim());
+            }
+            if (!string.IsNullOrWhiteSpace(m.MemberMobile))
+            {
+                express = express.AndAlso(t => t.Member.Mobile == m.MemberMobile.Trim());
+            }
+            if (!string.IsNullOrWhiteSpace(m.MemberName))
+            {
+                express = express.AndAlso(t => t.Member.Name.Contains(m.MemberName.Trim()));
+            }
+            if (m.ProjectID != null)
+            {
+                express = express.AndAlso(t => t.HouseTypeShow.ProjectID == m.ProjectID);
+            }
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+            if (currentUser.MerchantID != 0)
+            {
+                express = express.AndAlso(t => t.Merchant.ID == currentUser.MerchantID);
+            }
+
+            if (m.QueryDate != null)
+            {
+                express = express.AndAlso(t => t.CreateDatetime >= m.QueryDate);
+            }
+
+            return express;
+        }
+
+
+        public List<OrderPaidEM> Export(OrderPaidQM model)
+        {
+            if (model == null) model = new OrderPaidQM();
+
+            var express = GetExpress(model);
+
+            var status = OrderPaidRechargeStatusOption.Success.ToInt();
+
+            var list = Gets(express).Select(t => new OrderPaidEM()
+            {
+                OrderNumber = t.OrderNumber,
+                ProjectName = t.HouseTypeShow.Project.ProjetName,
+                HouseTypeName = t.HouseTypeShow.HouseTypeName,
+                EquipmentSNNo = t.EquipmentSNNo,
+                EmployeeName = t.Employee.Name,
+                SerialNumber = t.OrderPaidRechargeList.FirstOrDefault(f => f.Status == status).TransNumber,
+                TransactionAmount = t.TransactionAmount,
+                MemberName = t.Member.Name,
+                MemberIDNumber = t.Member.IDNumber,
+                MemberMobile = t.Member.Mobile,
+                //  PaymentStatus = t.PaymentStatus,
+                Status = t.Status,
+                //PaymentType = t.PaymentType,
+                BankCardNumber = t.BankCardNumber,
+                MerchantName = t.Merchant.Name,
+
+            }).ToList();
+
+            return list;
+        }
+
+        public void RechargeSuccess(OrderPaidRecharge orderPaidRecharge, string TransNumber, DateTime TransTime)
+        {
+            var iOrderPaidRechargeService = DIFactory.GetContainer().Resolve<IOrderPaidRechargeService>();
+            var iMemberService = DIFactory.GetContainer().Resolve<IMemberService>();
+
+            orderPaidRecharge.OrderPaid.Status = OrderPaidStatusOption.PaySuccess.ToInt();
+            Save(orderPaidRecharge.OrderPaid);
+
+            orderPaidRecharge.Status = OrderPaidRechargeStatusOption.Success.ToInt();
+            orderPaidRecharge.BankCardNumber = orderPaidRecharge.OrderPaid.Member.BankCardNumber;
+            orderPaidRecharge.TransNumber = TransNumber;
+            orderPaidRecharge.TransTime = TransTime;
+            iOrderPaidRechargeService.Save(orderPaidRecharge);
+
+
+            iMemberService.BalanceChange(orderPaidRecharge.OrderPaid.Member, orderPaidRecharge.Amount, MemberBalanceHistoryTypeOption.Recharge, remark: orderPaidRecharge.SerialNumber);
+
+            //orderPaidRecharge.OrderPaid.Member.Balance += orderPaidRecharge.Amount;
+            //iMemberService.Save(orderPaidRecharge.OrderPaid.Member);
+
+            //if (orderPaidRecharge.OrderPaid.Member.Balance < 0)
+            //    throw new Exception("可用余额不能小于0");
+        }
+
+        public void FreezeSuccess(OrderPaidFreeze orderPaidFreeze, decimal balance)
+        {
+            var iOrderPaidFreezeService = DIFactory.GetContainer().Resolve<IOrderPaidFreezeService>();
+            var iMemberService = DIFactory.GetContainer().Resolve<IMemberService>();
+
+            orderPaidFreeze.OrderPaid.Status = OrderPaidStatusOption.FrozenSuccess.ToInt();
+            Save(orderPaidFreeze.OrderPaid);
+
+            orderPaidFreeze.Balance = balance;
+            orderPaidFreeze.Status = OrderPaidFreezeStatusOption.Success.ToInt();
+            orderPaidFreeze.TransTime = DateTime.Now;
+            iOrderPaidFreezeService.Save(orderPaidFreeze);
+
+            iMemberService.BalanceChange(orderPaidFreeze.OrderPaid.Member, orderPaidFreeze.Amount * -1, MemberBalanceHistoryTypeOption.Freeze, orderPaidFreeze.Amount, remark: orderPaidFreeze.SerialNumber);
+
+            //orderPaidFreeze.OrderPaid.Member.Balance -= orderPaidFreeze.Amount;
+            //orderPaidFreeze.OrderPaid.Member.FreezeBalance += orderPaidFreeze.Amount;
+            //iMemberService.Save(orderPaidFreeze.OrderPaid.Member);
+
+            //if (orderPaidFreeze.OrderPaid.Member.Balance < 0)
+            //    throw new Exception("可用余额不能小于0");
+
+            //if (orderPaidFreeze.OrderPaid.Member.FreezeBalance < 0)
+            //    throw new Exception("冻结余额不能小于0");
+
+        }
+
+        public void UnFreezeSuccess(OrderPaidUnFreeze orderPaidUnFreeze)
+        {
+            var iOrderPaidUnFreezeService = DIFactory.GetContainer().Resolve<IOrderPaidUnFreezeService>();
+            var iMemberService = DIFactory.GetContainer().Resolve<IMemberService>();
+
+            orderPaidUnFreeze.OrderPaid.Status = OrderPaidStatusOption.UnFrozenSuccess.ToInt();
+            Save(orderPaidUnFreeze.OrderPaid);
+
+            orderPaidUnFreeze.Status = OrderPaidUnFreezeStatusOption.Success.ToInt();
+            orderPaidUnFreeze.TransTime = DateTime.Now;
+            iOrderPaidUnFreezeService.Save(orderPaidUnFreeze);
+
+            iMemberService.BalanceChange(orderPaidUnFreeze.OrderPaid.Member, orderPaidUnFreeze.Amount, MemberBalanceHistoryTypeOption.UnFreeze, orderPaidUnFreeze.Amount * -1, remark: orderPaidUnFreeze.SerialNumber);
+
+            //orderPaidUnFreeze.OrderPaid.Member.Balance += orderPaidUnFreeze.Amount;
+            //orderPaidUnFreeze.OrderPaid.Member.FreezeBalance -= orderPaidUnFreeze.Amount;
+            //iMemberService.Save(orderPaidUnFreeze.OrderPaid.Member);
+
+            //if (orderPaidUnFreeze.OrderPaid.Member.Balance < 0)
+            //    throw new Exception("可用余额不能小于0");
+
+            //if (orderPaidUnFreeze.OrderPaid.Member.FreezeBalance < 0)
+            //    throw new Exception("冻结余额不能小于0");
+        }
+
+        public void WithdrawSuccess(OrderPaidWithdraw orderPaidWithdraw)
+        {
+            var iOrderPaidWithdrawService = DIFactory.GetContainer().Resolve<IOrderPaidWithdrawService>();
+            var iMemberService = DIFactory.GetContainer().Resolve<IMemberService>();
+
+            orderPaidWithdraw.OrderPaid.Status = OrderPaidStatusOption.WithdrawSuccess.ToInt();
+            Save(orderPaidWithdraw.OrderPaid);
+
+            orderPaidWithdraw.Status = OrderPaidWithdrawStatusOption.Success.ToInt();
+            orderPaidWithdraw.TransTime = DateTime.Now;
+            iOrderPaidWithdrawService.Save(orderPaidWithdraw);
+
+            iMemberService.BalanceChange(orderPaidWithdraw.OrderPaid.Member, orderPaidWithdraw.Amount * -1, MemberBalanceHistoryTypeOption.Withdraw, remark: orderPaidWithdraw.SerialNumber);
+
+            //orderPaidWithdraw.OrderPaid.Member.Balance -= orderPaidWithdraw.Amount;
+            //iMemberService.Save(orderPaidWithdraw.OrderPaid.Member);
+
+            //if (orderPaidWithdraw.OrderPaid.Member.Balance < 0)
+            //    throw new Exception("可用余额不能小于0");
+
+        }
+
+    }
+}

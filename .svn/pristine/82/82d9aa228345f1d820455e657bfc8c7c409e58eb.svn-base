@@ -1,0 +1,63 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class OrderBookingService : BusinessService<OrderBooking>, IOrderBookingService
+    {
+        public override Expression<Func<OrderBooking, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<OrderBooking, bool>> express = DynamicExpressions.True<OrderBooking>();
+
+            var m = model as OrderBookingQM;
+
+            if (!string.IsNullOrWhiteSpace(m.OrderNumber))
+            {
+                express = express.AndAlso(t => t.OrderNumber==m.OrderNumber.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.MemberName))
+            {
+                express = express.AndAlso(t => t.Member.Name == m.MemberName.Trim());
+            }
+
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+
+            return express;
+        }
+
+        public List<OrderBookingEM> Export(OrderBookingQM model)
+        {
+            if (model == null) model = new OrderBookingQM();
+
+            var express = GetExpress(model);
+
+            var list = Gets(express).Select(t => new OrderBookingEM()
+            {
+                OrderNumber = t.OrderNumber,
+                EquipmentNumber = t.EquipmentNumber,
+                EmployeeName = t.Employee.Name,
+                MemberName=t.Member.Name,
+                MemberMobile=t.Member.Mobile,
+                MemberIDNumber=t.Member.IDNumber,
+                OrderTime = t.OrderTime,
+                ProjectName = t.ProjectManagement.ProjetName,
+                MerchantName = t.Merchant.Name,
+
+            }).ToList();
+
+            return list;
+        }
+    }
+}

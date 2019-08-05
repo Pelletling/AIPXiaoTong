@@ -1,0 +1,41 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class OrderBookingController : BaseController
+    {
+        private IOrderBookingService iOrderBookingService;
+
+        public OrderBookingController(IOrderBookingService iOrderBookingService)
+        {
+            this.iOrderBookingService = iOrderBookingService;
+        }
+
+
+        public ActionResult Index(OrderBookingQM model)
+        {
+            var list = this.iOrderBookingService.GetListModel<OrderBookingLM, OrderBookingQM>(model);
+
+            BindData();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+           
+        }
+    }
+}

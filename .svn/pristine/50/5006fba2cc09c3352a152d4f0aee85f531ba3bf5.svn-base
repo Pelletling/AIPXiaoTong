@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class DistrictManagement:BaseEntity
+    {
+        public long MerchantID { get; set; }
+
+        /// <summary>
+        /// 区域名称
+        /// </summary>
+        [Display(Name = "区域名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string DistrictName { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50字")]
+        public string Remark { get; set; }
+
+        //--------------------------------------------------------------
+        public virtual Merchant Merchant { get; set; }
+
+    }
+}

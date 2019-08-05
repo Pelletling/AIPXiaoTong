@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class AdvertisingManagementLM:BaseListModel
+    {
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjetName { get; set; }
+
+        /// <summary>
+        /// 广告图片
+        /// </summary>
+        public string AdvertisingImg { get; set; }
+
+        /// <summary>
+        /// 广告类型
+        /// </summary>
+        public int AdvertisingType { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 播放时长
+        /// </summary>
+        public int PlayTime { get; set; }
+
+        /// <summary>
+        /// 未通过原因
+        /// </summary>
+        public string Reason { get; set; }
+
+
+        public string StatusDesc { get; set; }
+
+        public string AdvertisingTypeDesc { get; set; }
+    }
+}

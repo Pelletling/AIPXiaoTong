@@ -1,0 +1,15 @@
+﻿@using AIPXiaoTong.Model;
+@using Framework.Cache;
+@using AIPXiaoTong.Model.Admin;
+@{
+    Layout = null;
+    var employeeMenuList = (CacheHelper.GetCache(CacheKey.Menu.ToString()) as IList<EmployeeMenuLM>) ?? new List<EmployeeMenuLM>();
+    var controller = ViewContext.RouteData.Values["Controller"] as string;
+}
+
+<nav class="breadcrumb">
+    <i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span> @(employeeMenuList.FirstOrDefault(t => t.Code == employeeMenuList.FirstOrDefault(m => m.Controller == controller)?.ParentCode)?.Name) <span class="c-gray en">&gt;</span>@(employeeMenuList.FirstOrDefault(t => t.Controller == controller)?.Name)
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="Hui-iconfont"></i>
+    </a>
+</nav>

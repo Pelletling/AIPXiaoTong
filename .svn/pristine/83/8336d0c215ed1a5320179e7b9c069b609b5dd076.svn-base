@@ -1,0 +1,117 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class InsertDataController : Controller
+    {
+        private IMemberManagementService iMemberManagementService;
+        private IOrderBookingService iOrderBookingService;
+        private IOrderHousePaymentService iOrderHousePaymentService;
+        private IOrderPaidService iOrderPaidService;
+
+        public InsertDataController(IMemberManagementService iMemberManagementService,
+                                     IOrderBookingService iOrderBookingService,
+                                     IOrderHousePaymentService iOrderHousePaymentService,
+                                     IOrderPaidService iOrderPaidService)
+        {
+            this.iMemberManagementService = iMemberManagementService;
+            this.iOrderBookingService = iOrderBookingService;
+            this.iOrderHousePaymentService = iOrderHousePaymentService;
+            this.iOrderPaidService = iOrderPaidService;
+        }
+
+        public ActionResult InsertMember()
+        {
+            var entity = new MemberManagement();
+
+            entity.Name = "刘亦菲s";
+            entity.ProjectManagementID = 14;
+            entity.IDNumber = "2312432423423423423";
+            entity.Mobile = "15212124556";
+
+            iMemberManagementService.Save(entity);
+            iMemberManagementService.Commit();
+
+            return View();
+        }
+
+        public ActionResult InsertOrderBooking()
+        {
+            var entity = new OrderBooking();
+
+            entity.MerchantID =1;
+            entity.OrderNumber = "20180914141342493998";
+            entity.ProjectManagementID = 12;
+            entity.EquipmentNumber = "600047000103";
+            entity.Operator = "【100003】小o";
+            entity.CustomerName = "陈江东";
+            entity.Mobile = "15273737373";
+            entity.IDNumber = "430981199999999999";
+            entity.OrderTime = DateTime.Now;
+            entity.Remark = "asdsadsadsa";
+
+            iOrderBookingService.Save(entity);
+            iOrderBookingService.Commit();
+
+            return View();
+        }
+
+        public ActionResult OrderHousePayment()
+        {
+            decimal dec = 66;
+            var entity = new OrderHousePayment();
+
+            entity.OrderNumber = "20181107163729899799";
+            entity.ProjectManagementID = 12;
+            entity.EquipmentNumber = "600047000103";
+            entity.Operator = "【10001】刘";
+            entity.TransactionAmount = dec;
+            entity.SerialNumber = "	111863250000001641";
+            entity.CustomerName = "陈江东";
+            entity.Mobile = "15273737373";
+            entity.Status = 1;
+            entity.PaymentStatus = 1;
+            entity.PaymentType = 2;
+
+            iOrderHousePaymentService.Save(entity);
+            iOrderHousePaymentService.Commit();
+
+
+            return View();
+        }
+
+        public ActionResult OrderPaid()
+        {
+            decimal dec = 76;
+            var entity = new OrderPaid();
+
+            entity.OrderNumber = "20181107163253195867";
+            entity.ProjectManagementID = 12;
+            entity.EquipmentNumber = "600047000103";
+            entity.Operator = "【10001】刘";
+            entity.TransactionAmount = dec;
+            entity.SerialNumber = "	111863250000001641";
+            entity.CustomerName = "陈江东";
+            entity.Mobile = "15273737373";
+            entity.Status = 1;
+            entity.PaymentStatus = 0;
+            entity.PaymentType = 2;
+            entity.IDNumber = "44564561246546546464";
+            entity.BankCardNumber = "123456789987654";
+            entity.Remark = "a昂达三季度噶三季度撒";
+
+
+            iOrderPaidService.Save(entity);
+            iOrderPaidService.Commit();
+
+
+            return View();
+        }
+    }
+}

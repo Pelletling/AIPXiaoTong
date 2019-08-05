@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace AIPXiaoTong.Model
+{
+    public enum GuangDaExceptionOption
+    {
+        /// <summary>
+        /// 身份证未注册
+        /// </summary>       
+        [Description("身份证未注册")]
+        IDNumberNotExists = 1000,
+    }
+}

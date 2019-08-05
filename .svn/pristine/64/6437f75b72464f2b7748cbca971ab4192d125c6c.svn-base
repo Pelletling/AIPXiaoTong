@@ -1,0 +1,39 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class AreaGuangDaService : BusinessService<AreaGuangDa>, IAreaGuangDaService
+    {
+        public override Expression<Func<AreaGuangDa, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<AreaGuangDa, bool>> express = DynamicExpressions.True<AreaGuangDa>();
+
+            var m = model as AreaGuangDaQM;
+
+            //if (m.MerchantID != null)
+            //{
+            //    express = express.AndAlso(t => t.MerchantID == m.MerchantID);
+            //}
+
+            //if (!string.IsNullOrWhiteSpace(m.EquipmentSNNo))
+            //{
+            //    express = express.AndAlso(t => t.EquipmentSNNo == m.EquipmentSNNo.Trim());
+            //}
+
+            //if (m.Status != null)
+            //{
+            //    express = express.AndAlso(t => t.Status == m.Status);
+            //}
+
+            return express;
+        }
+    }
+}

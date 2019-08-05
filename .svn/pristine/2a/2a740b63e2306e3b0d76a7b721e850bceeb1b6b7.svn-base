@@ -1,0 +1,39 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class OrderBookingService : BusinessService<OrderBooking>, IOrderBookingService
+    {
+        public override Expression<Func<OrderBooking, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<OrderBooking, bool>> express = DynamicExpressions.True<OrderBooking>();
+
+            var m = model as OrderBookingQM;
+
+            if (!string.IsNullOrWhiteSpace(m.OrderNumber))
+            {
+                express = express.AndAlso(t => t.OrderNumber==m.OrderNumber.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.CustomerName))
+            {
+                express = express.AndAlso(t => t.CustomerName == m.CustomerName.Trim());
+            }
+
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+
+            return express;
+        }
+    }
+}

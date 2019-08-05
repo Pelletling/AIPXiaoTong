@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class CreateOrderBookingRequst : BaseRequest
+    {
+        [Display(Name = "ID")]
+        public long ID { get; set; }
+
+
+        [Display(Name = "商户ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long MerchantID { get; set; }
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "订单编号")]
+        public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Display(Name = "项目名称ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long ProjectManagementID { get; set; }
+
+        /// <summary>
+        /// 设备编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "设备编号")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string EquipmentNumber { get; set; }
+
+        /// <summary>
+        /// 操作员
+        /// </summary>
+        /// <summary>
+        [Display(Name = "操作员")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long EmployeeID { get; set; }
+
+        /// <summary>
+        /// 注册会员（外键ID）
+        /// </summary>
+        /// <summary>
+        [Display(Name = "注册会员ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long MemberID { get; set; }
+
+        /// <summary>
+        /// 预约时间
+        /// </summary>
+        [Display(Name = "预约时间")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public DateTime OrderTime { get; set; }
+
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string Remark { get; set; }
+
+    }
+}

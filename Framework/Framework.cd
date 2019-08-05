@@ -1,0 +1,891 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Framework.Caching.Cache">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAADAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Caching\Cache.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Caching.CacheEvent">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Framework.Caching.CacheEvent.CacheEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Caching\CacheEvent.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIAQAAAAAAACAAIAAAAIAAAEBAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Caching\CacheEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Caching.CacheEventArgs">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Caching\CacheEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Caching.DefaultCacheStrategy" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAABAJAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Caching\DefaultCacheStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Calendars.Astro">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Calendars\Astro.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Calendars.Calendar">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Calendars\Calendar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Calendars.TagLunarCal">
+    <Position X="26" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAIAAAAAAAAAAAAAAEAAACAAAAAAABAAAAA=</HashCode>
+      <FileName>Calendars\TagLunarCal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Collections.IPAddress">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAIAAAAIACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\IpAddress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Collections.NameValue">
+    <Position X="24" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Collections\NameValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Collections.Comparer" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Collections\NameValue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Collections.Url">
+    <Position X="15.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\Url.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fly.Collections.PageOfItems&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="17" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAgAAQEEAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Collections\PageOfItems.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Common.Date">
+    <Position X="13.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Date.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Common.DateTimeHelper">
+    <Position X="15.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAACAAAAAgAAAAAAAAAAAAAAAAABAQAAA=</HashCode>
+      <FileName>Common\DateTimeHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Common.MD5&lt;TSecurity&gt;">
+    <Position X="26" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ISecurity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Common.StringPlus">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAQAAgAAAAAEAAAAABAAAAAAAAAAAAAAABABAAEA=</HashCode>
+      <FileName>Common\StringPlus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Common.TEquality">
+    <Position X="26" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\TEquality.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Configuration.WebConfig">
+    <Position X="11.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAACAAAAAAAAAAAgAAAAAQAAAAAAAAABAAAA=</HashCode>
+      <FileName>Configuration\WebConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.DBHelper.JsonHelper">
+    <Position X="32.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAA=</HashCode>
+      <FileName>DBHelper\JsonHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.DBHelper.XmlHelper">
+    <Position X="26" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAABAAAAAAAAgAAEBAAAAAAAAAACAAAA=</HashCode>
+      <FileName>DBHelper\XMLHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.DynamicQueryable">
+    <Position X="15.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IIAAAACAAAAAAAAAAAAAAAQAAAEAAAAAAAEAQAAAECA=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.DynamicClass">
+    <Position X="22.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.DynamicProperty">
+    <Position X="13.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.DynamicExpression">
+    <Position X="24" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.DynamicOrdering">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.Signature" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAoAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Linq.Dynamic.ClassFactory">
+    <Position X="24" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIIAAAAAAAAABACAQAAAAAACAAAAASAAAAAABAAg=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.ParseException">
+    <Position X="26" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.ExpressionParser">
+    <Position X="28.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.IAddSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.ILogicalSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Struct Name="System.Linq.Dynamic.ExpressionParser.Token" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Enum Name="System.Linq.Dynamic.ExpressionParser.TokenId" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.IArithmeticSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.IRelationalSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.INegationSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.INotSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.ISubtractSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.IEqualitySignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Class Name="System.Linq.Dynamic.ExpressionParser.MethodData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Interface Name="System.Linq.Dynamic.ExpressionParser.IEnumerableSignatures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dynamic\Dynamic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>Co+4gUICBFAhMm7UoEgTE7BCIIzYpCqIKkUKBAmRAYI=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.Res">
+    <Position X="30.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgMKhAIAgAAgEAgCIBSSAQAFDAgABEACoACAgLAA8A=</HashCode>
+      <FileName>Dynamic\Dynamic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.DynamicParam">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Dynamic\DynamicParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.ParameterExpressionVisitor">
+    <Position X="5.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAQAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\ExpressionVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.ExpressionVisitor">
+    <Position X="0.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IECQBECAAAYwhAQAAAgAISDAAAAEIiICAHBIAAhERJA=</HashCode>
+      <FileName>Dynamic\ExpressionVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.Extensions">
+    <Position X="20.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Dynamic\Extensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.QueryBuilder">
+    <Position X="20.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\IQueryBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Linq.Dynamic.QueryBuilder&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAABAAAABAAAAAAAAAAAAAAAIAAAgAAAAA=</HashCode>
+      <FileName>Dynamic\IQueryBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Linq.Dynamic.IQueryBuilderExtensions">
+    <Position X="18.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAEAAAAAAAEgAAAAAAAAAAAAAAAAAAAAEABoCA=</HashCode>
+      <FileName>Dynamic\IQueryBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PredicateExtensions">
+    <Position X="20.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAACAAAAAAAAAAAAAAAAAAAAgAAgAAAAAAAA=</HashCode>
+      <FileName>Dynamic\PredicateExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Events.DefaultEvent" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\DefaultEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.ImageClass.ImageFix">
+    <Position X="30.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAEAAAAAAAAAAAAAAAABBAEAAAAEAAA=</HashCode>
+      <FileName>ImageClass\ImageFix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.ImageClass.Thumb">
+    <Position X="20.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ImageClass\Thumb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.ImageClass.WaterMark">
+    <Position X="10" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ImageClass\WaterMark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.IOStreams.FileManager" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAQAhAJQQAAAAAAgFCAAAAAAQAAAAAgRM=</HashCode>
+      <FileName>IOStreams\FileManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.IOStreams.IOModel">
+    <Position X="15.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAEAAAgAAAAAAAAAQAAAEAAAAAAAEAAAAAAAI=</HashCode>
+      <FileName>IOStreams\IOModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.IOStreams.PathConvert">
+    <Position X="32.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAABABAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IOStreams\PathConvert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.IOStreams.Zip">
+    <Position X="10" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAEAAAAAAAAAAAAAKAAAABAAAAAAAAAA=</HashCode>
+      <FileName>IOStreams\Zip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Languages.Language" BaseTypeListCollapsed="true">
+    <Position X="24" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Languages\Language.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Languages.LanguageDisplayNameAttribute">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Languages\LanguageDisplayNameAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Languages.LanguageProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAgABAAAAAAAAABEEAAAAgIAAAAAACA=</HashCode>
+      <FileName>Languages\LanguageProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Languages.Languager">
+    <Position X="13.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAABAAAAAAAAgAAAAAAAAAAAAAAABAAAAAgAAAA=</HashCode>
+      <FileName>Languages\Languager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Log.LogHelper">
+    <Position X="20.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Log\LogHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Log.NLogHelper" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAACAAAAAAAABEAAAAAAEAEAAA=</HashCode>
+      <FileName>Log\NLogHelper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Mail.SmtpMail" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwEAAABAAAAAgAAAAMABAAAAAgAABAAAAAAQAAACAAA=</HashCode>
+      <FileName>Mail\SmtpMail.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Models.KeyValue">
+    <Position X="26" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\KeyValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Models.OrderBy&lt;T&gt;">
+    <Position X="11.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\OrderBy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Properties.Settings">
+    <Position X="20.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIQAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Provider.Extensions">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJEAAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAAIABAAAAg=</HashCode>
+      <FileName>Provider\Extensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.DefaultListProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\DefaultListProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.ListAttribute">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.DropdownListAttribute">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.ListBoxAttribute">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.RadioButtonListAttribute">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.CheckBoxListAttribute">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.ListItem">
+    <Position X="32.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Provider.ListExtensions.ListProviders">
+    <Position X="18.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListProviders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Web.Mvc.Html.ListControlExtensions">
+    <Position X="32.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAQAAAAAAAAAAAIAAAAQAAAAAAAAEAIAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListControlExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Repositories.Repository&lt;E, C&gt;" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAIIABACAAAQBDAAAAAMEAAAEBAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Repositories.Specification&lt;E&gt;" BaseTypeListCollapsed="true">
+    <Position X="24" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAQAACAA=</HashCode>
+      <FileName>Repositories\Specification.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Framework.Requests.HttpMethod">
+    <Position X="7.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\HttpMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Requests.Request">
+    <Position X="11.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Requests\Request.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Security.Base64Encoding">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAA=</HashCode>
+      <FileName>Security\Base64Encoding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Security.Base65Encoding">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAIAAAAAAAAAAAgAAAQAAQAAAAAA=</HashCode>
+      <FileName>Security\Base65Encoding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Security.Crypt">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAEAAAAwAAAAAAAAKAABAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Security\Crypt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Security.FlyXXTea">
+    <Position X="24" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAACAAAQIIAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Security\FlyXXTea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Tasks.ScheduleTask">
+    <Position X="17" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAIAABAAAAAQAAAAAAAAAASABAAAAAAA=</HashCode>
+      <FileName>Tasks\ScheduleTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Tasks.Task">
+    <Position X="32.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAKAAAAAAEAIQABIAAQAQAgAAAAABQASAgAAAAgAA=</HashCode>
+      <FileName>Tasks\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Tasks.TaskManager">
+    <Position X="13.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAACAQAQAAAIAAAAAAABAAAAAAYAAAAAAAAAA=</HashCode>
+      <FileName>Tasks\TaskManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Tasks.TaskThread">
+    <Position X="26" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAgAACAAACAkAAAAAIAAQAAAAAIAAgAAAAAJAACAAEI=</HashCode>
+      <FileName>Tasks\TaskThread.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.FtpClient">
+    <Position X="5.25" Y="9" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Framework.FtpClient.UploadCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.DownloadFileNameFileNameResumeCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.DeleteFileCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.GetFileSizeCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.UploadDirectoryPathRecurseMaskCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.DownloadCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.UploadDirectoryCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.RenameFileCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.GetFileListMaskCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Class Name="Framework.FtpClient.FtpException" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Delegate Name="Framework.FtpClient.MakeDirCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.ChangeDirCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.LoginCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.DownloadFileNameFileNameCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.RemoveDirCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.UploadFileNameResumeCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.CloseCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.DownloadFileNameResumeCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Framework.FtpClient.GetFileListCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\FtpClient.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QIAAEJgRQAMIIAAIDQKwIBkiiAACAAoCASdQIgyAgCI=</HashCode>
+      <FileName>Utils\FtpClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Utils.ChineseToPinYin">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Pinyin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Utils.Verify">
+    <Position X="11.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Verify.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Validation.RegexValidation">
+    <Position X="24" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAiEAAAAAAgAAQAABgAAAAAAAgACAAAEAASAAAAAAA=</HashCode>
+      <FileName>Validation\RegexValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Framework.Validation.Required1Attribute">
+    <Position X="30.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAACAAAAAAAAAAAQAAAAAg=</HashCode>
+      <FileName>Validation\RequiredAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Framework.Caching.ICacheStrategy">
+    <Position X="10" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAJAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Caching\ICacheStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fly.Collections.IPageOfItems&lt;T&gt;">
+    <Position X="11.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAgAAQEEAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Collections\IPageOfItems.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Common.ISecurity&lt;T&gt;">
+    <Position X="13.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ISecurity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Configuration.IConfiguration">
+    <Position X="11.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.Linq.Dynamic.IQueryBuilder&lt;T&gt;">
+    <Position X="13.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAIAAAAAAAAA=</HashCode>
+      <FileName>Dynamic\IQueryBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Fly.Environment.IHostEnvironment">
+    <Position X="18.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAIAAAAAAAAIAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Environment\IHostEnvironment.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Events.IEvent">
+    <Position X="13.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\IEvent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Events.IEventHandler">
+    <Position X="15.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\IEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.IOStreams.IFileManager">
+    <Position X="17" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAQAhAJQQAAAAAAgFAAAAAAAQAAAAAgRM=</HashCode>
+      <FileName>IOStreams\IFileManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Languages.ILanguage">
+    <Position X="20.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Languages\ILanguage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Languages.ILanguageProvider">
+    <Position X="11.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Languages\ILanguageProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Log.ILogHelper">
+    <Position X="10" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAAAAAAAAAABEAAAAAAEAEAAA=</HashCode>
+      <FileName>Log\ILogHelper.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Mail.ISmtpMail">
+    <Position X="18.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEAAABAAAAAgAAAAMABAAAAAgAABAAAAAAQAAACAAA=</HashCode>
+      <FileName>Mail\ISmtpMail.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Provider.ListExtensions.IListProvider">
+    <Position X="10" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Provider\ListExtensions\IListProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Repositories.IRepository&lt;E, C&gt;">
+    <Position X="15.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAIIABACAAAABDAAAAAMAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Repositories.ISpecification&lt;E&gt;">
+    <Position X="20.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Repositories\ISpecification.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Framework.Tasks.ITask">
+    <Position X="20.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tasks\ITask.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Framework.Provider.ListExtensions.ListUIKind" Collapsed="true">
+    <Position X="0.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAQAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Provider\ListExtensions\ListUIKind.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

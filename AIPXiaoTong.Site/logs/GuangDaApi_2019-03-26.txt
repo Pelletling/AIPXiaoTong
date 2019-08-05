@@ -1,0 +1,132 @@
+2019-03-26 14:07:51.2586|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：autoFreeze=01&businessName=湖北万科&cardNumber=330219197202267352&channel=1007041&freezeAmt=30000&freezeProduct=1&freezeTimeLimit=60&mobile=18719720226&orderValidDay=1&transCode=001&userName=王勇控&sign=XuYFza/joWGvauV/QgqWUcRL4Z4+FGQMxWbye08ylHQU3nfgeulxOLYRvLDLXjoFiyCPrizpCAFVfyQSIzrmP10s329T/Z5fY6IXp1OnotxG3cCx6zUMYqGWScJu4/2ss1Qew4LaCA65fARVdAMF+9s+SLuYhDduaX5G5MDSKxRUifJ1Ym0mk88DkmZGDRcc/fut1X8FfT7/9dG8Q2T3kTAZdKKz4xUJdbJ0xPuMdn4OgPR3hOQEwFz1jEh8o93A9iVfQOp0jdhZH77gqkTZLCBlIVvJCSB9q5Wr4hN+qHlHcOp5ESKCvUN/oyHKzwjrbX7CzFXnfdiWQCrL3+6hyw==，返回：{"sign":"p9N951+PI+2lel3iP9kPJcJ0okMOkMpcpjEABfhkaJPKzGtNdVSl/koRc8gWw+D7fLEbGdaDH/yqiB+qX+s3PzJVsVLJnLJdWypPTBcdb9ANaY9mxmfi3DjqLBaCAkFmg3qDbB2HDKNwwvMPil/rAXt9K7vARsh/mUkvzJvXB+/ZUUDSqWu/1u/arQLfcpJAIpYQUXnLFU2aq/xJg3mBQg3YwftKE/cWkL+f9IIL9UIfh7xeSEsI34Jxqno7c+e66MRc+J2NWryahGEM3fYRFGGa7mK6WdEzUgaQRILp5zp3ttvncbaSiV3I6qL4VVZ4NiapoaPrUkygIbNxVhZXFA==","responseCode":"000000","data":"{\"bankOrderNo\":\"9230081903262618954161\"}","responseMsg":"成功"},http异常:
+2019-03-26 17:28:23.5296|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：autoFreeze=01&businessName=迈瑞&cardNumber=330219196609107006&channel=1007041&freezeAmt=1&freezeProduct=1&freezeTimeLimit=121&mobile=15601010001&orderValidDay=1&transCode=001&userName=章寿尘&sign=K6WldnZqL7JIepHgKaHqS3j6B0WC1J4YzH46WupRCSOPbXZE7pJ4CZcihdEGCzP8Qe+JKkXoWulfqco9wiRCqEztYMtPLr5Lv9aV2+6traGZqgR/6/QnRvHA9fLa/5c1e/tHE7V2uQgUHSaACDadcPeeDUmJSbrNJ+fA1syH7W4PngcxI13KeKHBGJU0sBqEDTYMa53K7giBdxWu42n8izn5wgi3r6d2yt4VJWr3eo4I27fbdFZhGhiw/StQNJFbQ54oj9+WRQ8fY6F+TzMXYeHqHGaOzWUFEx3lB2zcf7u9De6882Kh1F33KHuWX1E4bnADYPuAAS4704k0nKz+Lg==，返回：{"sign":"NhjEtYbq2X3gUoFZtK3iEL+wIIJBUgGk1vEom0l+IvKfNNgBoOchAz6UWPyum1vxP8Cm63nFVE9E5zSDu7FQXy8gFy+JNbVjvUus/158v7MdLU6u7eAVE0aO3k6UCZz6SmudLp5jrRgRBUvigKXW4QIIs/cNW9HriTvclMaBpigBBLdKisPU/0tYNDUO15pehOm6nSO7R2I4A4Bsj2u95E4uTK4MPKyXLXcZBpnMKN6kJqwb8ynbZfFYO2GQDCDN6ZJTSPn6Zn54fNBiy+bsl3dARZoO0l4OW1tlFffYuEO/TAhnmB5hFF174bq0/CzSYptp7eo4S9fxZ4pW+CRLEw==","responseCode":"000000","data":"{\"bankOrderNo\":\"9230081903262618994156\"}","responseMsg":"成功"},http异常:
+2019-03-26 17:31:27.0456|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：autoFreeze=01&businessName=深圳万科&cardNumber=330219196609107006&channel=1007041&freezeAmt=30000&freezeProduct=1&freezeTimeLimit=152&mobile=15601010001&orderValidDay=1&transCode=001&userName=章寿尘&sign=CPmsxKgTZnsmUwUJuv6dQXkyT5YoMj/wLFVhMu7x/G3+8wePUuyvH2c+XWRWoYiw/1cBrzmjjD34+ySh17Dj9GhI6LhufVk58L068i5aSn46n0aMxr1NXtFo7WvoRHUd4qYbLc3ZhsIkAKGt1BnZXx8AJ523x6AJkOdTzidx5aI7glB98d5UaqZpLjd7wRI0UEHAvxz+b++xT4bDdL5XJ54jiwJBvMth5d4KpnUSqQMApjHbcr//x6FF1JgechdurLtGULQb85t5JmlFik5rtHTNwxXpddB9lGjwiMiD1fODQq8/gvdUZiL3aTcIS9Nbsxd+cZa4m3hlzYtEgEaD9w==，返回：{"sign":"FxamBK673z3ujr1dc9dV1WE2+nyvqdaGCuysiKazYPE83dRrO3w5hE6iClqvhf2olGaWerptydmNVUJNmhtnQYxJMR6oRtIdLbS+WD81cY+JQeN2/MC+6XTO4vgbrfo5Yn4ruJHA8hjtidY3Ktre4LcYNxJw+5gnM6JjmXDWtQ7qugwziOndXIfTWJV9pV2xyKb+Uw1W3TfVlpJNj9IX5zCHzk3Jo20tBJfLhdTvP2VSu0OKtgpVPc/vVVhU9ICLPsigP6jU6LyQWjXtRdcgNgmRidX+yQrtolotW84Zid+/tU4Yc6Gri5X0BrCDhlO410CU+LJuEvSmlsGkvQ/l/A==","responseCode":"000000","data":"{\"bankOrderNo\":\"9230081903262619004155\"}","responseMsg":"成功"},http异常:
+2019-03-26 18:02:39.9996|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903261802384226&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903261802385116&ReqTime=2019-03-26 18:02:38&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190326&TrsType=0&UserId=tlzfsh&Sign=Akeo5YybsFH%2brTC8bcN43nTxzXT%2b0EvmTWt8qkNfSOSd1R7NkKj5xCk0q%2buCb8IPKvyphWg0Px6uGCCWs0F1wtQqkYLfgTOQeCqpKsICGJdo67kKPssdt2QdzXPBBN7zSj1t%2fElfowbyv7uVtMZ83xXMX9FWH9tficIaQO5WVmY%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903261802385116</ReqJnlNo>
+		<ResJnlNo>3979514</ResJnlNo>
+		<ResTime>2019-03-26 18:04:18</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903261802384226</CoPatrnerJnlNo>
+		<EbankJnlNo>3979514</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-26 18:04:18</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f37023786</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-26 18:02:40.5306|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903261802401896&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903261802402186&ReqTime=2019-03-26 18:02:40&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190326&UserId=tlzfsh&Sign=oB8M9IfC9kIHh9a497wDl5sy3NhLjsxA2a2cbAfPJsCMJJRrgTEmxXYj07a6rWvvVmt5C6VFybPbDIP1LE6OwuwIXOjwSUD1txCpwBLlNWmNE13%2f%2fcmDb%2fVyEvjEecieQk8jw3EOgmMks55c%2fgF7PqFH2CJF8e%2fBfWcENOKNyls%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903261802402186</ReqJnlNo>
+<ResTime>2019-03-26 18:04:19</ResTime>
+<ResCode>000270</ResCode>
+<ResMsg>MAC 校验Client MAC失败</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-26 18:07:40.7866|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903261807398796&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903261807398876&ReqTime=2019-03-26 18:07:39&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190326&TrsType=0&UserId=tlzfsh&Sign=cy97qcpsDT8YGiEUcr%2fYURUUe0NxWP4MX%2faQJZJoNH2VnG4WSzvKo3rn9J1VM48PhlLmMiXO%2fsP54RKlD%2f6QqmIOaSxhqrRcFDS6PWYwKWfBBVWzoqckV8c22MKUyT%2bMOAWNwzVtyo0gN2l16GWHyfY69Cbe7tTbEp5wqisZpbo%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903261807398876</ReqJnlNo>
+		<ResJnlNo>3979517</ResJnlNo>
+		<ResTime>2019-03-26 18:09:18</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903261807398796</CoPatrnerJnlNo>
+		<EbankJnlNo>3979517</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-26 18:09:19</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f29023898</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-26 18:07:41.2596|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903261807408226&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903261807408316&ReqTime=2019-03-26 18:07:40&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190326&UserId=tlzfsh&Sign=eVJsv0nvF%2bEYSkd5jYGp2vBFCkzEKiQV9BBXR3per1nD4qSdw3954dTv80UIhKiH1CAG%2bkjF1U0yqMGslrFgCTKNFI1HDHecx3a%2f8GyqSQ2CzHfs9PL2MQODk4ubWSOCoUIaIiF1corQNKIGdrmzY%2fAg5Beice2pJidT2uxShiA%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903261807408316</ReqJnlNo>
+<ResTime>2019-03-26 18:09:19</ResTime>
+<ResCode>000270</ResCode>
+<ResMsg>冻结起始日期不能大于等于冻结到期日期</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-26 18:17:54.9256|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903261817539226&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903261817539966&ReqTime=2019-03-26 18:17:54&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190326&TrsType=0&UserId=tlzfsh&Sign=VowrgjLW%2btjf6XGVz6QdqI0Mvy5HLarnk0Krh0XqVhanjQ2imWGeve7Rm57RqAGiEGN4ggYjGOrAYvh%2bZDgNNo0Hsu4CXXp%2bwMtIUkJ9Gdg20En3AgXGtN07y%2bVg4RrOQlqcsAU8yz%2friZPNalWjFa0kJrBON2J%2bOL4kPF51rOk%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903261817539966</ReqJnlNo>
+<ResTime>2019-03-26 18:19:33</ResTime>
+<ResCode>999999</ResCode>
+<ResMsg>校验Client_MAC失败</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-26 18:33:54.2796|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903261833458346&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903261833458466&ReqTime=2019-03-26 18:33:45&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190326&TrsType=0&UserId=tlzfsh&Sign=Rz7qSYpgbTiiorF%2buwCBHW4sFsdP%2fMhk1WRTvumb7oosvqaMFTH3lIdhRTiBW4xWLF44sLCIK%2fMTMQetoWPb94iJqvp8exwvGFVySBOZVfdqbhdAF6NaduqLAVk%2fCmgykJNhqL3UMmx5l2tMBm7yBxHzbWvRLSpB59X7RALUKqQ%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903261833458466</ReqJnlNo>
+		<ResJnlNo>3979546</ResJnlNo>
+		<ResTime>2019-03-26 18:35:32</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903261833458346</CoPatrnerJnlNo>
+		<EbankJnlNo>3979546</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-26 18:35:32</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f32023836</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-26 18:33:55.1686|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903261833545796&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903261833546096&ReqTime=2019-03-26 18:33:54&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190326&UserId=tlzfsh&Sign=FWGIxzHm9sqlrGIFgrqZeyxMq5YU9e3aK5AEmQcYiFGkZCjzMJJqy5lT7otXzIbeb3pFz9rDMfLq3v07A7Wqk8BhqwDJrLkYVx1RFVoAFj9qM72G8st7ViBHaCj0AVXoN4d5OzlkQq8JqrJuHp9KFvPwQ%2f9QYDLZ3Xjnc5wGTIw%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903261833546096</ReqJnlNo>
+		<ResJnlNo>3979547</ResJnlNo>
+		<ResTime>2019-03-26 18:35:33</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903261833545796</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.01</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:

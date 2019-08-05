@@ -1,0 +1,35 @@
+2018-12-20 15:06:06.1340|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=75166cba8&CoPatrnerJnlNo=201812201505287540&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201812201505311010&ReqTime=2018-12-20 15:05:33&Reserve1=&Reserve2=&Reserve3=&TrsDate=20181220&TrsType=0&UserId=tlzfsh&Sign=lcS23Sq%2bE0LfEon46Ardl10IPTGFbCsru1lnVAM5BIqnw67vC956dFsmMepuHboNnKh3%2bZJrtAJ2ghARA5UyM%2fzG6APHUs8xwDZpxztgUzHYrx%2b8HqNGFMzBsPUKjI06tT02SrWtfoHxKTHAoZSmmKD9OyTt6oz0W3AXL1z1Aew%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201812201505311010</ReqJnlNo>
+		<ResJnlNo>3926321</ResJnlNo>
+		<ResTime>2018-12-20 14:42:22</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201812201505287540</CoPatrnerJnlNo>
+		<EbankJnlNo>3926321</EbankJnlNo>
+		<CifClientId>75166cba8</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2018-12-20 14:42:22</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f29023703</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2018-12-20 15:08:37.1470|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=75166cba8&CoPatrnerJnlNo=201812201508015580&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201812201508035670&ReqTime=2018-12-20 15:08:07&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20181229&TravelEndDay=&TravelStartDay=&TrsDate=20181220&UserId=tlzfsh&Sign=hmyWNe1%2bcGzSWlaXYapKGnyiiJoZRFLsEMwSgBZjUcjeIvmNO%2bWGhwzhPul%2fb7gM0w87ZmJqNvBVSDLGiP8HrZCIXelljDLJnz%2fjQXqeqhfEG%2f%2fHEH%2b1JxJ3h5TPVTCPWHxgUGHEZrLWdILcX%2fGfRGdCX17k2tI9mZJDdktltDs%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201812201508035670</ReqJnlNo>
+<ResTime>2018-12-20 14:44:48</ResTime>
+<ResCode>000270</ResCode>
+<ResMsg>冻结起始日期不能大于等于冻结到期日期</ResMsg>
+</Head>
+</Message>
+,http异常:
+2018-12-20 18:53:11.3468|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=da72b70b94dacae7&CoPatrnerJnlNo=201812201853093068&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201812201853097078&ReqTime=2018-12-20 18:53:09&Reserve1=&Reserve2=&Reserve3=&TrsDate=20181220&TrsType=0&UserId=tlzfsh&Sign=DH33kbEckuMaVCMRFxYjkVBIA0RMkP2uEXUBkf9dirAE2%2fL6lm05t7g0NxT6%2bW4IHY9dGJXQaLTJDTOs6vHfxLmzE0wflNkRAZWC0RWkpuRj23z5FAAjrt4%2fIaLKXxTh3WotkZ1Xrswu%2brKbI5rqaQZiYXUzbMc6lT1q8e9AbzM%3d，返回：无法连接到远程服务器,http异常:

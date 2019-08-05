@@ -1,0 +1,49 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class MemberManagementService : BusinessService<MemberManagement>, IMemberManagementService
+    {
+        public override Expression<Func<MemberManagement, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<MemberManagement, bool>> express = DynamicExpressions.True<MemberManagement>();
+
+            var m = model as MemberManagementQM;
+
+            if (m.ProjectManagementID != null)
+            {
+                express = express.AndAlso(t => t.ProjectManagementID == m.ProjectManagementID);
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.Name))
+            {
+                express = express.AndAlso(t => t.Name==m.Name.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.Mobile))
+            {
+                express = express.AndAlso(t => t.Name==m.Name.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.IDNumber))
+            {
+                express = express.AndAlso(t => t.IDNumber == m.IDNumber.Trim());
+            }
+
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+
+            return express;
+        }
+    }
+}

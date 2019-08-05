@@ -1,0 +1,89 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class CreateOrderHousePaymentRequst:BaseRequest
+    {
+
+        [Display(Name = "商户ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string merchantid { get; set; }
+
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Display(Name = "项目ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string projectmanagementid { get; set; }
+
+        /// <summary>
+        /// 操作人员（外键ID）
+        /// </summary>
+        /// <summary>
+        [Display(Name = "员工ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string employeeid { get; set; }
+
+        /// <summary>
+        /// 注册会员（外键ID）
+        /// </summary>
+        /// <summary>
+        [Display(Name = "注册会员ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string memberid { get; set; }
+
+        /// <summary>
+        /// 交易金额
+        /// </summary>
+        [Display(Name = "交易金额")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string transactionamount { get; set; }
+
+        /// <summary>
+        /// 流水号
+        /// </summary>
+        //[Display(Name = "流水号")]
+        //[MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        //public string serialnumber { get; set; }
+
+
+        /// <summary>
+        /// 付款状态
+        /// </summary>
+        //[Display(Name = "付款状态")]
+        //public int paymentstatus { get; set; }
+
+        /// <summary>
+        /// 支付类型
+        /// </summary>
+        //[Display(Name = "支付类型")]
+        //public int paymenttype { get; set; }
+
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        //[Display(Name = "订单状态")]
+        //public int status { get; set; }
+
+        /// <summary>
+        /// 交易卡号
+        /// </summary>
+        //[Display(Name = "交易卡号")]
+        //[MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        //public string bankcardnumber { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50位")]
+        public string remark { get; set; }
+
+
+    }
+}

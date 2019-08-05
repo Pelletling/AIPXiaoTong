@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class BankCard : BaseEntity
+    {
+        [Display(Name = "会员ID")]
+        public long MemberID { get; set; }
+
+        /// <summary>
+        /// 银行卡号
+        /// </summary>
+        [Display(Name = "银行卡号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string BankCardNumber { get; set; }
+
+        /// <summary>
+        /// 银行名
+        /// </summary>
+        [Display(Name = "银行名")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string BankName { get; set; }
+
+        /// <summary>
+        /// 银行网点名称
+        /// </summary>
+        [Display(Name = "银行网点名称")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string SubBranchName { get; set; }
+
+        /// <summary>
+        /// 验证状态(0；未验证  1：已验证成功)
+        /// </summary>
+        [Display(Name = "验证状态")]
+        public int Verified { get; set; }
+
+
+        //--------------------------------------------------------
+        public virtual Member Member { get; set; }
+        public string MemberName { get { return Member?.Name; } }
+
+    }
+}

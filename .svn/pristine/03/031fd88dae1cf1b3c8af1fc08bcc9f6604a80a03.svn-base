@@ -1,0 +1,7 @@
+﻿
+@{
+    ViewBag.Title = "AccountInfo";
+}
+
+<h2>AccountInfo</h2>
+

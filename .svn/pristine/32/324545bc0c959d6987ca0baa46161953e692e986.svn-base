@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Framework.Security;
+
+namespace PingAnAPI.Model
+{
+    public class BaseResponse
+    {
+        //平安返回数据验签
+       // public bool IsVerify { get { return Framework.Security.RSAHelper.SHA1WithRSAVerify(verifyData, sign, PingAnConfig.publicKey); } }
+
+        private string _responseMsg;
+        //public string verifyData
+        //{
+        //    get
+        //    {
+        //        string result = "";
+        //        Dictionary<string, string> dic = new Dictionary<string, string>();
+
+        //        dic.Add("responseCode", responseCode);
+        //        dic.Add("responseMsg", responseMsg);
+        //        dic.Add("data", data);
+
+        //        foreach (var m in dic.OrderBy(t => t.Key))
+        //        {
+        //            result += m.Key + "=" + m.Value + "&";
+        //        }
+
+        //        return result.Substring(0, result.Length - 1);
+        //    }
+        //}
+
+        public string responseCode { get; set; }
+        public string responseMsg { get { return _responseMsg ?? ""; } set { _responseMsg = value; } }
+        public string data { get; set; }
+       // public string sign { get; set; }
+    }
+}

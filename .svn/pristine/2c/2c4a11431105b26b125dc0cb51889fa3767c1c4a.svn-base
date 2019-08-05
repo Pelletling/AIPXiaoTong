@@ -1,0 +1,29 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectManagementList = ViewBag.ProjectManagementList as List<ProjectManagementLM>;
+}
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <label>会员名:</label><input type="text" name="MemberName" id="MemberName" style="width:160px" class="input-text">
+
+            <label>手机号码:</label><input type="text" name="MemberMobile" id="MemberMobile" style="width:160px" class="input-text">
+
+            <label>身份证号码:</label><input type="text" name="MemberIDNumber" id="MemberIDNumber" style="width:160px" class="input-text">
+          
+
+            @Html.Partial("_Query")
+        }
+    </div>
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>
+
+
+

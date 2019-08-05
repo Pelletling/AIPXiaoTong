@@ -1,0 +1,37 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class ProjectManagementService : BusinessService<ProjectManagement>, IProjectManagementService
+    {
+        public override Expression<Func<ProjectManagement, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<ProjectManagement, bool>> express = DynamicExpressions.True<ProjectManagement>();
+
+            var m = model as ProjectManagementQM;
+
+            if (!string.IsNullOrWhiteSpace(m.ProjetName))
+            {
+                express = express.AndAlso(t => t.ProjetName == m.ProjetName.Trim());
+            }
+            //if (m.DistrictManagementID != null)
+            //{
+            //    express = express.AndAlso(t => t.DistrictManagementID == m.DistrictManagementID);
+            //}
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+
+            return express;
+        }
+    }
+}

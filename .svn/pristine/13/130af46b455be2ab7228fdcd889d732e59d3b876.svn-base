@@ -1,0 +1,108 @@
+﻿
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+
+
+}
+@model OrderPaid
+
+
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+
+        <div class="panel panel-default">
+            <div class="panel-header">基本信息</div>
+            <div class="panel-body">
+                <div class="panel-body">
+
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">订单编号：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.OrderNumber</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">商户信息：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.Merchant.Name</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">项目名称：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.ProjectName</strong>
+                        </div>                       
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">交易额：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.TransactionAmount</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">订单状态：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.StatusDesc</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">客户姓名：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.MemberName</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">手机号：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.MemberMobile</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">身份证号：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.MemberIDNumber</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">操作员：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.EmployeeName</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">设备编号：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.EquipmentSNNo</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">创建时间：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.CreateDatetime</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">备注：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.Remark</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE8370DD-449D-445E-B3EE-45EC31BF054E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AIPXiaoTong.Model</RootNamespace>
+    <AssemblyName>AIPXiaoTong.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\DailyTest\DemoEF\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\..\AIPTransaction\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\DailyTest\DemoEF\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AIPXiaoTongDb.cs" />
+    <Compile Include="Entify\Bank.cs" />
+    <Compile Include="Entify\Area.cs" />
+    <Compile Include="Entify\BankCard.cs" />
+    <Compile Include="Entify\BaseEntity.cs" />
+    <Compile Include="Entify\EmployeeDepartment.cs" />
+    <Compile Include="Entify\Employee.cs" />
+    <Compile Include="Entify\EmployeeMenu.cs" />
+    <Compile Include="Entify\EmployeeMenuAction.cs" />
+    <Compile Include="Entify\Equipment.cs" />
+    <Compile Include="Entify\AreaGuangDa.cs" />
+    <Compile Include="Entify\HouseTypeShow.cs" />
+    <Compile Include="Entify\Member.cs" />
+    <Compile Include="Entify\MenuAction.cs" />
+    <Compile Include="Entify\Menu.cs" />
+    <Compile Include="Entify\Department.cs" />
+    <Compile Include="Entify\Merchant.cs" />
+    <Compile Include="Entify\EmployeeRole.cs" />
+    <Compile Include="Entify\OrderBooking.cs" />
+    <Compile Include="Entify\OrderHousePayment.cs" />
+    <Compile Include="Entify\OrderPaid.cs" />
+    <Compile Include="Entify\Preferences.cs" />
+    <Compile Include="Entify\ProceedsType.cs" />
+    <Compile Include="Entify\Project.cs" />
+    <Compile Include="Entify\User.cs" />
+    <Compile Include="Entify\Role.cs" />
+    <Compile Include="Migrations\201810170603426_AddUrl.cs" />
+    <Compile Include="Migrations\201810170603426_AddUrl.Designer.cs">
+      <DependentUpon>201810170603426_AddUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810170605545_AddUrl1.cs" />
+    <Compile Include="Migrations\201810170605545_AddUrl1.Designer.cs">
+      <DependentUpon>201810170605545_AddUrl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810180316542_AddUrl2.cs" />
+    <Compile Include="Migrations\201810180316542_AddUrl2.Designer.cs">
+      <DependentUpon>201810180316542_AddUrl2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810180336408_AddUrl3.cs" />
+    <Compile Include="Migrations\201810180336408_AddUrl3.Designer.cs">
+      <DependentUpon>201810180336408_AddUrl3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810180809511_AddUrl4.cs" />
+    <Compile Include="Migrations\201810180809511_AddUrl4.Designer.cs">
+      <DependentUpon>201810180809511_AddUrl4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810180842277_AddUrl5.cs" />
+    <Compile Include="Migrations\201810180842277_AddUrl5.Designer.cs">
+      <DependentUpon>201810180842277_AddUrl5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810230302408_AddUrl6.cs" />
+    <Compile Include="Migrations\201810230302408_AddUrl6.Designer.cs">
+      <DependentUpon>201810230302408_AddUrl6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810230659096_AddUrl7.cs" />
+    <Compile Include="Migrations\201810230659096_AddUrl7.Designer.cs">
+      <DependentUpon>201810230659096_AddUrl7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810240617526_AddUrl8.cs" />
+    <Compile Include="Migrations\201810240617526_AddUrl8.Designer.cs">
+      <DependentUpon>201810240617526_AddUrl8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810250910063_AddUrl9.cs" />
+    <Compile Include="Migrations\201810250910063_AddUrl9.Designer.cs">
+      <DependentUpon>201810250910063_AddUrl9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810260555146_AddUrl10.cs" />
+    <Compile Include="Migrations\201810260555146_AddUrl10.Designer.cs">
+      <DependentUpon>201810260555146_AddUrl10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810290140532_AddUrl11.cs" />
+    <Compile Include="Migrations\201810290140532_AddUrl11.Designer.cs">
+      <DependentUpon>201810290140532_AddUrl11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810290202286_AddUrl12.cs" />
+    <Compile Include="Migrations\201810290202286_AddUrl12.Designer.cs">
+      <DependentUpon>201810290202286_AddUrl12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810300224136_AddUrl13.cs" />
+    <Compile Include="Migrations\201810300224136_AddUrl13.Designer.cs">
+      <DependentUpon>201810300224136_AddUrl13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810300652399_AddUrl14.cs" />
+    <Compile Include="Migrations\201810300652399_AddUrl14.Designer.cs">
+      <DependentUpon>201810300652399_AddUrl14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810310250560_AddUrl15.cs" />
+    <Compile Include="Migrations\201810310250560_AddUrl15.Designer.cs">
+      <DependentUpon>201810310250560_AddUrl15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810310338112_AddUrl16.cs" />
+    <Compile Include="Migrations\201810310338112_AddUrl16.Designer.cs">
+      <DependentUpon>201810310338112_AddUrl16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810310720420_AddUrl17.cs" />
+    <Compile Include="Migrations\201810310720420_AddUrl17.Designer.cs">
+      <DependentUpon>201810310720420_AddUrl17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811010201309_AddUrl18.cs" />
+    <Compile Include="Migrations\201811010201309_AddUrl18.Designer.cs">
+      <DependentUpon>201811010201309_AddUrl18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811020348042_AddUrl19.cs" />
+    <Compile Include="Migrations\201811020348042_AddUrl19.Designer.cs">
+      <DependentUpon>201811020348042_AddUrl19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811050140583_AddUrl20.cs" />
+    <Compile Include="Migrations\201811050140583_AddUrl20.Designer.cs">
+      <DependentUpon>201811050140583_AddUrl20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811060556255_AddUrl21.cs" />
+    <Compile Include="Migrations\201811060556255_AddUrl21.Designer.cs">
+      <DependentUpon>201811060556255_AddUrl21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811060819423_AddUrl22.cs" />
+    <Compile Include="Migrations\201811060819423_AddUrl22.Designer.cs">
+      <DependentUpon>201811060819423_AddUrl22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811070136033_AddUrl23.cs" />
+    <Compile Include="Migrations\201811070136033_AddUrl23.Designer.cs">
+      <DependentUpon>201811070136033_AddUrl23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811070228464_AddUrl24.cs" />
+    <Compile Include="Migrations\201811070228464_AddUrl24.Designer.cs">
+      <DependentUpon>201811070228464_AddUrl24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811070729039_AddUrl25.cs" />
+    <Compile Include="Migrations\201811070729039_AddUrl25.Designer.cs">
+      <DependentUpon>201811070729039_AddUrl25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811070933423_AddUrl26.cs" />
+    <Compile Include="Migrations\201811070933423_AddUrl26.Designer.cs">
+      <DependentUpon>201811070933423_AddUrl26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811080301365_AddUrl27.cs" />
+    <Compile Include="Migrations\201811080301365_AddUrl27.Designer.cs">
+      <DependentUpon>201811080301365_AddUrl27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811080720030_AddUrl28.cs" />
+    <Compile Include="Migrations\201811080720030_AddUrl28.Designer.cs">
+      <DependentUpon>201811080720030_AddUrl28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811080759429_AddUrl29.cs" />
+    <Compile Include="Migrations\201811080759429_AddUrl29.Designer.cs">
+      <DependentUpon>201811080759429_AddUrl29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811090105101_AddUrl30.cs" />
+    <Compile Include="Migrations\201811090105101_AddUrl30.Designer.cs">
+      <DependentUpon>201811090105101_AddUrl30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811090329062_AddUrl31.cs" />
+    <Compile Include="Migrations\201811090329062_AddUrl31.Designer.cs">
+      <DependentUpon>201811090329062_AddUrl31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811090356041_AddUrl32.cs" />
+    <Compile Include="Migrations\201811090356041_AddUrl32.Designer.cs">
+      <DependentUpon>201811090356041_AddUrl32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811120908379_AddUrl33.cs" />
+    <Compile Include="Migrations\201811120908379_AddUrl33.Designer.cs">
+      <DependentUpon>201811120908379_AddUrl33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130130376_AddUrl34.cs" />
+    <Compile Include="Migrations\201811130130376_AddUrl34.Designer.cs">
+      <DependentUpon>201811130130376_AddUrl34.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130148541_AddUrl35.cs" />
+    <Compile Include="Migrations\201811130148541_AddUrl35.Designer.cs">
+      <DependentUpon>201811130148541_AddUrl35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130548094_AddUrl36.cs" />
+    <Compile Include="Migrations\201811130548094_AddUrl36.Designer.cs">
+      <DependentUpon>201811130548094_AddUrl36.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130631580_AddUrl37.cs" />
+    <Compile Include="Migrations\201811130631580_AddUrl37.Designer.cs">
+      <DependentUpon>201811130631580_AddUrl37.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811130643494_AddUrl38.cs" />
+    <Compile Include="Migrations\201811130643494_AddUrl38.Designer.cs">
+      <DependentUpon>201811130643494_AddUrl38.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811140548512_AddUrl39.cs" />
+    <Compile Include="Migrations\201811140548512_AddUrl39.Designer.cs">
+      <DependentUpon>201811140548512_AddUrl39.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811140610086_AddUrl40.cs" />
+    <Compile Include="Migrations\201811140610086_AddUrl40.Designer.cs">
+      <DependentUpon>201811140610086_AddUrl40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811140632334_AddUrl41.cs" />
+    <Compile Include="Migrations\201811140632334_AddUrl41.Designer.cs">
+      <DependentUpon>201811140632334_AddUrl41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811140647533_AddUrl42.cs" />
+    <Compile Include="Migrations\201811140647533_AddUrl42.Designer.cs">
+      <DependentUpon>201811140647533_AddUrl42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811140657078_AddUrl43.cs" />
+    <Compile Include="Migrations\201811140657078_AddUrl43.Designer.cs">
+      <DependentUpon>201811140657078_AddUrl43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811151039503_AddUrl44.cs" />
+    <Compile Include="Migrations\201811151039503_AddUrl44.Designer.cs">
+      <DependentUpon>201811151039503_AddUrl44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811151044531_AddUrl45.cs" />
+    <Compile Include="Migrations\201811151044531_AddUrl45.Designer.cs">
+      <DependentUpon>201811151044531_AddUrl45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200116534_AddUrl46.cs" />
+    <Compile Include="Migrations\201811200116534_AddUrl46.Designer.cs">
+      <DependentUpon>201811200116534_AddUrl46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200253293_AddUrl47.cs" />
+    <Compile Include="Migrations\201811200253293_AddUrl47.Designer.cs">
+      <DependentUpon>201811200253293_AddUrl47.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200647319_AddUrl48.cs" />
+    <Compile Include="Migrations\201811200647319_AddUrl48.Designer.cs">
+      <DependentUpon>201811200647319_AddUrl48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200650144_AddUrl49.cs" />
+    <Compile Include="Migrations\201811200650144_AddUrl49.Designer.cs">
+      <DependentUpon>201811200650144_AddUrl49.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200752505_AddUrl50.cs" />
+    <Compile Include="Migrations\201811200752505_AddUrl50.Designer.cs">
+      <DependentUpon>201811200752505_AddUrl50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200755011_AddUrl51.cs" />
+    <Compile Include="Migrations\201811200755011_AddUrl51.Designer.cs">
+      <DependentUpon>201811200755011_AddUrl51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811200919346_AddUrl52.cs" />
+    <Compile Include="Migrations\201811200919346_AddUrl52.Designer.cs">
+      <DependentUpon>201811200919346_AddUrl52.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811201027584_AddUrl53.cs" />
+    <Compile Include="Migrations\201811201027584_AddUrl53.Designer.cs">
+      <DependentUpon>201811201027584_AddUrl53.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811201120349_AddUrl54.cs" />
+    <Compile Include="Migrations\201811201120349_AddUrl54.Designer.cs">
+      <DependentUpon>201811201120349_AddUrl54.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811201138198_AddUrl55.cs" />
+    <Compile Include="Migrations\201811201138198_AddUrl55.Designer.cs">
+      <DependentUpon>201811201138198_AddUrl55.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811210326335_AddUrl56.cs" />
+    <Compile Include="Migrations\201811210326335_AddUrl56.Designer.cs">
+      <DependentUpon>201811210326335_AddUrl56.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811210336117_AddUrl57.cs" />
+    <Compile Include="Migrations\201811210336117_AddUrl57.Designer.cs">
+      <DependentUpon>201811210336117_AddUrl57.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811210750070_AddUrl58.cs" />
+    <Compile Include="Migrations\201811210750070_AddUrl58.Designer.cs">
+      <DependentUpon>201811210750070_AddUrl58.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811220254478_AddUrl59.cs" />
+    <Compile Include="Migrations\201811220254478_AddUrl59.Designer.cs">
+      <DependentUpon>201811220254478_AddUrl59.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811220303496_AddUrl60.cs" />
+    <Compile Include="Migrations\201811220303496_AddUrl60.Designer.cs">
+      <DependentUpon>201811220303496_AddUrl60.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811220540326_AddUrl61.cs" />
+    <Compile Include="Migrations\201811220540326_AddUrl61.Designer.cs">
+      <DependentUpon>201811220540326_AddUrl61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811220927223_AddUrl62.cs" />
+    <Compile Include="Migrations\201811220927223_AddUrl62.Designer.cs">
+      <DependentUpon>201811220927223_AddUrl62.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811230303349_AddUrl63.cs" />
+    <Compile Include="Migrations\201811230303349_AddUrl63.Designer.cs">
+      <DependentUpon>201811230303349_AddUrl63.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811230349170_AddUrl64.cs" />
+    <Compile Include="Migrations\201811230349170_AddUrl64.Designer.cs">
+      <DependentUpon>201811230349170_AddUrl64.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811230635335_AddUrl65.cs" />
+    <Compile Include="Migrations\201811230635335_AddUrl65.Designer.cs">
+      <DependentUpon>201811230635335_AddUrl65.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Admin\CreateModel\DepartmentCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\EmployeeCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\EquipmentCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\HouseTypeShowCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\MerchantCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\ModifyPasswordCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\ProceedsTypeCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\ProjectCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\RoleCM.cs" />
+    <Compile Include="Model\Admin\CreateModel\UserCM.cs" />
+    <Compile Include="Model\Admin\DetailsModel\MemberDM.cs" />
+    <Compile Include="Model\Admin\ListModel\EmployeeDepartmentLM.cs" />
+    <Compile Include="Model\Admin\ListModel\EmployeeLM.cs" />
+    <Compile Include="Model\Admin\ListModel\EmployeeMenuLM.cs" />
+    <Compile Include="Model\Admin\ListModel\EmployeeRoleLM.cs" />
+    <Compile Include="Model\Admin\ListModel\EquipmentLM.cs" />
+    <Compile Include="Model\Admin\ListModel\HouseTypeShowLM.cs" />
+    <Compile Include="Model\Admin\ListModel\MemberLM.cs" />
+    <Compile Include="Model\Admin\ListModel\MerchantLM.cs" />
+    <Compile Include="Model\Admin\ListModel\OrderBookingLM.cs" />
+    <Compile Include="Model\Admin\ListModel\OrderHousePaymentLM.cs" />
+    <Compile Include="Model\Admin\ListModel\OrderPaidLM.cs" />
+    <Compile Include="Model\Admin\ListModel\ProceedsTypeLM.cs" />
+    <Compile Include="Model\Admin\ListModel\ProjectLM.cs" />
+    <Compile Include="Model\Admin\ListModel\RoleLM.cs" />
+    <Compile Include="Model\Admin\ListModel\UserLM.cs" />
+    <Compile Include="Model\Admin\QueryModel\EmployeeDepartmentQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\DepartmentQM.cs" />
+    <Compile Include="Model\Admin\CreateModel\LoginModel.cs" />
+    <Compile Include="Model\Admin\QueryModel\EmployeeQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\EmployeeMenuQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\EquipmentQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\MenuQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\MerchantQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\EmployeeRoleQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\ProceedsTypeQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\RoleQM.cs" />
+    <Compile Include="Model\Admin\QueryModel\UserQM.cs" />
+    <Compile Include="Model\Admin\ListModel\DepartmentLM.cs" />
+    <Compile Include="Model\Admin\ListModel\MenuLM.cs" />
+    <Compile Include="Model\Admin\ValidAttrModel\PasswordAttribute.cs" />
+    <Compile Include="Model\API\Request\BankCardBindingRequst.cs" />
+    <Compile Include="Model\API\Request\CreateAccountRequst.cs" />
+    <Compile Include="Model\API\Request\GetAccountVerifyRequst.cs" />
+    <Compile Include="Model\API\Request\BaseRequest.cs" />
+    <Compile Include="Model\API\Request\CreateMemberRequst.cs" />
+    <Compile Include="Model\API\Request\CreateOrderBookingRequst.cs" />
+    <Compile Include="Model\API\Request\CreateOrderHousePaymentRequst.cs" />
+    <Compile Include="Model\API\Request\CreateOrderPaidRequst.cs" />
+    <Compile Include="Model\API\Request\GetAreaInfoRequst.cs" />
+    <Compile Include="Model\API\Request\GetBankInfoRequst.cs" />
+    <Compile Include="Model\API\Request\LoginRequest.cs" />
+    <Compile Include="Model\API\Request\QueryHouseTypeShowDetailRequst.cs" />
+    <Compile Include="Model\API\Request\QueryHouseTypeShowListRequst.cs" />
+    <Compile Include="Model\API\Request\QueryMemberInfoRequst.cs" />
+    <Compile Include="Model\API\Request\QueryOrderBookingDetailRequst.cs" />
+    <Compile Include="Model\API\Request\QueryOrderBookingListRequst.cs" />
+    <Compile Include="Model\API\Request\QueryOrderHousePaymentDetailRequst.cs" />
+    <Compile Include="Model\API\Request\QueryOrderHousePaymentListRequst.cs" />
+    <Compile Include="Model\API\Request\QueryOrderPaidDetailRequst.cs" />
+    <Compile Include="Model\API\Request\QueryOrderPaidListRequst.cs" />
+    <Compile Include="Model\API\Request\QueryProjectDetailRequst.cs" />
+    <Compile Include="Model\API\Request\QueryProjectListRequst.cs" />
+    <Compile Include="Model\API\Request\UploadIDCardImgRequst.cs" />
+    <Compile Include="Model\API\Response\BankCardBindingResponse.cs" />
+    <Compile Include="Model\API\Response\CreateAccountResponse.cs" />
+    <Compile Include="Model\API\Response\GetAccountVerifyResponse.cs" />
+    <Compile Include="Model\API\Response\BaseResponse.cs" />
+    <Compile Include="Model\API\Response\CreateMemberResponse.cs" />
+    <Compile Include="Model\API\Response\CreateOrderBookingResponse.cs" />
+    <Compile Include="Model\API\Response\CreateOrderHousePaymentResponse.cs" />
+    <Compile Include="Model\API\Response\CreateOrderPaidResponse.cs" />
+    <Compile Include="Model\API\Response\GetAreaInfoResponse.cs" />
+    <Compile Include="Model\API\Response\GetBankInfoResponse.cs" />
+    <Compile Include="Model\API\Response\LoginResponse.cs" />
+    <Compile Include="Model\API\Response\QueryHouseTypeShowDetailResponse.cs" />
+    <Compile Include="Model\API\Response\QueryHouseTypeShowListResponse.cs" />
+    <Compile Include="Model\API\Response\QueryMemberInfoResponse.cs" />
+    <Compile Include="Model\API\Response\QueryOrderBookingDetailResponse.cs" />
+    <Compile Include="Model\API\Response\QueryOrderBookingListResponse.cs" />
+    <Compile Include="Model\API\Response\QueryOrderHousePaymentDetailResponse.cs" />
+    <Compile Include="Model\API\Response\QueryOrderHousePaymentListResponse.cs" />
+    <Compile Include="Model\API\Response\QueryOrderPaidDetailResponse.cs" />
+    <Compile Include="Model\API\Response\QueryOrderPaidListResponse.cs" />
+    <Compile Include="Model\API\Response\QueryProjectDetailResponse.cs" />
+    <Compile Include="Model\API\Response\QueryProjectListResponse.cs" />
+    <Compile Include="Model\API\Response\UploadIDCardImgResponse.cs" />
+    <Compile Include="Model\Common\APIException.cs" />
+    <Compile Include="Model\Common\AreaGuangDaModel.cs" />
+    <Compile Include="Model\Common\AreaModel.cs" />
+    <Compile Include="Model\Common\BaseCreateModel.cs" />
+    <Compile Include="Model\Common\BaseDetailsModel.cs" />
+    <Compile Include="Model\Common\BaseExportModel.cs" />
+    <Compile Include="Model\Common\BaseJsonModel.cs" />
+    <Compile Include="Model\Common\BaseListModel.cs" />
+    <Compile Include="Model\Common\BaseQueryModel.cs" />
+    <Compile Include="Model\Common\EntityModel.cs" />
+    <Compile Include="Model\Common\EnumModel.cs" />
+    <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Model\QueryModel\AreaGuangDaQM.cs" />
+    <Compile Include="Model\QueryModel\BankQM.cs" />
+    <Compile Include="Model\QueryModel\BankCardQM.cs" />
+    <Compile Include="Model\QueryModel\HouseTypeShowQM.cs" />
+    <Compile Include="Model\QueryModel\MemberQM.cs" />
+    <Compile Include="Model\QueryModel\OrderBookingQM.cs" />
+    <Compile Include="Model\QueryModel\OrderHousePaymentQM.cs" />
+    <Compile Include="Model\QueryModel\OrderPaidQM.cs" />
+    <Compile Include="Model\QueryModel\PreferencesQM.cs" />
+    <Compile Include="Model\QueryModel\ProceedsTypeQM.cs" />
+    <Compile Include="Model\QueryModel\ProjectQM.cs" />
+    <Compile Include="Model\Site\CreateModel\EmployeeCM.cs" />
+    <Compile Include="Model\Site\CreateModel\EmployeeDepartmentCM.cs" />
+    <Compile Include="Model\Site\CreateModel\EmployeeRoleCM.cs" />
+    <Compile Include="Model\Site\CreateModel\HouseTypeShowCM.cs" />
+    <Compile Include="Model\Site\CreateModel\LoginModel.cs" />
+    <Compile Include="Model\Site\CreateModel\ModifyPasswordCM.cs" />
+    <Compile Include="Model\Site\CreateModel\PreferencesCM.cs" />
+    <Compile Include="Model\Site\CreateModel\ProceedsTypeCM.cs" />
+    <Compile Include="Model\Site\CreateModel\ProjectCM.cs" />
+    <Compile Include="Model\Site\DetailsModel\MemberDM.cs" />
+    <Compile Include="Model\Site\ExportModel\OrderBookingEM.cs" />
+    <Compile Include="Model\Site\ExportModel\OrderHousePaymentEM.cs" />
+    <Compile Include="Model\Site\ExportModel\OrderPaidEM.cs" />
+    <Compile Include="Model\Site\ListModel\AreaGuangDaLM.cs" />
+    <Compile Include="Model\Site\ListModel\BankCardLM.cs" />
+    <Compile Include="Model\Site\ListModel\BankLM.cs" />
+    <Compile Include="Model\Site\ListModel\DistrictManagementLM.cs" />
+    <Compile Include="Model\Site\ListModel\EmployeeDepartmentLM.cs" />
+    <Compile Include="Model\Site\ListModel\EmployeeLM.cs" />
+    <Compile Include="Model\Site\ListModel\EmployeeRoleLM.cs" />
+    <Compile Include="Model\Site\ListModel\HouseTypeShowLM.cs" />
+    <Compile Include="Model\Site\ListModel\MemberLM.cs" />
+    <Compile Include="Model\Site\ListModel\MerchantLM.cs" />
+    <Compile Include="Model\Site\ListModel\OrderBookingLM.cs" />
+    <Compile Include="Model\Site\ListModel\OrderHousePaymentLM.cs" />
+    <Compile Include="Model\Site\ListModel\OrderPaidLM.cs" />
+    <Compile Include="Model\Site\ListModel\PreferencesLM.cs" />
+    <Compile Include="Model\Site\ListModel\ProceedsTypeLM.cs" />
+    <Compile Include="Model\Site\ListModel\ProjectLM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{1bf16a4f-aa2d-4328-b624-9a5382b52575}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810170603426_AddUrl.resx">
+      <DependentUpon>201810170603426_AddUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810170605545_AddUrl1.resx">
+      <DependentUpon>201810170605545_AddUrl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810180316542_AddUrl2.resx">
+      <DependentUpon>201810180316542_AddUrl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810180336408_AddUrl3.resx">
+      <DependentUpon>201810180336408_AddUrl3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810180809511_AddUrl4.resx">
+      <DependentUpon>201810180809511_AddUrl4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810180842277_AddUrl5.resx">
+      <DependentUpon>201810180842277_AddUrl5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810230302408_AddUrl6.resx">
+      <DependentUpon>201810230302408_AddUrl6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810230659096_AddUrl7.resx">
+      <DependentUpon>201810230659096_AddUrl7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810240617526_AddUrl8.resx">
+      <DependentUpon>201810240617526_AddUrl8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810250910063_AddUrl9.resx">
+      <DependentUpon>201810250910063_AddUrl9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810260555146_AddUrl10.resx">
+      <DependentUpon>201810260555146_AddUrl10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810290140532_AddUrl11.resx">
+      <DependentUpon>201810290140532_AddUrl11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810290202286_AddUrl12.resx">
+      <DependentUpon>201810290202286_AddUrl12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810300224136_AddUrl13.resx">
+      <DependentUpon>201810300224136_AddUrl13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810300652399_AddUrl14.resx">
+      <DependentUpon>201810300652399_AddUrl14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810310250560_AddUrl15.resx">
+      <DependentUpon>201810310250560_AddUrl15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810310338112_AddUrl16.resx">
+      <DependentUpon>201810310338112_AddUrl16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810310720420_AddUrl17.resx">
+      <DependentUpon>201810310720420_AddUrl17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811010201309_AddUrl18.resx">
+      <DependentUpon>201811010201309_AddUrl18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811020348042_AddUrl19.resx">
+      <DependentUpon>201811020348042_AddUrl19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811050140583_AddUrl20.resx">
+      <DependentUpon>201811050140583_AddUrl20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811060556255_AddUrl21.resx">
+      <DependentUpon>201811060556255_AddUrl21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811060819423_AddUrl22.resx">
+      <DependentUpon>201811060819423_AddUrl22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811070136033_AddUrl23.resx">
+      <DependentUpon>201811070136033_AddUrl23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811070228464_AddUrl24.resx">
+      <DependentUpon>201811070228464_AddUrl24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811070729039_AddUrl25.resx">
+      <DependentUpon>201811070729039_AddUrl25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811070933423_AddUrl26.resx">
+      <DependentUpon>201811070933423_AddUrl26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811080301365_AddUrl27.resx">
+      <DependentUpon>201811080301365_AddUrl27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811080720030_AddUrl28.resx">
+      <DependentUpon>201811080720030_AddUrl28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811080759429_AddUrl29.resx">
+      <DependentUpon>201811080759429_AddUrl29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811090105101_AddUrl30.resx">
+      <DependentUpon>201811090105101_AddUrl30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811090329062_AddUrl31.resx">
+      <DependentUpon>201811090329062_AddUrl31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811090356041_AddUrl32.resx">
+      <DependentUpon>201811090356041_AddUrl32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811120908379_AddUrl33.resx">
+      <DependentUpon>201811120908379_AddUrl33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130130376_AddUrl34.resx">
+      <DependentUpon>201811130130376_AddUrl34.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130148541_AddUrl35.resx">
+      <DependentUpon>201811130148541_AddUrl35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130548094_AddUrl36.resx">
+      <DependentUpon>201811130548094_AddUrl36.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130631580_AddUrl37.resx">
+      <DependentUpon>201811130631580_AddUrl37.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811130643494_AddUrl38.resx">
+      <DependentUpon>201811130643494_AddUrl38.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811140548512_AddUrl39.resx">
+      <DependentUpon>201811140548512_AddUrl39.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811140610086_AddUrl40.resx">
+      <DependentUpon>201811140610086_AddUrl40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811140632334_AddUrl41.resx">
+      <DependentUpon>201811140632334_AddUrl41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811140647533_AddUrl42.resx">
+      <DependentUpon>201811140647533_AddUrl42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811140657078_AddUrl43.resx">
+      <DependentUpon>201811140657078_AddUrl43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811151039503_AddUrl44.resx">
+      <DependentUpon>201811151039503_AddUrl44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811151044531_AddUrl45.resx">
+      <DependentUpon>201811151044531_AddUrl45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200116534_AddUrl46.resx">
+      <DependentUpon>201811200116534_AddUrl46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200253293_AddUrl47.resx">
+      <DependentUpon>201811200253293_AddUrl47.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200647319_AddUrl48.resx">
+      <DependentUpon>201811200647319_AddUrl48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200650144_AddUrl49.resx">
+      <DependentUpon>201811200650144_AddUrl49.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200752505_AddUrl50.resx">
+      <DependentUpon>201811200752505_AddUrl50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200755011_AddUrl51.resx">
+      <DependentUpon>201811200755011_AddUrl51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811200919346_AddUrl52.resx">
+      <DependentUpon>201811200919346_AddUrl52.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201027584_AddUrl53.resx">
+      <DependentUpon>201811201027584_AddUrl53.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201120349_AddUrl54.resx">
+      <DependentUpon>201811201120349_AddUrl54.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201138198_AddUrl55.resx">
+      <DependentUpon>201811201138198_AddUrl55.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811210326335_AddUrl56.resx">
+      <DependentUpon>201811210326335_AddUrl56.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811210336117_AddUrl57.resx">
+      <DependentUpon>201811210336117_AddUrl57.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811210750070_AddUrl58.resx">
+      <DependentUpon>201811210750070_AddUrl58.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811220254478_AddUrl59.resx">
+      <DependentUpon>201811220254478_AddUrl59.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811220303496_AddUrl60.resx">
+      <DependentUpon>201811220303496_AddUrl60.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811220540326_AddUrl61.resx">
+      <DependentUpon>201811220540326_AddUrl61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811220927223_AddUrl62.resx">
+      <DependentUpon>201811220927223_AddUrl62.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811230303349_AddUrl63.resx">
+      <DependentUpon>201811230303349_AddUrl63.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811230349170_AddUrl64.resx">
+      <DependentUpon>201811230349170_AddUrl64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811230635335_AddUrl65.resx">
+      <DependentUpon>201811230635335_AddUrl65.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

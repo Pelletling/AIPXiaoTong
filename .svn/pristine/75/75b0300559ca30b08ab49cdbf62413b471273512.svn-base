@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Framework.Common;
+
+namespace AIPXiaoTong.Model
+{
+    public class APIException : Exception
+    {
+        public APIException(string message) : base(message)
+        {
+
+        }
+        public APIException(GuangDaExceptionOption exceptionOption) : base(exceptionOption.ToDescription())
+        {
+            //base.HResult = exceptionOption.ToInt();
+
+            ErrorCode = exceptionOption.ToInt().ToString();
+            //Message = exceptionOption.ToDescription();
+        }
+
+        public virtual string ErrorCode { get; set; }
+
+        //public new string Message { get; set; }
+    }
+}

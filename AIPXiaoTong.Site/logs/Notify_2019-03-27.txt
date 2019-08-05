@@ -1,0 +1,6 @@
+2019-03-27 08:50:45.1810|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action£ºGetOrderMsg|appid=00008692&bizseq=201903261648232508&cusid=142581072993330&randomstr=357088&sign=72d9bd498b5a47aef15fd382764dad5c&termid=11050705&timestamp=20190327084956&trxcode=T001&trxreserve=05%23&version=01
+2019-03-27 08:50:46.2210|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action£ºGetOrderMsg|
+2019-03-27 08:51:14.3530|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action£ºGetOrderMsg|appid=00008692&bizseq=201903261648232508&cusid=142581072993330&randomstr=291528&sign=fe5b2d4c16ecfc6adfe3e1c6552ed279&termid=11050705&timestamp=20190327085110&trxcode=T001&trxreserve=05%23&version=01
+2019-03-27 08:51:14.3930|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action£ºGetOrderMsg|
+2019-03-27 09:12:39.0564|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action£ºGetOrderMsg|appid=00008692&bizseq=201903261648232508&cusid=142581072993330&randomstr=892557&sign=20425472fb0def08e4c8c105a3456f19&termid=11050705&timestamp=20190327091229&trxcode=T001&trxreserve=05%23&version=01
+2019-03-27 09:12:39.6804|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action£ºGetOrderMsg|

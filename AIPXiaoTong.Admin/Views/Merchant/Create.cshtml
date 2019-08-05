@@ -1,0 +1,69 @@
+﻿@using AIPXiaoTong.Model;
+@using AIPXiaoTong.Model.Admin;
+@using Framework.Common;
+@{
+    var accountBankOption = ViewBag.AccountBankOption as List<Framework.Common.EnumHelper.EnumEntity>;
+}
+@model MerchantCM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Code, new { @class = "input-text", placeholder = "商户代号" })
+                @Html.ValidationMessageFor(t => t.Code)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Name, new { @class = "input-text", placeholder = "商户名称" })
+                @Html.ValidationMessageFor(t => t.Name)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>二类户所属银行：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.AccountBank, accountBankOption.OrderBy(t => t.EnumName).Select(p => new SelectListItem { Value = p.EnumValue.ToString(), Text = p.Description }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.AccountBank)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">联系人名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Contact, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Contact)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">联系人电话：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Mobile, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Mobile)
+            </div>
+        </div>
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+
+<script>
+    $(function () {
+        if (@Model.ID!= 0) {
+            $("#AccountBank").attr("disabled", "disabled").css("background-color", "#EEEEEE;");       
+        }
+        $("#Save").click(function () {
+            $("#AccountBank").removeAttr("disabled");
+        });
+    });
+
+</script>
+
+

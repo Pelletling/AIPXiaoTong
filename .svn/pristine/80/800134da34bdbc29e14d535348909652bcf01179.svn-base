@@ -1,0 +1,96 @@
+﻿@using Framework.Common;
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    ViewBag.Title = "AccountNotify";
+}
+
+<link href="~/Content/sm.min.css" rel="stylesheet" />
+<script src="~/Scripts/zepto.js"></script>
+<script src="~/Scripts/sm.min.js"></script>
+<script src="~/Scripts/sm-extend.min.js"></script>
+
+@model AccountPingAnTransDataDM
+
+<header class="bar bar-nav">
+    <h1 class="title">POS入金</h1>
+</header>
+<div class="content">
+    @if (Model.channel != null && Model.data != null && !string.IsNullOrWhiteSpace(Model.data.autoLoginUrl))
+    {
+        <div class="content-padded docs-icons">
+            <div style="margin-left:32%;margin-top:8%;">
+                <img src="~/Images/icon_nav_msg.png" />
+                <span style="font-size:larger;">支付中...</span>
+            </div>
+            <div style="margin-top:16%;margin-top:2%;">
+                <span style="font-size:14px;color:#f60;text-align:center;display:block;">提示：支付成功后可点击“冻结”进入冻结操作</span>
+            </div>
+        </div>
+        <div class="list-block">
+            <ul>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">订单号：</div>
+                        <div class="item-after">@Model.data.OrderNumber</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">开户人</div>
+                        <div class="item-after">@Model.data.cnName</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">手机号</div>
+                        <div class="item-after">@Model.data.mobilePhone</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">转出卡号</div>
+                        <div class="item-after">@Model.data.outCardNo</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">转入卡号</div>
+                        <div class="item-after">@Model.data.inCardNo</div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">金额</div>
+                        <div class="item-after">@Model.data.amount</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-block">
+            <p><a href="@Model.data.autoLoginUrl" class="button button-big button-warning" style="background-color:#f60;color:white;text-decoration:none;">冻结 </a></p>
+        </div>
+    }
+    else
+    {
+        <div class="content-block-title">数据异常</div>
+    }
+</div>
+
+<script>
+
+    $(function () {
+        callAndroid('@Model.data.OrderNumber','@Model.data.outCardNo');
+    });
+
+    function callAndroid(data, CardNo) {
+        try {
+            PaxAndroid.dealPay(data, CardNo);
+        } catch (e) {
+            alert(e);
+        }
+
+    }
+</script>

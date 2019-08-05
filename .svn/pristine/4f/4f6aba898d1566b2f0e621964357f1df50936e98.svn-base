@@ -1,0 +1,96 @@
+﻿
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectManagementList = ViewBag.ProjectManagementList as List<ProjectManagementLM>;
+}
+@model AdvertisingManagementCM
+
+<script src="~/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>广告图片：</label>
+            <div class="formControls col-xs-3 col-sm-3">
+                @Html.Hidden("AdvertisingImg", Model.AdvertisingImg)
+                <img id="AdvertisingImage" src="@(GlobalConfig.WebConfig.SiteImageUrl + Model.AdvertisingImg)" layer-src="@(GlobalConfig.WebConfig.SiteImageUrl + Model.AdvertisingImg)" width="120" height="120" />
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"></label>
+            <div class="formControls col-xs-3 col-sm-3">
+                <input type="button" id="uploadAdvertisingImg" name="uploadAdvertisingImg" data-iamgeid="AdvertisingImg" data-imagepath="AdvertisingImg">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">选择项目：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.ProjectManagementID, projectManagementList.Where(f=>f.MerchantID==merInfo.ID).OrderBy(t => t.ProjetName).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.ProjetName }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.ProjectManagementID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">备注：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Remark, new { @class = "input-text", placeholder = "50字以内" })
+                @Html.ValidationMessageFor(t => t.Remark)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">播放时间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.PlayTime, new { @class = "input-text", placeholder = "单位毫秒，默认为5秒" })
+                @Html.ValidationMessageFor(t => t.PlayTime)
+            </div>
+        </div>
+
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+
+<script>
+
+    $(function () {
+        $("#uploadAdvertisingImg").uploadifive({
+            'fileSizeLimit': 1024,
+            'fileType': '*.*',
+            'width': '90',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传文件',
+            'auto': true,
+            'uploadScript': '/AdvertisingManagement/UploadFile',
+
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#AdvertisingImg").val(json.Path);
+                }
+            }
+        });
+    });
+
+</script>
+
+
+
+

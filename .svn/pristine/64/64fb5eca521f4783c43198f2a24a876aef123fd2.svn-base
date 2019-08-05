@@ -1,0 +1,35 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+
+}
+@model DistrictManagementCM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>区域名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.DistrictName, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.DistrictName)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">备注信息：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Remark, new { @class = "input-text", placeholder = "备注信息" })
+                @Html.ValidationMessageFor(t => t.Remark)
+            </div>
+        </div>
+       
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+
+
+

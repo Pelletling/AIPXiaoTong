@@ -1,0 +1,49 @@
+﻿<configuration>
+  <configSections>
+    <section name="unity" type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection, Microsoft.Practices.Unity.Configuration"/>
+  </configSections>
+  <unity>
+    <sectionExtension type="Microsoft.Practices.Unity.InterceptionExtension.Configuration.InterceptionConfigurationExtension, Microsoft.Practices.Unity.Interception.Configuration"/>
+
+
+    <containers>
+      <container name="Container">
+        <extension type="Interception"/>
+
+        <register type="System.Data.Entity.DbContext, EntityFramework" mapTo="AIPXiaoTong.Model.AIPXiaoTongDb, AIPXiaoTong.Model"/>
+
+        <register type="AIPXiaoTong.IService.IUserService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.UserService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IRoleService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.RoleService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IDepartmentService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.DepartmentService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IMenuService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.MenuService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IMenuActionService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.MenuActionService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IMerchantService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.MerchantService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeMenuActionService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeMenuActionService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeMenuService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeMenuService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IPreferencesService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.PreferencesService, AIPXiaoTong.Service"/>
+   
+        <register type="AIPXiaoTong.IService.IProjectService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.ProjectService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IHouseTypeShowService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.HouseTypeShowService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IMemberService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.MemberService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeRoleService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeRoleService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeDepartmentService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeDepartmentService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IAreaService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.AreaService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IOrderBookingService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.OrderBookingService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IOrderHousePaymentService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.OrderHousePaymentService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IOrderPaidService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.OrderPaidService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.ITltService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.TltService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IProceedsTypeService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.ProceedsTypeService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IBankCardService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.BankCardService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEquipmentService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EquipmentService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IBankService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.BankService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IAreaGuangDaService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.AreaGuangDaService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IGuangDaAPIService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.GuangDaAPIService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IOrderPaidRechargeService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.OrderPaidRechargeService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IOrderPaidFreezeService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.OrderPaidFreezeService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IOrderPaidUnFreezeService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.OrderPaidUnFreezeService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IOrderPaidWithdrawService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.OrderPaidWithdrawService, AIPXiaoTong.Service"/>
+      </container>
+    </containers>
+  </unity>
+</configuration>

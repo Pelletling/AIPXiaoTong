@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryOrderBookingListRequst : BaseRequest
+    {
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        [Display(Name = "项目名称")]
+        public string projectname { get; set; }
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        [Display(Name = "订单编号")]
+        public string ordernumber { get; set; }
+
+        /// <summary>
+        /// 预约日期
+        /// </summary>
+        [Display(Name = "预约日期")]
+        public string appdate { get; set; }
+
+        /// <summary>
+        /// 姓名
+        /// </summary>
+        [Display(Name = "姓名")]
+        public string username { get; set; }
+
+
+        private int? _pageindex { get; set; }
+        public int? pageindex
+        {
+            get { return _pageindex > 0 ? _pageindex : 1; }
+            set { _pageindex = value; }
+        }
+
+
+        private int? _pagesize { get; set; }
+        public int? pagesize
+        {
+            get { return _pagesize > 0 ? _pagesize : GlobalConfig.PageSize; }
+            set { _pagesize = value; }
+        }
+    }
+}

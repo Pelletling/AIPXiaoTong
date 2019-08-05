@@ -1,0 +1,28 @@
+﻿using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PingAnAPI.Model
+{
+    public class PreparedFreezeOrderResponse:BaseResponse
+    {
+        public GetPreparedFreezeOrderData dataObject
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(data) ? JsonHelper.Deserialize<GetPreparedFreezeOrderData>(data) : new GetPreparedFreezeOrderData();
+            }
+        }
+
+        public class GetPreparedFreezeOrderData
+        {
+            /// <summary>
+            /// 银行订单号
+            /// </summary>
+            public string bankOrderNo { get; set; }          
+        }
+    }
+}

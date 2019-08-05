@@ -1,0 +1,40 @@
+2019-03-20 15:38:10.1238|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=1.00&CifClientId=6a493893ac8b62e2&CoPatrnerJnlNo=201903201538090708&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903201538090848&ReqTime=2019-03-20 15:38:09&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190320&TrsType=0&UserId=tlzfsh&Sign=ei1IDxbjyYXf9nnHxUwTd6IVgwLqhfLJ6O2r%2fEMCoNwGeVG0uFRyOI7t2F4BzwwiCM26s0st4K2gHaRlQZ5Uq21g8HCrmh6lGbYewMOT2dTR9rX7HLU%2fLN6W4G3frM9jeh3nDxRYnkQgGT%2f03LbTaO3GNcqb3yop2Ml2P%2bhbUuk%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903201538090848</ReqJnlNo>
+<ResTime>2019-03-20 15:39:44</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-20 15:43:10.9488|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=1.00&CifClientId=6a493893ac8b62e2&CoPatrnerJnlNo=201903201543103248&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903201543103318&ReqTime=2019-03-20 15:43:10&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190320&TrsType=0&UserId=tlzfsh&Sign=AjaTqqF0XGz%2bheSx%2brodnDocU2mvVTd8PF4kQpZp6QuwQ56Eb0JwCNIhR%2buw%2be6578HGaRYeo7CWXJ1yxv0IzS%2bAIP5BA12W9DwU0QtQvaqXxdO5RdJwlGOaSOpItl6vUzGnBdVJyDAez7yL2XIyGQdM3eB0%2feBx4kAqT0ZGB7U%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903201543103318</ReqJnlNo>
+<ResTime>2019-03-20 15:44:45</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-20 15:53:11.1808|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=1.00&CifClientId=6a493893ac8b62e2&CoPatrnerJnlNo=201903201553103918&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903201553105168&ReqTime=2019-03-20 15:53:10&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190320&TrsType=0&UserId=tlzfsh&Sign=WUGJoyJg%2bOpiVwZ%2f4fclBuDKBzMUPSAKbgYq1SYDibtOPaFkyJkytq2uhOcHsyc4U4qiVhJKtHGHVIZCy20vm8ewop3yc2%2b5RPpVdUGSTuyl3cM790bEKjw8wSbT%2bV%2bsfnwTfZIAwGArdwZBPJn%2bZWd6BGIKAp5iQcOFoAq7XmY%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903201553105168</ReqJnlNo>
+<ResTime>2019-03-20 15:54:45</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-20 16:08:13.4878|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=1.00&CifClientId=6a493893ac8b62e2&CoPatrnerJnlNo=201903201608112968&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903201608113058&ReqTime=2019-03-20 16:08:11&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190320&TrsType=0&UserId=tlzfsh&Sign=W5EnF6F6gjjlSKekTbpiid4vZlzEZqc0pOQS9ZJGJAX7cpupqOe3%2feWXWk2idcojlUOJp64i%2fmx%2b5516DYc3lk%2fOLcA%2b70I2UHkGgwX6oYuJ4BO%2bFXT3LOIh1FJNnp9DDa%2fcjp6Oc4jAJmj2xflToU8g7GyT3wbvRKzs%2f12dpW8%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903201608113058</ReqJnlNo>
+<ResTime>2019-03-20 16:09:47</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:

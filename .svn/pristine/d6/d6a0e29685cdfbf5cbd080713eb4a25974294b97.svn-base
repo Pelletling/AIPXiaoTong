@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+
+namespace TltApi.Model
+{
+    [XmlRoot(ElementName = "AIPG")]
+    public class QueryTltTradingResultRequest : IBaseRequest<QueryTltTradingResultResponse>
+    {
+        public QueryTltTradingResultRequest(TltExec tltExec)
+        {
+            INFO = new Info(tltExec);
+            QTRANSREQ = new Qtransreq(tltExec);
+        }
+
+        [XmlElement(ElementName = "INFO")]
+        public Info INFO { get; set; }
+
+        [XmlElement(ElementName = "QTRANSREQ")]
+        public Qtransreq QTRANSREQ { get; set; }
+
+        public class Info
+        {
+            private TltExec tltExec;
+            public Info(TltExec tltExec)
+            {
+                this.tltExec = tltExec;
+            }
+            /// <summary>
+            /// 交易代码
+            /// </summary>
+            public string TRX_CODE { get; set; }
+            /// <summary>
+            /// 版本
+            /// </summary>
+            public string VERSION { get { return "04"; } set { } }
+            /// <summary>
+            /// 数据格式
+            /// </summary>
+            public string DATA_TYPE { get { return "2"; } set { } }
+            /// <summary>
+            /// 交易批次号
+            /// </summary>
+            public string REQ_SN { get; set; }
+            /// <summary>
+            /// 商户代码( 商户ID，十位或十五位)
+            /// </summary>
+            public string MERCHANT_ID { get { return this.tltExec.merchantId; } set { } }
+            /// <summary>
+            /// 用户名
+            /// </summary>
+            public string USER_NAME { get { return this.tltExec.userName; } set { } }
+            /// <summary>
+            /// 用户密码
+            /// </summary>
+            public string USER_PASS { get { return this.tltExec.userPassword; } set { } }
+        }
+
+        public class Qtransreq
+        {
+            private TltExec tltExec;
+            public Qtransreq(TltExec tltExec)
+            {
+                this.tltExec = tltExec;
+            }
+            /// <summary>
+            /// 商户代码
+            /// </summary>
+            public string MERCHANT_ID { get { return this.tltExec.merchantId; } set { } }
+
+            /// <summary>
+            /// 要查询的交易流水(也就是原请求交易中的REQ_SN的值)
+            /// </summary>
+            public string QUERY_SN { get; set; }
+        }
+    }
+}

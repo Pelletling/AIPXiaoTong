@@ -1,0 +1,80 @@
+2019-03-29 15:53:14.6174|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=4945aba47d0795f0&CoPatrnerJnlNo=201903291553133694&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291553134006&ReqTime=2019-03-29 15:53:13&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=Tc29m5N3LxfUfgkQ0YRxuZhZ6OslH4sgvRSnipllkyi879fwiRn%2ftn11YT5h8GtU8LkVv3DnycWJH%2bKwCEIZJIeOnerIBlN056RpsdiD4gOEHtNfLA%2bwKB24cC9H4zq3BPdj1l1lG24A2sjicbR7I8pkDnWOzpsSolfg1SVtn%2fI%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291553134006</ReqJnlNo>
+<ResTime>2019-03-29 15:54:56</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-29 15:55:51.3816|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=7e4223a1d9c6da00&CoPatrnerJnlNo=201903291555464246&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291555465182&ReqTime=2019-03-29 15:55:48&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=XATzKRnxHSw2oTQyQnh0sSH%2bEaERjVdUhInONSeUeHlU6JXzBr2lpVxnbrik3j1p5RMXRVCoB2BiU23HF2exQ2GfHJXRXjhfDN3r8Pcu4ySWX2COkvq5%2fn1XTKINdXCR6exnsi7UQflPAJCImctfKwStPYhVzYvABs4m1OwARBY%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291555465182</ReqJnlNo>
+<ResTime>2019-03-29 15:57:33</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-29 15:58:14.8102|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=4945aba47d0795f0&CoPatrnerJnlNo=201903291558140770&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291558140926&ReqTime=2019-03-29 15:58:14&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=Ov2KW0Aeixbv5FYOqnrDjDxUmjELLviI1TmpakeFg2YAIgpUiAwPoSixgDIHw6vPtnChEmOYm%2fkqlvT2qQUV2PuZheyQWHm%2bRzxHIgLG5QU5EobMd9culYijeHE1Mus5uJvbdDq1QSkHcVeZ6U9R0J3yukfOnhDicbdhac%2b8kFg%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291558140926</ReqJnlNo>
+<ResTime>2019-03-29 15:59:57</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-29 16:00:44.9468|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=7e4223a1d9c6da00&CoPatrnerJnlNo=201903291600441512&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291600441668&ReqTime=2019-03-29 16:00:44&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=KUiCKiq4MHJ2t0Z3XPzKvkbD5DH3gNihvry0p4g1nnO6cLAGjC2TdrWG4rOX%2bM69sMDrDrHtc4SGRenKN%2f3LkyDW2sztNZd1AtjcPCNQfdKij%2breG3EEaFMVCY2mT5RgDODjevYf2Se8dF5TlovtMat0R1to%2fYv5Qrc8xKQws6s%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291600441668</ReqJnlNo>
+<ResTime>2019-03-29 16:02:27</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-29 16:08:14.7126|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=4945aba47d0795f0&CoPatrnerJnlNo=201903291608140586&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291608140656&ReqTime=2019-03-29 16:08:14&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=T%2f4%2fI6Gqsq8RN%2b2RjwhgnZ%2fSEYiaEF64OoUf6z%2b0pV8%2fR9nS7swSeM941YTl7EINZTvFJzlF5ZA67%2b7q3J6jEnmkp7wa4CJtsYTkaooTPkxzpDW1yH1hnFwl9ROiJ%2f40s1U8wA8bK16LxIYtBRC3yPh1HNygshdBL49ywMcsyCE%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291608140656</ReqJnlNo>
+<ResTime>2019-03-29 16:09:56</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-29 16:10:53.4046|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=7e4223a1d9c6da00&CoPatrnerJnlNo=201903291610451416&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291610451486&ReqTime=2019-03-29 16:10:45&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=ngrYBkJ11gpXLtRn0iIoqOTi0lWrOFN3OS8bOix6dV1pVnHvLQOIg3Qgl8f8EqpikPWajbvrGucZcMPRHGFTcF0%2fPAx%2f5K6aj9X6Meobv0rdByiwF8%2bfqhe5Fdb7RW8QklGCg45lHoMVZLEybAe%2bAEteo1dNPdtOOVeunpfAhUo%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291610451486</ReqJnlNo>
+<ResTime>2019-03-29 16:12:35</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-29 16:23:16.5296|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=4945aba47d0795f0&CoPatrnerJnlNo=201903291623141526&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291623141606&ReqTime=2019-03-29 16:23:14&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=N%2bvXAzIbav1Wl9s64ZBqhjTNcvpV0D00luT0n7e0vygdu0pnm624ChR%2b1yl5xdYbBpxda0uQzOvuqrNDcqyvQkUdYXjVqsDa%2bCviQIvfGELtoQn6Ke8gpvUfAIlSK%2bpe14s5qzRePmdfh3ZySnFfSyLO6SRAQ5iqSn7GfwCW860%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291623141606</ReqJnlNo>
+<ResTime>2019-03-29 16:24:58</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-03-29 16:25:53.4426|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=7e4223a1d9c6da00&CoPatrnerJnlNo=201903291625531106&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903291625531196&ReqTime=2019-03-29 16:25:53&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190329&TrsType=0&UserId=tlzfsh&Sign=jpKf58i%2fSpqjviW%2f2f1OTZE0be2HkyyI4Gj0t58n54n8M2BSIAa8ioOoYZMLYj6dFMbo2tJbRmyljQCYzIhgUjm8S%2b2wqj4ST9v69bxgmWfU7fNebqtagFZoJZXA2TitGnujUOHng4OMLmvsLwhYlz6FuUealkZfmuY7yWVTacw%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201903291625531196</ReqJnlNo>
+<ResTime>2019-03-29 16:27:35</ResTime>
+<ResCode>000009</ResCode>
+<ResMsg>客户不存在或标识号错误</ResMsg>
+</Head>
+</Message>
+,http异常:

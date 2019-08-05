@@ -1,0 +1,29 @@
+﻿using AIPXiaoTong.IService;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class PosAgreementController : BaseController
+    {
+        private IMemberService iMemberService;
+
+        public PosAgreementController(IMemberService iMemberService)
+        {
+            this.iMemberService = iMemberService;
+        }
+
+        public ActionResult Index(long MemberID)
+        {
+            var member = this.iMemberService.Get(t => t.ID == MemberID);
+
+            ViewBag.MemberName = member.Name;
+
+            return View();
+        }
+
+    }
+}

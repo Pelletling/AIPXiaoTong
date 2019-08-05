@@ -1,0 +1,290 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.API;
+using AIPXiaoTong.Model.Site;
+using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class APIController : Controller
+    {
+
+        private IEmployeeService iEmployeeService;
+        private IOrderBookingService iOrderBookingService;
+        private IOrderHousePaymentService iOrderHousePaymentService;
+        private IOrderPaidService iOrderPaidService;
+
+        public APIController(IEmployeeService iEmployeeService,
+                              IOrderBookingService iOrderBookingService,
+                              IOrderHousePaymentService iOrderHousePaymentService,
+                              IOrderPaidService iOrderPaidService)
+        {
+            this.iEmployeeService = iEmployeeService;
+            this.iOrderBookingService = iOrderBookingService;
+            this.iOrderHousePaymentService = iOrderHousePaymentService;
+            this.iOrderPaidService = iOrderPaidService;
+        }
+
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+        //    base.OnException(filterContext);
+        //}
+
+        // GET: API
+        public string Login(LoginRequest request)
+        {
+            var result = new LoginResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var employee = iEmployeeService.Get(t => t.Code == request.employeecode && t.Merchant.Code == request.merchantcode);
+
+                if (employee == null)
+                    throw new APIException("账号不存在");
+
+                if (employee.Password != request.password)
+                    throw new APIException("密码不正确");
+
+                result.employeecode = employee.Code;
+                result.employeeid = employee.ID.ToString();
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        public string QueryOrderBookingDetail(QueryOrderBookingDetailRequst request)
+        {
+            var result = new QueryOrderBookingDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var orderBooking = iOrderBookingService.Get(t => t.Merchant.Code == request.merchantcode && t.OrderNumber == request.ordernumber);
+
+                if (orderBooking == null)
+                    throw new APIException("订单不存在");
+
+                result.ordernumber = orderBooking.OrderNumber;
+                result.orderbookingid = orderBooking.ID.ToString();
+                result.merchantname = orderBooking.Merchant.Name.ToString();
+                result.projectname = orderBooking.ProjectManagement.ProjetName.ToString();
+                result.equipmentnumber = orderBooking.EquipmentNumber;
+                result.customername = orderBooking.CustomerName;
+                result.mobile = orderBooking.Mobile;
+                result.idnumber = orderBooking.IDNumber;
+                result.ordertime = orderBooking.OrderTime.ToString();
+                result.remark = orderBooking.Remark;
+                result.employeename = orderBooking.Employee.Name.ToString();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        public string QueryOrderBookingList(QueryOrderBookingListRequst request)
+        {
+            var result = new QueryOrderBookingListResponse() { requestno = request.requestno };
+
+            var model = new OrderBookingQM();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var list = iOrderBookingService.GetListModel<OrderBookingLM, OrderBookingQM>(model);
+
+                if (list.Count==0)
+                    throw new APIException("订单不存在");
+
+
+              
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+        
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+        public string QueryOrderHousePaymentDetail(QueryOrderHousePaymentDetailRequst request)
+        {
+            var result = new QueryOrderHousePaymentDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var orderHousePayment = iOrderHousePaymentService.Get(t => t.Merchant.Code == request.merchantcode && t.OrderNumber == request.ordernumber);
+
+                if (orderHousePayment == null)
+                    throw new APIException("订单不存在");
+
+                result.orderhousepaymentid = orderHousePayment.ID.ToString();
+                result.ordernumber = orderHousePayment.OrderNumber;
+                result.merchantname = orderHousePayment.Merchant.Name;
+                result.projectname = orderHousePayment.ProjectManagement.ProjetName.ToString();
+                result.equipmentnumber = orderHousePayment.EquipmentNumber;
+                result.transactionamount = orderHousePayment.TransactionAmount.ToString();
+                result.serialnumber = orderHousePayment.SerialNumber;
+                result.customername = orderHousePayment.CustomerName;
+                result.mobile = orderHousePayment.Mobile;
+                result.paymentstatus = orderHousePayment.PaymentStatus.ToString();
+                result.paymentstatusdesc = orderHousePayment.PaymentStatusDesc;
+                result.paymenttype = orderHousePayment.PaymentType.ToString();
+                result.paymenttypedesc = orderHousePayment.PaymentTypeDesc;
+                result.status = orderHousePayment.Status.ToString();
+                result.statusdesc = orderHousePayment.StatusDesc.ToString();
+                result.createdatetime = orderHousePayment.CreateDatetime.ToString();
+                result.idnumber = orderHousePayment.IDNumber;
+                result.bankcardnumber = orderHousePayment.BankCardNumber;
+                result.employeename = orderHousePayment.Employee.Name.ToString();
+                result.remark = orderHousePayment.Remark;
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+        public string QueryOrderPaidDetail(QueryOrderPaidDetailRequst request)
+        {
+            var result = new QueryOrderPaidDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var orderPaid = iOrderPaidService.Get(t => t.Merchant.Code == request.merchantcode && t.OrderNumber == request.ordernumber);
+
+                if (orderPaid == null)
+                    throw new APIException("订单不存在");
+
+                result.orderpaidid = orderPaid.ID.ToString();
+                result.merchantname = orderPaid.Merchant.Name;
+                result.ordernumber = orderPaid.OrderNumber;
+                result.projectname = orderPaid.ProjectManagement.ProjetName;
+                result.equipmentnumber = orderPaid.EquipmentNumber;
+                result.transactionamount = orderPaid.TransactionAmount.ToString();
+                result.serialnumber = orderPaid.SerialNumber;
+                result.customername = orderPaid.CustomerName;
+                result.mobile = orderPaid.Mobile;
+                result.paymentstatus = orderPaid.PaymentStatus.ToString();
+                result.paymentstatusdesc = orderPaid.PaymentStatusDesc;
+                result.paymenttype = orderPaid.PaymentType.ToString();
+                result.paymenttypedesc = orderPaid.PaymentTypeDesc;
+                result.idnumber = orderPaid.IDNumber;
+                result.bankcardnumber = orderPaid.BankCardNumber;
+                result.remark = orderPaid.Remark;
+                result.status = orderPaid.Status.ToString();
+                result.statusdesc = orderPaid.StatusDesc.ToString();
+                result.createdatetime = orderPaid.CreateDatetime.ToString();
+                result.employeename = orderPaid.Employee.Name.ToString();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public string CreateOrderBooking(CreateOrderBookingRequst request)
+        {
+            var result = new CreateOrderBookingResponse() { requestno = request.requestno };
+
+            var entity = iOrderBookingService.Get(request.ID) ?? new OrderBooking();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                entity.ProjectManagementID = request.ProjectManagementID.ToLong();
+                entity.OrderNumber = "20190914141342493998";
+                entity.EquipmentNumber = request.EquipmentNumber;
+                entity.EmployeeID = request.EmployeeID.ToLong();
+                entity.CustomerName = request.CustomerName;
+                entity.Mobile = request.Mobile;
+                entity.IDNumber = request.IDNumber;
+               // entity.OrderTime = request.OrderTime;
+                entity.Remark = request.Remark;
+
+
+                iOrderBookingService.Save(entity);
+                iOrderBookingService.Commit();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            result.orderbookingid = entity.ID.ToString();
+            result.ordernumber = entity.OrderNumber;
+
+            return JsonHelper.Serialize(result);
+        }
+    }
+}

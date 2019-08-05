@@ -1,0 +1,46 @@
+﻿@using AIPXiaoTong.Model;
+@using Framework.Models;
+@using Framework.Common;
+@{
+    var activeMenu = ViewBag.ActiveMenu as Menu;
+    var currnetUser = UserHelper.GetCurrentUser() as CurrentUser;
+    var controller = ViewContext.RouteData.Values["Controller"] as string;//获取控制器名称
+    Layout = null;
+}
+
+
+<span class="l">
+    @{
+        if (currnetUser.CurrnetAction.Contains("add"))
+        {
+            <a class="btn btn-primary" data-title="添加" onclick="Create('新增', 'Create')" href="javascript:;"><i class="Hui-iconfont"></i> 添加</a>
+        }
+
+
+        if (currnetUser.CurrnetAction.Contains("export"))
+        {
+            <a onclick="ExportFile();" class="btn btn-primary" data-title="导出" href="javascript:;"><i class="Hui-iconfont">&#xe644;</i> 导出</a>
+        }
+
+
+
+        if (currnetUser.CurrnetAction.Contains("import"))
+        {
+            <a onclick="ImportFile('导入', 'Import');" class="btn btn-primary" data-title="导入" href="javascript:;" data-name="ChangeExpandUser"><i class="Hui-iconfont"></i> 导入</a>
+        }
+
+    }
+
+</span>
+
+
+@*打印*@
+@*@Html.Partial("Lodop")*@
+
+<script>
+    $(function () {
+        
+    });
+
+    
+</script>

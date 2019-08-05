@@ -1,0 +1,193 @@
+﻿@using Framework.Common;
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectList = ViewBag.ProjectList as List<ProjectLM>;
+}
+@model HouseTypeShowCM
+
+<script src="~/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.ProjectID, projectList.Where(f => f.MerchantID == merInfo.ID).OrderBy(t => t.ProjectName).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.ProjectName }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.ProjectID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>户型名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.HouseTypeName, new { @class = "input-text", placeholder = "户型名称" })
+                @Html.ValidationMessageFor(t => t.HouseTypeName)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>户型面积：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.HouseTypeArea, new { @class = "input-text", placeholder = "两位小数，单位为m²", @onkeyup = "num(this)" })
+                @Html.ValidationMessageFor(t => t.HouseTypeArea)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-2">
+                <div><span class="c-red">*</span>户型图片：</div>
+                <div> <span style="font-size:small;color:red;">(图片建议比例4：3)</span></div>
+            </div>
+
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="96" height="72" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[0]==""?null:Model.HouseShowImageList[0])" id="imgHouseShowImg0" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="96" height="72" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[1]==""?null:Model.HouseShowImageList[1])" id="imgHouseShowImg1" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="96" height="72" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[2]==""?null:Model.HouseShowImageList[2])" id="imgHouseShowImg2" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="96" height="72" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[3]==""?null:Model.HouseShowImageList[3])" id="imgHouseShowImg3" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="96" height="72" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[4]==""?null:Model.HouseShowImageList[4])" id="imgHouseShowImg4" />
+            </div>
+
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"></label>
+            <div class="formControls col-xs-3 col-sm-2" style="width:12%;">
+                <input type="hidden" id="hidHouseShowImg0" name="HouseShowImageList" />
+                <input type="button" id="uploadHouseShowImg0" value="上传" name="uploadImg" data-iamgeid="imgHouseShowImg0" data-imagepath="HouseShowImageList">
+                <input type="button" value="删除" id="DeleteHouseShowImg0" class="btn btn-primary radio" style="width:46px;" onclick="DeleteImage(this);" />
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" style="width:12%;">
+                <input type="hidden" id="hidHouseShowImg1" name="HouseShowImageList" />
+                <input type="button" id="uploadHouseShowImg1" value="上传" name="uploadImg" data-iamgeid="imgHouseShowImg1" data-imagepath="HouseShowImageList">
+                <input type="button" value="删除" id="DeleteHouseShowImg1" class="btn btn-primary radio" style="width:46px;" onclick="DeleteImage(this);" />
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" style="width:12%;">
+                <input type="hidden" id="hidHouseShowImg2" name="HouseShowImageList" />
+                <input type="button" id="uploadHouseShowImg2" value="上传" name="uploadImg" data-iamgeid="imgHouseShowImg2" data-imagepath="HouseShowImageList">
+                <input type="button" value="删除" id="DeleteHouseShowImg2" class="btn btn-primary radio" style="width:46px;" onclick="DeleteImage(this);" />
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" style="width:12%;">
+                <input type="hidden" id="hidHouseShowImg3" name="HouseShowImageList" />
+                <input type="button" id="uploadHouseShowImg3" value="上传" name="uploadImg" data-iamgeid="imgHouseShowImg3" data-imagepath="HouseShowImageList">
+                <input type="button" value="删除" id="DeleteHouseShowImg3" class="btn btn-primary radio" style="width:46px;" onclick="DeleteImage(this);" />
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" style="width:12%;">
+                <input type="hidden" id="hidHouseShowImg4" name="HouseShowImageList" />
+                <input type="button" id="uploadHouseShowImg4" value="上传" name="uploadImg" data-iamgeid="imgHouseShowImg4" data-imagepath="HouseShowImageList">
+                <input type="button" value="删除" id="DeleteHouseShowImg4" class="btn btn-primary radio" style="width:46px;" onclick="DeleteImage(this);" />
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea class="input-text" style="height:120px;" id="Content" name="Content" rows="2" cols="20" placeholder="字数不超过1024字">@Model.Content</textarea>
+            </div>
+        </div>
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+
+    </form>
+</div>
+
+<script>
+
+    $(function () {
+
+         if (@Model.Status!=@HouseTypeShowStatus.AlreadySubmit.ToInt() ) {
+            $("#Save").hide();
+        }
+
+        $("#hidHouseShowImg0").val($("#imgHouseShowImg0").attr("src"));
+        $("#hidHouseShowImg1").val($("#imgHouseShowImg1").attr("src"));
+        $("#hidHouseShowImg2").val($("#imgHouseShowImg2").attr("src"));
+        $("#hidHouseShowImg3").val($("#imgHouseShowImg3").attr("src"));
+        $("#hidHouseShowImg4").val($("#imgHouseShowImg4").attr("src"));
+
+
+        $("[name='uploadImg']").each(function () {
+            debugger;
+            var id = $(this).attr("id");
+            var imageId = $(this).attr("data-iamgeid");
+            var imagePath = $(this).attr("data-imagepath");
+            var tempID = $(this).attr("id").substr(6);   //截取id后从upload后的部分；
+
+            $("#" + id).uploadifive({
+
+                'fileSizeLimit': 2048,
+                'fileType': 'image/*',
+                'height': 30,
+                'width': 46,
+                'buttonClass': 'btn btn-primary radio',
+                'buttonText': '上传',
+                'auto': true,
+                'uploadScript': '/HouseTypeShow/UploadHouseShowImage',
+                'onInit': function () {
+                    $("#uploadifive-" + id + "-queue").hide();
+                },
+                'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                    alert(errorCode + ',' + errorMsg + ',' + errorString);
+                },
+                'onUploadComplete': function (file, data) {
+                    var json = JSON.parse(data);
+                    if (json.Msg != "") {
+                        alert(json.Msg);
+                    }
+                    else {
+                        $("#" + imageId).attr("src", json.Path);
+                        $("#hid" + tempID).val(json.Path);
+                    }
+                }
+            });
+        });
+
+
+        //var editorOption = {
+        //    initialFrameHeight: 300,   //设置初始化高度
+        //}
+        //var editor = new baidu.editor.ui.Editor(editorOption);
+        //editor.render('Content');
+
+        //var ue = UE.getEditor("Content");
+
+    });
+
+    function DeleteImage(obj) {
+        debugger;
+        var tempID = $(obj).attr("id").substr(6);   //截取id后从delete后的部分；
+        $("#img" + tempID).removeAttr("src");
+        $("#hid" + tempID).val("");
+    };
+
+    function num(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, ""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g, ""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        // obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
+    }
+
+</script>
+
+
+
+
+
+

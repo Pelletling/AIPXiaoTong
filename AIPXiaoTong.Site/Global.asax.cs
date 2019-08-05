@@ -1,0 +1,40 @@
+﻿using Framework.Web.IOC;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+using Microsoft.Practices.Unity;
+using AIPXiaoTong.IService;
+using FluentScheduler;
+
+namespace AIPXiaoTong.Site
+{
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ControllerBuilder.Current.SetControllerFactory(new UnityControllerFactory());//控制器的实例化走UnityControllerFactory
+
+            var iAutoExecService = DIFactory.GetContainer().Resolve<IEmployeeMenuActionService>();
+            JobManager.Initialize(new Controllers.AutoExec());
+        }
+
+        public override void Init()
+        {
+            var iEmployeeMenuActionService = DIFactory.GetContainer().Resolve<IEmployeeMenuActionService>();
+            var iEmployeeMenuService = DIFactory.GetContainer().Resolve<IEmployeeMenuService>();
+
+            iEmployeeMenuActionService.SetCache();
+            iEmployeeMenuService.SetCache();
+
+
+        }
+    }
+}

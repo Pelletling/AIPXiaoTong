@@ -1,0 +1,216 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.API;
+using AIPXiaoTong.Model.Site;
+using Framework.Common;
+//using GuangDaAPI;
+using GuangDaAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Framework.Requests;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
+using System.Net;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class TestController : Controller
+    {
+        private IMemberService iMemberManagementService;
+        private IOrderBookingService iOrderBookingService;
+        private IOrderHousePaymentService iOrderHousePaymentService;
+        private IOrderPaidService iOrderPaidService;
+        private IAreaGuangDaService iAreaGuangDaService;
+        private IPingAnAPIService ipingAnAPIService;
+
+        public TestController(IMemberService iMemberManagementService,
+                                     IOrderBookingService iOrderBookingService,
+                                     IOrderHousePaymentService iOrderHousePaymentService,
+                                     IOrderPaidService iOrderPaidService,
+                                     IAreaGuangDaService iAreaGuangDaService,
+                                     IPingAnAPIService ipingAnAPIService)
+        {
+            this.iMemberManagementService = iMemberManagementService;
+            this.iOrderBookingService = iOrderBookingService;
+            this.iOrderHousePaymentService = iOrderHousePaymentService;
+            this.iOrderPaidService = iOrderPaidService;
+            this.iAreaGuangDaService = iAreaGuangDaService;
+            this.ipingAnAPIService = ipingAnAPIService;
+        }
+
+        //private GuangDaExec guangDaExec;
+
+        public ActionResult area()
+        {
+            var model = new AreaGuangDaQM();
+
+            var list = iAreaGuangDaService.GetListModel<AreaGuangDaLM, AreaGuangDaQM>();
+
+
+
+            return View();
+        }
+
+        //public ActionResult Member()
+        //{
+        //    var entity = new Member();
+
+        //    entity.Name = "翠花";
+        //    entity.IDNumber = "121212121212121212";
+        //    entity.Mobile = "15212154556";
+        //    entity.Status = 1;
+        //    entity.ProvinceCode = "13";
+        //    entity.CityCode = "1301";
+        //    entity.IDImageFront = @"\Images\ProjectImage\a08c05ba-a755-495b-bf3d-72e3c2e61297.jpg";
+        //    entity.IDImageOpposite = @"\Images\ProjectImage\75ccc33c-2bca-4419-b643-45efb58df412.jpg";
+        //    entity.Address = "河北省石家庄市三心小区6栋606";
+        //    entity.ClientId = "d56081f632a40980";
+        //    entity.EnName = "asdsa";
+        //    entity.IdExpiredDate = DateTime.Now;
+        //    entity.PostCode = "131313";
+        //    entity.IsCreateAccount = 0;
+
+        //    iMemberManagementService.Save(entity);
+        //    iMemberManagementService.Commit();
+
+        //    return View();
+        //}
+
+        public ActionResult InsertOrderBooking()
+        {
+            var entity = new OrderBooking();
+
+            entity.MerchantID = 1;
+            entity.OrderNumber = "20180914141342493990";
+            entity.ProjectID = 24;
+            entity.EquipmentSNNo = "600047000102";
+            entity.EmployeeID = 7;
+            entity.MemberID = 2;
+            entity.OrderTime = DateTime.Now;
+            entity.Remark = "asdsadsadsa";
+
+            iOrderBookingService.Save(entity);
+            iOrderBookingService.Commit();
+
+            return View();
+        }
+
+        public ActionResult OrderHousePayment()
+        {
+            decimal dec = 66;
+            var entity = new OrderHousePayment();
+
+            entity.MerchantID = 1;
+
+            entity.OrderNumber = "20181107163729899799";
+            entity.ProjectID = 24;
+            entity.EquipmentSNNo = "600047000103";
+            entity.EmployeeID = 7;
+            entity.TransactionAmount = dec;
+            entity.SerialNumber = "	111863250000001641";
+            entity.MemberID = 2;
+            entity.Status = 1;
+            entity.PaymentStatus = 1;
+            entity.PaymentType = 2;
+
+            iOrderHousePaymentService.Save(entity);
+            iOrderHousePaymentService.Commit();
+
+
+            return View();
+        }
+
+        public ActionResult OrderPaid()
+        {
+            decimal dec = 76;
+            var entity = new OrderPaid();
+
+            entity.MerchantID = 1;
+
+            entity.OrderNumber = "20181107163253195868";
+            //  entity.HouseTypeShowID = 24;
+            entity.EquipmentSNNo = "600047000103";
+            entity.EmployeeID = 7;
+            entity.TransactionAmount = dec;
+            //entity.SerialNumber = "	111863250000001641";
+            entity.MemberID = 2;
+            entity.Status = 1;
+            // entity.PaymentStatus = 0;
+            //entity.PaymentType = 2;
+
+            //entity.BankCardNumber = "123456789987654";
+            entity.Remark = "a昂达三季度噶三季度撒";
+
+
+            iOrderPaidService.Save(entity);
+            iOrderPaidService.Commit();
+
+
+            return View();
+        }
+
+        public string testtime()
+        {
+            var time = "201811+25";
+
+            var tar = time.Replace("+", "%2B");
+
+            var dateTime = DateTime.ParseExact(time, "yyyyMMdd", CultureInfo.CurrentCulture);
+
+            var datetime2 = time.ToDateTime("yyyyMMdd");
+
+            return JsonHelper.Serialize(time);
+        }
+
+        public string testimg()
+        {
+            string result = "";
+            string url = "http://localhost:8023/Api/CreateMember";
+            //  var path = @"D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Images\a1.jpg";
+            var path = @"D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Images\test.jpg";
+            var source = ImageHelper.ToBase64(path);
+
+            CreateMemberRequst request = new CreateMemberRequst();
+
+            request.requestno = "12334567890";
+            request.equipmentsnno = "20161106200501";
+            request.name = "zhangsan";
+            request.idnumber = "430981199211114635";
+            request.idimagefront = source;
+            request.idimageopposite = source;
+            request.idexpireddate = "2018-10-18 00:00:00.000";
+
+            // string txtParams = "data=idexpireddate%3d2018-10-18%26%e7%a9%ba%e6%a0%bc%2600%3a00%3a00.000%26idimagefront%3d%2f9j%2f4AAQSkZJRgABAQEAYABgAAD%2f4QA6RXhpZgAATU0AKgAAAAgAA1EQAAEAAAABAQAAAFERAAQAAAABAAAOxFESAAQAAAABAAAOxAAAAAD%2f2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL%2f2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjfk%2bnYUlpbyXFwrLEQB1bHFbNro6rh5%2bT12elXygQAKoUDsBXoYLCVG%2beozGrVilaJz97pomTbwO9Q6VBNo%2boKwO6CX5SO6mt6RAaaqDPIB5r3PZROPnZqq%2bQKYxMbb16H7wqOJuMVN161lOI0yQMCMjkUZquh8t9h%2b6eVNTZrMocTRmmZozWckUhxNJupuaSuaSsWh4anhqgpwNKMmmDJw3cnisLV7jT5QQZFEq9MCl1u%2fMFv5SHDN3rkJH3E7jz61pPGOk7II0VI1ARjg8UVnQu3ljDmiumOYKxm8OzdcnC%2fStXTI08nft%2bY96KK8DLUnUO2s9C61RPRRX1EDz2RNUa%2feoorXoQTpU9FFZSKQyb%2fAFefQ1KOlFFYPcoKSiiokUg70h9aKK55loKDwPwooqIbg9jm9f8AvL9K5xu9FFcGK%2bM6qXwksB%2fdCiiiktgP%2f9k%3d%26idnumber%3d430981199211114635%26name%3dzhangsan%26requestno%3d12334567890%26equipmentsnno%3d20161106200501";
+            string txtParams = "data=idexpireddate%3d2018-10-18%26%e7%a9%ba%e6%a0%bc%2600%3a00%3a00.000%26idimagefront%3d%2f9j%2f4AAQCiiiktgP%2f9k%3d%26idnumber%3d430981199211114635%26name%3dzhangsan%26requestno%3d12334567890%26equipmentsnno%3d20161106200501";
+
+
+            result = Framework.Requests.Request.Post(url, txtParams);
+
+            return JsonHelper.Serialize(request);
+        }
+
+
+        public string BBCQryOrder()
+        {
+            //var response0 = ipingAnAPIService.PreparedFreezeOrder();
+            //var response1 = ipingAnAPIService.QueryMarginsOrderDetail();
+            //var response2 = ipingAnAPIService.UnFreezeMarginsOrder();
+
+            return "ok";
+        }
+
+        public void tlt()
+        {
+            Service.TltService tltService = new Service.TltService();
+           // tltService.test();
+        }
+
+
+    }
+}

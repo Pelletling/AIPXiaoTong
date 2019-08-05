@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class ProjectReviewLM : BaseListModel
+    {
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjetName { get; set; }
+
+        /// <summary>
+        /// 项目图片
+        /// </summary>
+        public string ProjectImage { get; set; }
+
+
+        /// <summary>
+        /// 项目所在区域
+        /// </summary>
+        //   public long DistrictManagementID { get; set; }
+        public string DistrictName { get; set; }
+
+        /// <summary>
+        /// 项目金额
+        /// </summary>
+        public decimal ProjectAmount { get; set; }
+
+        /// <summary>
+        /// 剩余认筹额度
+        /// </summary>
+        public decimal? ResidueAmount { get; set; }
+
+        /// <summary>
+        /// 截止日期
+        /// </summary>
+        public DateTime Deadline { get; set; }
+
+        /// <summary>
+        /// 简短描述
+        /// </summary>
+        public string Description { get; set; }
+
+        public string StatusDesc { get; set; }
+    }
+}

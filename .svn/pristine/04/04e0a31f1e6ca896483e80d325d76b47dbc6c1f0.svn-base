@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Framework.Common;
+
+namespace PingAnAPI
+{
+    public class PingAnConfig
+    {
+        public static string _privateKey, _publicKey;
+        public static string url { get; set; }
+        public static string returnUrl { get; set; }
+        public static string privateKey
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_privateKey))
+                    return FileHelper.Read(AppDomain.CurrentDomain.BaseDirectory + "pingan/pa_private_key.pem");
+                else
+                    return _privateKey;
+            }
+
+            set
+            {
+                _privateKey = value;
+            }
+        }
+        public static string publicKey
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_publicKey))
+                    return FileHelper.Read(AppDomain.CurrentDomain.BaseDirectory + "pingan/pa_public_key.pem");
+                else
+                    return _publicKey;
+            }
+
+            set
+            {
+                _publicKey = value;
+            }
+        }
+    }
+}

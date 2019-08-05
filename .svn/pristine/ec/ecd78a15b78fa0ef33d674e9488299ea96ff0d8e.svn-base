@@ -1,0 +1,54 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Admin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Framework.Common;
+
+namespace AIPXiaoTong.Admin.Controllers
+{
+    public class EmployeeController : BaseController
+    {
+
+        private IEmployeeService iEmployeeService;
+
+        public EmployeeController(IEmployeeService iEmployeeService)
+        {
+            this.iEmployeeService = iEmployeeService;
+        }
+
+        public ActionResult Index(EmployeeQM model)
+        {
+            var list = this.iEmployeeService.GetListModel<EmployeeLM, EmployeeQM>(model);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+            else
+            {
+                BindData();
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+            
+        }
+
+        public ActionResult Create(long? ID = null)
+        {
+            var model = iEmployeeService.GetViewModel<EmployeeCM>(ID);
+
+            BindData();
+
+            return View(model);
+        }
+
+    }
+}

@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GuangDaAPI.Model
+{
+    public class BaseResponse
+    {
+        /// <summary>
+        /// 原请求发起流水号
+        /// </summary>
+        public string ReqJnlNo { get; set; }
+
+        /// <summary>
+        /// 交易响应流水号(平台对交易的唯一标识(发起查询，产品文件同步和理财预约对账文件交易时，该值为空)
+        /// </summary>
+        public string ResJnlNo { get; set; }
+
+        /// <summary>
+        /// 交易响应时间
+        /// </summary>
+        public string ResTime { get; set; }
+
+        /// <summary>
+        /// 交易响应码
+        /// </summary>
+        public string ResCode { get; set; }
+
+        /// <summary>
+        /// 交易响应信息
+        /// </summary>
+        public string ResMsg { get; set; }
+        
+    }
+}

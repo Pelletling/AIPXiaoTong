@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class AdvertisingManagementCM:BaseCreateModel
+    {
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Display(Name = "项目名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long ProjectManagementID { get; set; }
+
+        /// <summary>
+        /// 广告图片
+        /// </summary>
+        [Display(Name = "广告图片")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string AdvertisingImg { get; set; }
+
+        /// <summary>
+        /// 广告类型
+        /// </summary>
+        [Display(Name = "广告类型")]
+        public int? AdvertisingType { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50字")]
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 播放时长
+        /// </summary>
+        [Display(Name = "播放时长")]
+        public int? PlayTime { get; set; }
+
+    }
+}

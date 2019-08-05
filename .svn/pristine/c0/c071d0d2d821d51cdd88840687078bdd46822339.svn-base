@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryMemberInfoResponse : BaseResponse
+    {
+        private string _mobile { get; set; }
+        private string _idnumber { get; set; }
+        private string _name { get; set; }
+
+
+        //-----------------------------------------
+
+        public long memberid { get; set; }
+        public string mobile { get { return !string.IsNullOrWhiteSpace(_mobile) ? _mobile : ""; } set { _mobile = value; } }
+        public string idnumber { get { return !string.IsNullOrWhiteSpace(_idnumber) ? _idnumber : ""; } set { _idnumber = value; } }
+        public string name { get { return !string.IsNullOrWhiteSpace(_name) ? _name : ""; } set { _name = value; } }
+    }
+}

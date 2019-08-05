@@ -1,0 +1,275 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+using VSP.Pay;
+using VSP.Pay.ResponseModel;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class NotifyController : BaseController
+    {
+        private IOrderHousePaymentService iOrderHousePaymentService;
+        private IPreferencesService iPreferencesService;
+        private IOrderPaidService iOrderPaidService;
+
+        VSPExec vspExec = null;
+
+        public NotifyController(IOrderHousePaymentService iOrderHousePaymentService,
+                                                 IPreferencesService iPreferencesService,
+                                                 IOrderPaidService iOrderPaidService)
+        {
+            this.iOrderHousePaymentService = iOrderHousePaymentService;
+            this.iPreferencesService = iPreferencesService;
+            this.iOrderPaidService = iOrderPaidService;
+        }
+
+        public void POSOrderHousePaymentNotify()
+        { 
+            String bizseq = "";
+            for (int i = 0; i < Request.Form.Count; i++)
+            {
+                if (Request.Form.Keys[i] == "bizseq")
+                {
+                    bizseq = Request.Form[i].ToString();
+                    break;
+                }
+            }
+            if (string.IsNullOrEmpty(bizseq))
+            {
+                return;
+            }
+
+            var orderHousePayment = iOrderHousePaymentService.Get(t=>t.OrderNumber==bizseq);
+           // var payorder = iPayOrderService.Get(t => t.PayNo == bizseq);
+            if (orderHousePayment == null)
+            {
+                logger.Error("订单支付回调没有找到订单:" + Request.Form.ToString());
+                Response.Write("error");
+                return;
+            }
+            //获取支付参数
+            var preferences = iPreferencesService.Get(t=>t.MerchantID==orderHousePayment.MerchantID);
+            this.vspExec = new VSPExec(preferences.POSBaoMerchant,preferences.POSBaoKey,preferences.APPID);
+
+            string formString = HttpUtility.UrlDecode(Request.Form.ToString());
+            Dictionary<String, String> dicReqeust = formString.ToDictionary(true);
+            if (vspExec.IsVerify(dicReqeust))//验签成功
+            {
+                POSOrderQueryResponse posOrderQueryResponse = JsonHelper.Deserialize<POSOrderQueryResponse>(JsonHelper.Serialize(dicReqeust));
+                byte[] bytes = Encoding.GetEncoding("gbk").GetBytes(posOrderQueryResponse.trxreserve ?? "");//将字符串转成gbk编码的字节数组 
+                posOrderQueryResponse.trxreserve = Encoding.GetEncoding("utf-8").GetString(bytes);//将字节数组转回为字符串
+
+                //posOrderQueryResponse.trxcode = "";
+                //VSP001 = 消费
+                //VSP002 = 消费撤销
+                //VSP003 = 退货
+                //VSP004 = 预授权
+                //VSP005 = 预授权撤销
+                //VSP006 = 预授权完成
+                //VSP007 = 预授权完成撤销
+                //CMN001 = 消费冲正
+                //CMN002 = 预授权冲正
+                //CMN003 = 预授权完成冲正
+                //VSP501 = 微信支付
+                //VSP502 = 微信支付撤销
+                //VSP503 = 微信支付退款
+                //VSP511 = 支付宝支付
+                //VSP512 = 支付宝支付撤销
+                //VSP513 = 支付宝支付退货
+                //VSP521 = 通联钱包消费
+                //VSP522 = 通联钱包消费撤销
+                //VSP523 = 通联钱包消费退货
+                //VSP505 = 手机QQ 支付
+                //VSP506 = 手机QQ支付撤销
+                //VSP507 = 手机QQ支付退款
+                //VSP551 = 银联扫码支付
+                //VSP552 = 银联扫码撤销
+                //VSP553 = 银联扫码退货
+                if (posOrderQueryResponse.trxcode == "VSP002" || posOrderQueryResponse.trxcode == "VSP003" || posOrderQueryResponse.trxcode == "VSP003"
+                    || posOrderQueryResponse.trxcode == "VSP502" || posOrderQueryResponse.trxcode == "VSP503"
+                    || posOrderQueryResponse.trxcode == "VSP512" || posOrderQueryResponse.trxcode == "VSP513"
+                    || posOrderQueryResponse.trxcode == "VSP522" || posOrderQueryResponse.trxcode == "VSP523"
+                    || posOrderQueryResponse.trxcode == "VSP506" || posOrderQueryResponse.trxcode == "VSP507"
+                    || posOrderQueryResponse.trxcode == "VSP552" || posOrderQueryResponse.trxcode == "VSP553")
+                {
+                    if (posOrderQueryResponse.trxstatus == "0000")
+                    {
+                        if (orderHousePayment.PaymentStatus==PaymentStatusEnum.Paid.ToInt())   //退款--如果状态为已付款
+                        {
+                            orderHousePayment.PaymentStatus = PaymentStatusEnum.Unpaid.ToInt();   //订单支付状态改为：未支付
+                            orderHousePayment.Status = OrderStatusEnum.Refund.ToInt();  //  订单状态改为：已退款
+
+                            iOrderHousePaymentService.Save(orderHousePayment);
+                            iOrderHousePaymentService.Commit();
+                        }
+                       
+                    }
+                }
+                else
+                {
+
+                    if (posOrderQueryResponse.trxstatus == "0000")
+                    {
+
+                        if (orderHousePayment.PaymentStatus == PaymentStatusEnum.Unpaid.ToInt())
+                        {
+                            orderHousePayment.PaymentStatus = PaymentStatusEnum.Paid.ToInt();
+                            orderHousePayment.Status = OrderStatusEnum.Success.ToInt();
+
+                            iOrderHousePaymentService.Save(orderHousePayment);
+                            iOrderHousePaymentService.Commit();
+                        }
+                        else
+                        {
+                            if (orderHousePayment.PaymentStatus != PaymentStatusEnum.Paid.ToInt())
+                            {
+                                logger.Error("订单支付支完成，但更新支付状态失败，当前状态为：" + orderHousePayment.PaymentStatus + "," + Request.Form.ToString());
+                                Response.Write("error");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        logger.Error("订单支付支付失败:" + Request.Form.ToString());
+                        Response.Write("error");
+                    }
+                }
+
+            }
+            else
+            {
+                logger.Error("订单支付验签失败:" + Request.Form.ToString());
+                Response.Write("error");
+            }
+
+        }
+
+        public void POSOrderPaidNotify()
+        {
+            String bizseq = "";
+            for (int i = 0; i < Request.Form.Count; i++)
+            {
+                if (Request.Form.Keys[i] == "bizseq")
+                {
+                    bizseq = Request.Form[i].ToString();
+                    break;
+                }
+            }
+            if (string.IsNullOrEmpty(bizseq))
+            {
+                return;
+            }
+
+            var orderPaid = iOrderPaidService.Get(t => t.OrderNumber == bizseq);
+            // var payorder = iPayOrderService.Get(t => t.PayNo == bizseq);
+            if (orderPaid == null)
+            {
+                logger.Error("订单支付回调没有找到订单:" + Request.Form.ToString());
+                Response.Write("error");
+                return;
+            }
+            //获取支付参数
+            var preferences = iPreferencesService.Get(t => t.MerchantID == orderPaid.MerchantID);
+            this.vspExec = new VSPExec(preferences.POSBaoMerchant, preferences.POSBaoKey, preferences.APPID);
+
+            string formString = HttpUtility.UrlDecode(Request.Form.ToString());
+            Dictionary<String, String> dicReqeust = formString.ToDictionary(true);
+            if (vspExec.IsVerify(dicReqeust))//验签成功
+            {
+                POSOrderQueryResponse posOrderQueryResponse = JsonHelper.Deserialize<POSOrderQueryResponse>(JsonHelper.Serialize(dicReqeust));
+                byte[] bytes = Encoding.GetEncoding("gbk").GetBytes(posOrderQueryResponse.trxreserve ?? "");//将字符串转成gbk编码的字节数组 
+                posOrderQueryResponse.trxreserve = Encoding.GetEncoding("utf-8").GetString(bytes);//将字节数组转回为字符串
+
+                //posOrderQueryResponse.trxcode = "";
+                //VSP001 = 消费
+                //VSP002 = 消费撤销
+                //VSP003 = 退货
+                //VSP004 = 预授权
+                //VSP005 = 预授权撤销
+                //VSP006 = 预授权完成
+                //VSP007 = 预授权完成撤销
+                //CMN001 = 消费冲正
+                //CMN002 = 预授权冲正
+                //CMN003 = 预授权完成冲正
+                //VSP501 = 微信支付
+                //VSP502 = 微信支付撤销
+                //VSP503 = 微信支付退款
+                //VSP511 = 支付宝支付
+                //VSP512 = 支付宝支付撤销
+                //VSP513 = 支付宝支付退货
+                //VSP521 = 通联钱包消费
+                //VSP522 = 通联钱包消费撤销
+                //VSP523 = 通联钱包消费退货
+                //VSP505 = 手机QQ 支付
+                //VSP506 = 手机QQ支付撤销
+                //VSP507 = 手机QQ支付退款
+                //VSP551 = 银联扫码支付
+                //VSP552 = 银联扫码撤销
+                //VSP553 = 银联扫码退货
+                if (posOrderQueryResponse.trxcode == "VSP002" || posOrderQueryResponse.trxcode == "VSP003" || posOrderQueryResponse.trxcode == "VSP003"
+                    || posOrderQueryResponse.trxcode == "VSP502" || posOrderQueryResponse.trxcode == "VSP503"
+                    || posOrderQueryResponse.trxcode == "VSP512" || posOrderQueryResponse.trxcode == "VSP513"
+                    || posOrderQueryResponse.trxcode == "VSP522" || posOrderQueryResponse.trxcode == "VSP523"
+                    || posOrderQueryResponse.trxcode == "VSP506" || posOrderQueryResponse.trxcode == "VSP507"
+                    || posOrderQueryResponse.trxcode == "VSP552" || posOrderQueryResponse.trxcode == "VSP553")
+                {
+                    if (posOrderQueryResponse.trxstatus == "0000")
+                    {
+                        if (orderPaid.PaymentStatus == PaymentStatusEnum.Paid.ToInt())   //退款--如果状态为已付款
+                        {
+                            orderPaid.PaymentStatus = PaymentStatusEnum.Unpaid.ToInt();   //订单支付状态改为：未支付
+                            orderPaid.Status = OrderStatusEnum.Refund.ToInt();  //  订单状态改为：已退款
+
+                            iOrderPaidService.Save(orderPaid);
+                            iOrderPaidService.Commit();
+                        }
+
+                    }
+                }
+                else
+                {
+
+                    if (posOrderQueryResponse.trxstatus == "0000")
+                    {
+
+                        if (orderPaid.PaymentStatus == PaymentStatusEnum.Unpaid.ToInt())
+                        {
+                            orderPaid.PaymentStatus = PaymentStatusEnum.Paid.ToInt();
+                            orderPaid.Status = OrderStatusEnum.Success.ToInt();
+
+                            iOrderPaidService.Save(orderPaid);
+                            iOrderPaidService.Commit();
+                        }
+                        else
+                        {
+                            if (orderPaid.PaymentStatus != PaymentStatusEnum.Paid.ToInt())
+                            {
+                                logger.Error("订单支付支完成，但更新支付状态失败，当前状态为：" + orderPaid.PaymentStatus + "," + Request.Form.ToString());
+                                Response.Write("error");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        logger.Error("订单支付支付失败:" + Request.Form.ToString());
+                        Response.Write("error");
+                    }
+                }
+
+            }
+            else
+            {
+                logger.Error("订单支付验签失败:" + Request.Form.ToString());
+                Response.Write("error");
+            }
+
+        }
+    }
+}

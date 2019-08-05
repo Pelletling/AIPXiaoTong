@@ -1,0 +1,9 @@
+2018-12-06 14:16:09.8280|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryMemberInfo|requestno=12334567890&requestno=12334567890&&equipmentsnno=20161106200501&&idnumber=454545454545454545&&&equipmentsnno=20161106200501&idnumber=454545454545454545=
+2018-12-06 14:16:32.8080|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryMemberInfo|requestno=12334567890&&equipmentsnno=20161106200501&&idnumber=454545454545454545
+2018-12-06 14:16:53.3200|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryMemberInfo|requestno=12334567890&&equipmentsnno=20161106200501&&&&idnumber=454545454545454545
+2018-12-06 14:17:52.6060|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryOrderBookingList|requestno=12334567890&&equipmentsnno=20161106200501
+2018-12-06 14:35:36.8820|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryOrderBookingList|requestno=12334567890&&equipmentsnno=20161106200501
+2018-12-06 14:36:08.6550|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryOrderBookingList|requestno=1233456789&&equipmentsnno=20161106200501
+2018-12-06 14:40:51.9600|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryOrderBookingDetail|
+2018-12-06 14:40:52.2820|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryOrderBookingDetail|
+2018-12-06 14:43:36.1510|Trace|AIPXiaoTong.Site.Controllers.APIController.OnActionExecuting|Action£ºQueryOrderBookingDetail|requestno=12334567890&equipmentsnno=20161106200501&ordernumber=201811252110430641

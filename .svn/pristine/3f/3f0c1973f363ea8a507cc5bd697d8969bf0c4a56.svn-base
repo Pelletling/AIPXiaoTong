@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class DistrictManagementCM : BaseCreateModel
+    {
+        public long MerchantID { get; set; }
+
+        /// <summary>
+        /// 区域名称
+        /// </summary>
+        [Display(Name = "区域名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Remote("CodeIsExists", "DistrictManagement", ErrorMessage = "{0}已存在", AdditionalFields = "ID")]
+        public string DistrictName { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50字")]
+        public string Remark { get; set; }
+    }
+}

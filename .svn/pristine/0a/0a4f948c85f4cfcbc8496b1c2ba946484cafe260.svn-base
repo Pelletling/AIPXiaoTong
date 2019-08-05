@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class GlobalConfig
+    {
+        public static int PageSize = 10;
+        public class WebConfig
+        {
+            public static List<string> Administrators
+            {
+                get
+                {
+                    var administrators = System.Configuration.ConfigurationManager.AppSettings["Administrators"];
+                    if (!string.IsNullOrWhiteSpace(administrators))
+                    {
+                        return administrators.Split(',').ToList();
+                    }
+                    return new List<string>();
+                }
+            }
+
+
+            public static string SiteImageUrl { get { return ConfigurationManager.AppSettings["SiteImageUrl"] ?? ""; } }
+
+            public static string GuangDa_IDImagesPath { get { return ConfigurationManager.AppSettings["GuangDa_IDImagesPath"] ?? ""; } }
+
+            public static string GuangDa_UserID { get { return ConfigurationManager.AppSettings["GuangDa_UserID"] ?? ""; } }
+
+            public static string GuangDa_PWD { get { return ConfigurationManager.AppSettings["GuangDa_PWD"] ?? ""; } }
+        }
+    }
+}

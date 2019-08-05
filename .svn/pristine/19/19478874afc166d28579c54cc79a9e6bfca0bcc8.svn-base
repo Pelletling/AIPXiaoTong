@@ -1,0 +1,42 @@
+﻿using AIPXiaoTong.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Framework.Common;
+using Framework.Security;
+using AIPXiaoTong.Model.Site;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class PingAnNotifyController : BaseController
+    {
+
+        public ActionResult AccountNotify(string encryptData)
+        {
+            AccountPingAnCM cm = new AccountPingAnCM();
+            string decryptData = "";
+            string privateKey = "MIICgwIBADANBgkqhkiG9w0BAQEFAASCAm0wggJpAgEAAoGEAJjcB/fQbtnT4ZADYKwrrW2R4g1Q5KcA1p4xCK92ilLH5kC2ywxo8J1/TaE0dR/W1qrG3xSvlBG9WQzAi3bB9jqna7R86z2EtOQhbpxFPc2OOtZUEG2ADdT/LSeRKFmLbIQ69zIdL7zzCMxaLbynD2yLDSYxmkvbnpuA7CKrNJBcDwJBAgMBAAECgYMNVs4fMwIpYhMB9Tl/bMRSlnNqhA+f/zO7VD4UybxiYu1V4l2vtIyiwdQtaB18bMwI1RfsfzHlpmdZ9Id3EpABKE7PZtHOfVsI0JcKy2Hcq5uIyZ+jXBL5RiBs++4xukCFOj019DR9nJpd40eFXqy3mWLHFkdMXhBlA89/aTc91WbW0QJCDn6x6IjOMNLnuHpnUxgvp40TPj0Nsut1e9SZPHmyQweGvpg6sGTAAYI9OPTE8d4COpwzhh/MPH55XFFFGUXFBF6VAkIKi7W9IVh9b0oZ5FfpXPxyDePrKvQnMgE5OEYR2Ur7wzdyYbBA3Q1LTrHdVzSzDZy5oS1gSQFthkIiOmGOa3ZKJf0CQgNQONDj/OYyP9/usxHOlI4jdIOkpy4AHvH4jjLBytsBrG6DE99gmHd/0wjjAuYbDr1hGXIOcLxfWNSei0IUrc2q5QJCCf2CZLJjRykXtOGZ2qxJRq8b/JvLghogCJnj32LPYyPzsfsTYs9GmdHqM7o6ZWl+0Gf9OZrPrHckzZIq+yWYgPPtAkIH+7WfrtKtcO2tMJ+vcs9GOMwW+ONEHaSowAF/PVj5Rddm/MlOrqBjS3gJkG09yphH3sKt8x9Tt5X+ixuPbUvDq9U=";
+
+            privateKey = RSAHelper.RSAPrivateKeyJava2DotNet(privateKey);
+            if (!string.IsNullOrEmpty(encryptData))
+            {
+                decryptData = System.Text.Encoding.UTF8.GetString(RSAHelper.SectionDecrypt(HexHelper.HexStrTobyte(encryptData), privateKey));  //解密
+
+                foreach (var item in decryptData)
+                {
+
+                }
+            }
+
+
+
+
+
+            // var dic2 = JsonHelper.Deserialize<Dictionary<string, string>>(dic.);
+
+            return View();
+        }
+    }
+}

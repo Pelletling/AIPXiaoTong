@@ -1,0 +1,30 @@
+﻿@{
+
+}
+
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <label>商户名称:</label><input type="text" name="MerchantName" id="MerchantName" style="width:120px" class="input-text">
+            <label>设备SN号:</label><input type="text" name="EquipmentSNNo" id="EquipmentSNNo" style="width:160px" class="input-text">
+            <label>状态:</label>
+            <span class="select-box inline">
+                <select id="Status" name="Status" style="width:120px;" class="select">
+                    <option value=""></option>
+                    <option value="-2">锁定</option>
+                    <option value="-1">停用</option>
+                    <option value="0">未激活</option>
+                    <option value="1">启用</option>
+
+                </select>
+            </span>
+            @Html.Partial("_Query")
+        }
+    </div>
+
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>

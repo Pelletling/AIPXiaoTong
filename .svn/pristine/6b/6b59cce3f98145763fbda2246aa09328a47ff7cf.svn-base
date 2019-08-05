@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TltApi.Model;
+
+namespace AIPXiaoTong.IService
+{
+    public interface ITltService
+    {
+        AccountVerifyResponse AccountVerify4(string Name, string IDNumber, string BarkNumber, string Mobile);
+        SingleOntimePayResponse SingleOntimePay(string Name, string BarkNumber, int Amount, string REQ_SN,string ACCOUNT_KIND);
+        QueryTltTradingResultResponse QueryTltTradingResult(string REQ_SN, string QUERY_SN, string TRX_CODE);
+    }
+}

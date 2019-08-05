@@ -1,0 +1,89 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@using Framework.Common;
+@using AIPXiaoTong.Model.Admin;
+@using Framework.Models;
+@using AIPXiaoTong.Model;
+
+@{
+
+}
+
+@model PagedList<OntimePayLM>
+
+@Html.Partial("_Grid", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+<div class="mt-20">
+    <div class="dataTables_wrapper no-footer table-scroll">
+        <table class="table table-border table-bordered table-bg table-hover table-sort dataTable no-footer table-word-break" id="resultTable">
+            <thead>
+                <tr class="text-c" role="row">
+                    <th><input type="checkbox" id="checkAll" onclick="checkall();"></th>
+                    <th>操作</th>
+                    <th>序号</th>
+                    <th>订单编号</th>
+                    <th>通联通流水号</th>
+                    <th>交易金额</th>
+                    <th>银行卡号</th>
+                    <th>持卡人姓名</th>
+                    <th>持卡人手机</th>
+                    <th>持卡人身份证</th>
+                    <th>创建日期</th>
+                    <th>订单状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        var m = Model[i] as OntimePayLM;
+                        <tr class="text-c odd" role="row" id="tr_@m.ID">
+                            <td><input type="checkbox" data-name="checkbox" value="@m.ID" id="chk_@m.ID" name="chkIDs"></td>
+                            <td class="f-14 td-manage">
+                                @Html.Partial("_Edit", new EntityModel() { ID = m.ID, Status = m.Status })
+                            </td>
+                            <td class="sorting_1">@((Model.PageSize * (Model.CurrentPageIndex - 1)) + i + 1)</td>
+                            <td>@m.OrderNumber</td>
+                            <td>@m.TransNumber</td>
+                            <td>@m.Amount</td>
+                            <td>@m.BankCardNumber</td>
+                            <td>@m.Name</td>
+                            <td>@m.Mobile</td>
+                            <td>@m.RechargeIDNumber</td>
+                            <td>@m.CreateDatetime</td>
+                            <td class="td-status">
+                                @if (m.Status == PingAnOrderPaidRechargeStatusOption.SingleOntimePaySuccess.ToInt())
+                                {
+                                    <span class="label label-success radius">@m.StatusDesc</span>
+                                }
+                                else if (m.Status == PingAnOrderPaidRechargeStatusOption.SingleOntimePayFailed.ToInt() || m.Status == PingAnOrderPaidRechargeStatusOption.SingleOntimePayWait.ToInt())
+                                {
+                                    <span class="label label-danger radius">@m.StatusDesc</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-secondary radius">@m.StatusDesc</span>
+                                }
+                            </td>
+
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("Pager", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+
+
+
+
+
+
+
+
+
+
+
+
+

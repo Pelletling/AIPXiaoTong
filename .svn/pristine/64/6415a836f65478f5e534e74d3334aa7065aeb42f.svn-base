@@ -1,0 +1,28 @@
+﻿@using AIPXiaoTong.Model;
+
+@{
+
+}
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+
+            <label>订单编号:</label><input type="text" name="OrderNumber" id="OrderNumber" style="width:160px" class="input-text">
+            <label>客户姓名:</label><input type="text" name="MemberName" id="MemberName" style="width:160px" class="input-text">
+
+
+            @Html.Partial("_Query")
+        }
+    </div>
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>
+
+
+
+
+
+

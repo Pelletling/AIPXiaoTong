@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1BF16A4F-AA2D-4328-B624-9A5382B52575}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Framework</RootNamespace>
+    <AssemblyName>Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="aliyun-net-sdk-core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\alisms\aliyun-net-sdk-core.dll</HintPath>
+    </Reference>
+    <Reference Include="aliyun-net-sdk-dysmsapi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\alisms\aliyun-net-sdk-dysmsapi.dll</HintPath>
+    </Reference>
+    <Reference Include="ChnCharInfo">
+      <HintPath>lib\PinYin\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="DiffieHellman, Version=0.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SharpSSH\DiffieHellman.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\AIPInventory.Site\packages\NPOI\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DotNetZip.1.9.6\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\iTextSharp.5.5.12\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\itextsharp.xmlworker.5.5.12\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\AIPInventory.Site\packages\Newtonsoft.Json.8.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPinyin">
+      <HintPath>lib\PinYin\NPinyin.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\AIPInventory.Site\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Org.Mentalis.Security, Version=1.0.13.715, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SharpSSH\Org.Mentalis.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="RSAConvert, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\BouncyCastle\RSAConvert.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SharpSSH\Tamir.SharpSSH.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ali\Alisms.cs" />
+    <Compile Include="Baidu\AKSNCaculater.cs" />
+    <Compile Include="Cache\CacheHelper.cs" />
+    <Compile Include="Collections\NameValue.cs" />
+    <Compile Include="Common\DataTableHelper.cs" />
+    <Compile Include="Common\GuidHelper.cs" />
+    <Compile Include="Common\PinYinHelper.cs" />
+    <Compile Include="Common\ZipIonicHelper.cs" />
+    <Compile Include="Common\PDFHelper.cs" />
+    <Compile Include="Common\SessionHelper.cs" />
+    <Compile Include="Common\UserHelper.cs" />
+    <Compile Include="Common\ZipHelper.cs" />
+    <Compile Include="Db\UnitOfWork.cs" />
+    <Compile Include="Db\OracleHelper.cs" />
+    <Compile Include="Common\HexHelper.cs" />
+    <Compile Include="Common\CookieHelper.cs" />
+    <Compile Include="Common\DateTimeHelper.cs" />
+    <Compile Include="Common\EmailHelper.cs" />
+    <Compile Include="Common\EnumHelper.cs" />
+    <Compile Include="Common\ExcelHelper.cs" />
+    <Compile Include="Common\HtmlHelper.cs" />
+    <Compile Include="Common\ImageHelper.cs" />
+    <Compile Include="Common\NumeralHelper.cs" />
+    <Compile Include="Common\ReflexHelper.cs" />
+    <Compile Include="Common\RegexHelper.cs" />
+    <Compile Include="Common\StreamHelper.cs" />
+    <Compile Include="Common\StringHelper.cs" />
+    <Compile Include="Common\UrlHelper.cs" />
+    <Compile Include="Configuration\WebConfig.cs" />
+    <Compile Include="Common\JsonHelper.cs" />
+    <Compile Include="Common\XmlHelper.cs" />
+    <Compile Include="Db\IUnitOfWork.cs" />
+    <Compile Include="Expression\DynamicExpressions.cs" />
+    <Compile Include="Expression\OrderByExpression.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\KeyValue.cs" />
+    <Compile Include="Models\ActionModel.cs" />
+    <Compile Include="Models\OrderBy.cs" />
+    <Compile Include="Models\PagerModel.cs" />
+    <Compile Include="Models\ProgressModel.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\SqlUniqueIndex.cs" />
+    <Compile Include="Models\ValueTextModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Requests\FtpHelper.cs" />
+    <Compile Include="Requests\Request.cs" />
+    <Compile Include="Requests\SftpHelper.cs" />
+    <Compile Include="Security\Base64Encoding.cs" />
+    <Compile Include="Security\Crypt.cs" />
+    <Compile Include="Security\RSAHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\alisms\aliyun-net-sdk-core.dll" />
+    <Content Include="lib\alisms\aliyun-net-sdk-dysmsapi.dll" />
+    <Content Include="lib\BouncyCastle\BouncyCastle.Crypto.dll" />
+    <Content Include="lib\BouncyCastle\RSAConvert.dll" />
+    <Content Include="lib\DotNetZip.1.9.6\lib\net20\Ionic.Zip.dll" />
+    <Content Include="lib\DotNetZip.1.9.6\lib\net20\Ionic.Zip.xml" />
+    <Content Include="lib\EmitMapper1.0.0\EmitMapper.dll" />
+    <Content Include="lib\iTextSharp.5.5.12\itextsharp.dll" />
+    <Content Include="lib\iTextSharp.5.5.12\iTextSharp.xml" />
+    <Content Include="lib\itextsharp.xmlworker.5.5.12\itextsharp.xmlworker.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.5.2.3\System.Web.Mvc.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.5.2.3\System.Web.Mvc.xml" />
+    <Content Include="lib\MvcCaptcha.1.2\MvcCaptcha.dll" />
+    <Content Include="lib\MvcPager3.0.1\Webdiyer.MvcPager.dll" />
+    <Content Include="lib\MvcPager\Webdiyer.MvcPager.dll" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net20\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net20\Newtonsoft.Json.xml" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net35\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net35\Newtonsoft.Json.xml" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net40\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net40\Newtonsoft.Json.xml" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.xml" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.xml" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.8.0.2\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.xml" />
+    <Content Include="lib\NPOI\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="lib\NPOI\NPOI.dll" />
+    <Content Include="lib\NPOI\NPOI.OOXML.dll" />
+    <Content Include="lib\NPOI\NPOI.OOXML.XML" />
+    <Content Include="lib\NPOI\NPOI.OpenXml4Net.dll" />
+    <Content Include="lib\NPOI\NPOI.OpenXml4Net.XML" />
+    <Content Include="lib\NPOI\NPOI.OpenXmlFormats.dll" />
+    <Content Include="lib\NPOI\NPOI.XML" />
+    <Content Include="lib\Oracle.ManagedDataAccess.12.2.1100\bin\x64\Oracle.ManagedDataAccessDTC.dll" />
+    <Content Include="lib\Oracle.ManagedDataAccess.12.2.1100\bin\x64\Oracle.ManagedDataAccessIOP.dll" />
+    <Content Include="lib\Oracle.ManagedDataAccess.12.2.1100\bin\x86\Oracle.ManagedDataAccessDTC.dll" />
+    <Content Include="lib\Oracle.ManagedDataAccess.12.2.1100\bin\x86\Oracle.ManagedDataAccessIOP.dll" />
+    <Content Include="lib\Oracle.ManagedDataAccess.12.2.1100\info.txt" />
+    <Content Include="lib\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll" />
+    <Content Include="lib\Oracle.ManagedDataAccess.12.2.1100\readme.txt" />
+    <Content Include="lib\PinYin\ChnCharInfo.dll" />
+    <Content Include="lib\PinYin\NPinyin.dll" />
+    <Content Include="lib\Redis\ServiceStack.Common.dll" />
+    <Content Include="lib\Redis\ServiceStack.Common.xml" />
+    <Content Include="lib\Redis\ServiceStack.Interfaces.dll" />
+    <Content Include="lib\Redis\ServiceStack.Redis.dll" />
+    <Content Include="lib\Redis\ServiceStack.Redis.XML" />
+    <Content Include="lib\Redis\ServiceStack.Text.dll" />
+    <Content Include="lib\Redis\ServiceStack.Text.xml" />
+    <Content Include="lib\SharpSSH\DiffieHellman.dll" />
+    <Content Include="lib\SharpSSH\Org.Mentalis.Security.dll" />
+    <Content Include="lib\SharpSSH\Tamir.SharpSSH.dll" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.Configuration.dll" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.Configuration.XML" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.dll" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.Interception.Configuration.dll" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.Interception.Configuration.xml" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.Interception.xml" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.RegistrationByConvention.dll" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.RegistrationByConvention.XML" />
+    <Content Include="lib\Unity.4.0.1\Microsoft.Practices.Unity.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Framework.cd" />
+    <None Include="lib\DotNetZip.1.9.6\DotNetZip.1.9.6.nupkg" />
+    <None Include="lib\Newtonsoft.Json.8.0.2\Newtonsoft.Json.8.0.2.nupkg" />
+    <None Include="lib\Newtonsoft.Json.8.0.2\tools\install.ps1" />
+    <None Include="lib\Oracle.ManagedDataAccess.12.2.1100\content\net40\App.config.install.xdt" />
+    <None Include="lib\Oracle.ManagedDataAccess.12.2.1100\content\net40\App.config.transform" />
+    <None Include="lib\Oracle.ManagedDataAccess.12.2.1100\content\net40\App.config.uninstall.xdt" />
+    <None Include="lib\Oracle.ManagedDataAccess.12.2.1100\content\net40\Web.config.install.xdt" />
+    <None Include="lib\Oracle.ManagedDataAccess.12.2.1100\content\net40\Web.config.transform" />
+    <None Include="lib\Oracle.ManagedDataAccess.12.2.1100\content\net40\Web.config.uninstall.xdt" />
+    <None Include="lib\Oracle.ManagedDataAccess.12.2.1100\Oracle.ManagedDataAccess.12.2.1100.nupkg" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

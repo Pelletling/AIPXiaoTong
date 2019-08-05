@@ -1,0 +1,1214 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.API;
+using AIPXiaoTong.Model.Site;
+using AIPXiaoTong.Service;
+using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class APIController : Controller
+    {
+
+        private IEmployeeService iEmployeeService;
+        private IOrderBookingService iOrderBookingService;
+        private IOrderHousePaymentService iOrderHousePaymentService;
+        private IOrderPaidService iOrderPaidService;
+        private IMemberManagementService iMemberManagementService;
+        private IProjectManagementService iProjectManagementService;
+        private IHouseTypeShowService iHouseTypeShowService;
+        private ITltService iTltService;
+        private IBankCardService iBankCardService;
+
+
+        public APIController(IEmployeeService iEmployeeService,
+                              IOrderBookingService iOrderBookingService,
+                              IOrderHousePaymentService iOrderHousePaymentService,
+                              IOrderPaidService iOrderPaidService,
+                              IMemberManagementService iMemberManagementService,
+                              IProjectManagementService iProjectManagementService,
+                              IHouseTypeShowService iHouseTypeShowService,
+                              ITltService iTltService,
+                              IBankCardService iBankCardService)
+        {
+            this.iEmployeeService = iEmployeeService;
+            this.iOrderBookingService = iOrderBookingService;
+            this.iOrderHousePaymentService = iOrderHousePaymentService;
+            this.iOrderPaidService = iOrderPaidService;
+            this.iMemberManagementService = iMemberManagementService;
+            this.iProjectManagementService = iProjectManagementService;
+            this.iHouseTypeShowService = iHouseTypeShowService;
+            this.iTltService = iTltService;
+            this.iBankCardService = iBankCardService;
+        }
+
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+        //    base.OnException(filterContext);
+        //}
+
+        /// <summary>
+        /// 用户登录接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string Login(LoginRequest request)
+        {
+            var result = new LoginResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var employee = iEmployeeService.Get(t => t.Code == request.employeecode);
+
+                if (employee == null)
+                    throw new APIException("账号不存在");
+
+                if (employee.Password != request.password)
+                    throw new APIException("密码不正确");
+
+                result.employeecode = employee.Code;
+                result.employeeid = employee.ID.ToString();
+                result.merchantid = employee.MerchantID.ToString();
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 单个“预约订单”查询接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryOrderBookingDetail(QueryOrderBookingDetailRequst request)
+        {
+            var result = new QueryOrderBookingDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var orderBooking = iOrderBookingService.Get(t => t.OrderNumber == request.ordernumber);
+
+                if (orderBooking == null)
+                    throw new APIException("订单不存在");
+
+                result.orderbookingid = orderBooking.ID.ToString();
+                result.ordernumber = orderBooking.OrderNumber;
+                result.merchantid = orderBooking.MerchantID.ToString();
+                result.merchantname = orderBooking.Merchant.Name.ToString();
+                result.projectid = orderBooking.ProjectManagementID.ToString();
+                result.projectname = orderBooking.ProjectManagement.ProjetName.ToString();
+                result.equipmentnumber = orderBooking.EquipmentNumber;
+                result.memberid = orderBooking.MemberID.ToString();
+                result.membername = orderBooking.Member.Name;
+                result.membermobile = orderBooking.Member.Mobile;
+                result.memberidnumber = orderBooking.Member.IDNumber;
+                result.ordertime = orderBooking.OrderTime.ToString();
+                result.remark = orderBooking.Remark;
+                result.employeeid = orderBooking.EmployeeID.ToString();
+                result.employeename = orderBooking.Employee.Name.ToString();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// “预约订单”列表接口查询接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryOrderBookingList(QueryOrderBookingListRequst request)
+        {
+            var result = new QueryOrderBookingListResponse() { requestno = request.requestno };
+
+            var model = new OrderBookingQM();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var list = iOrderBookingService.GetListModel<OrderBookingLM, OrderBookingQM>(model);
+
+                if (list.Count == 0)
+                    throw new APIException("订单不存在");
+
+                result.orderBookingList = new List<QueryOrderBookingListResponse.OrderBookingList>();
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    result.orderBookingList.Add(new QueryOrderBookingListResponse.OrderBookingList()
+                    {
+                        orderbookingid = list[i].ID.ToString(),
+                        ordernumber = list[i].OrderNumber,
+                        projectid = list[i].ProjectManagementID.ToString(),
+                        projectname = list[i].ProjectName,
+                        equipmentnumber = list[i].EquipmentNumber,
+                        merchantid = list[i].MerchantID.ToString(),
+                        merchantname = list[i].MemberName,
+                        memberid = list[i].MemberID.ToString(),
+                        membername = list[i].MerchantName,
+                        membermobile = list[i].MemberMobile,
+                        memberidnumber = list[i].MemberIDNumber,
+                        ordertime = list[i].OrderTime.ToString(),
+                        remark = list[i].Remark,
+                        employeeid = list[i].EmployeeID.ToString(),
+                        employeename = list[i].EmployeeName,
+
+                    });
+                }
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 单个“房款订单”查询接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryOrderHousePaymentDetail(QueryOrderHousePaymentDetailRequst request)
+        {
+            var result = new QueryOrderHousePaymentDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var orderHousePayment = iOrderHousePaymentService.Get(t => t.OrderNumber == request.ordernumber);
+
+                if (orderHousePayment == null)
+                    throw new APIException("订单不存在");
+
+                result.orderhousepaymentid = orderHousePayment.ID.ToString();
+                result.ordernumber = orderHousePayment.OrderNumber;
+                result.merchantid = orderHousePayment.MemberID.ToString();
+                result.merchantname = orderHousePayment.Merchant.Name;
+                result.projectid = orderHousePayment.ProjectManagementID.ToString();
+                result.projectname = orderHousePayment.ProjectManagement.ProjetName.ToString();
+                result.equipmentnumber = orderHousePayment.EquipmentNumber;
+                result.transactionamount = orderHousePayment.TransactionAmount.ToString();
+                result.serialnumber = orderHousePayment.SerialNumber.Trim();
+                result.memberid = orderHousePayment.MemberID.ToString();
+                result.membername = orderHousePayment.Member.Name;
+                result.membermobile = orderHousePayment.Member.Mobile;
+                result.memberidnumber = orderHousePayment.Member.IDNumber;
+                result.paymentstatus = orderHousePayment.PaymentStatus.ToString();
+                result.paymentstatusdesc = orderHousePayment.PaymentStatusDesc;
+                result.paymenttype = orderHousePayment.PaymentType.ToString();
+                result.paymenttypedesc = orderHousePayment.PaymentTypeDesc;
+                result.status = orderHousePayment.Status.ToString();
+                result.statusdesc = orderHousePayment.StatusDesc.ToString();
+                result.createdatetime = orderHousePayment.CreateDatetime.ToString();
+                result.bankcardnumber = orderHousePayment.BankCardNumber;
+                result.employeeid = orderHousePayment.EmployeeID.ToString();
+                result.employeename = orderHousePayment.Employee.Name.ToString();
+                result.remark = orderHousePayment.Remark;
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// “房款订单”列表查询接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryOrderHousePaymentList(QueryOrderHousePaymentListRequst request)
+        {
+            var result = new QueryOrderHousePaymentListResponse() { requestno = request.requestno };
+
+            var model = new OrderHousePaymentQM();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var list = iOrderHousePaymentService.GetListModel<OrderHousePaymentLM, OrderHousePaymentQM>(model);
+
+                if (list.Count == 0)
+                    throw new APIException("订单不存在");
+
+                result.orderHousePaymentList = new List<QueryOrderHousePaymentListResponse.OrderHousePaymentList>();
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    result.orderHousePaymentList.Add(new QueryOrderHousePaymentListResponse.OrderHousePaymentList()
+                    {
+                        merchantid = list[i].MerchantID.ToString(),
+                        merchantname = list[i].MemberName,
+                        ordernumber = list[i].OrderNumber,
+                        projectid = list[i].ProjectManagementID.ToString(),
+                        projectname = list[i].ProjectName,
+                        equipmentnumber = list[i].EquipmentNumber,
+                        transactionamount = list[i].TransactionAmount.ToString(),
+                        serialnumber = list[i].SerialNumber,
+                        memberid = list[i].MemberID.ToString(),
+                        membername = list[i].MerchantName,
+                        membermobile = list[i].MemberMobile,
+                        memberidnumber = list[i].MemberIDNumber,
+                        employeeid = list[i].EmployeeID.ToString(),
+                        employeename = list[i].EmployeeName,
+                        paymentstatus = list[i].PaymentStatus.ToString(),
+                        paymentstatusdesc = list[i].PaymentStatusDesc,
+                        paymenttype = list[i].PaymentType.ToString(),
+                        paymenttypedesc = list[i].PaymentTypeDesc,
+                        statusdesc = list[i].StatusDesc,
+                        status = list[i].Status.ToString(),
+                        bankcardnumber = list[i].BankCardNumber,
+                        remark = list[i].Remark,
+
+
+                    });
+                }
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 查询单个“认缴订单”接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryOrderPaidDetail(QueryOrderPaidDetailRequst request)
+        {
+            var result = new QueryOrderPaidDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var orderPaid = iOrderPaidService.Get(t => t.OrderNumber == request.ordernumber);
+
+                if (orderPaid == null)
+                    throw new APIException("订单不存在");
+
+                result.orderpaidid = orderPaid.ID.ToString();
+                result.merchantid = orderPaid.MemberID.ToString();
+                result.merchantname = orderPaid.Merchant.Name;
+                result.ordernumber = orderPaid.OrderNumber;
+                result.projectid = orderPaid.ProjectManagementID.ToString();
+                result.projectname = orderPaid.ProjectManagement.ProjetName;
+                result.equipmentnumber = orderPaid.EquipmentNumber;
+                result.transactionamount = orderPaid.TransactionAmount.ToString();
+                result.serialnumber = orderPaid.SerialNumber;
+                result.memberid = orderPaid.MemberID.ToString();
+                result.membername = orderPaid.Member.Name;
+                result.membermobile = orderPaid.Member.Mobile;
+                result.memberidnumber = orderPaid.MemberIDNumber;
+                result.paymentstatus = orderPaid.PaymentStatus.ToString();
+                result.paymentstatusdesc = orderPaid.PaymentStatusDesc;
+                result.paymenttype = orderPaid.PaymentType.ToString();
+                result.paymenttypedesc = orderPaid.PaymentTypeDesc;
+                result.bankcardnumber = orderPaid.BankCardNumber;
+                result.remark = orderPaid.Remark;
+                result.status = orderPaid.Status.ToString();
+                result.statusdesc = orderPaid.StatusDesc.ToString();
+                result.createdatetime = orderPaid.CreateDatetime.ToString();
+                result.employeeid = orderPaid.EmployeeID.ToString();
+                result.employeename = orderPaid.Employee.Name.ToString();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// “认缴订单”列表查询接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryOrderPaidList(QueryOrderPaidListRequst request)
+        {
+            var result = new QueryOrderPaidListResponse() { requestno = request.requestno };
+
+            var model = new OrderPaidQM();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var list = iOrderPaidService.GetListModel<OrderPaidLM, OrderPaidQM>(model);
+
+                if (list.Count == 0)
+                    throw new APIException("订单不存在");
+
+                result.orderPaidList = new List<QueryOrderPaidListResponse.OrderPaidList>();
+                for (int i = 0; i < list.Count; i++)
+                {
+                    result.orderPaidList.Add(new QueryOrderPaidListResponse.OrderPaidList()
+                    {
+                        ordernumber = list[i].OrderNumber,
+                        merchantid = list[i].MerchantID.ToString(),
+                        merchantname = list[i].MerchantName,
+                        projectid = list[i].ProjectManagementID.ToString(),
+                        projectname = list[i].ProjectName,
+                        equipmentnumber = list[i].EquipmentNumber,
+                        transactionamount = list[i].TransactionAmount,
+                        serialnumber = list[i].SerialNumber,
+                        memberid = list[i].MemberID.ToString(),
+                        membername = list[i].MemberName,
+                        membermobile = list[i].MemberMobile,
+                        memberidnumber = list[i].MemberIDNumber,
+                        employeeid = list[i].EmployeeID.ToString(),
+                        employeename = list[i].EmployeeName,
+                        paymentstatusdesc = list[i].PaymentStatusDesc,
+                        paymentstatus = list[i].PaymentStatus.ToString(),
+                        paymenttypedesc = list[i].PaymentTypeDesc,
+                        paymenttype = list[i].PaymentType.ToString(),
+                        statusdesc = list[i].StatusDesc,
+                        status = list[i].Status.ToString(),
+                        bankcardnumber = list[i].BankCardNumber,
+                        rmark = list[i].Remark,
+
+                    });
+                }
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// “项目管理”单个项目详情查询
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryProjectDetail(QueryProjectDetailRequst request)  //查询单个项目信息
+        {
+            var siteImageUrl = GlobalConfig.WebConfig.SiteImageUrl;
+            var result = new QueryProjectDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var project = iProjectManagementService.Get(t => t.MerchantID.ToString() == request.merchantid && t.ProjetName == request.projectname);
+
+                if (project == null)
+                    throw new APIException("订单不存在");
+
+                var advertisingimgelist = JsonHelper.Deserialize<List<string>>(project.AdvertisingImge);
+
+                for (int i = 0; i < advertisingimgelist.Count; i++)
+                {
+                    advertisingimgelist[i] = siteImageUrl + advertisingimgelist[i].Replace("\\", "/");
+                }
+
+                result.advertisingimge = JsonHelper.Serialize(advertisingimgelist);
+
+                result.merchantid = project.MerchantID.ToString();
+                result.merchantname = project.MerchantName.ToString();
+                result.projetname = project.ProjetName.Trim();
+
+                result.projectimage = siteImageUrl + project.ProjectImage.Replace("\\", "/");
+
+                result.projectamount = project.ProjectAmount.ToString();
+                result.residueamount = project.ResidueAmount.ToString();
+                result.deadline = project.Deadline.ToString();
+                result.description = project.Description.Trim();
+                result.provincename = project.ProvinceName.Trim();
+                result.cityname = project.CityName.Trim();
+                result.status = project.Status.ToString();
+                result.statusdesc = project.StatusDesc;
+
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// “项目管理”项目列表查询
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryProjectList(QueryProjectListRequst request)
+        {
+            var siteImageUrl = GlobalConfig.WebConfig.SiteImageUrl;
+            var result = new QueryProjectListResponse() { requestno = request.requestno };
+
+            var model = new ProjectManagementQM();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var list = iProjectManagementService.GetListModel<ProjectManagementLM, ProjectManagementQM>(model);
+
+                if (list.Count == 0)
+                    throw new APIException("订单不存在");
+
+                result.projectList = new List<QueryProjectListResponse.ProjectList>();
+
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var advertisingimgelist = JsonHelper.Deserialize<List<string>>(list[i].AdvertisingImge);
+
+                    for (int j = 0; j < advertisingimgelist.Count; j++)
+                    {
+                        advertisingimgelist[j] = siteImageUrl + advertisingimgelist[j].Replace("\\", "/");
+                    }
+
+                    list[i].AdvertisingImge = JsonHelper.Serialize(advertisingimgelist);
+
+                    result.projectList.Add(new QueryProjectListResponse.ProjectList()
+                    {
+                        merchantid = list[i].MerchantID.ToString(),
+                        merchantname = list[i].MerchantName,
+                        projetname = list[i].ProjetName.Trim(),
+
+                        projectimage = siteImageUrl + list[i].ProjectImage.Replace("\\", "/").Trim(),
+
+                        projectamount = list[i].ProjectAmount.ToString(),
+                        residueamount = list[i].ResidueAmount.ToString(),
+                        deadline = list[i].Deadline.ToString(),
+                        description = list[i].Description,
+                        statusdesc = list[i].StatusDesc,
+                        status = list[i].Status.ToString(),
+                        provincename = list[i].ProvinceName,
+                        cityname = list[i].CityName,
+                        advertisingimge = list[i].AdvertisingImge,
+
+                    });
+                }
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// “户型展示”单个信息查询
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryHouseTypeShowDetail(QueryHouseTypeShowDetailRequst request)  //查询单个项目信息
+        {
+            var siteImageUrl = GlobalConfig.WebConfig.SiteImageUrl;
+            var result = new QueryHouseTypeShowDetailResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var houseTypeShow = iHouseTypeShowService.Get(t => t.MerchantID.ToString() == request.merchantid.Trim() && t.ProjectManagementID.ToString() == request.projectid.Trim() && t.HouseTypeName == request.housetypename);
+
+                if (houseTypeShow == null)
+                    throw new APIException("订单不存在");
+
+                result.merchantid = houseTypeShow.MerchantID.ToString();
+                result.merchantname = houseTypeShow.MerchantName.Trim();
+                result.projectid = houseTypeShow.ProjectManagementID.ToString();
+                result.projectname = houseTypeShow.ProjectName.Trim();
+                result.housetypename = houseTypeShow.HouseTypeName.Trim();
+
+                result.housethumbnailimage = siteImageUrl + houseTypeShow.HouseThumbnailImage.Replace("\\", "/").Trim();
+
+                result.housetypearea = houseTypeShow.HouseTypeArea.ToString();
+                result.description = houseTypeShow.Description.Trim();
+                result.content = houseTypeShow.Content.Trim();
+
+
+                var houseshowimagelist = JsonHelper.Deserialize<List<string>>(houseTypeShow.HouseShowImage);
+
+                for (int i = 0; i < houseshowimagelist.Count; i++)
+                {
+                    houseshowimagelist[i] = siteImageUrl + houseshowimagelist[i].Replace("\\", "/");
+                }
+
+                result.houseshowimage = JsonHelper.Serialize(houseshowimagelist);
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// “户型管理”户型列表信息查询
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryHouseTypeShowList(QueryHouseTypeShowListRequst request)
+        {
+            var siteImageUrl = GlobalConfig.WebConfig.SiteImageUrl;
+            var result = new QueryHouseTypeShowListResponse() { requestno = request.requestno };
+
+            var model = new HouseTypeShowQM();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var list = iHouseTypeShowService.GetListModel<HouseTypeShowLM, HouseTypeShowQM>(model);
+
+                if (list.Count == 0)
+                    throw new APIException("订单不存在");
+
+                result.houseTypeShowList = new List<QueryHouseTypeShowListResponse.QueryHouseTypeShowList>();
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var houseshowimagelist = JsonHelper.Deserialize<List<string>>(list[i].HouseShowImage);
+
+                    for (int j = 0; j < houseshowimagelist.Count; j++)
+                    {
+                        houseshowimagelist[j] = siteImageUrl + houseshowimagelist[j].Replace("\\", "/");
+                    }
+
+                    list[i].HouseShowImage = JsonHelper.Serialize(houseshowimagelist);
+
+                    result.houseTypeShowList.Add(new QueryHouseTypeShowListResponse.QueryHouseTypeShowList()
+                    {
+                        merchantid = list[i].MerchantID.ToString(),
+                        merchantname = list[i].MerchantName,
+                        projectid = list[i].ProjectManagementID.ToString(),
+                        projectname = list[i].ProjectName,
+                        housetypename = list[i].HouseTypeName,
+                        housetypearea = list[i].HouseTypeArea.ToString(),
+                        description = list[i].Description,
+                        content = list[i].Content,
+                        housethumbnailimage = siteImageUrl + list[i].HouseThumbnailImage.Replace("\\", "/").Trim(),
+
+                        houseshowimage = list[i].HouseShowImage,
+
+                    });
+                }
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 预约订单创建接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string CreateOrderBooking(CreateOrderBookingRequst request)
+        {
+            var result = new CreateOrderBookingResponse() { requestno = request.requestno };
+
+            //var entity = new OrderBooking();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var e = iMemberManagementService.Get(t => t.Mobile == request.mobile);
+
+                if (e == null)   //当该用户号码未注册会员，则先注册会员再保存预约信息，否则查询出此已预约信息后更新数据表信息
+                {
+                    var memberEntity = new Member();
+                    var entity = new OrderBooking();
+
+                    memberEntity.Name = request.name;
+                    memberEntity.Mobile = request.mobile;
+
+                    iMemberManagementService.Save(memberEntity);
+                    iMemberManagementService.Commit();
+
+                    entity.MemberID = memberEntity.ID;
+
+                    entity.MerchantID = request.merchantid.ToInt();
+                    entity.OrderNumber = GuidHelper.GenUniqueId();
+                    entity.ProjectManagementID = request.projectmanagementid.ToInt();
+                    entity.EquipmentNumber = request.equipmentnumber;
+                    entity.OrderTime = Convert.ToDateTime(request.ordertime);
+                    entity.Remark = request.remark;
+                    entity.EmployeeID = request.employeeid.ToInt();
+
+                    iOrderBookingService.Save(entity);
+
+                    result.ordernumber = entity.OrderNumber;
+                }
+                else
+                {
+                    var d = iOrderBookingService.Get(t=>t.MemberID==e.ID && t.MerchantID.ToString()==request.merchantid);
+
+                    d.MerchantID = request.merchantid.ToInt();
+                    d.OrderNumber = GuidHelper.GenUniqueId();
+                    d.ProjectManagementID = request.projectmanagementid.ToInt();
+                    d.EquipmentNumber = request.equipmentnumber;
+                    d.OrderTime = Convert.ToDateTime(request.ordertime);
+                    d.Remark = request.remark;
+                    d.EmployeeID = request.employeeid.ToInt();
+
+                    iOrderBookingService.Save(d);
+
+                    result.ordernumber = d.OrderNumber;
+                }
+                           
+                iOrderBookingService.Commit();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+    
+
+        /// <summary>
+        /// 房款订单创建接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string CreateOrderHousePayment(CreateOrderHousePaymentRequst request)
+        {
+            var result = new CreateOrderHousePaymentResponse() { requestno = request.requestno };
+
+            var entity = new OrderHousePayment();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                entity.MerchantID = request.merchantid.ToInt();
+                entity.OrderNumber = GuidHelper.GenUniqueId();
+                entity.ProjectManagementID = request.projectmanagementid.ToInt();
+                entity.EquipmentNumber = request.equipmentnumber;
+                entity.Remark = request.remark;
+                entity.EmployeeID = request.employeeid.ToInt();
+                entity.MemberID = request.memberid.ToInt();
+                entity.TransactionAmount = Convert.ToDecimal(request.transactionamount);
+
+
+                iOrderHousePaymentService.Save(entity);
+                iOrderHousePaymentService.Commit();
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            result.ordernumber = entity.OrderNumber;
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 认缴订单创建接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string CreateOrderPaid(CreateOrderPaidRequst request)
+        {
+            var result = new CreateOrderPaidResponse() { requestno = request.requestno };
+
+            var entity = new OrderPaid();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                entity.MerchantID = request.merchantid.ToInt();
+                entity.OrderNumber = GuidHelper.GenUniqueId();
+                entity.ProjectManagementID = request.projectmanagementid.ToInt();
+                entity.EquipmentNumber = request.equipmentnumber;
+                entity.Remark = request.remark;
+                entity.EmployeeID = request.employeeid.ToInt();
+                entity.MemberID = request.memberid.ToInt();
+                entity.TransactionAmount = Convert.ToDecimal(request.transactionamount);
+
+
+                iOrderPaidService.Save(entity);
+                iOrderPaidService.Commit();
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            result.ordernumber = entity.OrderNumber;
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 会员信息创建接口(身份证创建)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string CreateMember(CreateMemberRequst request)
+        {
+            var result = new CreateMemberResponse() { requestno = request.requestno };
+
+            var entity = new Member();
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                entity.Name = request.name;
+                entity.Mobile = request.mobile;
+                entity.IDNumber = request.idnumber;
+
+                iMemberManagementService.Save(entity);
+                iMemberManagementService.Commit();
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            result.memberid = entity.ID.ToString();
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 四要素验证
+        /// </summary>
+        /// <returns></returns>
+        public string GetAccountVerify(GetAccountVerifyRequst request)
+        {
+            var result = new GetAccountVerifyResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var e = iBankCardService.Get(t => t.MemberID.ToString() == request.memberid && t.BankCardNumber == request.barknumber);
+
+                var respone = iTltService.AccountVerify4(request.name, request.idnumber, request.barknumber, request.mobile);
+
+                if (e==null)
+                    throw new APIException("此银行卡未绑定");
+
+                if (respone.INFO.RET_CODE!="0000")
+                    throw new APIException("验证失败");                            
+
+                e.Verified = 1;   //四要素验证（0：未验证 1;验证成功）
+
+                iBankCardService.Save(e);
+                iBankCardService.Commit();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+        /// <summary>
+        /// 会员查询接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string QueryMemberInfo(QueryMemberInfoRequst request)  //查询单个项目信息
+        {
+            var result = new QueryMemberInfoResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var member = iMemberManagementService.Get(t => t.Mobile == request.mobile.Trim());
+
+                if (member == null)
+                    throw new APIException("订单不存在");
+
+                result.name = member.Name;
+                result.mobile = member.Mobile;
+                result.idnumber = member.IDNumber;
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 银行卡绑定接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string BankCardBinding(BankCardBindingRequst request)
+        {
+            var result = new BankCardBindingResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var bankcard = iBankCardService.Get(t => t.BankCardNumber == request.bankcardnumber && t.MemberID.ToString() == request.memberid);
+
+                //  var tempbankcardlist = iBankCardService.GetListModel<BankCardLM, BankCardQM>().Where(t => t.MemberID.ToString() == request.memberid && t.BankCardNumber != request.bankcardnumber) as List<BankCardLM>;
+
+                // var bankcardlist = tempbankcardlist.Where(t => t.MemberID.ToString() == request.memberid && t.BankCardNumber != request.bankcardnumber);
+
+                if (bankcard != null)
+                    throw new APIException("该银行卡已经绑定");
+
+                //if (tempbankcardlist!=null)   
+                //{
+
+                //}
+
+                var entity = new BankCard();
+
+                entity.MemberID = request.memberid.ToLong();
+                entity.BankCardNumber = request.bankcardnumber;
+                entity.BankName = request.bankname;
+                entity.SubBranchName = request.subbranchname;
+
+                entity.Status = 1;  //绑定银行卡时，最新绑定的银行卡设为默认绑定卡（0：非默认卡，1：默认使用银行的卡）
+
+                iBankCardService.Save(entity);
+                iBankCardService.Commit();
+
+
+                result.bankcardid = entity.ID.ToString();
+                result.memberid = entity.MemberID.ToString();
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+        /// <summary>
+        /// 开户信息提交接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string CreateAccount(CreateAccountRequst request)
+        {
+            var result = new CreateAccountResponse() { requestno = request.requestno };
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var e = iMemberManagementService.Get(t => t.ID.ToString() == request.memberid);
+
+                var d = iBankCardService.Get(t => t.ID.ToString() == request.bankcardid);
+
+                if (e == null)
+                    throw new APIException("会员记录不存在");
+
+                if (d == null)
+                    throw new APIException("银行卡绑定记录不存在");
+
+
+                e.CifAddr = request.cifaddr;
+                e.CifClientId = GuidHelper.To16String();
+                e.CifEnName = request.cifenname;
+                e.CifIdExpiredDate = request.cifIdexpireddate;
+                e.CifPostCode = request.cifpostcode;
+                e.ProvinceCode = request.provincecode;
+                e.CityCode = request.citycode;
+                e.BankCardPhoneCode = request.bankcardphonecode;
+
+                iMemberManagementService.Save(e);
+                iMemberManagementService.Commit();
+
+                result.cifclientid = e.CifClientId;
+                result.memberid = e.ID.ToString();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+        /// <summary>
+        /// 身份证图片上传接口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string UploadIDCardImg(UploadIDCardImgRequst request)
+        {
+            var result = new UploadIDCardImgResponse() { requestno = request.requestno };
+            var siteImageUrl = GlobalConfig.WebConfig.SiteImageUrl;
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new APIException(ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage);
+
+                var e = iMemberManagementService.Get(t => t.ID.ToString() == request.memberid);
+
+                if (e == null)
+                    throw new APIException("会员记录不存在");
+
+
+                var IDImgPath = @"\Images\IDCardImage\";
+
+                var IDImageFrontPath = IDImgPath + Guid.NewGuid() + ".jpg";
+                var IDImageOppositePath = IDImgPath + Guid.NewGuid() + ".jpg";
+
+                ImageHelper.Base64StringToImage(Server.MapPath(IDImageFrontPath), request.IDImageFront);
+                ImageHelper.Base64StringToImage(Server.MapPath(IDImageOppositePath), request.IDImageOpposite);
+
+
+                e.IDImageFront = IDImageFrontPath;
+                e.IDImageOpposite = IDImageOppositePath;
+
+                iMemberManagementService.Save(e);
+                iMemberManagementService.Commit();
+
+                result.memberid = e.ID.ToString();
+
+            }
+            catch (APIException ex)
+            {
+                result.resultmsg = ex.Message;
+                result.retsultcode = ex.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+
+        //VSPExec vspExec = null;
+        //public class RspObj
+        //{
+        //    public String appid;
+        //    public String cusid;
+        //    public String trxcode;
+        //    public String timestamp;
+        //    public String randomstr;
+        //    public String sign;
+        //    public String bizseq;
+        //    public String retcode;
+        //    public String retmsg;
+        //    public String amount;
+        //    public String trxreserve;
+
+        //    public void init(String retCode, String retMsg, String APPID, String CUSID)
+        //    {
+        //        retcode = retCode;
+        //        retmsg = retMsg;
+        //        appid = APPID;
+        //        cusid = CUSID;
+        //        trxcode = "T001";
+        //        timestamp = DateTime.Now.ToString("yyyyMMddHHmmss", DateTimeFormatInfo.InvariantInfo);
+        //        randomstr = (new Random().Next(8999) + 1000).ToString();
+
+        //    }
+
+        //}
+        ///// <summary>
+        ///// 将参数排序组装
+        ///// </summary>
+        ///// <param name="param"></param>
+        ///// <returns></returns>
+        //public static String BuildParamStr(Dictionary<String, String> param)
+        //{
+        //    if (param == null || param.Count == 0)
+        //    {
+        //        return "";
+        //    }
+        //    Dictionary<String, String> ascDic = param.OrderBy(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
+        //    StringBuilder sb = new StringBuilder();
+        //    foreach (var item in ascDic)
+        //    {
+        //        sb.Append(item.Key).Append("=").Append(item.Value).Append("&");
+        //    }
+
+        //    return sb.ToString().Substring(0, sb.ToString().Length - 1);
+        //}
+
+        ///// <summary>
+        ///// 将查询结果实体加签
+        ///// </summary>
+        ///// <param name="rsp"></param>
+        //public static RspObj BuildSignRspObj(RspObj rsp, string APPKEY)
+        //{
+        //    Dictionary<String, String> param = new Dictionary<string, string>();
+        //    if (!String.IsNullOrEmpty(rsp.appid))
+        //    {
+        //        param.Add("appid", rsp.appid);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.cusid))
+        //    {
+        //        param.Add("cusid", rsp.cusid);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.trxcode))
+        //    {
+        //        param.Add("trxcode", rsp.trxcode);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.timestamp))
+        //    {
+        //        param.Add("timestamp", rsp.timestamp);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.randomstr))
+        //    {
+        //        param.Add("randomstr", rsp.randomstr);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.bizseq))
+        //    {
+        //        param.Add("bizseq", rsp.bizseq);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.retcode))
+        //    {
+        //        param.Add("retcode", rsp.retcode);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.retmsg))
+        //    {
+        //        param.Add("retmsg", rsp.retmsg);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.amount))
+        //    {
+        //        param.Add("amount", rsp.amount);
+        //    }
+        //    if (!String.IsNullOrEmpty(rsp.trxreserve))
+        //    {
+        //        param.Add("trxreserve", rsp.trxreserve);
+        //    }
+        //    param.Add("key", APPKEY);
+        //    String blankStr = BuildParamStr(param);
+        //    String sign = Framework.Security.Crypt.MD5(blankStr);
+        //    rsp.sign = sign;
+        //    return rsp;
+        //}
+        //public void GetOrderMsg()
+        //{
+        //    var POSCUSID = "142581072993330";
+        //    var POSAPPKEY = "1234567890";
+        //    var POSAPPID = "00008692";
+        //    String bizseq = "";
+        //    RspObj rsp = new RspObj();
+        //    for (int i = 0; i < Request.Form.Count; i++)
+        //    {
+        //        if (Request.Form.Keys[i] == "bizseq")
+        //        {
+        //            bizseq = Request.Form[i].ToString();
+        //        }
+        //    }
+        //    this.vspExec = new VSPExec("142581072993330", "1234567890", "00008692");
+
+
+
+        //    string formString = HttpUtility.UrlDecode(Request.Form.ToString());
+        //    Dictionary<String, String> dicReqeust = formString.ToDictionary(true);
+        //    if (vspExec.IsVerify(dicReqeust))//验签成功
+        //    { 
+        //        rsp.init("0000", "查询成功",  POSAPPID,  POSCUSID);
+        //        rsp.amount = "1";
+        //        // rsp.trxreserve = "05##测试用户5#上海徐汇#13012345678#18103000085#0#123456789123456789####";
+        //        rsp.trxreserve = "05##备注#chen#16675579403#bizseq#######";
+        //        rsp.bizseq = "20181107163729899799";//业务流水号
+
+
+        //    }
+        //    else //验签失败
+        //    {
+
+
+        //    }
+        //    rsp = BuildSignRspObj(rsp,  POSAPPKEY);//签名 
+
+        //    Response.Write(JsonHelper.Serialize(rsp));
+        //}
+
+    }
+}

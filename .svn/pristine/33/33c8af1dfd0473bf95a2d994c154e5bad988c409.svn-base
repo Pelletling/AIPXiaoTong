@@ -1,0 +1,40 @@
+﻿using AIPXiaoTong.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Framework.Common;
+using Framework.Security;
+using AIPXiaoTong.Model.Site;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class PingAnNotifyController : BaseController
+    {
+        private static string accountNotifyPrivateKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_AccountNotifyPrivateKey"].ToString();
+        public PingAnNotifyController()
+        {
+
+        }
+        public ActionResult AccountNotify(string encryptData)
+        {
+            AccountPingAnTransDataCM cm = new AccountPingAnTransDataCM();
+            string decryptData = "";
+           
+            var privateKey = RSAHelper.RSAPrivateKeyJava2DotNet(accountNotifyPrivateKey);
+           // privateKey = "<RSAKeyValue><Modulus>sfCDn+4kJZr7DL8aJDAYIGUYGHM6xsMl8pSVbHlUwRVTWvZyeiMELl2Xla7BLNUTm2QCSyov6dQWiHiX1F4am3tstIHPyRVSETfVkkO71O3POrdR1brDu4Qu1eYrEKW7UiWSufiNPk+E3sXFFdy4/seTAcHKr96t2muPJxeHO10=</Modulus><Exponent>AQAB</Exponent><P>9pVL8A1HrdLtI0ctwzcKmWdT+TuklXG+SqTkIjyOd4sUto7W3TF1KzgkL5DTrfWzMjDhNrLUBvHjEbo/N6hqmQ==</P><Q>uLwgmqcnPOxQJPcmd5CUqqLWCCCkozn5kptE0Rj4MAUf9Mtgh5SY8dWY7KjAU3CB2CkTirlMlVEcPQLL5c+1ZQ==</Q><DP>tCUYaFTbZBNv6dELjs38cVw6zh+TuxZxBkl23chN8OnsBP9P3CNQzXVjgliVPUb+VpG9R1/YZQZ8dKwTmU7yKQ==</DP><DQ>YXqz4aeOZvFzoO3hmHnsWNYwBn3jIlZ3QUs5VvTMEdrCcBPZTfG1evbxCQBK7DyT55JVQ4BfzvLL6c3N9ehSmQ==</DQ><InverseQ>xOmJBFhaLw6IFiQEK3O2wvET47SoYuDLD8EPNCxQYmm0EyLdhlizHdddOZduvcrwSB1a+p094MbQ7wEm1936Cg==</InverseQ><D>bpPvyDh+oBwCvXYY8botlBwe8DrToOdvMqPhg+qWn/L3vQSAOaR/Ga0x4WQbShgUOjHZNwq9gcs6QY7nk6LzVvY/UeafSdZBLpGq5HM+CAc7ntnlAW9rKwHXOwUhbMLV2li0u3jIhQwnenTZbFZ2yUXdKVY8bTyyGP59F8O7FaE=</D></RSAKeyValue>";
+            if (!string.IsNullOrEmpty(encryptData))
+            {
+                decryptData = System.Text.Encoding.UTF8.GetString(RSAHelper.SectionDecrypt(HexHelper.HexStrTobyte(encryptData), privateKey));  //解密
+
+                var response = JsonHelper.Deserialize<AccountPingAnCM>(decryptData);
+
+                cm = JsonHelper.Deserialize<AccountPingAnTransDataCM>(response.transData);
+            }
+
+            return View(cm);
+        }
+    }
+}

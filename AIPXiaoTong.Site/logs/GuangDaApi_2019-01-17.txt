@@ -1,0 +1,33 @@
+2019-01-17 09:42:48.3720|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：CoPatrnerJnlNo=201901041116480238&Currency=CNY&FreezeAmount=&FreezeType=&ManageFlag=5&ReqId=UnfrozenFixedDeposit&ReqJnlNo=201901170941379660&ReqTime=2019-01-17 09:41:40&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&TrsDate=20190104&UnFreezeDate=&UserId=tlzfsh&Sign=O7vvC1GY6w6%2fZKlOWuNs71R2pRClyrEhYA1MqICd%2fhtXB%2bJVeaSDnAmlEkj3X44jPjx5hx1ncaQzJ3%2bhzCgekK%2f%2fShST5aNGk9huLatNJ%2bAHNbByNfw11aGo2eTEEM1kYlCbuTU36I05yzv7tdck8obcaqv6rMVOWbp2Bn5B5tM%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201901170941379660</ReqJnlNo>
+		<ResJnlNo>3942277</ResJnlNo>
+		<ResTime>2019-01-17 09:19:33</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>	    
+		<CoPatrnerJnlNo>201901041116480238</CoPatrnerJnlNo>
+		<TrsDate>20190104</TrsDate>
+		<UnFreezeDate>20190117</UnFreezeDate>
+		<FreezeType>0</FreezeType>
+		<FreezeAmount>0.02</FreezeAmount>
+		<ManageFlag>5</ManageFlag>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>,http异常:
+2019-01-17 09:42:56.3950|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.02&ChannelSeq=201901170942484670&CifClientId=81ac0a0c2f038fd5&Currency=CNY&IdNo=110101199003071292&IdType=P00&Remark=提现&ReqId=EComGAmount&ReqJnlNo=201901170942484850&ReqTime=2019-01-17 09:42:48&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190117&UserId=tlzfsh&WDAcNo=6212260200000110005&WDBankNo=102100099996&WDInnerBankFlag=1&WDName=李安安&WDType=1&Sign=EOuZhKVA1aS7oLO8G6ca2Gyd0xOOcWk%2fK6ImPZgvFwEKoQ8oOn0l%2fjXVwIovQb6ktXOz5JCT%2bbsdDM1Ijz0Wj1M614Jy7xbmH6ZU3v%2bhIHuOLZD6pTKYmBQgN6MTvO8AV4wlbtDgh3WRPU2fC9JJr2Hj9Ab32rnWPQzw4XTP6No%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201901170942484850</ReqJnlNo>
+<ResTime>2019-01-17 09:19:36</ResTime>
+<ResCode>000260</ResCode>
+<ResMsg>交易未明</ResMsg>
+</Head>
+</Message>
+,http异常:

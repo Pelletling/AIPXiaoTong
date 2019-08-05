@@ -1,0 +1,44 @@
+﻿@using AIPXiaoTong.Model.Admin;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectList = ViewBag.ProjectList as List<ProjectLM>;
+}
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <label>订单编号:</label><input type="text" name="OrderNumber" id="OrderNumber" style="width:160px" class="input-text">
+            <label>姓名:</label><input type="text" name="RechargeName" id="RechargeName" style="width:160px" class="input-text">
+            @*<label>身份证号:</label><input type="text" name="RechargeIDNumber" id="RechargeIDNumber" style="width:160px" class="input-text">*@
+            <label>银行卡号:</label><input type="text" name="BankCardNumber" id="BankCardNumber" style="width:160px" class="input-text">
+            <label>交易时间:</label>
+            <input type="text" class="input-text" id="TransTime" name="TransTime" style="width:120px" onfocus="WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd' })" />
+            <label>订单状态:</label>
+            <span class="select-box inline">
+                <select id="Status" name="Status" style="width:80px;" class="select">
+                    <option value=""></option>
+                    <option value="1">代付中</option>
+                    <option value="0">未代付</option>
+                    <option value="-1">代付失败</option>
+                    <option value="2">代付成功</option>
+                </select>
+            </span>
+
+
+            @Html.Partial("_Query")
+        }
+    </div>
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>
+
+
+
+
+
+
+

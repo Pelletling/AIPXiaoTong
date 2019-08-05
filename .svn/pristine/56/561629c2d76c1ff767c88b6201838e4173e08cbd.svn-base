@@ -1,0 +1,50 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    var merchantInfo = ViewBag.MerchantInfo;
+}
+@model PreferencesCM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" name="MerchantInfo" id="MerchantInfo" class="input-text"  readonly="readonly" value="@merchantInfo"/>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>APPID：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.APPID, new { @class = "input-text", placeholder = "APPID" })
+                @Html.ValidationMessageFor(t => t.APPID)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>收银宝商户号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.POSBaoMerchant, new { @class = "input-text", placeholder = "收银宝商户号" })
+                @Html.ValidationMessageFor(t => t.POSBaoMerchant)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>收银宝Key：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.POSBaoKey, new { @class = "input-text", placeholder = "收银宝Key" })
+                @Html.ValidationMessageFor(t => t.POSBaoKey)
+            </div>
+        </div>
+
+        <div class="row cl fixed-bottom">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

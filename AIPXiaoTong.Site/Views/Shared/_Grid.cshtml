@@ -1,0 +1,60 @@
+﻿@using AIPXiaoTong.Model;
+@using Framework.Models;
+@{
+    Layout = null;
+}
+@model  PagerModel
+
+<!--查询条件保存-->
+@Html.Hidden("QueryJson", "")
+
+<div class="cl pd-5 bg-1 bk-gray mt-20">
+    @Html.Partial("_Button")
+    <span class="r">共有数据：<strong>@(Model != null ? Model.TotalItemCount : 0)</strong> 条</span>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#QueryJson").val('@ViewBag.QueryJson');
+        
+        ////绑定datatables
+        //$("#resultTable").dataTable({
+        //    "scrollX": true,
+        //    "ordering": false,
+        //    //"lengthChange": false,
+        //    "pageLength": 10,
+        //    //"scrollY": "510px",
+        //    //"scrollCollapse": true,
+        //    //"paging":false
+        //    //"aoColumnDefs": [
+        //    //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+        //    //{
+        //    //    "orderable": true, "aTargets": [0, 1, 2]
+        //    //}// 不参与排序的列
+        //    //]
+        //});
+    });
+
+    //新增修改
+    function Create(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        layer.full(index);
+    };
+
+    //导入
+    function ImportFile(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        layer.full(index);
+    }
+</script>
+

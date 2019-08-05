@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Framework.Security;
+
+namespace PingAnAPI.Model
+{
+    public class BaseResponse
+    {
+        // private string _responseMsg;
+        public string responseCode { get; set; }
+        public string responseMsg { get; set; }
+        // public string responseMsg { get { return _responseMsg ?? ""; } set { _responseMsg = value; } }
+        public string data { get; set; }
+
+    }
+}

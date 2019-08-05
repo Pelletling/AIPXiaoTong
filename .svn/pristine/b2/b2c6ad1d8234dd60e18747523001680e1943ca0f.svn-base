@@ -1,0 +1,149 @@
+﻿@using AIPXiaoTong.Model;
+@using Framework.Common;
+@using Framework.Models;
+@{
+    var activeMenu = (ViewBag.ActiveMenu as Menu) ?? new Menu();
+
+    var controller = (ViewContext.RouteData.Values["Controller"] as string)?.ToLower();
+
+    var action = (ViewContext.RouteData.Values["Action"] as string)?.ToLower();
+
+    var currnetUser = UserHelper.GetCurrentUser() as CurrentUser;
+
+    TempData["Title"] = activeMenu.Name + "-" + (Model.ID > 0 ? "编辑" : "新增");
+}
+
+@model EntityModel
+
+
+<div class="row cl fixed-bottom">
+    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+        <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;关闭&nbsp;&nbsp;</button>
+
+        @*@switch (controller.ToLower())
+            {
+                case "order":
+                    if ((Model.ID == 0 && currnetUser.CurrnetAction.Contains("add")) || (Model.ID > 0 && currnetUser.CurrnetAction.Contains("modify")))
+                    {
+                        <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                    }
+                    if (Model.ID > 0 && currnetUser.CurrnetAction.Contains("confirmreceive") && Model.Status == 0)
+                    {
+                        <a class="btn btn-primary radius" href="javascript:;" id="confirmreceive">已收款</a>
+                    }
+                    break;
+                case "buyer":
+                case "seller":
+                    if (Model.CustomStatus == "0")
+                    {
+                        <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                    }
+                    break;
+                default:
+                    if ((Model.ID == 0 && currnetUser.CurrnetAction.Contains("add")) || (Model.ID > 0 && currnetUser.CurrnetAction.Contains("modify")))
+                    {
+                        <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                    }
+                    break;
+            }*@
+
+        @switch (action)
+        {
+            case "create":
+
+                switch (controller)
+                {
+                    @*case "order":
+                        if (Model.Status == OrderStatusOption.Default.ToInt() && (currnetUser.CurrnetAction.Contains("add") || currnetUser.CurrnetAction.Contains("modify")))
+                        {
+                            <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                        }
+
+
+                        if (Model.Status == OrderStatusOption.Default.ToInt() && currnetUser.CurrnetAction.Contains("orderreceive"))
+                        {
+                            <a class="btn btn-primary radius" href="javascript:;" id="confirmreceive">确认收款</a>
+                        }
+                        break;*@
+
+
+                    default:
+                        if ((Model.ID == 0 && currnetUser.CurrnetAction.Contains("add")) || (Model.ID > 0 && currnetUser.CurrnetAction.Contains("modify")))
+                        {
+                            <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                        }
+                        break;
+                }
+                break;
+            @*case "realname":
+                if (Model.CustomStatus == "0")
+                {
+                    <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                }
+                break;*@
+            
+        }
+
+        
+        @if (currnetUser.CurrnetAction.Contains("add") && string.Equals(action, "Create", StringComparison.CurrentCultureIgnoreCase))
+        {
+            <a class="btn btn-primary radius" href="/@controller/Create/0"><i class="Hui-iconfont"></i> 添加下一个</a>
+        }
+
+
+
+    </div>
+</div>
+
+
+
+<script>
+
+    function AcitonConfirm(PromptMsg,SuccessMsg,requestUrl,notify){
+            layer.confirm(PromptMsg, {
+                icon: 3,
+            skin:'layer-ext-moon',
+            extend:'skin/moon/style.css',
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+                layer.closeAll();
+                var url = requestUrl;
+            $.get(url, {}, function (data) {
+                    var result = data.ResultMessage;
+                    if (result == "") {
+                        location.href = notify;
+                        layer.msg(SuccessMsg);
+                    }
+                    else {
+                        layer.msg(result);
+                    }
+                });
+            });
+        }
+
+    $(function () {
+
+
+        $("#Audit").click(function () {
+            AcitonConfirm('是否确认审核？','审核成功',"@("/" + controller + "/Audit?ID=")" + @Model.ID,"@("/" + controller + "/Create?ID=")" + @Model.ID);
+        });
+
+        $("#OrderPay").click(function () {
+            AcitonConfirm('是否确认付款？','付款成功',"@("/" + controller + "/OrderPay?ID=")" + @Model.ID,"@("/" + controller + "/Create?ID=")" + @Model.ID);
+        });
+
+        $("#OrderRefund").click(function () {
+            AcitonConfirm('是否确认退款？','退款成功',"@("/" + controller + "/OrderRefund?ID=")" + @Model.ID,"@("/" + controller + "/Create?ID=")" + @Model.ID);
+        });
+
+         $("#Cancel").click(function () {
+            AcitonConfirm('是否确认取消？','取消成功',"@("/" + controller + "/Cancel?ID=")" + @Model.ID,"@("/" + controller + "/Create?ID=")" + @Model.ID);
+        });
+
+
+    });
+
+
+
+
+</script>

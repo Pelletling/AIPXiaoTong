@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace AIPXiaoTong.Model
+{
+    public class Member : BaseEntity
+    {
+        /// <summary>
+        /// 会员姓名
+        /// </summary>
+        [Display(Name = "会员姓名")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(16, ErrorMessage = "{0}不能多于16位")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 身份证
+        /// </summary>
+        [Display(Name = "身份证")]
+        [StringLength(18, MinimumLength = 18, ErrorMessage = "{0}必须是18位")]
+        [Index(IsUnique = true)]
+        public string IDNumber { get; set; }
+
+        /// <summary>
+        /// 手机号码
+        /// </summary>
+        [Display(Name = "手机号码")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "{0}必须是11位")]
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 联系地址(8-30个汉字)
+        /// </summary>
+        [Display(Name = "联系地址")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string Address { get; set; }
+
+        /// <summary>
+        /// 接入方客户标识号（在同UserId下，同一套客户信息只有一个标识号）
+        /// </summary>
+        [Display(Name = "客户唯一标识")]
+        [MaxLength(36, ErrorMessage = "{0}不能多于30位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string ClientId { get; set; } 
+
+        /// <summary>
+        /// 客户英文名称
+        /// </summary>
+        [Display(Name = "客户英文名")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string EnName { get; set; }
+
+        /// <summary>
+        /// 身份证-过期日期
+        /// </summary>
+        [Display(Name = "身份证-过期日期")]
+        public DateTime? IdExpiredDate { get; set; }
+
+        /// <summary>
+        /// 邮编
+        /// </summary>
+        [Display(Name = "邮编")]
+        [StringLength(6, MinimumLength = 6, ErrorMessage = "{0}必须是6位")]
+        public string PostCode { get; set; }
+
+        /// <summary>
+        /// 客户所在省份代号（机构号由光大线下提供）
+        /// </summary>
+        [Display(Name = "客户所在省份")]
+        public string ProvinceCode { get; set; }
+
+        /// <summary>
+        /// 客户所在城市代号（机构号由光大线下提供）
+        /// </summary>
+        [Display(Name = "客户所在城市")]
+        public string CityCode { get; set; }
+
+      
+        /// <summary>
+        /// 身份证照片(正面)
+        /// </summary>
+        [Display(Name = "身份证照片（正面）")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string IDImageFront { get; set; }
+
+        /// <summary>
+        /// 身份证照片(反面)
+        /// </summary>
+        [Display(Name = "身份证照片(反面)")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string IDImageOpposite { get; set; }
+
+        /// <summary>
+        /// 是否开户成功
+        /// </summary>
+        public int IsCreateAccount { get; set; }
+
+
+        //---------------------------------------------------------------------------
+
+        
+
+
+    }
+}

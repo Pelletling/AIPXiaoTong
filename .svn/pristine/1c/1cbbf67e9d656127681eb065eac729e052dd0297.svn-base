@@ -1,0 +1,95 @@
+﻿@using Framework.Common;
+@using AIPXiaoTong.Model.Admin;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectList = ViewBag.ProjectList as List<ProjectLM>;
+    var merchantList = ViewBag.MerchantList as List<MerchantLM>;
+    var siteImageUrl = ViewBag.SiteImageUrl;
+}
+@model HouseTypeShowDM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">审核状态：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @if (Model.Status == HouseTypeShowStatus.NotPass.ToInt())
+                {
+                    <label style="color:red;">@(((HouseTypeShowStatus)Model.Status).ToDescription())</label>
+                }
+                else if (Model.Status == HouseTypeShowStatus.Pass.ToInt())
+                {
+                    <label style="color:#5a98de;">@(((HouseTypeShowStatus)Model.Status).ToDescription())</label>
+                }
+                else
+                {
+                    <label>@(((HouseTypeShowStatus)Model.Status).ToDescription())</label>
+                }
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.ProjectID, projectList.Where(f => f.MerchantID == merInfo.ID).OrderBy(t => t.ProjectName).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.ProjectName }), "", new { @class = "select", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(t => t.ProjectID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">户型名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.HouseTypeName, new { @class = "input-text", @readonly = "readonly", placeholder = "户型名称" })
+                @Html.ValidationMessageFor(t => t.HouseTypeName)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">户型面积：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.HouseTypeArea, new { @class = "input-text", @readonly = "readonly", placeholder = "两位小数，单位为m²", @onkeyup = "num(this)" })
+                @Html.ValidationMessageFor(t => t.HouseTypeArea)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-2">
+                <div>户型图片：</div>
+                @*<div> <span style="font-size:small;color:red;">(图片建议比例4：3)</span></div>*@
+            </div>
+
+            <div class="formControls col-xs-2 col-sm-2" style="width:14%;">
+                <img width="132" height="99" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[0]==""?null:siteImageUrl+ Model.HouseShowImageList[0].Replace("\\","/"))" id="imgHouseShowImg0" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:14%;">
+                <img width="132" height="99" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[1]==""?null:siteImageUrl+Model.HouseShowImageList[1].Replace("\\","/"))" id="imgHouseShowImg1" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:14%;">
+                <img width="132" height="99" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[2]==""?null:siteImageUrl+Model.HouseShowImageList[2].Replace("\\","/"))" id="imgHouseShowImg2" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:14%;">
+                <img width="132" height="99" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[3]==""?null:siteImageUrl+Model.HouseShowImageList[3].Replace("\\","/"))" id="imgHouseShowImg3" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:14%;">
+                <img width="132" height="99" src="@(Model.HouseShowImageList==null==true?null:Model.HouseShowImageList[4]==""?null:siteImageUrl+Model.HouseShowImageList[4].Replace("\\","/"))" id="imgHouseShowImg4" />
+            </div>
+
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea class="input-text" style="height:120px;" id="Content" name="Content" rows="2" cols="20" placeholder="字数不超过1024字">@Model.Content</textarea>
+            </div>
+        </div>
+
+    </form>
+</div>
+

@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryHouseTypeShowListResponse : BaseResponse
+    {
+        public List<QueryHouseTypeShowList> houseTypeShowList { get; set; }
+
+        public class QueryHouseTypeShowList
+        {
+            public string MerchantName { get; set; }
+
+            /// <summary>
+            /// 项目名称
+            /// </summary>
+            public string ProjectName { get; set; }
+
+            /// <summary>
+            /// 户型名称
+            /// </summary>
+            public string HouseTypeName { get; set; }
+
+            /// <summary>
+            /// 户型面积
+            /// </summary>
+            public decimal? HouseTypeArea { get; set; }
+
+            /// <summary>
+            /// 描述
+            /// </summary>
+            public string Description { get; set; }
+
+            /// <summary>
+            /// 户型缩略图
+            /// </summary>
+            public string HouseThumbnailImage { get; set; }
+
+            /// <summary>
+            /// 户型展示图
+            /// </summary>
+            public string HouseShowImage { get; set; }
+
+            /// <summary>
+            /// 内容
+            /// </summary>
+            public string Content { get; set; }
+
+        }
+
+    }
+}

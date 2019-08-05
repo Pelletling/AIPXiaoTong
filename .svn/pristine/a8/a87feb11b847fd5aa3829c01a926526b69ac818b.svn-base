@@ -1,0 +1,21 @@
+﻿@{
+    
+}
+
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <label>商户号:</label><input type="text" name="Code" id="Code" style="width:120px" class="input-text">
+            <label>商户名称:</label><input type="text" name="Name" id="Name" style="width:120px" class="input-text">
+            <label>联系人电话:</label><input type="text" name="Mobile" id="Mobile" style="width:120px" class="input-text">
+
+            @Html.Partial("_Query")
+        }
+    </div>
+
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>

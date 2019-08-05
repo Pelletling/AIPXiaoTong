@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{95A0E9A0-7CF0-4EEB-BF58-828209D8B06D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GuangDaAPI</RootNamespace>
+    <AssemblyName>GuangDaAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GuangDaExec.cs" />
+    <Compile Include="Model\Request\QueryFreezeCombinationRequest.cs" />
+    <Compile Include="Model\Request\AuthenticationToOpenAccountCheckRequest.cs" />
+    <Compile Include="Model\Request\BCifAcNoAmountRequest.cs" />
+    <Compile Include="Model\Request\BTrsVeriAmountRequest.cs" />
+    <Compile Include="Model\Request\BFinFundServiceReqRequest.cs" />
+    <Compile Include="Model\Request\BJUnionPayPaymentRequest.cs" />
+    <Compile Include="Model\Request\BTrsInRequest.cs" />
+    <Compile Include="Model\Request\CurrentFundFreezeRequest.cs" />
+    <Compile Include="Model\Request\EComGAmountRequest.cs" />
+    <Compile Include="Model\Request\HEAD.cs" />
+    <Compile Include="Model\Request\IBaseRequest.cs" />
+    <Compile Include="Model\Request\BCifAcctNoOpenRequest.cs" />
+    <Compile Include="Model\Request\UnfrozenFixedDepositRequest.cs" />
+    <Compile Include="Model\Request\UploadIdCardImageRequest.cs" />
+    <Compile Include="Model\Response\QueryFreezeCombinationResponse.cs" />
+    <Compile Include="Model\Response\AuthenticationToOpenAccountCheckResponse.cs" />
+    <Compile Include="Model\Response\BaseResponse.cs" />
+    <Compile Include="Model\Request\AuthenticationToOpenAccountRequest.cs" />
+    <Compile Include="Model\Response\AuthenticationToOpenAccountResponse.cs" />
+    <Compile Include="Model\Response\BCifAcNoAmountResponse.cs" />
+    <Compile Include="Model\Response\BTrsVeriAmountResponse.cs" />
+    <Compile Include="Model\Response\BCifAcctNoOpenResponse.cs" />
+    <Compile Include="Model\Response\BFinFundServiceReqResponse.cs" />
+    <Compile Include="Model\Response\BJUnionPayPaymentResponse.cs" />
+    <Compile Include="Model\Response\BTrsInResponse.cs" />
+    <Compile Include="Model\Response\CurrentFundFreezeResponse.cs" />
+    <Compile Include="Model\Response\EComGAmountResponse.cs" />
+    <Compile Include="Model\Response\UnfrozenFixedDepositResponse.cs" />
+    <Compile Include="Model\Response\UploadIdCardImageResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{1bf16a4f-aa2d-4328-b624-9a5382b52575}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

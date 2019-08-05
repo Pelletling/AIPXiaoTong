@@ -1,0 +1,33 @@
+2019-01-21 14:11:13.8680|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：CoPatrnerJnlNo=201812211001497135&Currency=CNY&FreezeAmount=&FreezeType=&ManageFlag=5&ReqId=UnfrozenFixedDeposit&ReqJnlNo=201901211411117860&ReqTime=2019-01-21 14:11:11&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&TrsDate=20181221&UnFreezeDate=&UserId=tlzfsh&Sign=AyqRQXh6QVlYt6gy%2bEVxTRnYtc2kwbFR6bGxNBh9Wrz9EHuuJSPS2FvYD6eGno5v7Dh09L3C3SF5eSKFEPg7oHuVRU%2bgroNdXoedxrdJ31UJWZ0crIeZiAOEz550LFVGdXwn2Ho%2fhyj3tKqHYaWCJSS0f9lrW2C1nxnjqCqj%2bQA%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201901211411117860</ReqJnlNo>
+<ResJnlNo>0</ResJnlNo>
+<ResTime>2019-01-21 13:48:03</ResTime>
+<ResCode>999999</ResCode>
+<ResMsg>已无符合条件的记录</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-01-21 14:12:45.4510|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：CoPatrnerJnlNo=201812211001497135&Currency=CNY&FreezeAmount=&FreezeType=&ManageFlag=5&ReqId=UnfrozenFixedDeposit&ReqJnlNo=201901211412436870&ReqTime=2019-01-21 14:12:43&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&TrsDate=20181221&UnFreezeDate=&UserId=tlzfsh&Sign=jrLXC7oz37onnLpjzAujDCJ%2fNy3EHE7%2bFVAcVA9xniLtqo8S%2fLTpWvGuEL0yLQbbp0P4PVk4rkQKQ49ZObYD1X%2b1C3OC2ZL3flocOwoe%2brFUNcwm8Lrs4fFcyVHql0lf2faKXJ7yB%2fZeb%2f3%2bM1m7eZpT0GUKWNSBvWoU6tIB6x4%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201901211412436870</ReqJnlNo>
+<ResJnlNo>0</ResJnlNo>
+<ResTime>2019-01-21 13:49:35</ResTime>
+<ResCode>999999</ResCode>
+<ResMsg>已无符合条件的记录</ResMsg>
+</Head>
+</Message>
+,http异常:
+2019-01-21 14:18:22.5160|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：CoPatrnerJnlNo=201812211001497135&Currency=CNY&FreezeAmount=&FreezeType=&ManageFlag=5&ReqId=UnfrozenFixedDeposit&ReqJnlNo=201901211414056550&ReqTime=2019-01-21 14:14:38&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&TrsDate=20181221&UnFreezeDate=&UserId=tlzfsh&Sign=HAMh%2fJ7mYryJ3RD65ti%2fuA%2bU9c7dHYHw%2fdKU6V14P0eIZOIRQ8z7I8eTjS1XUcxoasRbp3IInucums3EQzYxGXZc1DYZsOhbjzAmsf470jy5PaVESfHj3chOFKyFP3VgXAlgHVECXRRHzxGK0cRo41TdcYfccEGj2H%2fzcIVgw9I%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+<Head>
+<ReqJnlNo>201901211414056550</ReqJnlNo>
+<ResJnlNo>0</ResJnlNo>
+<ResTime>2019-01-21 13:55:12</ResTime>
+<ResCode>999999</ResCode>
+<ResMsg>已无符合条件的记录</ResMsg>
+</Head>
+</Message>
+,http异常:

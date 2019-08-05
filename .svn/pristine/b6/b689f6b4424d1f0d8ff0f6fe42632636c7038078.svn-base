@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd"
+      autoReload="true"
+      throwExceptions="true"
+      internalLogLevel="Off" internalLogFile="d:\temp\nlog-internal.log">
+
+  <!-- optional, add some variables
+  https://github.com/nlog/NLog/wiki/Configuration-file#variables
+  -->
+  <variable name="myvar" value="myvalue"/>
+
+  <!--
+  See https://github.com/nlog/nlog/wiki/Configuration-file
+  for information on customizing logging rules and outputs.
+   -->
+
+  <targets>
+    <target name="TLTApi" xsi:type="File" fileName="${basedir}/logs/TLT_Api_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+    
+    <target name="Notify" xsi:type="File" fileName="${basedir}/logs/Notify_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+
+    <target name="GuangDaApi" xsi:type="File" fileName="${basedir}/logs/GuangDa_Api_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+    <target name="GuangDaPos" xsi:type="File" fileName="${basedir}/logs/GuangDa_Pos_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+    
+    <target name="PianAnApi" xsi:type="File" fileName="${basedir}/logs/PianAn_Api_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+    <target name="PianAnPos" xsi:type="File" fileName="${basedir}/logs/PianAn_Pos_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+    <target name="PianAnNotify" xsi:type="File" fileName="${basedir}/logs/PianAn_Notify_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+
+    <target name="All" xsi:type="File" fileName="${basedir}/logs/All_${shortdate}.txt" layout="${longdate}|${level}|${callsite}|${message}"/>
+  </targets>
+
+  <rules>
+    <logger name="TltApi.TltExec" minlevel="Trace" writeTo="TLTApi"/>
+    
+    <logger name="AIPXiaoTong.Site.Controllers.NotifyController" minlevel="Trace" writeTo="Notify"/>
+    
+    <logger name="GuangDaAPI.GuangDaExec" minlevel="Trace" writeTo="GuangDaApi"/>
+    <logger name="AIPXiaoTong.Site.Controllers.APIController" minlevel="Trace" writeTo="GuangDaPos"/>
+
+    <logger name="PingAnAPI.PingAnExec" minlevel="Trace" writeTo="PianAnApi"/>
+    <logger name="AIPXiaoTong.Site.Controllers.PingAnAPIController" minlevel="Trace" writeTo="PianAnPos"/>    
+    <logger name="AIPXiaoTong.Site.Controllers.PingAnNotifyController" minlevel="Trace" writeTo="PianAnNotify"/>
+    
+    <logger name="*" minlevel="Trace" writeTo="All"/>
+  </rules>
+  
+</nlog>

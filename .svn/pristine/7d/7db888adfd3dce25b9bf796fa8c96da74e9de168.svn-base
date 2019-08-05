@@ -1,0 +1,23 @@
+﻿using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.IService
+{
+    public interface IOrderPaidService : IBusinessService<OrderPaid>
+    {
+        List<OrderPaidEM> Export(OrderPaidQM model = null);
+
+        void RechargeSuccess(OrderPaidRecharge orderPaidRecharge, string TransNumber, DateTime TransTime);
+
+        void FreezeSuccess(OrderPaidFreeze orderPaidFreeze, decimal balance);
+
+        void UnFreezeSuccess(OrderPaidUnFreeze orderPaidUnFreeze);
+
+        void WithdrawSuccess(OrderPaidWithdraw orderPaidWithdraw);
+    }
+}

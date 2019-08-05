@@ -1,0 +1,93 @@
+﻿@using AIPXiaoTong.Model;
+@using AIPXiaoTong.Model.Site;
+@{
+    var employeeMenuList = ViewBag.EmployeeMenuList as List<EmployeeMenu>;
+    var menuIDList = !string.IsNullOrWhiteSpace(Model.Menus) ? Model.Menus.Split(',') : new string[] { };
+    var actionIDList = !string.IsNullOrWhiteSpace(Model.MenuActions) ? Model.MenuActions.Split(',') : new string[] { };
+}
+@model EmployeeRoleCM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Name, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Name)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>权限：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <label><input type="checkbox" id="chkAll" data-code="" />全选</label><br />
+                @foreach (var m in employeeMenuList.OrderBy(t => t.Code))
+                {
+                    string isChecked = menuIDList.Contains(m.ID.ToString()) ? "checked" : "";
+                    string marginleft = ((m.Code.Length / 3) * 30) + "px";
+                    <label><input type="checkbox" @isChecked data-tree="tree-menu" name="EmployeeMenuIDList" value="@m.ID" data-code="@m.Code" style="margin-left:@marginleft;" />@m.Name</label>
+                    if (m.Level == 3 && m.EmployeeMenuActionList.Count > 0)
+                    {
+                        @:(
+                        var menuActionList = m.EmployeeMenuActionList.OrderBy(t => t.Sort).ToList();
+                        for (var i = 0; i < m.EmployeeMenuActionList.Count; i++)
+                        {
+                            var action = menuActionList[i];
+                            <label style="font-weight:normal;">
+                                <input type="checkbox" name="EmployeeActionIDList" data-tree="tree-menu" value="@action.ID" data-code="@(m.Code + (i + 1).ToString().PadLeft(3, '0'))" data-action="@action.Code" style="margin-left:10px;" @(actionIDList.Contains(action.ID.ToString()) ? "checked" : "") />
+                                @action.Name
+                            </label>
+                        }
+                        @:)
+                    }
+                    <br />
+                }
+            </div>
+        </div>
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+
+
+<script>
+    $(function () {
+
+        //树形菜单
+        $("[data-tree='tree-menu']").click(function () {
+            var code = $(this).attr("data-code");
+            var isChecked = $(this).prop("checked");
+
+            // 将子级全选
+            $("[data-code^='" + code + "']").prop("checked", isChecked);
+
+            // 将父级全选
+            for (var i = 0; i < code.length / 3 - 1; i++) {
+
+                var parentCode = code.substr(0, code.length - 3 * (i + 1));
+
+                //如果其它同级处于勾选状态，则父级保留勾选状态
+                if (isChecked) {
+                    $("[data-code='" + parentCode + "']").prop("checked", isChecked);
+                }
+                else if ($("[data-code^='" + parentCode + "']:checked").length <= 1) {
+                    $("[data-code='" + parentCode + "']").prop("checked", isChecked);
+                }
+            }
+        });
+
+        //选择 - 全选
+        $("#chkAll").click(function () {
+            $("[data-tree='tree-menu']").prop("checked", $(this).prop("checked"));
+        });
+
+        $("[data-tree='tree-menu']").click(function () {
+            if ($(this).attr("data-code").length == 12 && $(this).attr("data-action") != "View" && $(this).prop("checked") == true) {
+                $("[data-code='" + $(this).attr("data-code").substring(0, 9) + "001" + "']").prop("checked", true);
+            }
+        });
+    });
+</script>
+
+

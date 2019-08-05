@@ -1,0 +1,24 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class PingAnOrderPaidRechargeService : BusinessService<PingAnOrderPaidRecharge>, IPingAnOrderPaidRechargeService
+    {
+        public override void Save(PingAnOrderPaidRecharge e)
+        {
+            if (e.ID == 0)
+            {
+                e.SerialNumber = GuidHelper.GenUniqueId();
+            }
+
+            base.Save(e);
+        }
+    }
+}

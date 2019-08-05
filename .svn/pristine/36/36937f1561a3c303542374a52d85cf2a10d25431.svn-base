@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Framework.Common;
+
+namespace GuangDaAPI.Model
+{
+    public class BTrsVeriAmountRequest : IBaseRequest<BTrsVeriAmountResponse>
+    {
+
+        /// <summary>
+        /// 资金变动查证接口
+        /// </summary>
+        public BTrsVeriAmountRequest()
+        {
+            Head = new HEAD();
+            Body = new BODY();
+        }
+        
+        public string Method { get { return "BTrsVeriAmount"; } }
+        public string Action { get { return ""; } }
+
+        public Dictionary<string, string> GetBody()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            dic.Add("CoPatrnerJnlNo", Body.CoPatrnerJnlNo);
+            dic.Add("TrsDate", Body.TrsDate);
+            dic.Add("Reserve1", Body.Reserve1);
+            dic.Add("Reserve2", Body.Reserve2);
+
+            return dic;
+        }
+
+        public string Sort(string signContent)
+        {          
+            return signContent;
+        }
+
+        
+        public HEAD Head { get; set; }
+        
+        public BODY Body { get; set; }
+
+       
+
+        public class BODY
+        {
+            /// <summary>
+            /// 合作伙伴交易请求流水号
+            /// </summary>
+            public string CoPatrnerJnlNo { get; set; }
+
+            /// <summary>
+            /// 交易所属日期
+            /// </summary>
+            public string TrsDate { get; set; } 
+
+            /// <summary>
+            /// 查证类型（空-转入/转出/提现/二级清算单笔及批量明细，2-批量的批次状态查证）
+            /// </summary>
+            public string Reserve1 { get; set; }
+
+            /// <summary>
+            /// 报文头流水号（该流水号是被查证交易，即原交易报文头里的流水号）
+            /// </summary>
+            public string Reserve2 { get; set; }
+            
+        }
+
+    }
+
+
+}

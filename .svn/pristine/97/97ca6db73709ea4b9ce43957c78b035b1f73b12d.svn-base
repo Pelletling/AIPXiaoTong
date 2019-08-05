@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class HouseTypeName : BaseEntity
+    {
+        public long MerchantID { get; set; }
+
+        /// <summary>
+        /// 户型名称
+        /// </summary>
+        [Display(Name = "户型名称")]
+        [Required(ErrorMessage = "{0}不能为空")]      
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string Name { get; set; }
+
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50字")]
+        public string Remark { get; set; }
+
+        //--------------------------------------------------------------
+        public virtual Merchant Merchant { get; set; }
+    }
+}

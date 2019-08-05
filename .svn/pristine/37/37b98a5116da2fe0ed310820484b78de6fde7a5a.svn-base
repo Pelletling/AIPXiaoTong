@@ -1,0 +1,146 @@
+﻿using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class OrderPaid : BaseEntity
+    {
+        [Display(Name = "商户ID")]
+        public long? MerchantID { get; set; }
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "订单编号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Display(Name ="项目ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long ProjectManagementID { get; set; }
+
+        /// <summary>
+        /// 设备编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "设备编号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string EquipmentSNNo { get; set; }
+
+        /// <summary>
+        /// 操作人员（外键ID）
+        /// </summary>
+        /// <summary>
+        [Display(Name = "员工ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long EmployeeID { get; set; }
+
+        /// <summary>
+        /// 交易金额
+        /// </summary>
+        [Display(Name = "交易金额")]
+        public decimal TransactionAmount { get; set; }
+
+        /// <summary>
+        /// 流水号
+        /// </summary>
+        [Display(Name = "流水号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// 注册会员（外键ID）
+        /// </summary>
+        /// <summary>
+        [Display(Name = "注册会员ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long MemberID { get; set; }
+
+
+        /// <summary>
+        /// 付款状态
+        /// </summary>
+        [Display(Name = "付款状态")]
+        public int PaymentStatus { get; set; }
+
+        /// <summary>
+        /// 支付类型
+        /// </summary>
+        [Display(Name = "支付类型")]
+        public int PaymentType { get; set; }
+
+        /// <summary>
+        /// 交易卡号
+        /// </summary>
+        [Display(Name = "交易卡号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string BankCardNumber { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50位")]
+        public string Remark { get; set; }
+
+        //-------------------------------------------------------------------------------
+        public virtual Merchant Merchant { get; set; }
+        public virtual ProjectManagement ProjectManagement { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Member Member { get; set; }
+
+        public string MerchantName { get { return Merchant?.Name; } }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjectName { get { return ProjectManagement?.ProjetName; } }
+
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public string StatusDesc { get { return ((OrderStatusEnum)Status).ToDescription(); } }
+
+        /// <summary>
+        /// 支付类型
+        /// </summary>
+        public string PaymentTypeDesc { get { return ((PaymentTypeEnum)PaymentType).ToDescription(); } }
+
+        /// <summary>
+        /// 付款状态
+        /// </summary>
+        public string PaymentStatusDesc { get { return ((PaymentStatusEnum)PaymentStatus).ToDescription(); } }
+
+        /// <summary>
+        /// 操作人员名字
+        /// </summary>
+        public string EmployeeName { get { return Employee?.Name; } }
+
+        /// <summary>
+        /// 会员名称
+        /// </summary>
+        public string MemberName { get { return Member?.Name; } }
+
+        /// <summary>
+        /// 会员手机号码
+        /// </summary>
+        public string MemberMobile { get { return Member?.Mobile; } }
+
+        /// <summary>
+        /// 会员身份证号码
+        /// </summary>
+        public string MemberIDNumber { get { return Member?.IDNumber; } }
+
+    }
+}

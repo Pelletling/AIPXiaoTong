@@ -1,0 +1,124 @@
+﻿using Framework.Common;
+using Framework.Requests;
+using GuangDaAPI.Model;
+using NLog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace GuangDaAPI
+{
+    public class GuangDaExec
+    {
+        /// <summary>
+        /// 平台为接入系统分配的识别号
+        /// </summary>
+        private string UserId { get; set; }
+
+        private string Url { get; set; }
+
+        private string CertPath { get; set; }
+        private string CertPwd { get; set; }
+
+        public ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public GuangDaExec(string UserId, string CertPath, string CertPwd, bool IsDebug)
+        {
+            this.UserId = UserId;
+            this.CertPath = CertPath;
+            this.CertPwd = CertPwd;
+
+            this.Url = IsDebug ? "https://testopen.cebbank.com/portal/" : "https://open.cebbank.com/portal/";
+        }
+
+        public string GetParams<T>(IBaseRequest<T> request) where T : BaseResponse
+        {
+            string reqTime = DateTime.Now.ToLongDate();
+
+            Dictionary<string, string> dicBody = request.GetBody();
+
+            dicBody.Add("ReqJnlNo", request.Head.ReqJnlNo);
+            dicBody.Add("ReqTime", reqTime);
+            dicBody.Add("UserId", this.UserId);
+            dicBody.Add("ReqId", request.Method);
+
+            string signContent = "";
+            string postContent = "";
+
+            foreach (var m in dicBody.OrderBy(t => t.Key))
+            {
+                signContent += "&" + m.Key + "=" + m.Value;
+
+                if (m.Key.Equals("IdCardFront", StringComparison.CurrentCultureIgnoreCase)
+                    || m.Key.Equals("IdCardBehind", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    postContent += "&" + m.Key + "=" + HttpUtility.UrlEncode(m.Value);
+                }
+                else
+                {
+                    postContent += "&" + m.Key + "=" + m.Value;
+                }
+            }
+
+            signContent = signContent.Substring(1);
+            postContent = postContent.Substring(1);
+
+            var sortSignContent = request.Sort(signContent);
+
+            string sign = Sign(sortSignContent);
+
+            return postContent + "&Sign=" + sign;
+        }
+
+        public string Sign(string content)
+        {
+            return HttpUtility.UrlEncode(Framework.Security.Crypt.RSAEncryptByPrivateKey(content, this.CertPath, this.CertPwd));
+        }
+
+        public BaseResponse Exec<T>(IBaseRequest<T> request) where T : BaseResponse, new()
+        {
+            //拼接成URL
+
+            string txtParams = GetParams(request);
+
+            string url = this.Url + (string.IsNullOrWhiteSpace(request.Action) ? "bops.do" : request.Action);// + "?_locale=zh_CN";
+
+            string result = "";
+
+            string exception = "";
+
+            try
+            {
+                //请求
+                result = Request.Post(url, txtParams, System.Net.SecurityProtocolType.Tls12);
+
+                if (XmlHelper.IsXml(result))
+                {
+                    //把返回的内容序列化成对象
+                    var response = XmlHelper.XmlDeserialize<T>(result);
+
+                    return response;
+                }
+                else
+                {
+                    var t = new T();
+                    t.Head.ResMsg = result;
+                    return t;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex.Message;
+            }
+            finally
+            {
+                logger.Trace("（普通请求）请求地址：" + this.Url + "，内容：" + txtParams + "，返回：" + result + ",http异常:" + exception);
+            }
+
+            return new T();
+        }
+    }
+}

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="EmitMapper" version="1.0.0" targetFramework="net471" />
+  <package id="EntityFramework" version="6.2.0" targetFramework="net471" />
+  <package id="EntityFramework.Extended" version="6.1.0.168" targetFramework="net471" />
+</packages>

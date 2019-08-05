@@ -1,0 +1,84 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.Common;
+using GuangDaAPI;
+using GuangDaAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class GuangDaAPIService : IGuangDaAPIService
+    {
+
+        private GuangDaExec guangDaExec;
+
+        string userid = GlobalConfig.WebConfig.GuangDa_UserID;
+        string pwd = GlobalConfig.WebConfig.GuangDa_PWD;
+
+        public GuangDaAPIService()
+        {
+            guangDaExec = new GuangDaExec(userid, AppDomain.CurrentDomain.BaseDirectory + userid + ".pfx", pwd, true);
+        }
+
+        /// <summary>
+        /// 开户
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="bankCard"></param>
+        /// <returns></returns>
+        public BCifAcctNoOpenResponse CreateAccount(Member member, BankCard bankCard)
+        {
+            BCifAcctNoOpenRequest request = new BCifAcctNoOpenRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+            request.Body.CifAddr = member.Address;
+            request.Body.CifClientId = member.ClientId;
+            request.Body.CifEnName = member.EnName;
+            request.Body.CifIdExpiredDate = member.IdExpiredDate.ToDateTime().ToString("yyyyMMdd");
+            request.Body.CifName = member.Name;
+            request.Body.CifPhoneCode = member.Mobile;
+            request.Body.CifPostCode = member.PostCode;
+            request.Body.IdNo = member.IDNumber;
+            request.Body.IdType = "P00";
+            request.Body.OperateType = "0";
+            request.Body.ProvinceCode = member.ProvinceCode;
+            request.Body.CityCode = member.CityCode;
+            request.Body.NetCheckFlag = "1";
+            request.Body.BankCardPhoneCode = member.Mobile;
+            request.Body.BankCardType = "1";
+            request.Body.BankAcNo = bankCard.BankCardNumber;
+            request.Body.BankName = bankCard.BankName;
+            request.Body.SubBranchName = bankCard.BankName;
+            request.Body.OpenChannel = "1";
+
+            var result = guangDaExec.Exec(request) as BCifAcctNoOpenResponse;
+
+            return result;
+        }
+
+        /// <summary>
+        /// 身份证上传
+        /// </summary>
+        /// <returns></returns>
+        public UploadIdCardImageResponse UploadIdCardImage(Member member)
+        {
+            UploadIdCardImageRequest request = new UploadIdCardImageRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            var path = AppDomain.CurrentDomain.BaseDirectory;
+
+            request.Body.IdCardFront = ImageHelper.ToBase64(path + member.IDImageFront);
+            request.Body.IdCardBehind = ImageHelper.ToBase64(path + member.IDImageOpposite);
+            request.Body.CifClientId = member.ClientId;
+
+            var result = guangDaExec.Exec(request) as UploadIdCardImageResponse;
+
+            return result;
+        }
+    }
+}

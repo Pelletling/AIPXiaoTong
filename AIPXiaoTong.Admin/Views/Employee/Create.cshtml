@@ -1,0 +1,248 @@
+﻿@using AIPXiaoTong.Model.Admin;
+@using Framework.Common;
+@using AIPXiaoTong.Model;
+
+@{
+    var employeeRoleList = ViewBag.EmployeeRoleList as List<EmployeeRoleLM>;
+    var employeeDepartmentList = ViewBag.EmployeeDepartmentList as List<EmployeeDepartmentLM>;
+    var merInfo = ViewBag.merInfo as Merchant;
+    var merchantList = ViewBag.MerchantList as List<MerchantLM>;
+}
+@model EmployeeCM
+
+
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>状态：</label>
+            <div class="formControls col-xs-8 col-sm-9  skin-minimal">
+                <div class="radio-box">
+                    @Html.RadioButtonFor(t => t.Status, UserStatus.Enable.ToInt(), new { @id = "Status1", @name = "Status" })
+                    <label for="Status1">启用</label>
+                </div>
+                <div class="radio-box">
+                    @Html.RadioButtonFor(t => t.Status, UserStatus.Disable.ToInt(), new { @id = "Status2", @name = "Status" })
+                    <label for="Status2">停用</label>
+                </div>
+                <div class="radio-box">
+                    @Html.RadioButtonFor(t => t.Status, UserStatus.Lock.ToInt(), new { @id = "Status3", @name = "Status" })
+                    <label for="Status3">锁定</label>
+                </div>
+                <div class="radio-box">
+                    @Html.RadioButtonFor(t => t.Status, UserStatus.NotActive.ToInt(), new { @id = "Status4", @name = "Status" })
+                    <label for="Status4">未激活</label>
+                </div>
+                @Html.ValidationMessageFor(t => t.Status)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.MerchantID, merchantList.OrderBy(t => t.Name).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.Name }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.MerchantID)
+                </span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>账号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Code, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Code)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Name, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Name)
+            </div>
+        </div>
+        @if (Model.ID == 0)
+        {
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>密码：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    @Html.PasswordFor(t => t.Password, new { @class = "input-text", placeholder = "", data_val_required = "密码不能为空" })
+                    @Html.ValidationMessageFor(t => t.Password)
+                </div>
+            </div>
+        }
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">手机号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Mobile, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Mobile)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">Email：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Email, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Email)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">角色：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @if (Model.MerchantID != 0 )
+                    {
+                        @Html.DropDownListFor(t => t.EmployeeRoleID, employeeRoleList.Where(f => f.MerchantID == merInfo.ID).OrderBy(t => t.Name).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.Name }), "", new { @class = "select" })
+                    }
+                    else
+                    {
+                        <select id="EmployeeRoleID" name="EmployeeRoleID" class="select">
+                            <option value=""></option>
+                        </select>
+                    }
+
+                </span>
+                @Html.ValidationMessageFor(t => t.EmployeeRoleID)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">部门：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @if (Model.MerchantID != 0)
+                    {
+                        @Html.DropDownListFor(t => t.EmployeeDepartmentID, employeeDepartmentList.Where(f => f.MerchantID == merInfo.ID).OrderBy(t => t.LevelCode).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.OrderByName }), "", new { @class = "select" })
+                    }
+                    else
+                    {
+                        <select id="EmployeeDepartmentID" name="EmployeeDepartmentID" class="select">
+                            <option value=""></option>
+                        </select>
+                    }
+
+                </span>
+                @Html.ValidationMessageFor(t => t.EmployeeDepartmentID)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">是否管理员：</label>
+            <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+                <div class="check-box">
+                    @Html.HiddenFor(t => t.IsAdmin)
+                    <input type="checkbox" id="bIsHeader" @(Model.IsAdmin == 1 ? "checked" : "")>
+                    <label for="bIsAdmin">&nbsp;</label>
+                </div>
+                @Html.ValidationMessageFor(t => t.IsAdmin)
+                <script>$("#bIsAdmin").on('ifChanged', function () { $("#IsAdmin").val($("#bIsAdmin").prop("checked") == true ? 1 : 0) });</script>
+            </div>
+        </div>
+        <div class="row cl" id="DataAuth">
+            <label class="form-label col-xs-4 col-sm-2">数据权限：</label>
+            <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+
+                <div class="check-box">
+                    <input type="checkbox" id="chkAll" name="chkAll">
+                    <label for="chkAll">&nbsp;全选</label>
+                </div><br />
+                <div class="check-box">
+                    <input type="checkbox" @(Model.AuthDepartmentIDList.Contains(null) ? "checked" : "") name="AuthDepartmentIDArray" data-name="tree-menu" data-code="" value="null">
+                    <label for="chkAll">&nbsp;其它</label>
+                </div><br />
+
+                @foreach (var m in employeeDepartmentList.OrderBy(t => t.LevelCode))
+                {
+                    <div class="check-box" style="margin-left:@((m.Level - 1) * 20)px">
+                        @{
+                            string isChecked = Model.AuthDepartmentIDList.Contains(m.ID) ? "checked" : "";
+                            <input type="checkbox" id="Auth_@m.ID" @isChecked name="AuthDepartmentIDArray" data-name="tree-menu" data-code="@m.LevelCode" value="@m.ID" />
+                            <label type="checkbox" for="Auth_@m.ID">@m.Name</label>
+                        }
+                    </div><br />
+                }
+            </div>
+        </div>
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+
+
+<script>
+    $(function () {
+
+        $("#MerchantID").on("change", function () {
+
+            $("#EmployeeRoleID option[value!='']").remove();
+            $("#EmployeeDepartmentID option[value!='']").remove();
+
+            if ($("#MerchantID").find("option:selected").val() != "") {
+                LoadRoleAndDepartment();
+            }
+        });
+
+        //树形菜单 选择-全选
+        $("[data-name='tree-menu']").on('ifChanged', function(){
+            var code = $(this).attr("data-code");
+            var isChecked = $(this).prop("checked");
+
+            // 将子级全选
+            if(isChecked==true){
+                $("[data-code^='" + code + "']").iCheck('check');
+            }
+            else{
+                $("[data-code^='" + code + "']").iCheck('uncheck');
+            }
+        });
+
+        $("#chkAll").on('ifChanged', function(){
+            //$("[data-name='tree-menu']").prop("checked", $(this).prop("checked"));
+            if($(this).prop("checked")==true){
+                $("[data-name='tree-menu']").iCheck('check');
+            }
+            else{
+                $("[data-name='tree-menu']").iCheck('uncheck');
+            }
+
+        });
+
+
+
+        $("#bIsAdmin").on('ifChanged', function(){
+
+            var isAdmin = $(this).prop("checked");
+
+            if (isAdmin == true) {
+                $("#DataAuth").find(":checkbox").iCheck('enable');
+            }
+            else {
+                $("#DataAuth").find(":checkbox").iCheck('disable');
+            }
+        });
+
+        if(@Model.IsAdmin==0){
+            $("#DataAuth").find(":checkbox").iCheck('disable');
+        }
+
+
+    });
+
+
+    function LoadRoleAndDepartment() {
+
+        var MerchantIDVal = $("#MerchantID").find("option:selected").val();
+        $.get("/Employee/GetEmployeeRole", { MerchantID: MerchantIDVal }, function (data) {
+            $(data).each(function (index) {
+                $("#EmployeeRoleID").append("<option value=" + data[index].Value + ">" + data[index].Text + "</option>")
+            });
+        });
+
+        $.get("/Employee/GetEmployeeDepartment", { MerchantID: MerchantIDVal }, function (data) {
+            $(data).each(function (index) {
+                $("#EmployeeDepartmentID").append("<option value=" + data[index].Value + ">" + data[index].Text + "</option>")
+            });
+        });
+    }
+
+</script>
+
+

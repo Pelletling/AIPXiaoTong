@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryHouseTypeShowDetailResponse:BaseResponse
+    {
+        private string _projetname { get; set; }
+        private string _housetypename { get; set; }
+        private string _housethumbnailimage { get; set; }
+        private string _housetypearea { get; set; }
+        private string _description { get; set; }
+        private string _houseshowimage { get; set; }
+        private string _content { get; set; }
+
+
+        //---------------------------------------
+
+        public string projetname { get { return !string.IsNullOrWhiteSpace(_projetname) ? _projetname : ""; } set { _projetname = value; } }
+        public string housetypename { get { return !string.IsNullOrWhiteSpace(_housetypename) ? _housetypename : ""; } set { _housetypename = value; } }
+        public string housethumbnailimage { get { return !string.IsNullOrWhiteSpace(_housethumbnailimage) ? _housethumbnailimage : ""; } set { _housethumbnailimage = value; } }
+        public string housetypearea { get { return !string.IsNullOrWhiteSpace(_housetypearea) ? _housetypearea : ""; } set { _housetypearea = value; } }
+        public string description { get { return !string.IsNullOrWhiteSpace(_description) ? _description : ""; } set { _description = value; } }
+        public string houseshowimage { get { return !string.IsNullOrWhiteSpace(_houseshowimage) ? _houseshowimage : ""; } set { _houseshowimage = value; } }
+        public string content { get { return !string.IsNullOrWhiteSpace(_content) ? _content : ""; } set { _content = value; } }
+
+    }
+}

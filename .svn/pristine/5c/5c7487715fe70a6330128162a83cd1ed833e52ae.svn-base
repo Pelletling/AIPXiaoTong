@@ -1,0 +1,45 @@
+﻿@using AIPXiaoTong.Model.Admin;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectList = ViewBag.ProjectList as List<ProjectLM>;
+}
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <label>订单编号:</label><input type="text" name="OrderNumber" id="OrderNumber" style="width:160px" class="input-text">
+            <label>项目名称:</label>
+            <span class="select-box inline">
+                <select id="ProjectID" name="ProjectID" style="width:100px;" class="select">
+                    <option value=""></option>
+                    @for (int i = 0; i < projectList.Count; i++)
+                    {
+                        if (projectList[i].MerchantID == merInfo.ID)
+                        {
+                            <option value="@projectList[i].ID">@projectList[i].ProjetName</option>
+                        }
+                    }
+                </select>
+            </span>
+            <label>手机号码:</label><input type="text" name="OrderMobile" id="OrderMobile" style="width:120px" class="input-text">
+            <label>客户姓名:</label><input type="text" name="OrderName" id="OrderName" style="width:160px" class="input-text">
+            <label>查询日期:</label>
+            <input type="text" class="input-text" id="QueryDate" name="QueryDate" style="width:120px" onfocus="WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd' })" />
+
+
+            @Html.Partial("_Query")
+        }
+    </div>
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>
+
+
+
+
+
+

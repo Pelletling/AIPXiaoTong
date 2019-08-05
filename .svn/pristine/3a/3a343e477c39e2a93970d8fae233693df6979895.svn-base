@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class HouseTypeShowQM : BaseQueryModel
+    {
+        public long? ProjectManagementID { get; set; }
+
+        public long? HouseTypeNameID { get; set; }
+    }
+}

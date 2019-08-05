@@ -1,0 +1,332 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+@using Framework.Common;
+@{
+    var merInfo = ViewBag.merInfo;
+
+    var provinceList = (ViewBag.AreaList as List<AreaModel>).Where(t => t.Level == 1).OrderBy(t => t.Name).ToList();
+    var cityList = (ViewBag.AreaList as List<AreaModel>).Where(t => t.Level == 2 && t.ParentCode == Model.ProvinceCode).OrderBy(t => t.Name).ToList();
+}
+@model ProjectCM
+
+<script src="~/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.ProjectName, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.ProjectName)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>截止日期：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Deadline, new { @class = "input-text", placeholder = "", @onfocus = "WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd' })", Value = Model.Deadline.ToString() != "0001/1/1 0:00:00" ? Model.Deadline.ToString("yyyy-MM-dd") : "" })
+                @Html.ValidationMessageFor(t => t.Deadline)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目金额：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @if (Model.ProjectAmount == 0)
+                {
+                    <input type="text" name="ProjectAmount" value="" class="input-text" placeholder="" />
+                }
+                else
+                {
+                    @Html.TextBoxFor(t => t.ProjectAmount, new { @class = "input-text", placeholder = "" })
+                }
+                @Html.ValidationMessageFor(t => t.ProjectAmount)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目所在区域：</label>
+            <div class="formControls col-xs-4 col-sm-2">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.ProvinceCode, provinceList.Select(p => new SelectListItem { Value = p.Code, Text = p.Name }), "", new { @class = "select", placeholder = "ads" })
+                </span>
+                @Html.ValidationMessageFor(t => t.ProvinceCode)
+            </div>
+            <div class="formControls col-xs-4 col-sm-2">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.CityCode, cityList.Select(p => new SelectListItem { Value = p.Code, Text = p.Name }), "", new { @class = "select" })
+                </span>
+                @Html.ValidationMessageFor(t => t.CityCode)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目图片：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <img width="100" height="100" src="@Model.ProjectImage" id="imgProjectImage" />
+            </div>
+            @*<label class="form-label col-xs-5 col-sm-4" style="color:red;text-align:left;"> 最多可上传1张，仅支持图片格式为jpg或png</label>*@
+        </div>
+
+       <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"></label>
+            <div class="formControls col-xs-3 col-sm-1">
+                <input type="hidden" id="ProjectImage" name="ProjectImage" />
+                <input type="button" id="uploadProjectImage" value="上传" name="ProjectImage" data-iamgeid="imgProjectImage" data-imagepath="ProjectImage">
+            </div>
+        </div> 
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">广告图片：</label>
+
+            <div class="formControls col-xs-1 col-sm-1">
+                <img width="100" height="100" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[0]==""?null:Model.AdvertisingImgList[0])" id="imgAdvertisingImge0" />
+            </div>
+            <div class="formControls col-xs-1 col-sm-1">
+                <img width="100" height="100" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[1]==""?null:Model.AdvertisingImgList[1])" id="imgAdvertisingImge1" />
+            </div>
+            <div class="formControls col-xs-1 col-sm-1">
+                <img width="100" height="100" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[2]==""?null:Model.AdvertisingImgList[2])" id="imgAdvertisingImge2" />
+            </div>
+
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"></label>
+            <div class="formControls col-xs-3 col-sm-1" id="AdvertisingImg">
+                <input type="hidden" id="uploadAdvImg0" name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg0" value="上传" name="uploadAdvImg0" data-iamgeid="imgAdvertisingImge0" data-imagepath="AdvertisingImgList">
+            </div>
+            <div class="formControls col-xs-3 col-sm-1" id="AdvertisingImg">
+                <input type="hidden" id="uploadAdvImg1" name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg1" value="上传" name="uploadAdvImg1" data-iamgeid="imgAdvertisingImge1" data-imagepath="AdvertisingImgList">
+            </div>
+            <div class="formControls col-xs-3 col-sm-1" id="AdvertisingImg">
+                <input type="hidden" id="uploadAdvImg2" name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg2" style="width:90px" value="上传" name="uploadAdvImg2" data-iamgeid="imgAdvertisingImge2" data-imagepath="AdvertisingImgList">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">简短描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea class="input-text" style="height:60px;" id="Description" name="Description" rows="2" cols="20" placeholder="60字以内"></textarea>
+            </div>
+        </div>
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+    </form>
+</div>
+
+<script>
+    $(function () {
+
+        if (@Model.Status==@ProjectStatus.Pass.ToInt() || @Model.Status==@ProjectStatus.NotPass.ToInt()) {
+            $("#Save").hide();
+        }
+
+        $("#ProjectImage").val($("#imgProjectImage").attr("src"));
+        $("#uploadAdvImg0").val($("#imgAdvertisingImge0").attr("src"));
+        $("#uploadAdvImg1").val($("#imgAdvertisingImge1").attr("src"));
+        $("#uploadAdvImg2").val($("#imgAdvertisingImge2").attr("src"));
+
+
+        $("#uploadProjectImage").uploadifive({
+
+            'fileSizeLimit': 2048,
+            'fileType': 'image/*',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传',
+            'auto': true,
+            'uploadScript': '/ProjectManagement/UploadFile',
+            'onInit': function () {
+                $("#uploadifive-uploadProjectImage-queue").hide();
+            },
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#imgProjectImage").attr("src", json.Path);
+                    $("#ProjectImage").val(json.Path);
+
+                }
+            }
+        });
+
+        $("#uploadAdvertisingImg0").uploadifive({
+
+            'fileSizeLimit': 2048,
+            'fileType': 'image/*',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传',
+            'auto': true,
+            'uploadScript': '/ProjectManagement/UploadAdvertisingImge',
+            'onInit': function () {
+                $("#uploadifive-uploadAdvertisingImg0-queue").hide();
+            },
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#imgAdvertisingImge0").attr("src", json.Path);
+                    $("#uploadAdvImg0").val(json.Path);
+                }
+            }
+        });
+
+        $("#uploadAdvertisingImg1").uploadifive({
+
+            'fileSizeLimit': 2048,
+            'fileType': 'image/*',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传',
+            'auto': true,
+            'uploadScript': '/ProjectManagement/UploadAdvertisingImge',
+            'onInit': function () {
+                $("#uploadifive-uploadAdvertisingImg1-queue").hide();
+            },
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#imgAdvertisingImge1").attr("src", json.Path);
+                    $("#uploadAdvImg1").val(json.Path);
+                }
+            }
+        });
+
+        $("#uploadAdvertisingImg2").uploadifive({
+
+            'fileSizeLimit': 2048,
+            'fileType': 'image/*',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传',
+            'auto': true,
+            'uploadScript': '/ProjectManagement/UploadAdvertisingImge',
+            'onInit': function () {
+                $("#uploadifive-uploadAdvertisingImg2-queue").hide();
+            },
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#imgAdvertisingImge2").attr("src", json.Path);
+                    $("#uploadAdvImg2").val(json.Path);
+                }
+            }
+        });
+
+        //$(".upload").each(function () {
+
+        //    debugger;
+        //    var id = $(this).attr("id");
+        //    var imageId = $(this).attr("data-iamgeid");
+        //    var imagePath = $(this).attr("data-imagepath");
+        //    var value = $(this).val();
+        //    var actionPath = "";
+        //    alert(imageId);
+
+        //    if (imagePath =="ProjectImage") {
+        //        actionPath = "/ProjectManagement/UploadFile";
+        //    } else {
+        //        actionPath = "/ProjectManagement/UploadAdvertisingImge";
+        //    }
+
+        //    $("#" + id).uploadifive({
+        //        'fileSizeLimit': 2048,
+        //        'fileType': 'image/*',
+        //        'buttonClass': 'btn btn-primary radio',
+        //        'buttonText': value,
+        //        'auto': true,
+        //        'uploadScript': actionPath,
+        //        'onInit': function () {
+        //            $("#uploadifive-" + id + "-queue").hide();
+        //        },
+        //        'onUploadError': function (file, errorCode, errorMsg, errorString) {
+        //            alert(errorCode + ',' + errorMsg + ',' + errorString);
+        //        },
+        //        'onUploadComplete': function (file, data) {
+        //            var json = JSON.parse(data);
+        //            if (json.Msg != "") {
+        //                alert(json.Msg);
+        //            }
+        //            else {
+        //                $("#" + imageId).attr("src", json.Path);
+        //                $("#" + imagePath).val(json.Path);
+        //            }
+        //        }
+        //    });
+        //});
+
+
+       
+
+        BindProvince();
+        BindCity();
+    });
+
+    function UploadImg() {
+        var id = $(this).attr("id");
+        var imageId = $(this).attr("data-iamgeid");
+        var imagePath = $(this).attr("data-imagepath");
+        var value = $(this).val();
+        var actionPath = "";
+
+        if (imagePath == "ProjectImage") {
+            actionPath = "/ProjectManagement/UploadFile";
+        } else {
+            actionPath = "/ProjectManagement/UploadAdvertisingImge";
+        }
+
+        $("#" + id).uploadifive({
+            'fileSizeLimit': 2048,
+            'fileType': 'image/*',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': value,
+            'auto': true,
+            'uploadScript': actionPath,
+            'onInit': function () {
+                $("#uploadifive-" + id + "-queue").hide();
+            },
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#" + imageId).attr("src", json.Path);
+                    $("#" + imagePath).val(json.Path);
+                }
+            }
+        });
+    };
+
+</script>
+
+

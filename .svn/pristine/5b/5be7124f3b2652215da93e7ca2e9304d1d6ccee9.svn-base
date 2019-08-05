@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryOrderPaidListResponse:BaseResponse
+    {
+
+        public int pagecount { get; set; }
+        public int pageindex { get; set; }
+        public List<OrderPaidList> orderpaidlist { get; set; }
+
+        public class OrderPaidList
+        {
+
+            public string merchantname { get; set; }
+            public string merchantid { get; set; }
+            /// <summary>
+            /// 订单编号
+            /// </summary>
+            /// <summary>
+            public string ordernumber { get; set; }
+
+            /// <summary>
+            /// 项目名称
+            /// </summary>
+            public String housetypename { get; set; }
+            public String housetypeshowid { get; set; }
+            /// <summary>
+            /// 设备编号
+            /// </summary>
+            /// <summary>
+            public string equipmentsnno { get; set; }
+
+            /// <summary>
+            /// 操作人员
+            /// </summary>
+            /// <summary>
+            public string employeename { get; set; }
+            public string employeeid { get; set; }
+
+            /// <summary>
+            /// 交易金额
+            /// </summary>
+            public decimal transactionamount { get; set; }
+
+            /// <summary>
+            /// 流水号
+            /// </summary>
+            public string serialnumber { get; set; }
+
+            /// <summary>
+            /// 客户姓名
+            /// </summary>
+            public string membername { get; set; }
+            public string memberid { get; set; }
+
+            /// <summary>
+            /// 手机
+            /// </summary>
+            public string membermobile { get; set; }
+
+            /// <summary>
+            /// 身份证
+            /// </summary>
+            public string memberidnumber { get; set; }
+
+            public string paymentstatus { get; set; }
+            public string paymenttype { get; set; }
+            public string status { get; set; }
+
+            /// <summary>
+            /// 付款状态
+            /// </summary>
+            public String paymentstatusdesc { get; set; }
+
+            /// <summary>
+            /// 支付类型
+            /// </summary>
+            public string paymenttypedesc { get; set; }
+
+            /// <summary>
+            /// 订单状态
+            /// </summary>
+            public string statusdesc { get; set; }
+
+            public string bankcardnumber { get; set; }
+
+            public string rmark { get; set; }
+
+        }
+
+    }
+}

@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.PingAnAPI
+{
+    public class QueryOrderPaidListResponse : BaseResponse
+    {
+        public int pagecount { get; set; }
+        public int pageindex { get; set; }
+        public int pagesize { get; set; }
+        public List<OrderPaidList> orderpaidlist { get; set; }
+
+        public class OrderPaidList
+        {
+
+            public string merchantname { get; set; }
+            public string merchantid { get; set; }
+            /// <summary>
+            /// 订单编号
+            /// </summary>
+            /// <summary>
+            public string ordernumber { get; set; }
+
+            /// <summary>
+            /// 项目名称
+            /// </summary>
+            //public string housetypename { get; set; }
+            //public string housetypeshowid { get; set; }
+            public string projectname { get; set; }
+            public string projectid { get; set; }
+            /// <summary>
+            /// 设备编号
+            /// </summary>
+            /// <summary>
+            public string equipmentsnno { get; set; }
+
+            /// <summary>
+            /// 操作人员
+            /// </summary>
+            /// <summary>
+            public string employeename { get; set; }
+            public string employeeid { get; set; }
+
+            /// <summary>
+            /// 交易金额
+            /// </summary>
+            public decimal transactionamount { get; set; }
+
+            /// <summary>
+            /// 流水号
+            /// </summary>
+            public string serialnumber { get; set; }
+
+            /// <summary>
+            /// 客户姓名
+            /// </summary>
+            public string membername { get; set; }
+            public string memberid { get; set; }
+
+            /// <summary>
+            /// 手机
+            /// </summary>
+            public string membermobile { get; set; }
+
+            /// <summary>
+            /// 身份证
+            /// </summary>
+            public string memberidnumber { get; set; }
+
+            /// <summary>
+            /// 订单状态
+            /// </summary>
+            public string status { get; set; }
+            public string statusdesc { get; set; }
+
+            public string rmark { get; set; }
+
+            /// <summary>
+            /// 银行订单号
+            /// </summary>
+            public string bankorderno { get; set; }
+
+        }
+    }
+}

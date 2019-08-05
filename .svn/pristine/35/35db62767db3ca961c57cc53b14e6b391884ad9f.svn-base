@@ -1,0 +1,211 @@
+﻿using AIPXiaoTong.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Framework.Common;
+using Framework.Security;
+using AIPXiaoTong.Model.Site;
+using NLog;
+using AIPXiaoTong.IService;
+using PingAnAPI;
+using AIPXiaoTong.Model.PingAnAPI;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class PingAnNotifyController : Controller
+    {
+        public ILogger logger;
+        private IAccountPingAnService iAccountPingAnService;
+        private IOrderPaidService iOrderPaidService;
+        private IMemberService iMemberService;
+        private IPingAnOrderPaidService iPingAnOrderPaidService;
+
+        //PingAnExec pingAnExec = null;
+        private string content = "";
+
+        private static string accountNotifyPrivateKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_AccountNotifyPrivateKey"].ToString();
+        private static string publicKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_APIPublicKey"].ToString();
+
+        string publicKeyTest = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy/o0tFwhKNnT4A5XMhNlOe4vE9zMmbg6/kqWxEAO5TzALA+iJ3jp++c96PgItfOVimQhkcacV0Xenn4iK0wTIlZQtVfV0k4ZJGSNj0DGgh9GIeCf2fb0D8YJ1kgtAj8SpWh4jEae7k3onBpAMyl0+8PHUDfIcgvFArMMZiMpt5MIW9LtSHLqOcaKJGTsfdZfDcP+ve3OR+k9m1iu73PBh6wGjB9yvs/eEtL9DsQmZdOPSRr48iKdCUoXTkzbt6XP55GKX/li10m/UwdhnAo5CS8HfetesF4fDowZSNQ+tYDtSM+PgSWnESQcjSHLfdFsTiezFuINGK+JhzLTK1NQrQIDAQAB";
+        public PingAnNotifyController(IAccountPingAnService iAccountPingAnService,
+                                      IOrderPaidService iOrderPaidService,
+                                      IMemberService iMemberService,
+                                      IPingAnOrderPaidService iPingAnOrderPaidService)
+        {
+            this.iAccountPingAnService = iAccountPingAnService;
+            this.iOrderPaidService = iOrderPaidService;
+            this.iMemberService = iMemberService;
+            this.iPingAnOrderPaidService = iPingAnOrderPaidService;
+
+            logger = LogManager.GetCurrentClassLogger();
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            content = Request.Form.ToString();
+
+            //if (!string.IsNullOrWhiteSpace(content))
+            //    content = Request.QueryString.ToString();
+
+            logger.Trace("Action：" + filterContext.RouteData.Values["action"] + "|" + content);
+        }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            logger.Trace("Action：" + filterContext.RouteData.Values["action"] + "|" + (filterContext.Result as ContentResult)?.Content);
+
+            base.OnActionExecuted(filterContext);
+        }
+
+        /// <summary>
+        /// 平安银行用户二类户开户成功后POS入金跳转页面
+        /// </summary>
+        /// <param name="encryptData"></param>
+        /// <returns></returns>
+        public ActionResult AccountNotify(string encryptData)
+        {
+            AccountPingAnTransDataDM model = new AccountPingAnTransDataDM();
+
+            try
+            {
+                if (!string.IsNullOrEmpty(encryptData))
+                {
+                    var privateKey = RSAHelper.RSAPrivateKeyJava2DotNet(accountNotifyPrivateKey);
+
+                    var decryptData = System.Text.Encoding.UTF8.GetString(RSAHelper.SectionDecrypt(HexHelper.HexStrTobyte(encryptData), privateKey));  //解密
+
+                    var response = JsonHelper.Deserialize<AccountPingAnDM>(decryptData);
+
+                    model = JsonHelper.Deserialize<AccountPingAnTransDataDM>(response.transData);
+
+                    if (response.orderNo != null && model.data != null)
+                    {
+                        var pingAnOrderPaid = iPingAnOrderPaidService.Get(t => t.BankOrderNo == response.orderNo);
+
+                        if (pingAnOrderPaid != null)
+                        {
+                            var entity = iAccountPingAnService.Get(t => t.MemberID == pingAnOrderPaid.OrderPaid.MemberID) ?? new AccountPingAn();
+                            entity.BankCardNumber = model.data.inCardNo;
+
+                            iAccountPingAnService.Save(entity);
+                            iAccountPingAnService.Commit();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("数据异常:" + ex);
+            }
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// 平安端用户账户金额止付成功通知
+        /// </summary>
+        /// <returns></returns>
+        public string FreezeSuccessNotify()
+        {
+            Dictionary<string, string> param = HttpUtility.UrlDecode(content).ToDictionary(true);
+
+            var result = new FreezeSuccessNotityResponse();
+
+            if (!param.ContainsKey("orderNo"))
+            {
+                logger.Error("orderNo");
+                Response.Write("error");
+            }
+
+            string orderno = param["orderNo"];
+            string resultCode = param["result"];
+
+            var pingAnOrderPaid = iPingAnOrderPaidService.Get(t => t.BankOrderNo == orderno);
+
+            if (pingAnOrderPaid == null)
+            {
+                logger.Error("未找到订单:" + Request.Form.ToString());
+                Response.Write("error");
+                return "";
+            }
+
+            if (IsVerify(param))
+            {
+                if (resultCode == "00")
+                {
+                    try
+                    {
+                        var orderPaid = iOrderPaidService.Get(t => t.ID == pingAnOrderPaid.OrderPaidID);
+
+                        orderPaid.Status = OrderPaidStatusOption.FrozenSuccess.ToInt();
+
+                        iOrderPaidService.Save(orderPaid);
+
+                        iOrderPaidService.Commit();
+
+                        result.returnCode = "000000";
+                        result.returnMsg = "success";
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Error("订单冻结通知失败:" + ex);
+                        Response.Write("error");
+                        result.returnMsg = ex.Message;
+                    }
+                }
+                else
+                {
+                    logger.Error("订单冻结失败:" + Request.Form.ToString());
+                    Response.Write("error");
+                }
+            }
+            else
+            {
+                logger.Error("订单冻结验签失败:" + Request.Form.ToString());
+                result.returnMsg = "验签失败";
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+        public bool IsVerify(Dictionary<string, string> dicVerify)
+        {        
+            string signString = "";
+            try
+            {
+                //返回验签
+                if (!dicVerify.ContainsKey("signature"))
+                    throw new Exception("验签失败，返回内容未包含signature信息");
+
+                string resultSign = dicVerify["signature"];
+
+                dicVerify.Remove("signature");
+
+                foreach (var m in dicVerify.Where(t => !string.IsNullOrWhiteSpace(t.Value)).OrderBy(t => t.Key))
+                {
+                    signString += "&" + m.Key + "=" + m.Value;
+                }
+
+                signString = signString.Substring(1);
+
+                if (RSAHelper.SHA1WithRSAVerify(signString, resultSign, publicKey))
+                {
+                    return true;
+                }
+                else
+                {
+                    logger.Trace("验签失败，签名原串为:" + signString + "，加密signature为：" + resultSign);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Trace("验签失败，签名原串为:" + signString + "，错误为：" + ex.Message);
+                return false;
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+﻿using Framework.Common;
+using NLog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TltApi.Model;
+
+namespace TltApi
+{
+    public class TltExec
+    {
+        public TltExec(string url, string merchantId, string userName, string userPassword, string privateKeyPassword, string privateKey = "", string publicKey = "")
+        {
+            TltConfig.url = url;
+            TltConfig.merchantId = merchantId;
+            TltConfig.userName = userName;
+            TltConfig.userPassword = userPassword;
+            TltConfig.privateKeyPassword = privateKeyPassword;
+            TltConfig.privateKey = privateKey;
+            TltConfig.publicKey = publicKey;
+        }
+
+        public ILogger logger = LogManager.GetCurrentClassLogger();
+        public string GetXml<T>(IBaseRequest<T> request) where T : BaseResponse
+        {
+            string signContent = "<?xml version=\"1.0\" encoding=\"GBK\"?>" + XmlHelper.XmlSerializer(request, encoding: Encoding.GetEncoding("GBK"));
+
+            var sign = Framework.Security.Crypt.RSAEncryptByPrivateKey(signContent, TltConfig.privateKey, TltConfig.privateKeyPassword);
+
+            string result = signContent.Substring(0, signContent.IndexOf("</REQ_SN>") + "</REQ_SN>".Length) + "<SIGNED_MSG>" + sign + "</SIGNED_MSG>" + signContent.Substring(signContent.IndexOf("</REQ_SN>") + "</REQ_SN>".Length);
+
+            logger.Trace("（回调返回）待加密字符串：" + signContent + ",加密后:" + sign + "，返回：" + result);
+
+            return result;
+        }
+
+        public BaseResponse Exec<T>(IBaseRequest<T> request) where T : BaseResponse, new()
+        {
+            //拼接成URL
+
+            string xml = GetXml(request);
+
+            string result = "";
+            string exception = "";
+
+            try
+            {
+                result = Framework.Requests.Request.PostHttps(TltConfig.url, xml, Encoding.GetEncoding("GBK"));
+
+                var response = XmlHelper.XmlDeserialize<T>(result);
+
+                response.result = result;
+
+                //把返回的内容序列化成对象
+                return response;
+            }
+            catch (Exception ex)
+            {
+                exception = ex.Message;
+            }
+            finally
+            {
+                logger.Trace("（普通请求）请求地址：" + TltConfig.url + "，内容：" + xml + "，返回：" + result + ",异常:" + exception);
+            }
+
+            return new T();
+        }
+    }
+}

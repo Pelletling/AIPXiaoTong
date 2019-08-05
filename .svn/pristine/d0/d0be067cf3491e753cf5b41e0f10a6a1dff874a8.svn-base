@@ -1,0 +1,83 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@using Framework.Common;
+@using AIPXiaoTong.Model.Site;
+@using Framework.Models;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+
+}
+
+@model PagedList<HouseTypeShowLM>
+
+@Html.Partial("_Grid", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+<div class="mt-20">
+    <div class="dataTables_wrapper no-footer table-scroll">
+        <table class="table table-border table-bordered table-bg table-hover table-sort dataTable no-footer table-word-break" id="resultTable">
+            <thead>
+                <tr class="text-c" role="row">
+                    <th><input type="checkbox" id="checkAll" onclick="checkall();"></th>
+                    <th>操作</th>
+                    <th>序号</th>
+                    <th>项目名称</th>
+                    <th>户型名称</th>
+                    <th>户型缩略图</th>
+                    <th>户型面积(m²)</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        var m = Model[i] as HouseTypeShowLM;
+                        if (m.MerchantID == merInfo.ID)
+                        {
+                            <tr class="text-c odd" role="row" id="tr_@m.ID">
+                                <td><input type="checkbox" data-name="checkbox" value="@m.ID" id="chk_@m.ID" name="chkIDs"></td>
+                                <td class="f-14 td-manage">
+                                    @Html.Partial("_Edit", new EntityModel() { ID = m.ID })
+                                </td>
+                                <td class="sorting_1">@((Model.PageSize * (Model.CurrentPageIndex - 1)) + i + 1)</td>
+                                <td>@m.ProjectName</td>
+                                <td>@m.HouseTypeName</td>
+                                <td><img src="@(GlobalConfig.WebConfig.SiteImageUrl + m.HouseShowImageList.Where(s=>!string.IsNullOrEmpty(s)).ToArray().FirstOrDefault())" layer-src="@(GlobalConfig.WebConfig.SiteImageUrl + m.HouseShowImageList.Where(s=>!string.IsNullOrEmpty(s)).ToArray().FirstOrDefault())" width="32" height="32" /></td>
+                                <td>@m.HouseTypeArea</td>
+                                <th>@m.CreateDatetime</th>
+                                <th>@m.ModifyDatetime</th>
+                                <td class="td-status">
+                                    @if (m.Status == HouseTypeStatus.Enable.ToInt())
+                                    {
+                                        <span class="label label-success radius">@m.StatusDesc</span>
+                                    }
+                                    else if (m.Status == HouseTypeStatus.Disable.ToInt())
+                                    {
+                                        <span class="label label-danger radius">@m.StatusDesc</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("Pager", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+
+
+
+
+
+
+
+
+
+
+
+
+

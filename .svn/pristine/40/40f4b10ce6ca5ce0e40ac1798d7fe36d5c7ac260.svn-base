@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class CreateOrderBookingRequst:BaseRequest
+    {
+     
+
+        [Required]
+        public long? MerchantID { get; set; }
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "订单编号")]
+        [Required]
+        public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Required]
+        public long? ProjectManagementID { get; set; }
+
+        /// <summary>
+        /// 设备编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "设备编号")]
+        [Required]
+        public string EquipmentNumber { get; set; }
+
+        /// <summary>
+        /// 操作员
+        /// </summary>
+        /// <summary>
+        [Display(Name = "操作员")]
+        [Required]
+        public string Operator { get; set; }
+
+        /// <summary>
+        /// 客户姓名
+        /// </summary>
+        [Display(Name = "客户姓名")]
+        [Required]
+        public string CustomerName { get; set; }
+
+        /// <summary>
+        /// 手机
+        /// </summary>
+        [Display(Name = "手机")]
+        [Required]
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 身份证
+        /// </summary>
+        [Display(Name = "身份证")]
+        [Required]
+        public string IDNumber { get; set; }
+
+        /// <summary>
+        /// 预约时间
+        /// </summary>
+        [Display(Name = "预约时间")]
+        [Required]
+        public DateTime OrderTime { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [Required]
+        public string Remark { get; set; }
+
+    }
+}

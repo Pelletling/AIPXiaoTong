@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.PingAnAPI
+{
+    public class POSTltSingleOntimePayRequest:BaseRequest
+    {
+        /// <summary>
+        /// 平台流水号
+        /// </summary>
+        [Display(Name = "流水号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string POSBaoSerialNumber { get; set; }
+    }
+}

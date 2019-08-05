@@ -1,0 +1,59 @@
+﻿using AIPXiaoTong.IService;
+using Framework.Common;
+using GuangDaAPI;
+using GuangDaAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class GuangDaTestController : Controller
+    {
+
+        GuangDaExec guangDaExec;
+        string userid = "tlzfsh";
+        string pwd = "111111";
+
+        public GuangDaTestController()
+        {
+            guangDaExec = new GuangDaExec(userid, AppDomain.CurrentDomain.BaseDirectory + @"\bin\" + userid + ".pfx", pwd, true);
+        }
+
+
+        public string Create()
+        {
+            BCifAcctNoOpenRequest request = new BCifAcctNoOpenRequest();
+
+            request.Head.ReqJnlNo = GuidHelper.GenUniqueId();
+
+            request.Body.CifAddr = "广东 深圳 南山区 科技园";
+            request.Body.CifClientId = "460031198806150000";
+            request.Body.CifEnName = "Liaoyz";
+            request.Body.CifIdExpiredDate = "2028-01-01";
+            request.Body.CifName = "廖源洲";
+            request.Body.CifPhoneCode = "13800138000";
+            request.Body.CifPostCode = "510000";
+            request.Body.IdNo = "460031198806150013";
+            request.Body.IdType = "P00";
+            request.Body.OperateType = "5";
+            request.Body.ProvinceCode = "xxxx";
+            request.Body.CityCode = "xxxx";
+            request.Body.NetCheckFlag = "0";
+            request.Body.BankCardPhoneCode = "13800138000";
+            request.Body.BankCardType = "1";
+            request.Body.BankAcNo = "6216731111111111123";
+            request.Body.BankName = "中国银行";
+            request.Body.SubBranchName = "光大银行深圳分行";
+            request.Body.OpenChannel = "1";
+
+            var result = guangDaExec.Exec(request) as BCifAcctNoOpenResponse;
+
+            return "OK";
+        }
+
+    }
+}

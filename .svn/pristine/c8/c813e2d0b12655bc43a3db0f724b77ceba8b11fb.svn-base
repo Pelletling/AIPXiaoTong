@@ -1,0 +1,83 @@
+﻿//using AIPEdu.IService;
+using AIPXiaoTong.IService;
+using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TltApi;
+using TltApi.Model;
+//using TltApi;
+//using TltApi.Model;
+
+namespace AIPXiaoTong.Service
+{
+    public class TltService : ITltService
+    {
+        TltExec tltExec;
+
+        public TltService()
+        {
+            string url = System.Configuration.ConfigurationManager.AppSettings["TltUrl"].ToString();
+            string merchantId = System.Configuration.ConfigurationManager.AppSettings["TltMerchantId"].ToString();
+            string userName = System.Configuration.ConfigurationManager.AppSettings["TltUserName"].ToString();
+            string userPassword = System.Configuration.ConfigurationManager.AppSettings["TltUserPassword"].ToString();
+            string privateKeyPassword = System.Configuration.ConfigurationManager.AppSettings["TltPrivateKeyPassword"].ToString();
+
+            tltExec = new TltExec(url, merchantId, userName, userPassword, privateKeyPassword);
+        }
+        public AccountVerifyResponse AccountVerify4(string Name, string IDNumber, string BarkNumber, string Mobile)
+        {
+
+            AccountVerifyRequest request = new AccountVerifyRequest();
+
+            request.INFO.REQ_SN = GuidHelper.GenUniqueId();
+
+            request.VALIDR.SUBMIT_TIME = DateTime.Now.ToString("yyyyMMddHHmmss");
+            request.VALIDR.ACCOUNT_NO = BarkNumber;
+            request.VALIDR.ACCOUNT_NAME = Name;
+            request.VALIDR.ACCOUNT_PROP = "0";
+            request.VALIDR.ID_TYPE = "0";
+            request.VALIDR.ID = IDNumber;
+            request.VALIDR.TEL = Mobile;
+
+            var response = tltExec.Exec(request);
+
+            return response as AccountVerifyResponse;
+        }
+
+
+        public SingleOntimePayResponse SingleOntimePay(string Name, string BarkNumber, int Amount, string REQ_SN)
+        {
+            SingleOntimePayRquest request = new SingleOntimePayRquest();
+
+            request.INFO.REQ_SN = REQ_SN;
+
+            request.TRANS.BUSINESS_CODE = "09900";
+            request.TRANS.SUBMIT_TIME = DateTime.Now.ToString("yyyyMMddHHmmss");
+            request.TRANS.ACCOUNT_NO = BarkNumber;
+            request.TRANS.ACCOUNT_NAME = Name;
+            request.TRANS.ACCOUNT_PROP = "0";
+            request.TRANS.AMOUNT = Amount;
+
+
+            var response = tltExec.Exec(request);
+
+            return response as SingleOntimePayResponse;
+        }
+
+        public QueryTltTradingResultResponse QueryTltTradingResult(string REQ_SN, string QUERY_SN, string TRX_CODE)
+        {
+            QueryTltTradingResultRequest request = new QueryTltTradingResultRequest();
+            request.INFO.TRX_CODE = TRX_CODE;
+            request.INFO.REQ_SN = REQ_SN;
+
+            request.QTRANSREQ.QUERY_SN = QUERY_SN;
+
+            var response = tltExec.Exec(request);
+
+            return response as QueryTltTradingResultResponse;
+        }
+    }
+}

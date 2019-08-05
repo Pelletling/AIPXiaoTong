@@ -1,0 +1,139 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Admin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Admin.Controllers
+{
+    public class TLTPreferencesController : BaseController
+    {
+        private ITLTPreferencesService iTLTPreferencesService;
+        private IEmployeeService iEmployeeService;
+        private IMerchantService iMerchantService;
+
+        public TLTPreferencesController(ITLTPreferencesService iTLTPreferencesService,
+                                        IEmployeeService iEmployeeService,
+                                        IMerchantService iMerchantService)
+        {
+            this.iTLTPreferencesService = iTLTPreferencesService;
+            this.iEmployeeService = iEmployeeService;
+            this.iMerchantService = iMerchantService;
+        }
+
+        public ActionResult Index(TLTPreferencesQM model)
+        {
+            var list = this.iTLTPreferencesService.GetListModel<TLTPreferencesLM, TLTPreferencesQM>(model);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+            ViewBag.MerchantList = iMerchantService.GetListModel<MerchantLM, MerchantQM>();
+        }
+
+        public ActionResult Create(long? ID = null)
+        {
+            BindData();
+
+            var model = iTLTPreferencesService.GetViewModel<TLTPreferencesCM>(ID);
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Create(TLTPreferencesCM m)
+        {
+            var entity = iTLTPreferencesService.Get(m.ID) ?? new TLTPreferences();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (m.ID == 0 && iTLTPreferencesService.Exists(t => t.MerchantID == m.MerchantID))
+                        throw new Exception("该商户参数已配置");
+
+                    entity.MerchantID = m.MerchantID;
+
+                    entity.TltMerchantId = m.TltMerchantId.Trim();
+                    entity.TltPrivateKeyPassword = m.TltPrivateKeyPassword;
+                    entity.TltUserName = m.TltUserName;
+                    entity.TltUserPassword = m.TltUserPassword;
+
+                    if (!string.IsNullOrWhiteSpace(m.TLTSecurityCer))
+                    {
+                        var tarSecurityCerSource = @"\tlt\" + Guid.NewGuid() + ".cer";
+                        System.IO.File.Copy(Server.MapPath(m.TLTSecurityCer), Server.MapPath(tarSecurityCerSource));
+                        entity.TLTSecurityCer = tarSecurityCerSource;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(m.TLTPrivateKeyCer))
+                    {
+                        var tarPrivateKeyCerSource = @"\tlt\" + Guid.NewGuid() + ".p12";
+                        System.IO.File.Copy(Server.MapPath(m.TLTPrivateKeyCer), Server.MapPath(tarPrivateKeyCerSource));
+                        entity.TLTPrivateKeyCer = tarPrivateKeyCerSource;
+                    }
+
+                    iTLTPreferencesService.Save(entity);
+
+                    iTLTPreferencesService.Commit();
+
+                    this.ShowTip();
+                }
+                else
+                {
+                    AddError();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.AddError(ErrorCode.Exception, ex.Message);
+            }
+
+            return RedirectToAction("Create", new { ID = entity.ID });
+        }
+
+        public JsonResult UploadFile()
+        {
+            return UploadFile("/Temp/tlt/", Request.Files[0].FileName);
+        }
+
+        protected JsonResult UploadFile(string path, string fileName)
+        {
+            try
+            {
+                var file = Request.Files[0];
+
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+                string FilePath = path + fileName;
+
+                file.SaveAs(Server.MapPath(FilePath));
+                return Json(new { Msg = "", Path = FilePath, FileName = fileName }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Msg = ex.Message, Path = "", FileName = fileName }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult Delete(long ID)
+        {
+            var result = iTLTPreferencesService.AjaxDelete(ID);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

@@ -1,0 +1,14 @@
+﻿
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+   
+}
+@model HouseTypeShow
+
+<script src="~/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+
+@*<div class="page-container page-container-custom">
+    @Html.Raw(HttpUtility.HtmlDecode(Model.Content))
+</div>*@

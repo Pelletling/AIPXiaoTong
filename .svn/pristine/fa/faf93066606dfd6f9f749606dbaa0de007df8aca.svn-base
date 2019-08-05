@@ -1,0 +1,23 @@
+﻿using AIPXiaoTong.IService;
+using PingAnAPI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class PingAnAPIService: IPingAnAPIService
+    {
+        private PingAnExec pingAnExec;
+
+        public PingAnAPIService()
+        {
+            var url = System.Configuration.ConfigurationManager.AppSettings["PingAnAPIUrl"].ToString();
+            var redirectUrl = System.Configuration.ConfigurationManager.AppSettings["PingAnRedirectUrl"].ToString(); 
+            pingAnExec = new PingAnExec(url, redirectUrl);
+        }
+
+    }
+}

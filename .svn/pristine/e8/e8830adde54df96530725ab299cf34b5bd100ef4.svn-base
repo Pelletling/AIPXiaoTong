@@ -1,0 +1,56 @@
+﻿
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+
+}
+@model MemberManagementDM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">会员名：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Name, new { @class = "input-text", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.ProjetName, new { @class = "input-text", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">身份证号码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.IDNumber, new { @class = "input-text", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">手机号码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Mobile, new { @class = "input-text", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">创建时间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.CreateDatetime, new { @class = "input-text" , @readonly = "readonly" })
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+
+

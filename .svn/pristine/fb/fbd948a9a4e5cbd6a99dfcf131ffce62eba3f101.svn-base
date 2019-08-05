@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryProjectDetailRequst : BaseRequest
+    {
+
+        /// <summary>
+        /// 商户ID
+        /// </summary>
+        [Display(Name = "商户ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string merchantid { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        [Display(Name = "项目名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string projectname { get; set; }
+    }
+}

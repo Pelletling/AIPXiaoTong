@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace Framework.Security
+{
+    public class RSAHelper
+    {
+        /// <summary>    
+        /// RSA私钥格式转换，java->.net
+        /// </summary>    
+        /// <param name="privateKey">java生成的RSA私钥</param>    
+        /// <returns></returns>    
+        public static string RSAPrivateKeyJava2DotNet(string privateKey)
+        {
+            return RSAConvert.RSA.RSAPrivateKeyJava2DotNet(privateKey);
+        }
+
+        /// <summary>    
+        /// RSA私钥格式转换，.net->java    
+        /// </summary>    
+        /// <param name="privateKey">.net生成的私钥</param>    
+        /// <returns></returns>    
+        public static string RSAPrivateKeyDotNet2Java(string privateKey)
+        {
+            return RSAConvert.RSA.RSAPrivateKeyDotNet2Java(privateKey);
+        }
+
+
+        /// <summary>    
+        /// RSA公钥格式转换，java->.net    
+        /// </summary>    
+        /// <param name="publicKey">java生成的公钥</param>    
+        /// <returns></returns>    
+        public static string RSAPublicKeyJava2DotNet(string publicKey)
+        {
+            return RSAConvert.RSA.RSAPublicKeyJava2DotNet(publicKey);
+        }
+
+        /// <summary>    
+        /// RSA公钥格式转换，.net->java    
+        /// </summary>    
+        /// <param name="publicKey">.net生成的公钥</param>    
+        /// <returns></returns>    
+        public static string RSAPublicKeyDotNet2Java(string publicKey)
+        {
+            return RSAConvert.RSA.RSAPublicKeyDotNet2Java(publicKey);
+        }
+
+        /// <summary>
+        /// 根据私钥加密
+        /// </summary>
+        /// <param name="privateKey"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string Encrypt(string privateKeyString, string text)
+        {            
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+
+            rsa.FromXmlString(privateKeyString);
+
+            var sign = Convert.ToBase64String(rsa.Encrypt(Encoding.UTF8.GetBytes(text), false));
+
+            return sign;
+        }
+    }
+}

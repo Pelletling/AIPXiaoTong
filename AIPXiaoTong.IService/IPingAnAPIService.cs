@@ -1,0 +1,21 @@
+﻿using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.PingAnAPI;
+using PingAnAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace AIPXiaoTong.IService
+{
+    public interface IPingAnAPIService
+    {
+        PreparedFreezeOrderResponse PreparedFreezeOrder(OrderPaid orderPaid, PingAnOrderPaid pingAnOrderPaid);
+        // QueryMarginsOrderDetailResponse QueryMarginsOrderDetail(OrderPaid orderPaid);
+        UnFreezeMarginsOrderResponse UnFreezeMarginsOrder(OrderPaid orderPaid);
+        AutoLoginResponse AutoLogin(PingAnOrderPaid pingAnOrderPaid, Member member);
+        QueryBatchMarginsOrderDetialResponse QueryBatchMarginsOrderDetial(QueryPingAnMarginsOrderListRequest queryPingAnMarginsOrderListRequest);
+
+    }
+}

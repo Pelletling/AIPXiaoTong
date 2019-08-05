@@ -1,0 +1,284 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.Common;
+using Framework.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+
+    public class ProjectManagementController : BaseController
+    {
+        private IProjectService iProjectService;
+        private IEmployeeService iEmployeeService;
+        private IMerchantService iMerchantService;
+        private IAreaService iAreaService;
+
+        public ProjectManagementController(IProjectService iProjectService,
+                                            IEmployeeService iEmployeeService,
+
+                                            IMerchantService iMerchantService,
+                                            IAreaService iAreaService)
+        {
+            this.iProjectService = iProjectService;
+            this.iEmployeeService = iEmployeeService;
+
+            this.iMerchantService = iMerchantService;
+            this.iAreaService = iAreaService;
+        }
+
+        public ActionResult Index(ProjectQM model)
+        {
+            var list = this.iProjectService.GetListModel<ProjectLM, ProjectQM>(model);
+
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            ViewBag.merInfo = iMerchantService.Get(empInfo.MerchantID);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+            else
+            {
+                BindData();
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            ViewBag.merInfo = iMerchantService.Get(empInfo.MerchantID);
+
+            ViewBag.AreaList = this.iAreaService.GetAllCache();
+        }
+
+
+        public ActionResult Create(long? ID = null)
+        {
+            var model = iProjectService.GetViewModel<ProjectCM>(ID);
+
+            BindData();
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Create(ProjectCM m)
+        {
+            try
+            {
+                BindData();
+
+                if (ModelState.IsValid)
+                {
+                    var entity = iProjectService.Get(m.ID) ?? new Project();
+
+                    var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+                    entity.MerchantID = empInfo.MerchantID;
+                    entity.ProjectName = m.ProjectName.Trim();
+                    entity.ProvinceCode = m.ProvinceCode;
+                    entity.CityCode = m.CityCode;
+                    entity.Description = m.Description;
+                    entity.Deadline = m.Deadline;
+                    if (entity.ProjectAmount != m.ProjectAmount)
+                    {
+                        entity.ProjectAmount = m.ProjectAmount;
+                        entity.ResidueAmount = m.ProjectAmount;  //初始值，将剩余认筹额度默认值设为初始认筹额度
+                    }
+
+
+                    if (m.AdvertisingImgList.Where(s => !string.IsNullOrEmpty(s)).ToArray().Count() > 0)
+                    {
+                        for (int i = 0; i < m.AdvertisingImgList.Count; i++)
+                        {
+                            if (m.AdvertisingImgList[i] != "")
+                            {
+                                var tarSource = @"\Images\AdvertisingImge\" + Guid.NewGuid() + ".png";
+                                if (!ImageHelper.Resize(Server.MapPath(m.AdvertisingImgList[i]), Server.MapPath(tarSource), 350))
+                                {
+                                    System.IO.File.Copy(Server.MapPath(m.AdvertisingImgList[i]), Server.MapPath(tarSource));
+                                }
+
+                                m.AdvertisingImgList[i] = tarSource;
+                            }
+                        }
+                        entity.AdvertisingImge = JsonHelper.Serialize(m.AdvertisingImgList);
+                    }
+                    else
+                    {
+                        throw new Exception("广告图片不能为空");
+                    }
+
+                    iProjectService.Save(entity);
+                    iProjectService.Commit();
+
+                    this.ShowTip();
+
+                    return RedirectToAction("Create", new { ID = entity.ID });
+                }
+                else
+                {
+                    AddError();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.AddError(ErrorCode.Exception, ex.Message);
+            }
+            return View(m);
+        }
+
+        public JsonResult CodeIsExists(long ID, string ProjectName)
+        {
+            var employee = iEmployeeService.Get(currentUser.ID);
+
+            return Json(!iProjectService.Exists(t => t.ID != ID && t.ProjectName == ProjectName.Trim() && t.MerchantID == employee.MerchantID), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Delete(long ID)
+        {
+            var result = iProjectService.AjaxDelete(ID);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public JsonResult UploadFile()
+        {
+            return UploadFile("/Temp/TemProjectImage/", Request.Files[0].FileName);
+        }
+
+        public JsonResult UploadAdvertisingImge()
+        {
+            return UploadFile("/Temp/TemAdvertisingImge/", Request.Files[0].FileName);
+        }
+
+        protected JsonResult UploadFile(string path, string fileName)
+        {
+            try
+            {
+                var file = Request.Files[0];
+
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+                string FilePath = path + fileName;
+
+                file.SaveAs(Server.MapPath(FilePath));
+                return Json(new { Msg = "", Path = FilePath, FileName = fileName }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Msg = ex.Message, Path = "", FileName = fileName }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult NoPass(long ID, string Msg)
+        {
+            ResultModel result = new ResultModel();
+            try
+            {
+                var status = ProjectStatus.AlreadySubmit.ToInt();
+
+                var e = iProjectService.Get(t => t.ID == ID && t.Status == status);
+
+                if (e == null)
+                    throw new Exception("记录不存在，请刷新页面");
+
+                e.Status = ProjectStatus.NotPass.ToInt();
+                e.Reason = Msg;
+
+                iProjectService.Save(e);
+
+                iProjectService.Commit();
+
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                result.ResultMessage = ex.InnerException.InnerException.Message;
+            }
+            catch (Exception ex)
+            {
+                result.ResultMessage = ex.Message;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Audit(long ID)
+        {
+            ResultModel result = new ResultModel();
+            try
+            {
+                var status = ProjectStatus.AlreadySubmit.ToInt();
+
+                var e = iProjectService.Get(t => t.ID == ID && t.Status == status);
+
+                if (e == null)
+                    throw new Exception("记录不存在，请刷新页面");
+
+                e.Status = ProjectStatus.Pass.ToInt();
+
+                iProjectService.Save(e);
+
+                iProjectService.Commit();
+
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                result.ResultMessage = ex.InnerException.InnerException.Message;
+            }
+            catch (Exception ex)
+            {
+                result.ResultMessage = ex.Message;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AuditReset(long ID)
+        {
+            ResultModel result = new ResultModel();
+            try
+            {
+                var status = ProjectStatus.AlreadySubmit.ToInt();
+
+                var e = iProjectService.Get(t => t.ID == ID && t.Status != status);
+
+                if (e == null)
+                    throw new Exception("记录不存在，请刷新页面");
+
+                e.Status = ProjectStatus.AlreadySubmit.ToInt();
+                e.Reason = "";
+
+                iProjectService.Save(e);
+
+                iProjectService.Commit();
+
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                result.ResultMessage = ex.InnerException.InnerException.Message;
+            }
+            catch (Exception ex)
+            {
+                result.ResultMessage = ex.Message;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

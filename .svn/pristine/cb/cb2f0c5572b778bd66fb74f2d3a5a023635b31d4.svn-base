@@ -1,0 +1,69 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class OrderHousePaymentService : BusinessService<OrderHousePayment>, IOrderHousePaymentService
+    {
+        public override Expression<Func<OrderHousePayment, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<OrderHousePayment, bool>> express = DynamicExpressions.True<OrderHousePayment>();
+
+            var m = model as OrderHousePaymentQM;
+
+            if (!string.IsNullOrWhiteSpace(m.OrderNumber))
+            {
+                express = express.AndAlso(t => t.OrderNumber == m.OrderNumber.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.MemberName))
+            {
+                express = express.AndAlso(t => t.Member.Name == m.MemberName.Trim());
+            }
+
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+
+            return express;
+        }
+
+
+        public List<OrderHousePaymentEM> Export(OrderHousePaymentQM model)
+        {
+            if (model == null) model = new OrderHousePaymentQM();
+
+            var express = GetExpress(model);
+
+            var list = Gets(express).Select(t => new OrderHousePaymentEM()
+            {
+                OrderNumber = t.OrderNumber,
+                EquipmentNumber = t.EquipmentNumber,
+                EmployeeName = t.Employee.Name,
+                SerialNumber = t.SerialNumber,
+                TransactionAmount = t.TransactionAmount,
+                MemberName=t.Member.Name,
+                MemberMobile=t.Member.Mobile,
+                MemberIDNumber=t.Member.IDNumber,
+                PaymentStatus = t.PaymentStatus,
+                Status = t.Status,
+                PaymentType = t.PaymentType,
+                BankCardNumber = t.BankCardNumber,
+                ProjectName = t.ProjectManagement.ProjetName,
+                MerchantName = t.Merchant.Name,
+
+            }).ToList();
+
+            return list;
+        }
+    }
+}

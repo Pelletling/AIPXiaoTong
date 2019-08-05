@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.Admin
+{
+    public class MemberLM : BaseListModel
+    {
+
+        public string Name { get; set; }
+        public string IDNumber { get; set; }
+        public string Mobile { get; set; }
+        public string ProvinceCode { get; set; }
+        public string CityCode { get; set; }
+        public string IDImageFront { get; set; }
+        public string IDImageOpposite { get; set; }
+        public string Address { get; set; }
+        public string ClientId { get; set; }
+        public string EnName { get; set; }
+        public DateTime? IdExpiredDate { get; set; }
+        public string PostCode { get; set; }
+        public int IsCreateAccount { get; set; }
+        public decimal Balance { get; set; }
+        public decimal FreezeBalance { get; set; }
+
+    }
+}

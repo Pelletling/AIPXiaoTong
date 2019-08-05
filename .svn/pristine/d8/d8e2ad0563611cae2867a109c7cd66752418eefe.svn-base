@@ -1,0 +1,183 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Admin.Controllers
+{
+    [AllowAnonymous]
+    public class UpController : Controller
+    {
+        private IMenuService iMenuService;
+        private IMenuActionService iMenuActionService;
+        private DbContext dbContext;
+
+        public UpController(IMenuService iMenuService,
+           IMenuActionService iMenuActionService,
+           DbContext dbContext)
+        {
+            this.iMenuService = iMenuService;
+            this.iMenuActionService = iMenuActionService;
+            this.dbContext = dbContext;
+        }
+
+
+        public string Index()
+        {
+            Init();
+
+            this.iMenuService.Commit();
+
+            return "升级完成";
+        }
+
+        public void Init()
+        {
+            InitMenu();
+            InitMenuAction();
+
+        }
+
+        private void InitMenu()
+        {
+            IList<Menu> list = new List<Menu>();
+            list.Add(new Menu() { Code = "001", Name = "系统资料", Sort = 9999 });
+            list.Add(new Menu() { Code = "001001", Name = "基础设置", Sort = 9999 });
+            list.Add(new Menu() { Code = "001001001", Name = "员工资料", Controller = "User", Action = "Index,Create,Query", Url = "/User/Index", Sort = 1 });
+            list.Add(new Menu() { Code = "001001002", Name = "角色配置", Controller = "Role", Action = "Index,Create,Query", Url = "/Role/Index", Sort = 2 });
+            list.Add(new Menu() { Code = "001001003", Name = "部门配置", Controller = "Department", Action = "Index,Create,Query", Url = "/Department/Index", Sort = 3 });
+            // list.Add(new Menu() { Code = "001001005", Name = "收款类型配置", Controller = "ProceedsType", Action = "Index,Create,Query", Url = "/ProceedsType/Index", Sort = 5 });
+
+            list.Add(new Menu() { Code = "001002", Name = "订单管理", Sort = 1 });
+            list.Add(new Menu() { Code = "001002001", Name = "认缴订单", Controller = "OrderPaid", Url = "/OrderPaid/Index", Sort = 1 });
+            list.Add(new Menu() { Code = "001002002", Name = "预约订单", Controller = "OrderBooking", Url = "/OrderBooking/Index", Sort = 2 });
+            // list.Add(new Menu() { Code = "001002003", Name = "房款订单", Controller = "OrderHousePayment", Url = "/OrderHousePayment/Index", Sort = 3 });
+
+            list.Add(new Menu() { Code = "001003", Name = "商户管理", Sort = 2 });
+            list.Add(new Menu() { Code = "001003001", Name = "商户资料", Controller = "Merchant", Url = "/Merchant/Index", Sort = 1 });
+            list.Add(new Menu() { Code = "001003002", Name = "商户员工资料", Controller = "Employee", Url = "/Employee/Index", Sort = 2 });
+            list.Add(new Menu() { Code = "001003003", Name = "商户会员资料", Controller = "Member", Url = "/Member/Index", Sort = 3 });
+            list.Add(new Menu() { Code = "001003004", Name = "商户参数配置", Controller = "Preferences", Url = "/Preferences/Index", Sort = 4 });
+            list.Add(new Menu() { Code = "001003005", Name = "商户设备管理", Controller = "Equipment", Action = "Index,Create,Query", Url = "/Equipment/Index", Sort = 5 });
+
+            list.Add(new Menu() { Code = "001004", Name = "项目管理", Sort = 3 });
+            list.Add(new Menu() { Code = "001004001", Name = "项目管理", Controller = "ProjectManagement", Url = "/ProjectManagement/Index", Sort = 1 });
+            list.Add(new Menu() { Code = "001004002", Name = "户型展示", Controller = "HouseTypeShow", Url = "/HouseTypeShow/Index", Sort = 2 });
+
+            list.Add(new Menu() { Code = "001005", Name = "代付信息", Sort = 4 });
+            list.Add(new Menu() { Code = "001005001", Name = "代付订单", Controller = "OntimePay", Url = "/OntimePay/Index", Sort = 1 });
+
+
+
+
+            foreach (var m in list)
+            {
+                Menu menu = iMenuService.Get(t => t.Code == m.Code) ?? new Menu();
+                menu.Code = m.Code;
+                menu.ParentCode = !string.IsNullOrWhiteSpace(m.Code.Substring(0, m.Code.Length - 3)) ? m.Code.Substring(0, m.Code.Length - 3) : null;
+                menu.Name = m.Name;
+                menu.Url = m.Url;
+                menu.Sort = m.Sort;
+                menu.Controller = m.Controller;
+                menu.Action = m.Action;
+                menu.Status = 1;
+
+                iMenuService.Save(menu);
+            }
+        }
+
+
+        private void InitMenuAction()
+        {
+            List<MenuAction> list = new List<MenuAction>();
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.RealName.ToString(), Name = ActionCode.RealName.ToDescription(), Sort = 5 });
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.BindCard.ToString(), Name = ActionCode.BindCard.ToDescription(), Sort = 6 });
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.BindMobile.ToString(), Name = ActionCode.BindMobile.ToDescription(), Sort = 7 });
+            list.Add(new MenuAction() { MenuCode = "001001001", Code = ActionCode.Contract.ToString(), Name = ActionCode.Contract.ToDescription(), Sort = 8 });
+
+            list.Add(new MenuAction() { MenuCode = "001001002", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001001002", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001001002", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001001002", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+
+            list.Add(new MenuAction() { MenuCode = "001001003", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001001003", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001001003", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001001003", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+
+            list.Add(new MenuAction() { MenuCode = "001002001", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001002001", Code = ActionCode.Details.ToString(), Name = ActionCode.Details.ToDescription(), Sort = 2 });
+            //list.Add(new MenuAction() { MenuCode = "001002001", Code = ActionCode.Withdraw.ToString(), Name = ActionCode.Withdraw.ToDescription(), Sort = 3 });
+            //list.Add(new MenuAction() { MenuCode = "001002001", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+
+            list.Add(new MenuAction() { MenuCode = "001002002", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001002002", Code = ActionCode.Details.ToString(), Name = ActionCode.Details.ToDescription(), Sort = 2 });
+           // list.Add(new MenuAction() { MenuCode = "001002002", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 3 });
+
+            //list.Add(new MenuAction() { MenuCode = "001002002", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            //list.Add(new MenuAction() { MenuCode = "001002002", Code = ActionCode.Details.ToString(), Name = ActionCode.Details.ToDescription(), Sort = 2 });
+
+
+            list.Add(new MenuAction() { MenuCode = "001003001", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001003001", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001003001", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001003001", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+
+            list.Add(new MenuAction() { MenuCode = "001003002", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+           // list.Add(new MenuAction() { MenuCode = "001003002", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 2 });
+           // list.Add(new MenuAction() { MenuCode = "001003002", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 3 });
+           // list.Add(new MenuAction() { MenuCode = "001003002", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+
+            list.Add(new MenuAction() { MenuCode = "001003003", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001003003", Code = ActionCode.Details.ToString(), Name = ActionCode.Details.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001003003", Code = ActionCode.QueryGuangDaBalance.ToString(), Name = ActionCode.QueryGuangDaBalance.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001003003", Code = ActionCode.AddDetail.ToString(), Name = ActionCode.AddDetail.ToDescription(), Sort = 4 });
+
+
+            list.Add(new MenuAction() { MenuCode = "001003004", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001003004", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001003004", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001003004", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+
+            list.Add(new MenuAction() { MenuCode = "001003005", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001003005", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001003005", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001003005", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 4 });
+
+            list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+           // list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.Details.ToString(), Name = ActionCode.Details.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.Modify.ToString(), Name = ActionCode.Modify.ToDescription(), Sort = 2 });
+            list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.Audit.ToString(), Name = ActionCode.Audit.ToDescription(), Sort = 3 });
+            list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.NotPass.ToString(), Name = ActionCode.NotPass.ToDescription(), Sort = 4 });
+            list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.Delete.ToString(), Name = ActionCode.Delete.ToDescription(), Sort = 5 });
+            list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.Add.ToString(), Name = ActionCode.Add.ToDescription(), Sort = 6 });
+            list.Add(new MenuAction() { MenuCode = "001004001", Code = ActionCode.AuditReset.ToString(), Name = ActionCode.AuditReset.ToDescription(), Sort = 7 });
+
+            list.Add(new MenuAction() { MenuCode = "001004002", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001004002", Code = ActionCode.Details.ToString(), Name = ActionCode.Details.ToDescription(), Sort = 2 });
+
+            list.Add(new MenuAction() { MenuCode = "001005001", Code = ActionCode.Index.ToString(), Name = ActionCode.Index.ToDescription(), Sort = 1 });
+            list.Add(new MenuAction() { MenuCode = "001005001", Code = ActionCode.Details.ToString(), Name = ActionCode.Details.ToDescription(), Sort = 2 });
+
+            foreach (var m in list)
+            {
+                MenuAction menu = iMenuActionService.Get(t => t.Code == m.Code && t.MenuCode == m.MenuCode) ?? new MenuAction();
+                menu.MenuCode = m.MenuCode;
+                menu.Code = m.Code;
+                menu.Name = m.Name;
+                menu.Sort = m.Sort;
+                menu.Status = 1;
+                iMenuActionService.Save(menu);
+            }
+        }
+    }
+}

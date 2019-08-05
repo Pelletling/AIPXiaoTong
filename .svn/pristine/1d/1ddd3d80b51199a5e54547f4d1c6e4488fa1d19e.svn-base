@@ -1,0 +1,53 @@
+﻿using AIPXiaoTong.IService;
+using PingAnAPI;
+using PingAnAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class PingAnAPIService: IPingAnAPIService
+    {
+        private PingAnExec pingAnExec;
+
+        public PingAnAPIService()
+        {
+            var url = System.Configuration.ConfigurationManager.AppSettings["PingAn_APIUrl"].ToString();
+            var publicKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_APIPublicKey"].ToString();
+            var privateKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_APIPrivateKey"].ToString();
+            var redirectUrl = System.Configuration.ConfigurationManager.AppSettings["PingAn_RedirectUrl"].ToString();
+            var autoLoginUrl = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALUrl"].ToString();
+            var returnUrl = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALReturnUrl"].ToString();
+            var sha1Key = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALSha1Key"].ToString();
+            var autoLoginPubKey = System.Configuration.ConfigurationManager.AppSettings["PingAn_ALPublicKey"].ToString();
+
+            pingAnExec = new PingAnExec(url,publicKey,privateKey,redirectUrl,autoLoginUrl,returnUrl,sha1Key, autoLoginPubKey);
+        }
+
+        public PreparedFreezeOrderResponse PreparedFreezeOrder()
+        {
+            PreparedFreezeOrderRequest request = new PreparedFreezeOrderRequest();
+            request.channel = "1007041";
+            request.userName = "刘勋";
+            request.cardNumber = "430981199211104634";
+            request.mobile = "15273738880";
+            request.businessName = "购机业务";
+            request.orderValidDay = 3;
+            request.freezeAmt = 0.01;
+            request.freezeTimeLimit = 3;
+            request.freezeProduct = 1;
+            request.autoFreeze = "00";
+            request.transCode = "001";
+
+            var response = pingAnExec.Exec(request);
+
+            return response as PreparedFreezeOrderResponse;
+        }
+
+
+
+    }
+}

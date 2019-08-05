@@ -1,0 +1,209 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Admin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Framework.Common;
+
+namespace AIPXiaoTong.Admin.Controllers
+{
+    public class EmployeeController : BaseController
+    {
+
+        private IEmployeeService iEmployeeService;
+        private IEmployeeRoleService iEmployeeRoleService;
+        private IEmployeeDepartmentService iEmployeeDepartmentService;
+        private IMerchantService iMerchantService;
+
+        public EmployeeController(IEmployeeService iEmployeeService,
+                                  IEmployeeRoleService iEmployeeRoleService,
+                                  IEmployeeDepartmentService iEmployeeDepartmentService,
+                                  IMerchantService iMerchantService)
+        {
+            this.iEmployeeService = iEmployeeService;
+            this.iEmployeeRoleService = iEmployeeRoleService;
+            this.iEmployeeDepartmentService = iEmployeeDepartmentService;
+            this.iMerchantService = iMerchantService;
+        }
+
+        public ActionResult Index(EmployeeQM model)
+        {
+            var list = this.iEmployeeService.GetListModel<EmployeeLM, EmployeeQM>(model);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+            else
+            {
+                BindData();
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+            ViewBag.EmployeeRoleList = iEmployeeRoleService.GetListModel<EmployeeRoleLM, EmployeeRoleQM>();
+
+            ViewBag.EmployeeDepartmentList = iEmployeeDepartmentService.GetListModel<EmployeeDepartmentLM, EmployeeDepartmentQM>();
+
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            ViewBag.merInfo = iMerchantService.Get(empInfo.MerchantID);
+
+            ViewBag.MerchantList = iMerchantService.GetListModel<MerchantLM, MerchantQM>();
+        }
+
+        public ActionResult Create(long? ID = null)
+        {
+            var model = iEmployeeService.GetViewModel<EmployeeCM>(ID);
+
+            BindData();
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Create(EmployeeCM m)
+        {
+            BindData();
+            var entity = iEmployeeService.Get(m.ID) ?? new Employee();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var empInfo = iEmployeeService.Get(currentUser.ID);
+
+                    entity.MerchantID = empInfo.MerchantID;
+
+                    entity.Code = m.Code;
+                    entity.Name = m.Name;
+                    entity.Email = m.Email;
+                    entity.Mobile = m.Mobile;
+                    entity.EmployeeDepartmentID = m.EmployeeDepartmentID;
+                    entity.EmployeeRoleID = m.EmployeeRoleID;
+                    entity.IsAdmin = m.IsAdmin;
+
+                    entity.Status = m.Status;
+
+                    if (entity.ID == 0)
+                    {
+                        entity.Password = Framework.Security.Crypt.MD5(m.Password);
+                    }
+
+                    iEmployeeService.Save(entity);
+                    iEmployeeService.Commit();
+                    this.ShowTip();
+                    return RedirectToAction("Create", new { ID = entity.ID });
+                }
+                else
+                {
+                    AddError();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.AddError(ErrorCode.Exception, ex.Message);
+            }
+
+            return View(m);
+
+        }
+
+        public JsonResult CodeIsExists(long ID, string Code)
+        {
+            return Json(!iEmployeeService.Exists(t => t.ID != ID && t.Code == Code.Trim()), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult NameIsExists(long ID, string Name)
+        {
+            return Json(!iEmployeeService.Exists(t => t.ID != ID && t.Name == Name.Trim()), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EmailIsExists(long ID, string Email)
+        {
+            return Json(!iEmployeeService.Exists(t => t.ID != ID && t.Email == Email.Trim()), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ModifyPassword(long id)
+        {
+            var user = iEmployeeService.Get(id);
+
+            if (user == null)
+                throw new Exception("ID(" + id + ")不存在");
+
+            ModifyPasswordCM cm = new ModifyPasswordCM();
+
+            cm.ID = user.ID;
+
+            return View(cm);
+        }
+
+        [HttpPost]
+        public ActionResult ModifyPassword(ModifyPasswordCM cm)
+        {
+            try
+            {
+                var user = iEmployeeService.Get(cm.ID);
+
+                if (user == null)
+                    throw new Exception("ID(" + cm.ID + ")不存在");
+
+                if (ModelState.IsValid)
+                {
+                    if (user.Password != Framework.Security.Crypt.MD5(cm.OriginalPassword))
+                    {
+                        throw new Exception("原密码不正确");
+                    }
+
+                    user.Password = Framework.Security.Crypt.MD5(cm.NewPassword);
+                    iEmployeeService.Save(user);
+                    iEmployeeService.Commit();
+                    this.ShowTip();
+                }
+                else
+                {
+                    AddError();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.AddError(ErrorCode.Exception, ex.Message);
+            }
+
+            return RedirectToAction("ModifyPassword", new { ID = cm.ID });
+        }
+
+        public JsonResult Delete(long ID)
+        {
+            var result = iEmployeeService.AjaxDelete(ID);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetEmployeeRole(string MerchantID)
+        {
+            var merchantid = MerchantID.ToInt();
+
+            var result = iEmployeeRoleService.Gets(t => t.MerchantID == merchantid).ToList().OrderBy(k => k.Name).Select(f => new SelectListItem { Value = f.ID.ToString(), Text = f.Name.ToString() });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetEmployeeDepartment(string MerchantID)
+        {
+            var merchantid = MerchantID.ToInt();
+
+            var result = iEmployeeDepartmentService.Gets(t => t.MerchantID == merchantid).ToList().OrderBy(k => k.LevelCode).Select(f => new SelectListItem { Value = f.ID.ToString(), Text = f.Name.ToString() });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+    }
+}

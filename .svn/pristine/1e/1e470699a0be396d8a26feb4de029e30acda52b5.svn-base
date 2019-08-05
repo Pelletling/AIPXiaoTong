@@ -1,0 +1,89 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.Common;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class OrderPaidService : BusinessService<OrderPaid>, IOrderPaidService
+    {
+        public override Expression<Func<OrderPaid, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<OrderPaid, bool>> express = DynamicExpressions.True<OrderPaid>();
+
+            var m = model as OrderPaidQM;
+
+            if (!string.IsNullOrWhiteSpace(m.OrderNumber))
+            {
+                express = express.AndAlso(t => t.OrderNumber == m.OrderNumber.Trim());
+            }
+            if (!string.IsNullOrWhiteSpace(m.MemberMobile))
+            {
+                express = express.AndAlso(t => t.Member.Mobile == m.MemberMobile.Trim());
+            }
+            if (!string.IsNullOrWhiteSpace(m.MemberName))
+            {
+                express = express.AndAlso(t => t.Member.Name.Contains(m.MemberName.Trim()));
+            }
+            if (m.ProjectID != null)
+            {
+                express = express.AndAlso(t => t.HouseTypeShow.ProjectID == m.ProjectID);
+            }
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+            if (currentUser.MerchantID != 0)
+            {
+                express = express.AndAlso(t => t.Merchant.ID == currentUser.MerchantID);
+            }
+
+            if (m.QueryDate != null)
+            {
+                express = express.AndAlso(t => t.CreateDatetime >= m.QueryDate);
+            }
+
+            return express;
+        }
+
+
+        public List<OrderPaidEM> Export(OrderPaidQM model)
+        {
+            if (model == null) model = new OrderPaidQM();
+
+            var express = GetExpress(model);
+
+            var status = OrderPaidRechargeStatusOption.Success.ToInt();
+
+            var list = Gets(express).Select(t => new OrderPaidEM()
+            {
+                OrderNumber = t.OrderNumber,
+                ProjectName = t.HouseTypeShow.Project.ProjetName,
+                HouseTypeName = t.HouseTypeShow.HouseTypeName,
+                EquipmentSNNo = t.EquipmentSNNo,
+                EmployeeName = t.Employee.Name,
+                SerialNumber = t.OrderPaidRechargeList.FirstOrDefault(f => f.Status == status).TransNumber,
+                TransactionAmount = t.TransactionAmount,
+                MemberName = t.Member.Name,
+                MemberIDNumber = t.Member.IDNumber,
+                MemberMobile = t.Member.Mobile,
+                //  PaymentStatus = t.PaymentStatus,
+                Status = t.Status,
+                //PaymentType = t.PaymentType,
+                BankCardNumber = t.BankCardNumber,
+                MerchantName = t.Merchant.Name,
+
+            }).ToList();
+
+            return list;
+        }
+
+    }
+}

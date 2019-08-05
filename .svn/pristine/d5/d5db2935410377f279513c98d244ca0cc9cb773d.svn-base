@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class AccountPingAnCM
+    {
+        /// <summary>
+        /// 银行卡号
+        /// </summary>
+        //[Display(Name = "银行卡号")]
+        //[MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        //[Required(ErrorMessage = "{0}不能为空")]
+        //public string BankCardNumber { get; set; }
+
+        public string orderNo { get; set; }
+
+        public string timestamp { get; set; }
+
+        public string transData { get; set; }
+   
+    }
+}

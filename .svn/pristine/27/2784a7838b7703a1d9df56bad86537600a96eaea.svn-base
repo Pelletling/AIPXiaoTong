@@ -1,0 +1,35 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class InsertDataController : Controller
+    {
+        private IMemberManagementService iMemberManagementService;
+
+        public InsertDataController(IMemberManagementService iMemberManagementService)
+        {
+            this.iMemberManagementService = iMemberManagementService;
+        }
+
+        public ActionResult InsertMember()
+        {
+            var entity = new MemberManagement();
+
+            entity.Name = "刘亦菲s";
+            entity.ProjectManagementID = 14;
+            entity.IDNumber = "2312432423423423423";
+            entity.Mobile = "15212124556";
+
+            iMemberManagementService.Save(entity);
+            iMemberManagementService.Commit();
+
+            return View();
+        }
+    }
+}

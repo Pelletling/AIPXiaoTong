@@ -1,0 +1,408 @@
+2019-04-04 14:26:01.7088|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041425545578&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041425546768&ReqTime=2019-04-04 14:25:54&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=G6KGo5Pmmg%2bzWvmt%2fZk%2fcsyphQPhZvEFA%2fae5Rv0QPB8WT9BT0t9LpfEKflfnL1uY7bbLXffLKVu9TR%2f74b6fTxqPTTEyhHITJUitXtPH6hYJhL8PjnT5AIvT3FzRhOyfNQylEZm0HWvMa%2fBgn8ISUfFFlCPSw7ZqQRKD7jMRi8%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041425546768</ReqJnlNo>
+		<ResJnlNo>3989246</ResJnlNo>
+		<ResTime>2019-04-04 14:27:45</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041425545578</CoPatrnerJnlNo>
+		<EbankJnlNo>3989246</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:27:45</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f34023784</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:26:03.1378|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041426022778&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041426022988&ReqTime=2019-04-04 14:26:02&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=l%2fm7AIMJ%2fM2y6TkNXYBJTaEBa757Bosp9m5vH%2ffMo89IoZwfS3R67GXBJOkcVJ1EXLdDVAzCTLO%2bQAm8UGj%2bj7z%2bD9RaowobP3HCnZbNCNE2QnEoAfdM7Ca9tVuyaKVONsQy3iCyqMDJ79fkfcklZJfJt6Ns8PeNVy%2bDqOB%2f%2fWM%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041426022988</ReqJnlNo>
+		<ResJnlNo>3989247</ResJnlNo>
+		<ResTime>2019-04-04 14:27:47</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041426022778</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.61</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-04-04 14:26:04.0838|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041426031808&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041426031898&ReqTime=2019-04-04 14:26:03&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=JmGeJDHUqcx1bljAvQAaNT4ib2m06fwaI6CvM5AGeCgyOqYwfm%2fPj5IgdoJMHRMdPXyqSWm73Vye8qX7UAE5xRdOnU4nrEmOIMMS7WcBON0DdZTfDIeqZ%2fvQIc478x7xhVXQH7VFqT%2bScbdiZgjoh0KBk7eILYz5Onau5wKaAd4%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041426031898</ReqJnlNo>
+		<ResJnlNo>3989248</ResJnlNo>
+		<ResTime>2019-04-04 14:27:48</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041426031808</CoPatrnerJnlNo>
+		<EbankJnlNo>3989248</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:27:48</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f36023735</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:26:04.7856|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041426041128&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041426041198&ReqTime=2019-04-04 14:26:04&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=ZjL9WqOUxYppzZbBSFD546ZD%2bFwLLn4A2XOdEC%2f1p8UDCLtCMcRLxF5wh%2byH7rLl1x0ooOJzpIVYLnfJIxGYIRaVmIMXLfS6SCetYxSQ%2bJmgtvhRqxoqixBR%2fChpOENPaHwlEfBX1mSwGeWB69cDHm8zMVZvMcadR11110vrEvo%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041426041198</ReqJnlNo>
+		<ResJnlNo>3989249</ResJnlNo>
+		<ResTime>2019-04-04 14:27:49</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041426041128</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.62</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-04-04 14:31:08.9886|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041431044480&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041431044636&ReqTime=2019-04-04 14:31:04&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=YlOSN%2f4PzSuZiHHyTzRfjLgUJJb6CtC64NQUdIGQe0h0Sifi2ftJPfAzLBSJX7EbH4eKjv5uo11wbQLoRUe%2b6dTB33yCyJQkLMQcjehrasCANtCmm8Gh3yY4rIf%2fCM2lxnL4uJWKeErr2EIoLzIX6HoeVOr3xVWRKRc45Pdm6aQ%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041431044636</ReqJnlNo>
+		<ResJnlNo>3989257</ResJnlNo>
+		<ResTime>2019-04-04 14:32:52</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041431044480</CoPatrnerJnlNo>
+		<EbankJnlNo>3989257</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:32:52</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f30023844</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:31:09.7726|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041431090510&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041431090666&ReqTime=2019-04-04 14:31:09&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=RzBDhAtHLbGe2nR5Ee17f41SO5C%2bKV0gSv05sFZJjCxyva57y1TtrTQVfbxe%2fYifmyR5PcfiE8tstfrpFdmhBDmE1iednT9gtk%2bfxeYlq7bu9g9bOx1ciy4U3uX7E5%2fJV%2fbRw0OsoluC0PIbasGPVHsw%2fhJctZkYu%2bYEkrK9Hhg%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041431090666</ReqJnlNo>
+		<ResJnlNo>3989259</ResJnlNo>
+		<ResTime>2019-04-04 14:32:53</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041431090510</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.63</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-04-04 14:31:10.8032|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041431098506&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041431098662&ReqTime=2019-04-04 14:31:09&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=RuLBvk2BkRmRLsKch11FmnE178u1shpCTwQBgxz7sPh5fBBWEwN2A22RQyX%2f7ynHUDUB7VgU59OIpCWBmM7uKsKSzKpuLKuWF9oltxgUeJR4noAb6VGG3HrjTsDgQmMoCpAf%2bbh7XmhBlfiqwsVfNj5vgny2tO57TS6Kcbm8%2fJY%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041431098662</ReqJnlNo>
+		<ResJnlNo>3989260</ResJnlNo>
+		<ResTime>2019-04-04 14:32:54</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041431098506</CoPatrnerJnlNo>
+		<EbankJnlNo>3989260</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:32:54</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f32023852</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:31:11.4428|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041431108344&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041431108500&ReqTime=2019-04-04 14:31:10&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=dhe1QzJMhsgVtTzYJd9dfmeHzivHKpR5o%2bIHaCEct5HUIKESHDfpncsf80h6O3Xxsvp1%2fVJ4sqEvxPeD8zQ64jHigPFUASDdq4nqdxuzktfjpynG7tWAaK2Vtc9SfWCwZxb%2fuBt9p1myz44Ws3e17jAcXN3yRo1%2bwP6B5SJz85g%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041431108500</ReqJnlNo>
+		<ResJnlNo>3989261</ResJnlNo>
+		<ResTime>2019-04-04 14:32:55</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041431108344</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.64</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-04-04 14:41:13.1028|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041441114616&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041441114772&ReqTime=2019-04-04 14:41:11&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=TySVQWfs9u1VUcKA5OzxLSTHJOCVKy81jWcjyiiNYlK8K3hRUBKeFQK5cb4oMpJxS3yNiJW3i2DQY7lTYfkhoK4Zx8I8B5q%2brnCkIkjUsXhcQq7KqEH3%2bgBxrvY2zTey4Sp%2fiX%2bn5bZEyiLERipznPCVV%2f%2bWz1MJA%2fVyyyLAzcA%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041441114772</ReqJnlNo>
+		<ResJnlNo>3989272</ResJnlNo>
+		<ResTime>2019-04-04 14:42:56</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041441114616</CoPatrnerJnlNo>
+		<EbankJnlNo>3989272</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:42:57</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f36023736</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:41:13.9150|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041441131652&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041441132588&ReqTime=2019-04-04 14:41:13&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=o2EeXrNStwOGx1JBk8sBK8SwbDUbL%2bGffS35wd%2b3ebweuDXDDHtcSddfGXIa%2fr3BJHIoVHHlvvs1532kuXdBizNNsnEbSF1oaH4wZ3TEW48Jnvcxjbi06QyeQc9j2I2W%2boZ546kKBAGXk%2frRenV%2fMwFIj0Jy0VANj7%2bD85lqRB0%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041441132588</ReqJnlNo>
+		<ResJnlNo>3989273</ResJnlNo>
+		<ResTime>2019-04-04 14:42:58</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041441131652</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.65</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-04-04 14:41:14.7886|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041441139774&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041441139930&ReqTime=2019-04-04 14:41:13&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=IhT2MOR2pWS9rzGya0ztLqqGNbsvC4D7EWkQra1ueFsGPt9c7GPqPzHZvXA3r0wPxUb%2bqrA7nxiCqcpHG7oPixnXepMYc96LIpLo%2fjqIyxrq9ijFGMEf8wKtFrfAMFkLe%2fhIjWCOH6rIDKKuVevUpmwChhR60gXXXyGvDkESOus%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041441139930</ReqJnlNo>
+		<ResJnlNo>3989274</ResJnlNo>
+		<ResTime>2019-04-04 14:42:58</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041441139774</CoPatrnerJnlNo>
+		<EbankJnlNo>3989274</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:42:58</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f38023764</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:41:15.5238|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041441148354&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041441148510&ReqTime=2019-04-04 14:41:14&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=LlG4701jw3JjSLKU541YrIVTVaVFJkmfT%2fIwnBXsFU1vLqzqINDimhkqOVlN4p%2bPumQxjAI3lu4T05gNe2Ybc8w%2fjnQFZ2DWYdrppW0DOdIO4xtsx2E2PQGtAsYCnDO0H3RgRkb7EAgjj8oiz%2bYSEYE3zyhBtw8RZoMNJn%2bgvPM%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041441148510</ReqJnlNo>
+		<ResJnlNo>3989275</ResJnlNo>
+		<ResTime>2019-04-04 14:42:59</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041441148354</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.66</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-04-04 14:56:16.6928|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041456154126&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041456154282&ReqTime=2019-04-04 14:56:15&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=j%2fn8Vga5sWsSLN1Fxx8U8QsuqJgM%2bV1WiS0dpOI%2b7%2btJUX6jLASBfTC1RUda6Sb2sruNorE5iauGT4Pk3mBRpnhyX5SSJGmZwDvWhM%2bjDWEgBWHM5y0g1UQjWQUwK4KYZ92UNDn3Nj9%2fz0pZipfVTgpxK7k5T%2frVdIZidCwSkH0%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041456154282</ReqJnlNo>
+		<ResJnlNo>3989302</ResJnlNo>
+		<ResTime>2019-04-04 14:58:00</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041456154126</CoPatrnerJnlNo>
+		<EbankJnlNo>3989302</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:58:00</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f33023819</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:56:17.3948|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041456167396&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041456167552&ReqTime=2019-04-04 14:56:16&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=nLbPMUGrKaP4Eh%2bBJC%2fVuuK3RqxQypXpoxIz9ILBZXt0qocSappHtwEQAiH63tQuTLuhLJuCnIdkjyvuKk4I%2bxLhCSrw4IzbW5OBlGQDZLuvLJV8kJLG4ysFfv5BIKKBZdHarUQLfb5R5XFyS9QHNa4o4l459Tf%2ffFJqtjNX27E%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041456167552</ReqJnlNo>
+		<ResJnlNo>3989303</ResJnlNo>
+		<ResTime>2019-04-04 14:58:01</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041456167396</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.67</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-04-04 14:56:18.1280|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041456174416&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201904041456174572&ReqTime=2019-04-04 14:56:17&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190404&TrsType=0&UserId=tlzfsh&Sign=piCIVNHcDAQ6n6Dt%2bd5TlVV3DHEqFNKLR0D%2fnsmyOP1Chv9SjE3m0qWpuFrUMTpAhU6PRdnk4R5SXb72PZPvTttrtXOL5DE8InNsAY%2flYtKi6pTl7dOdBxUM65RRsf0CbTffgUGGV6hjG8yEX3LNxUAAQ7iijyi4%2bO8zgnCp5Fg%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041456174572</ReqJnlNo>
+		<ResJnlNo>3989304</ResJnlNo>
+		<ResTime>2019-04-04 14:58:02</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041456174416</CoPatrnerJnlNo>
+		<EbankJnlNo>3989304</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-04-04 14:58:02</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f35023696</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-04-04 14:56:18.7384|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201904041456181592&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201904041456181748&ReqTime=2019-04-04 14:56:18&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190404&UserId=tlzfsh&Sign=Uprm1YxWhqAMoTVtsu9oC4xNCCT3%2f%2f%2f4YIQzA%2bRW9q9I87RqiMj0wlBkz6VQWv6JxkgBVptM4BVabX810WeJIPN5vMIJ5iV0eV%2fRWd0k7j%2fBhwaNYkdSXTZlJnentQiqfxbIoW3iDh21PCX8lm9m2l39f8DaH00moe4Ayccfd2o%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201904041456181748</ReqJnlNo>
+		<ResJnlNo>3989305</ResJnlNo>
+		<ResTime>2019-04-04 14:58:02</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201904041456181592</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.68</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:

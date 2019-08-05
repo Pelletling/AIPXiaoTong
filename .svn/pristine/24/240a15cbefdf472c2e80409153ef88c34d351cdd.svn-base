@@ -1,0 +1,34 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class AdvertisingManagementService:BusinessService<AdvertisingManagement>, IAdvertisingManagementService
+    {
+        public override Expression<Func<AdvertisingManagement, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<AdvertisingManagement, bool>> express = DynamicExpressions.True<AdvertisingManagement>();
+
+            var m = model as AdvertisingManagementQM;
+
+            if (m.ProjectManagementID != null)
+            {
+                express = express.AndAlso(t => t.ProjectManagementID == m.ProjectManagementID);
+            }
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+
+            return express;
+        }
+
+    }
+}

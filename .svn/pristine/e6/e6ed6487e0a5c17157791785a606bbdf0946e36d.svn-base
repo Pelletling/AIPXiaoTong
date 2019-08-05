@@ -1,0 +1,29 @@
+﻿<configuration>
+  <configSections>
+    <section name="unity" type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection, Microsoft.Practices.Unity.Configuration"/>
+  </configSections>
+  <unity>
+    <sectionExtension type="Microsoft.Practices.Unity.InterceptionExtension.Configuration.InterceptionConfigurationExtension, Microsoft.Practices.Unity.Interception.Configuration"/>
+
+   
+    <containers>
+      <container name="Container">
+        <extension type="Interception"/>
+
+        <register type="System.Data.Entity.DbContext, EntityFramework" mapTo="AIPXiaoTong.Model.AIPXiaoTongDb, AIPXiaoTong.Model"/>
+        
+        <register type="AIPXiaoTong.IService.IUserService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.UserService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IRoleService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.RoleService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IDepartmentService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.DepartmentService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IMenuService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.MenuService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IMenuActionService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.MenuActionService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IMerchantService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.MerchantService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeMenuActionService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeMenuActionService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IEmployeeMenuService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.EmployeeMenuService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IPreferencesService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.PreferencesService, AIPXiaoTong.Service"/>
+        <register type="AIPXiaoTong.IService.IDistrictManagementService,AIPXiaoTong.IService" mapTo="AIPXiaoTong.Service.DistrictManagementService, AIPXiaoTong.Service"/>
+      </container>
+    </containers>
+  </unity>
+</configuration>

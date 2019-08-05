@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class HouseTypeShowCM : BaseCreateModel
+    {
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Display(Name = "项目名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long? ProjectManagementID { get; set; }
+        /// <summary>
+        /// 户型名称(对应外键)
+        /// </summary>
+        [Display(Name = "户型名称")]
+        [Required(ErrorMessage = "{0}不能为空")]
+
+        public long? HouseTypeNameID { get; set; }
+
+        /// <summary>
+        /// 户型面积
+        /// </summary>
+        [Display(Name = "户型面积")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public decimal? HouseTypeArea { get; set; }
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        [Display(Name = "描述")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(100, ErrorMessage = "{0}不能多于100字")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 户型缩略图
+        /// </summary>
+        [Display(Name = "户型缩略图")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string HouseThumbnailImage { get; set; }
+
+        /// <summary>
+        /// 户型展示图
+        /// </summary>
+        [Display(Name = "户型展示图")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string HouseShowImage { get; set; }
+
+        /// <summary>
+        /// 内容
+        /// </summary>
+        [Display(Name = "内容")]
+        [MinLength(2, ErrorMessage = "{0}不能少于2位")]
+        public string Content { get; set; }
+    }
+}

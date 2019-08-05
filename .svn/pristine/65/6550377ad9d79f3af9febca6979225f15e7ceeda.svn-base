@@ -1,0 +1,101 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class OrderBooking : BaseEntity
+    {
+        [Display(Name = "商户ID")]
+        public long? MerchantID { get; set; }
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        [Display(Name = "订单编号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        [Display(Name = "项目ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long ProjectManagementID { get; set; }
+
+        /// <summary>
+        /// 设备编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "设备编号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string EquipmentNumber { get; set; }
+
+        /// <summary>
+        /// 操作人员（外键ID）
+        /// </summary>
+        /// <summary>
+        [Display(Name = "员工ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public long EmployeeID { get; set; }
+
+        /// <summary>
+        /// 客户姓名
+        /// </summary>
+        [Display(Name = "客户姓名")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string CustomerName { get; set; }
+
+        /// <summary>
+        /// 手机
+        /// </summary>
+        [Display(Name = "手机")]
+        [MinLength(11, ErrorMessage = "{0}必须是11位数字")]
+        [MaxLength(11, ErrorMessage = "{0}必须是11位数字")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 身份证
+        /// </summary>
+        [Display(Name = "身份证")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string IDNumber { get; set; }
+
+        /// <summary>
+        /// 预约时间
+        /// </summary>
+        [Display(Name = "预约时间")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public DateTime OrderTime { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50位")]
+        public string Remark { get; set; }
+
+        //-------------------------------------------------------------
+        public virtual Merchant Merchant { get; set; }
+        public virtual ProjectManagement ProjectManagement { get; set; }
+        public virtual Employee Employee { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjectName { get { return ProjectManagement?.ProjetName; } }
+
+        /// <summary>
+        /// 操作人员名字
+        /// </summary>
+        public string EmployeeName { get { return Employee?.Name; } }
+    }
+}

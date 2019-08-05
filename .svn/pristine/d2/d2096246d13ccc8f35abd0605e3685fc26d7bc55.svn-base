@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryOrderBookingDetailResponse : BaseResponse
+    {
+        private string _ordernumber { get; set; }
+        private string _orderbookingid { get; set; }
+        private string _merchantname { get; set; }
+        private string _projectname { get; set; }
+        private string _equipmentnumber { get; set; }
+        private string _membername { get; set; }
+        private string _membermobile { get; set; }
+        private string _memberidnumber { get; set; }
+
+        private string _ordertime { get; set; }
+        private string _remark { get; set; }
+        private string _employeename { get; set; }
+
+
+
+
+        //------------------------------------------------------------
+
+        public string ordernumber { get { return !string.IsNullOrWhiteSpace(_ordernumber) ? _ordernumber : ""; } set { _ordernumber = value; } }
+        public string orderbookingid { get { return !string.IsNullOrWhiteSpace(_orderbookingid) ? _orderbookingid : ""; } set { _orderbookingid = value; } }
+        public string merchantname { get { return !string.IsNullOrWhiteSpace(_merchantname) ? _merchantname : ""; } set { _merchantname = value; } }
+        public string projectname { get { return !string.IsNullOrWhiteSpace(_projectname) ? _projectname : ""; } set { _projectname = value; } }
+        public string equipmentnumber { get { return !string.IsNullOrWhiteSpace(_equipmentnumber) ? _equipmentnumber : ""; } set { _equipmentnumber = value; } }
+        public string membername { get { return !string.IsNullOrWhiteSpace(_membername) ? _membername : ""; } set { _membername = value; } }
+        public string membermobile { get { return !string.IsNullOrWhiteSpace(_membermobile) ? _membermobile : ""; } set { _membermobile = value; } }
+        public string memberidnumber { get { return !string.IsNullOrWhiteSpace(_memberidnumber) ? _memberidnumber : ""; } set { _memberidnumber = value; } }
+
+        public string ordertime { get { return !string.IsNullOrWhiteSpace(_ordertime) ? _ordertime : ""; } set { _ordertime = value; } }
+        public string remark { get { return !string.IsNullOrWhiteSpace(_remark) ? _remark : ""; } set { _remark = value; } }
+        public string employeename { get { return !string.IsNullOrWhiteSpace(_employeename) ? _employeename : ""; } set { _employeename = value; } }
+       
+    }
+}

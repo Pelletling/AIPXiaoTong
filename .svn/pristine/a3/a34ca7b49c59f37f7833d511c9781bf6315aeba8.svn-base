@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA0332E7-8424-444D-A9E5-575469582244}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AIPXiaoTong.IService</RootNamespace>
+    <AssemblyName>AIPXiaoTong.IService</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IAreaGuangDaService.cs" />
+    <Compile Include="IBankService.cs" />
+    <Compile Include="IAreaService.cs" />
+    <Compile Include="IBankCardService.cs" />
+    <Compile Include="IBaseService.cs" />
+    <Compile Include="IBusinessService.cs" />
+    <Compile Include="IGuangDaAPIService.cs" />
+    <Compile Include="IEmployeeDepartmentService.cs" />
+    <Compile Include="IEmployeeService.cs" />
+    <Compile Include="IEmployeeMenuActionService.cs" />
+    <Compile Include="IEmployeeMenuService.cs" />
+    <Compile Include="IEquipmentService.cs" />
+    <Compile Include="IHouseTypeShowService.cs" />
+    <Compile Include="IMemberBalanceHistoryService.cs" />
+    <Compile Include="IMemberService.cs" />
+    <Compile Include="IMerchantService.cs" />
+    <Compile Include="IDepartmentService.cs" />
+    <Compile Include="IMenuActionService.cs" />
+    <Compile Include="IMenuService.cs" />
+    <Compile Include="IEmployeeRoleService.cs" />
+    <Compile Include="IOrderBookingService.cs" />
+    <Compile Include="IOrderHousePaymentService.cs" />
+    <Compile Include="IOrderPaidWithdrawService.cs" />
+    <Compile Include="IOrderPaidUnFreezeService.cs" />
+    <Compile Include="IOrderPaidFreezeService.cs" />
+    <Compile Include="IOrderPaidRechargeService.cs" />
+    <Compile Include="IOrderPaidService.cs" />
+    <Compile Include="IPreferencesService.cs" />
+    <Compile Include="IProceedsTypeService.cs" />
+    <Compile Include="IProjectService.cs" />
+    <Compile Include="IRoleService.cs" />
+    <Compile Include="ITltService.cs" />
+    <Compile Include="IUserService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIPXiaoTong.Model\AIPXiaoTong.Model.csproj">
+      <Project>{be8370dd-449d-445e-b3ee-45ec31bf054e}</Project>
+      <Name>AIPXiaoTong.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\API\TltApi\TltApi.csproj">
+      <Project>{73f068c5-b55b-4523-a8e2-fd36091ce357}</Project>
+      <Name>TltApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{1bf16a4f-aa2d-4328-b624-9a5382b52575}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GuangDaAPI\GuangDaAPI.csproj">
+      <Project>{95a0e9a0-7cf0-4eeb-bf58-828209d8b06d}</Project>
+      <Name>GuangDaAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

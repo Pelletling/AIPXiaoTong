@@ -1,0 +1,40 @@
+﻿@using AIPXiaoTong.Model;
+@using AIPXiaoTong.Model.Admin;
+@{
+   
+}
+@model EmployeeCM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">编号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+               @Model.Code
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">姓名：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Model.Name
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">手机：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Model.Mobile
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">邮箱：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Model.Email
+            </div>
+        </div>
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+

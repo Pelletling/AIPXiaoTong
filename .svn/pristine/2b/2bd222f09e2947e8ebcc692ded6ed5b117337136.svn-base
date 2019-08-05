@@ -1,0 +1,23 @@
+﻿@{
+
+}
+
+
+<div class="page-container">
+    @*<div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {        
+                        
+            @Html.Partial("_Query")
+        }
+    </div>*@
+    <div id="resultList">
+        @*@Html.Partial("Grid")*@
+    </div>
+</div>
+
+
+
+
+
+

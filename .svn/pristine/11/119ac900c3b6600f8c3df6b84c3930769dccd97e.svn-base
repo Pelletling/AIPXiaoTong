@@ -1,0 +1,49 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class OrderBookingController : BaseController
+    {
+        private IOrderBookingService iOrderBookingService;
+        private IEmployeeService iEmployeeService;
+        private IMerchantService iMerchantService;
+
+        public OrderBookingController(IOrderBookingService iOrderBookingService,
+                                       IEmployeeService iEmployeeService,
+                                       IMerchantService iMerchantService)
+        {
+            this.iOrderBookingService = iOrderBookingService;
+            this.iMerchantService = iMerchantService;
+            this.iEmployeeService = iEmployeeService;
+        }
+
+
+        public ActionResult Index(OrderBookingQM model)
+        {
+            var list = this.iOrderBookingService.GetListModel<OrderBookingLM, OrderBookingQM>(model);
+
+            BindData();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            ViewBag.merInfo = iMerchantService.Get(empInfo.MerchantID);
+        }
+    }
+}

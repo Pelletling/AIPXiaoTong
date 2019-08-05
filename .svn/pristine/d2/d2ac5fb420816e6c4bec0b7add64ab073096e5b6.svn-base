@@ -1,0 +1,43 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectManagementList = ViewBag.ProjectManagementList as List<ProjectManagementLM>;
+}
+
+<div class="page-container">
+    <div class="text-c">
+        @using (Ajax.BeginForm("Index", new RouteValueDictionary { { "id", "" } }, new AjaxOptions() { UpdateTargetId = "resultList", }, new RouteValueDictionary { { "id", "searchForm" } }))
+        {
+            <label>项目名称:</label>
+            <span class="select-box inline">
+                <select id="ProjectManagementID" name="ProjectManagementID" style="width:100px;" class="select">
+                    <option value=""></option>
+                    @for (int i = 0; i < projectManagementList.Count; i++)
+                    {
+                        if (projectManagementList[i].MerchantID == merInfo.ID)
+                        {
+                            <option value="@projectManagementList[i].ID">@projectManagementList[i].ProjetName</option>
+                        }
+                    }
+                </select>
+            </span>
+            <label>广告状态:</label>
+            <span class="select-box inline">
+                <select id="Status" name="Status" style="width:80px;" class="select">
+                    <option value=""></option>
+                    <option value="1">已发布</option>
+                    <option value="0">未发布</option>
+                </select>
+            </span>
+            @Html.Partial("_Query")
+        }
+    </div>
+    <div id="resultList">
+        @Html.Partial("Grid")
+    </div>
+</div>
+
+
+

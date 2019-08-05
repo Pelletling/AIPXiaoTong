@@ -1,0 +1,67 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class OrderBookingService : BusinessService<OrderBooking>, IOrderBookingService
+    {
+        public override Expression<Func<OrderBooking, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<OrderBooking, bool>> express = DynamicExpressions.True<OrderBooking>();
+
+            var m = model as OrderBookingQM;
+
+            if (!string.IsNullOrWhiteSpace(m.OrderNumber))
+            {
+                express = express.AndAlso(t => t.OrderNumber==m.OrderNumber.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(m.OrderName))
+            {
+                express = express.AndAlso(t => t.OrderName == m.OrderName.Trim());
+            }
+
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+            if (currentUser.MerchantID != 0)
+            {
+                express = express.AndAlso(t => t.Merchant.ID == currentUser.MerchantID);
+            }
+
+            return express;
+        }
+
+        public List<OrderBookingEM> Export(OrderBookingQM model)
+        {
+            if (model == null) model = new OrderBookingQM();
+
+            var express = GetExpress(model);
+
+            var list = Gets(express).Select(t => new OrderBookingEM()
+            {
+                OrderNumber = t.OrderNumber,
+                EquipmentSNNo = t.EquipmentSNNo,
+                EmployeeName = t.Employee.Name,
+                MemberName=t.OrderName,
+                MemberMobile=t.OrderMobile,
+                MemberIDNumber=t.Member.IDNumber,
+                OrderTime = t.OrderTime,
+                ProjectName = t.Project.ProjetName,
+                MerchantName = t.Merchant.Name,
+
+            }).ToList();
+
+            return list;
+        }
+    }
+}

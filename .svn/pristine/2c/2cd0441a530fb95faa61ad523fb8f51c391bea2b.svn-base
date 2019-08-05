@@ -1,0 +1,80 @@
+﻿
+@using Webdiyer.WebControls.Mvc;
+@using Framework.Common;
+@using AIPXiaoTong.Model.Admin;
+@using Framework.Models;
+@using AIPXiaoTong.Model;
+
+@{
+
+}
+
+@model PagedList<OrderBookingLM>
+
+@Html.Partial("_Grid", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+<div class="mt-20">
+    <div class="dataTables_wrapper no-footer table-scroll">
+        <table class="table table-border table-bordered table-bg table-hover table-sort dataTable no-footer table-word-break" id="resultTable">
+            <thead>
+                <tr class="text-c" role="row">
+                    <th><input type="checkbox" id="checkAll" onclick="checkall();"></th>
+                    <th>操作</th>
+                    <th>序号</th>
+                    <th>订单编号</th>
+                    <th>项目名称</th>
+                    <th>设备SN号</th>
+                    <th>操作员</th>
+                    <th>客户姓名</th>
+                    <th>手机号码</th>
+                    <th>预约时间</th>
+                    <th>备注</th>
+                    <th>创建时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        var m = Model[i] as OrderBookingLM;
+
+                        <tr class="text-c odd" role="row" id="tr_@m.ID">
+                            <td><input type="checkbox" data-name="checkbox" value="@m.ID" id="chk_@m.ID" name="chkIDs"></td>
+                            <td class="f-14 td-manage">
+                                @Html.Partial("_Edit", new EntityModel() { ID = m.ID })
+                            </td>
+                            <td class="sorting_1">@((Model.PageSize * (Model.CurrentPageIndex - 1)) + i + 1)</td>
+                            <td>@m.OrderNumber</td>
+                            <td>@m.ProjectName</td>
+                            <td>@m.EquipmentSNNo</td>
+                            <td>@m.EmployeeName</td>
+                            <td>@m.OrderName</td>
+                            <td>@m.OrderMobile</td>
+                            <td>@m.OrderTime</td>
+                            <td>@m.Remark</td>
+                            <td>@m.CreateDatetime</td>
+                        </tr>
+
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("Pager", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

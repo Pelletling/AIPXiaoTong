@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryOrderBookingResponse : BaseResponse
+    {
+        private string _ordernumber { get; set; }
+        private string _orderbookingid { get; set; }
+
+
+        public string ordernumber { get { return !string.IsNullOrWhiteSpace(_ordernumber) ? _ordernumber : ""; } set { _ordernumber = value; } }
+        public string orderbookingid { get { return !string.IsNullOrWhiteSpace(_orderbookingid) ? _orderbookingid : ""; } set { _orderbookingid = value; } }
+    }
+}

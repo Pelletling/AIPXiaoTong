@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class AccountPingAn : BaseEntity
+    {
+        /// <summary>
+        /// 会员ID
+        /// </summary>
+        [Display(Name = "会员ID")]
+        [Index(IsUnique = true)]
+        public long MemberID { get; set; }
+
+        /// <summary>
+        /// 手机号码
+        /// </summary>
+        [Display(Name = "手机号码")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "{0}必须是11位")]
+        public string Mobile { get; set; }
+
+
+        /// <summary>
+        /// 身份证-过期日期
+        /// </summary>
+        [Display(Name = "身份证-过期日期")]
+        public DateTime? IdExpiredDate { get; set; }
+
+        /// <summary>
+        /// 身份证照片(正面)
+        /// </summary>
+        [Display(Name = "身份证照片（正面）")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string IDImageFront { get; set; }
+
+        /// <summary>
+        /// 身份证照片(反面)
+        /// </summary>
+        [Display(Name = "身份证照片(反面)")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string IDImageOpposite { get; set; }
+
+        /// <summary>
+        /// 银行卡号(平安卡号)
+        /// </summary>
+        [Display(Name = "银行卡号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        //[Index(IsUnique = true)]
+        public string BankCardNumber { get; set; }
+
+        /// <summary>
+        /// 转出银行卡号
+        /// </summary>
+        [Display(Name = "转出银行卡号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string OutCardNo { get; set; }
+
+        /// <summary>
+        /// 可用余额
+        /// </summary>
+        public decimal Balance { get; set; }
+
+        /// <summary>
+        /// 冻结余额
+        /// </summary>
+        public decimal FreezeBalance { get; set; }
+
+        //------------------------------------------------------------
+        public virtual Member Member { get; set; }
+    }
+}

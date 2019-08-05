@@ -1,0 +1,40 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using Framework.LambdaExpression;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Service
+{
+    public class HouseTypeShowService : BusinessService<HouseTypeShow>, IHouseTypeShowService
+    {
+        public override Expression<Func<HouseTypeShow, bool>> GetExpress<QM>(QM model)
+        {
+            Expression<Func<HouseTypeShow, bool>> express = DynamicExpressions.True<HouseTypeShow>();
+
+            var m = model as HouseTypeShowQM;
+
+            if (m.ProjectManagementID != null)
+            {
+                express = express.AndAlso(t => t.ProjectManagementID == m.ProjectManagementID);
+            }
+
+            if (m.HouseTypeNameID != null)
+            {
+                express = express.AndAlso(t => t.HouseTypeNameID == m.HouseTypeNameID);
+            }
+
+            if (m.Status != null)
+            {
+                express = express.AndAlso(t => t.Status == m.Status);
+            }
+
+            return express;
+        }
+
+    }
+}

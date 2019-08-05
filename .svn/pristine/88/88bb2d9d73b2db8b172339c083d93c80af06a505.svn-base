@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class BankCardBindingRequst:BaseRequest
+    {
+        [Display(Name = "会员ID")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string memberid { get; set; }
+
+        /// <summary>
+        /// 银行卡号
+        /// </summary>
+        [Display(Name = "银行卡号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string bankcardnumber { get; set; }
+
+        /// <summary>
+        /// 银行名
+        /// </summary>
+        [Display(Name = "银行名")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string bankname { get; set; }
+
+        /// <summary>
+        /// 银行网点名称
+        /// </summary>
+        [Display(Name = "银行网点名称")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string subbranchname { get; set; }
+    }
+}

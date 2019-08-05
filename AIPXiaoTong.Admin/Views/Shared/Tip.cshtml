@@ -1,0 +1,35 @@
+﻿@using Framework.Models;
+@{
+    Layout = null;
+
+  
+
+    var displaySuccess= TempData["DisplaySuccess"] as string;
+   
+
+    var displayError = TempData["DisplayError"] as string;
+   
+
+}
+  
+
+
+<script>
+
+    $(function () {
+        //成功信息-刷新-layer
+        @if(!string.IsNullOrWhiteSpace(displaySuccess))
+        {
+            @:alertSuccess();
+        }
+
+        //错误信息-刷新-layer
+        @if(!string.IsNullOrWhiteSpace(displayError))
+        {
+            @:alertError('@displayError.Replace("\r","").Replace("\n","")');
+        }
+    });
+</script>
+
+
+    

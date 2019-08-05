@@ -1,0 +1,114 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo;
+    var districtNameList = ViewBag.DistrictNameList as List<DistrictManagementLM>;
+}
+@model ProjectManagementCM
+
+<script src="~/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目图片：</label>
+            <div class="formControls col-xs-3 col-sm-3">
+                @Html.Hidden("ProjectImage", Model.ProjectImage)
+                <img id="ProjectImage" src="@(GlobalConfig.WebConfig.SiteImageUrl + Model.ProjectImage)" layer-src="@(GlobalConfig.WebConfig.SiteImageUrl + Model.ProjectImage)" width="120" height="120" />
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"></label>
+            <div class="formControls col-xs-3 col-sm-3">
+                <input type="button" id="uploadProjectImage" name="uploadProjectImage" data-iamgeid="ProjectImage" data-imagepath="ProjectImage">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">项目所在区域：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.DistrictManagementID, districtNameList.Where(f => f.MerchantID == merInfo.ID).OrderBy(t => t.DistrictName).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.DistrictName }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.DistrictManagementID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.ProjetName, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.ProjetName)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>截止日期：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Deadline, new { @class = "input-text", placeholder = "", @onfocus = "WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd' })", Value = Model.Deadline.ToString() != "0001/1/1 0:00:00" ? Model.Deadline.ToString("yyyy-MM-dd") : "" })
+                @Html.ValidationMessageFor(t => t.Deadline)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目金额：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.ProjectAmount, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.ProjectAmount)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">剩余认筹额度：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.ResidueAmount, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.ResidueAmount)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">简短描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Description, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Description)
+            </div>
+        </div>
+
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+
+    </form>
+</div>
+
+<script>
+    $(function () {
+
+        $("#uploadProjectImage").uploadifive({
+            'fileSizeLimit': 1024,
+            'fileType': '*.*',
+            'width': '90',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传图片',
+            'auto': true,
+            'uploadScript': '/ProjectManagement/UploadFile',
+
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#ProjectImage").val(json.Path);
+                }
+            }
+        });
+    });
+
+</script>
+
+

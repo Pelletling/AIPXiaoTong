@@ -1,0 +1,98 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class HouseTypeNameController : BaseController
+    {
+        private IHouseTypeNameService iHouseTypeNameService;
+        private IEmployeeService iEmployeeService;
+
+        public HouseTypeNameController(IHouseTypeNameService iHouseTypeNameService,
+                                        IEmployeeService iEmployeeService)
+        {
+            this.iHouseTypeNameService = iHouseTypeNameService;
+            this.iEmployeeService = iEmployeeService;
+        }
+
+        public ActionResult Index(HouseTypeNameQM model)
+        {
+            var list = this.iHouseTypeNameService.GetListModel<HouseTypeNameLM, HouseTypeNameQM>(model);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+            else
+            {
+                BindData();
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+
+        }
+
+
+        public ActionResult Create(long? ID = null)
+        {
+            var model = iHouseTypeNameService.GetViewModel<HouseTypeNameCM>(ID);
+
+            BindData();
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Create(HouseTypeNameCM m)
+        {
+            var entity = iHouseTypeNameService.Get(m.ID) ?? new HouseTypeName();
+
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    entity.MerchantID = empInfo.MerchantID;
+                    entity.Name = m.Name;
+                    entity.Remark = m.Remark;
+
+                    iHouseTypeNameService.Save(entity);
+                    iHouseTypeNameService.Commit();
+
+                    this.ShowTip();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                this.AddError(ErrorCode.Exception, ex.Message);
+            }
+
+            return RedirectToAction("Create", new { ID = entity.ID });
+        }
+
+        public JsonResult CodeIsExists(long ID, string Name)
+        {
+            return Json(!iHouseTypeNameService.Exists(t => t.ID != ID && t.Name == Name.Trim()), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Delete(long ID)
+        {
+            var result = iHouseTypeNameService.AjaxDelete(ID);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

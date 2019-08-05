@@ -1,0 +1,168 @@
+﻿
+@using AIPXiaoTong.Model.Admin;
+@using AIPXiaoTong.Model;
+
+@{
+    var merInfo = ViewBag.merInfo as Merchant;
+    var projectList = ViewBag.ProjectList as List<ProjectLM>;
+    var merchantList = ViewBag.MerchantList as List<MerchantLM>;
+}
+@model HouseTypeShowCM
+
+<script src="~/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.MerchantID, merchantList.OrderBy(t => t.Name).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.Name }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.MerchantID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.ProjectID, projectList.Where(f => f.MerchantID == merInfo.ID).OrderBy(t => t.ProjetName).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.ProjetName }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.ProjectID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>户型名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.HouseTypeName, new { @class = "input-text", placeholder = "户型名称" })
+                @Html.ValidationMessageFor(t => t.HouseTypeName)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>户型面积：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.HouseTypeArea, new { @class = "input-text", placeholder = "两位小数，单位为m²", @onkeyup = "num(this)" })
+                @Html.ValidationMessageFor(t => t.HouseTypeArea)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Description, new { @class = "input-text", placeholder = "100字以内" })
+                @Html.ValidationMessageFor(t => t.Description)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>户型缩略图：</label>
+            <div class="formControls col-xs-3 col-sm-1">
+                @Html.Hidden("HouseThumbnailImage", Model.HouseThumbnailImage)
+                <input type="button" id="uploadHouseThumbnailImage" name="uploadHouseThumbnailImage" data-iamgeid="HouseThumbnailImage" data-imagepath="HouseThumbnailImage">
+            </div>
+            <label class="form-label col-xs-4 col-sm-3" style="color:red;text-align:left;"> 仅支持图片格式为jpg或png，建议图片长宽比例4:3</label>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">户型展示：</label>
+            <div class="formControls col-xs-3 col-sm-1" id="HouseShowImage">
+                <input type="button" id="uploadHouseShowImage" name="uploadHouseShowImage" data-iamgeid="HouseShowImage" data-imagepath="HouseShowImage">
+            </div>
+            <label class="form-label col-xs-5 col-sm-4" style="color:red;text-align:left;"> 最多可上传5张，仅支持图片格式为jpg或png，建议图片长宽比例4:3</label>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">内容：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <script id="Content" name="Content" type="text/plain">
+                    @Html.Raw(Model.Content)
+                </script>
+            </div>
+        </div>
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+    </form>
+</div>
+
+<script>
+
+    $(function () {
+        $("#uploadHouseThumbnailImage").uploadifive({  //户型缩略图
+            'fileSizeLimit': 1024,
+            'fileType': '*.*',
+            'width': '90',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传文件',
+            'auto': true,
+            'uploadScript': '/HouseTypeShow/UploadHouseThumbnailImage',
+
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    $("#HouseThumbnailImage").val(json.Path);
+                }
+            }
+        });
+
+        $("#uploadHouseShowImage").uploadifive({   //户型展示
+            'fileSizeLimit': 1024,
+            'fileType': '*.*',
+            'width': '90',
+            'buttonClass': 'btn btn-primary radio',
+            'buttonText': '上传文件',
+            'auto': true,
+            'uploadScript': '/HouseTypeShow/UploadHouseShowImage',
+
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                alert(errorCode + ',' + errorMsg + ',' + errorString);
+            },
+            'onUploadComplete': function (file, data) {
+                var json = JSON.parse(data);
+                if (json.Msg != "") {
+                    alert(json.Msg);
+                }
+                else {
+                    //$("#HouseShowImageList").val(json.Path);
+                    $("#HouseShowImage").append('<input type="hidden" name="HouseShowImageList" value="' + json.Path + '" />');
+                }
+            }
+        });
+
+
+        var editorOption = {
+            initialFrameHeight: 300,   //设置初始化高度
+        }
+        var editor = new baidu.editor.ui.Editor(editorOption);
+        editor.render('Content');
+
+        var ue = UE.getEditor("Content");
+
+    });
+
+
+    function num(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, ""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g, ""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        // obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
+    }
+
+</script>
+
+
+
+
+
+

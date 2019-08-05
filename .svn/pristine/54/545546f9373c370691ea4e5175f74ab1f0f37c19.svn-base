@@ -1,0 +1,40 @@
+﻿@using AIPXiaoTong.Model;
+@using AIPXiaoTong.Model.Site;
+@{
+    var DepartmentList = ViewBag.DepartmentList as List<EmployeeDepartmentLM>;
+    var merInfo = ViewBag.merInfo as Merchant;
+}
+@model EmployeeDepartmentCM
+
+
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">上级部门：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.ParentID, DepartmentList.Where(t => t.ID != Model.ID && t.MerchantID==merInfo.ID).OrderBy(t => t.LevelCode).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.OrderByName }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.ParentID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Name, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.Name)
+            </div>
+        </div>
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+    </form>
+</div>
+
+
+
+
+

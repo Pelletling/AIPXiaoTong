@@ -1,0 +1,137 @@
+﻿using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class OrderPaid : BaseEntity
+    {
+        public long? MerchantID { get; set; }
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "订单编号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// 项目名称(对应外键)
+        /// </summary>
+        public long? ProjectManagementID { get; set; }
+
+        /// <summary>
+        /// 设备编号
+        /// </summary>
+        /// <summary>
+        [Display(Name = "设备编号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string EquipmentNumber { get; set; }
+
+        /// <summary>
+        /// 操作员
+        /// </summary>
+        /// <summary>
+        [Display(Name = "操作员")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string Operator { get; set; }
+
+
+        /// <summary>
+        /// 交易金额
+        /// </summary>
+        [Display(Name = "交易金额")]
+        public decimal TransactionAmount { get; set; }
+
+        /// <summary>
+        /// 流水号
+        /// </summary>
+        [Display(Name = "流水号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// 客户姓名
+        /// </summary>
+        [Display(Name = "客户姓名")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        [Required(ErrorMessage = "{0}不能为空")]
+        public string CustomerName { get; set; }
+
+        /// <summary>
+        /// 手机
+        /// </summary>
+        [Display(Name = "手机")]
+        [MinLength(11, ErrorMessage = "{0}必须是11位数字")]
+        [MaxLength(11, ErrorMessage = "{0}必须是11位数字")]
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 付款状态
+        /// </summary>
+        [Display(Name = "付款状态")]
+        public int PaymentStatus { get; set; }
+
+        /// <summary>
+        /// 支付类型
+        /// </summary>
+        [Display(Name = "支付类型")]
+        public int PaymentType { get; set; }
+
+        /// <summary>
+        /// 身份证
+        /// </summary>
+        [Display(Name = "身份证")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string IDNumber { get; set; }
+
+        /// <summary>
+        /// 交易卡号
+        /// </summary>
+        [Display(Name = "交易卡号")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string BankCardNumber { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Display(Name = "备注")]
+        [MaxLength(50, ErrorMessage = "{0}不能多于50位")]
+        public string Remark { get; set; }
+
+        //-------------------------------------------------------------------------------
+        public virtual Merchant Merchant { get; set; }
+
+        public virtual ProjectManagement ProjectManagement { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjectName { get { return ProjectManagement?.ProjetName; } }
+
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public string StatusDesc { get { return ((OrderStatusEnum)Status).ToDescription(); } }
+
+        /// <summary>
+        /// 支付类型
+        /// </summary>
+        public string PaymentTypeDesc { get { return ((PaymentTypeEnum)PaymentType).ToDescription(); } }
+
+        /// <summary>
+        /// 付款状态
+        /// </summary>
+        public string PaymentStatusDesc { get { return ((PaymentStatusEnum)PaymentStatus).ToDescription(); } }
+
+    }
+}

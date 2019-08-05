@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model
+{
+    public class Member : BaseEntity
+    {
+        /// <summary>
+        /// 银行卡ID（对应 BankCard的ID）
+        /// </summary>
+      //  [Display(Name = "银行卡ID")]
+       // [Required(ErrorMessage = "{0}不能为空")]
+       // public long BankCardID { get; set; }
+
+        /// <summary>
+        /// 会员名
+        /// </summary>
+        [Display(Name = "会员名")]
+        [Required(ErrorMessage = "{0}不能为空")]      
+        [MaxLength(16, ErrorMessage = "{0}不能多于16位")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 身份证
+        /// </summary>
+        [Display(Name = "身份证")]
+        [MaxLength(32, ErrorMessage = "{0}不能多于32位")]
+        public string IDNumber { get; set; }
+
+        /// <summary>
+        /// 手机号码
+        /// </summary>
+        [Required(ErrorMessage = "{0}不能为空")]
+        [Display(Name = "手机号码")]
+        [MaxLength(16, ErrorMessage = "{0}不能多于16位")]
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 联系地址(8-30个汉字)
+        /// </summary>
+        [Display(Name = "联系地址")]
+        [MaxLength(30, ErrorMessage = "{0}不能多于30位")]
+        [MinLength(8, ErrorMessage = "{0}不能少于8位")]
+        public string CifAddr { get; set; }
+
+        /// <summary>
+        /// 接入方客户标识号（在同UserId下，同一套客户信息只有一个标识号）
+        /// </summary>
+        [Display(Name = "客户唯一标识")]
+        [MaxLength(36, ErrorMessage = "{0}不能多于30位")]
+        public string CifClientId { get; set; }   //guid
+
+        /// <summary>
+        /// 客户英文名称(三个字母以上,最长40)
+        /// </summary>
+        [Display(Name = "客户英文名")]
+        [MaxLength(40, ErrorMessage = "{0}不能多于40位")]
+        [MinLength(3, ErrorMessage = "{0}不能少于3位")]
+        public string CifEnName { get; set; }
+
+        /// <summary>
+        /// 证件有效期
+        /// </summary>
+        [Display(Name = "证件有效期")]
+        public string CifIdExpiredDate { get; set; }
+
+        /// <summary>
+        /// 邮编
+        /// </summary>
+        [Display(Name = "邮编")]
+        public string CifPostCode { get; set; }
+
+        /// <summary>
+        /// 客户所在省份代号（机构号由光大线下提供）
+        /// </summary>
+        [Display(Name = "客户所在省份")]
+        public string ProvinceCode { get; set; }
+
+        /// <summary>
+        /// 客户所在城市代号（机构号由光大线下提供）
+        /// </summary>
+        [Display(Name = "客户所在城市")]
+        public string CityCode { get; set; }
+
+        /// <summary>
+        /// 银行卡预留手机号
+        /// </summary>
+        [Display(Name = "银行卡预留手机号")]
+        [MaxLength(11, ErrorMessage = "{0}不能多于11位")]
+        [MinLength(11, ErrorMessage = "{0}不能少于11位")]
+        public string BankCardPhoneCode { get; set; }
+
+        /// <summary>
+        /// 身份证照片(正面)
+        /// </summary>
+        [Display(Name = "身份证照片（正面）")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string IDImageFront { get; set; }
+
+        /// <summary>
+        /// 身份证照片(反面)
+        /// </summary>
+        [Display(Name = "身份证照片(反面)")]
+        [MaxLength(128, ErrorMessage = "{0}不能多于128位")]
+        public string IDImageOpposite { get; set; }
+
+
+        //---------------------------------------------------------------------------
+
+        // public virtual BankCard BankCard { get; set; }
+
+
+    }
+}

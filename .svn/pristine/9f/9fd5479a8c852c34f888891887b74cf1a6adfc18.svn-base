@@ -1,0 +1,29 @@
+﻿
+@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+
+@{
+
+
+}
+
+
+
+<div class="page-container">
+    <div class="text-c">
+        <text id="txt" style="color:red; font-size:36px;"></text>
+        <input type="button" name="name" value="chou"  id="cj" class="btn btn-primary" style="margin-top:500px;"/>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#cj").click(function () {
+            var x = 92;  //上限
+            var y = 90;  //下限
+            var rand = Math.floor(Math.random() * (x - y + 1) + y);  
+            $("#txt").html(rand);
+        });
+    });
+
+</script>

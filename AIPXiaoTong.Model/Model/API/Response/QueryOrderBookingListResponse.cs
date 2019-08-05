@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.API
+{
+    public class QueryOrderBookingListResponse : BaseResponse
+    {
+        public int pagecount { get; set; }
+        public int pageindex { get; set; }
+        public int pagesize { get; set; }
+        public List<OrderBookingList> orderbookinglist { get; set; }
+
+
+        public class OrderBookingList
+        {
+
+            public string orderbookingid { get; set; }
+            public string merchantid { get; set; }
+            public string merchantname { get; set; }
+            /// <summary>
+            /// 订单编号
+            /// </summary>
+            /// <summary>
+            public string ordernumber { get; set; }
+
+            public string projectid { get; set; }
+            /// <summary>
+            /// 项目名称
+            /// </summary>
+            public string projectname { get; set; }
+
+            /// <summary>
+            /// 设备编号
+            /// </summary>
+            /// <summary>
+            public string equipmentsnno { get; set; }
+
+            /// <summary>
+            /// 操作人员
+            /// </summary>
+            /// <summary>
+            public string employeename { get; set; }
+            public string employeeid { get; set; }
+
+            /// <summary>
+            /// 客户姓名
+            /// </summary>
+            public string membername { get; set; }
+            public string memberid { get; set; }
+
+            /// <summary>
+            /// 手机
+            /// </summary>
+            public string membermobile { get; set; }
+
+            /// <summary>
+            /// 身份证
+            /// </summary>
+            public string memberidnumber { get; set; }
+            public string ordername { get; set; }
+            public string ordermobile { get; set; }
+
+            /// <summary>
+            /// 预约时间
+            /// </summary>
+            public string ordertime { get; set; }
+
+            /// <summary>
+            /// 备注
+            /// </summary>
+            public string remark { get; set; }
+
+        }
+
+    }
+}

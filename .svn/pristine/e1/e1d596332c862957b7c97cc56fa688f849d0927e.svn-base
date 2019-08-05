@@ -1,0 +1,187 @@
+﻿@using AIPXiaoTong.Model.Site;
+@using AIPXiaoTong.Model;
+@using Framework.Common;
+@{
+    var merInfo = ViewBag.merInfo;
+
+    var provinceList = (ViewBag.AreaList as List<AreaModel>).Where(t => t.Level == 1).OrderBy(t => t.Name).ToList();
+    var cityList = (ViewBag.AreaList as List<AreaModel>).Where(t => t.Level == 2 && t.ParentCode == Model.ProvinceCode).OrderBy(t => t.Name).ToList();
+}
+@model ProjectCM
+
+<script src="~/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.ProjectName, new { @class = "input-text", placeholder = "" })
+                @Html.ValidationMessageFor(t => t.ProjectName)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>截止日期：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.Deadline, new { @class = "input-text", placeholder = "", @onfocus = "WdatePicker({ lang: 'zh-cn', dateFmt: 'yyyy-MM-dd' })", Value = Model.Deadline.ToString() != "0001/1/1 0:00:00" ? Model.Deadline.ToString("yyyy-MM-dd") : "" })
+                @Html.ValidationMessageFor(t => t.Deadline)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目金额：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @if (Model.ProjectAmount == 0)
+                {
+                    <input type="text" name="ProjectAmount" value="" class="input-text" placeholder="" />
+                }
+                else
+                {
+                    @Html.TextBoxFor(t => t.ProjectAmount, new { @class = "input-text", placeholder = "" })
+                }
+                @Html.ValidationMessageFor(t => t.ProjectAmount)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>项目所在区域：</label>
+            <div class="formControls col-xs-4 col-sm-2">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.ProvinceCode, provinceList.Select(p => new SelectListItem { Value = p.Code, Text = p.Name }), "", new { @class = "select", placeholder = "ads" })
+                </span>
+                @Html.ValidationMessageFor(t => t.ProvinceCode)
+            </div>
+            <div class="formControls col-xs-4 col-sm-2">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.CityCode, cityList.Select(p => new SelectListItem { Value = p.Code, Text = p.Name }), "", new { @class = "select" })
+                </span>
+                @Html.ValidationMessageFor(t => t.CityCode)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>广告图片：</label>
+
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="140" height="140" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[0]==""?null:Model.AdvertisingImgList[0])" id="imgAdvertisingImg0" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="140" height="140" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[1]==""?null:Model.AdvertisingImgList[1])" id="imgAdvertisingImg1" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2"style="width:12%;">
+                <img width="140" height="140" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[2]==""?null:Model.AdvertisingImgList[2])" id="imgAdvertisingImg2" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="140" height="140" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[3]==""?null:Model.AdvertisingImgList[3])" id="imgAdvertisingImg3" />
+            </div>
+            <div class="formControls col-xs-2 col-sm-2" style="width:12%;">
+                <img width="140" height="140" src="@(Model.AdvertisingImgList==null==true?null:Model.AdvertisingImgList[4]==""?null:Model.AdvertisingImgList[4])" id="imgAdvertisingImg4" />
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"></label>
+            <div class="formControls col-xs-3 col-sm-2" id="AdvertisingImg" style="width:12%;">
+                <input type="hidden" id="hidAdvertisingImg0"  name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg0" class="btn btn-primary radio" value="上传" name="uploadImg" data-iamgeid="imgAdvertisingImg0" data-imagepath="AdvertisingImgList">
+                <input type="button" value="删除" id="DeleteAdvertisingImg0" class="btn btn-primary radio"  onclick="DeleteImage(this);"/>
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" id="AdvertisingImg" style="width:12%;">
+                <input type="hidden" id="hidAdvertisingImg1"  name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg1" value="上传" name="uploadImg" data-iamgeid="imgAdvertisingImg1" data-imagepath="AdvertisingImgList">
+                <input type="button" value="删除" id="DeleteAdvertisingImg1" class="btn btn-primary radio" onclick="DeleteImage(this);" />
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" id="AdvertisingImg" style="width:12%;">
+                <input type="hidden" id="hidAdvertisingImg2" name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg2" value="上传" name="uploadImg" data-iamgeid="imgAdvertisingImg2" data-imagepath="AdvertisingImgList">
+                <input type="button" value="删除" id="DeleteAdvertisingImg2" class="btn btn-primary radio" onclick="DeleteImage(this);"/>
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" id="AdvertisingImg" style="width:12%;">
+                <input type="hidden" id="hidAdvertisingImg3" name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg3" value="上传" name="uploadImg" data-iamgeid="imgAdvertisingImg3" data-imagepath="AdvertisingImgList">
+                <input type="button" value="删除" id="DeleteAdvertisingImg3" class="btn btn-primary radio" onclick="DeleteImage(this);"/>
+            </div>
+            <div class="formControls col-xs-3 col-sm-2" id="AdvertisingImg" style="width:12%;">
+                <input type="hidden" id="hidAdvertisingImg4" name="AdvertisingImgList" />
+                <input type="button" id="uploadAdvertisingImg4" value="上传" name="uploadImg" data-iamgeid="imgAdvertisingImg4" data-imagepath="AdvertisingImgList">
+                <input type="button" value="删除" id="DeleteAdvertisingImg4" class="btn btn-primary radio" onclick="DeleteImage(this);"/>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea class="input-text" style="height:120px;" id="Description" name="Description" rows="2" cols="20" placeholder="300字以内">@Model.Description</textarea>
+            </div>
+        </div>
+
+        @Html.Partial("_Save", new EntityModel() { ID = Model.ID, Status = Model.Status })
+    </form>
+</div>
+
+<script>
+    $(function () {
+
+        if (@Model.Status!=@ProjectStatus.AlreadySubmit.ToInt() ) {
+            $("#Save").hide();
+        }
+        $("#hidAdvertisingImg0").val($("#imgAdvertisingImg0").attr("src"));
+        $("#hidAdvertisingImg1").val($("#imgAdvertisingImg1").attr("src"));
+        $("#hidAdvertisingImg2").val($("#imgAdvertisingImg2").attr("src"));
+        $("#hidAdvertisingImg3").val($("#imgAdvertisingImg3").attr("src"));
+        $("#hidAdvertisingImg4").val($("#imgAdvertisingImg4").attr("src"));
+
+
+        $("[name='uploadImg']").each(function () {
+            debugger;
+            var id = $(this).attr("id");
+            var imageId = $(this).attr("data-iamgeid");
+            var imagePath = $(this).attr("data-imagepath");
+            var tempID = $(this).attr("id").substr(6);   //截取id后从upload后的部分；
+
+            $("#" + id).uploadifive({
+
+                'fileSizeLimit': 2048,
+                'fileType': 'image/*',
+                'height': 30,
+                'width': 80,
+                'buttonClass': 'btn btn-primary radio',
+                'buttonText': '上传',
+                'auto': true,
+                'uploadScript': '/ProjectManagement/UploadAdvertisingImge',
+                'onInit': function () {
+                    $("#uploadifive-" + id + "-queue").hide();
+                },
+                'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                    alert(errorCode + ',' + errorMsg + ',' + errorString);
+                },
+                'onUploadComplete': function (file, data) {
+                    var json = JSON.parse(data);
+                    if (json.Msg != "") {
+                        alert(json.Msg);
+                    }
+                    else {
+                        $("#" + imageId).attr("src", json.Path);
+                        $("#hid" + tempID).val(json.Path);
+                    }
+                }
+            });
+        });        
+
+        BindProvince();
+        BindCity();
+    });
+
+    function DeleteImage(obj) {
+        debugger;
+        var tempID = $(obj).attr("id").substr(6);   //截取id后从delete后的部分；
+        $("#img" + tempID).removeAttr("src");
+        $("#hid" + tempID).val("");
+    };
+
+</script>
+
+

@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.PingAnAPI
+{
+    public class BaseResponse
+    {
+        private string _responseCode { get; set; }
+        private string _responseMsg { get; set; }
+
+        //--------------------------------------------------------------
+        public string responseCode { get { return !string.IsNullOrWhiteSpace(_responseCode) ? _responseCode : ""; } set { _responseCode = value; } }
+
+        public string responseMsg { get { return !string.IsNullOrWhiteSpace(_responseMsg) ? "error" : "ok"; } set { _responseMsg = value; } }
+
+    }
+}

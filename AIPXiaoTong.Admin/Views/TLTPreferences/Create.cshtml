@@ -1,0 +1,119 @@
+﻿@using AIPXiaoTong.Model.Admin;
+@using AIPXiaoTong.Model;
+
+@{
+    var merchantlist = ViewBag.MerchantList as List<MerchantLM>;
+}
+@model TLTPreferencesCM
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+        @Html.HiddenFor(t => t.ID)
+        @Html.AntiForgeryToken()
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商户名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="select-box">
+                    @Html.DropDownListFor(t => t.MerchantID, merchantlist.OrderBy(t => t.Name).Select(p => new SelectListItem { Value = p.ID.ToString(), Text = p.Name }), "", new { @class = "select" })
+                    @Html.ValidationMessageFor(t => t.MerchantID)
+                </span>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>通联通商户号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltMerchantId, new { @class = "input-text", placeholder = "通联通商户ID" })
+                @Html.ValidationMessageFor(t => t.TltMerchantId)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>通联通用户名：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltUserName, new { @class = "input-text", placeholder = "通联通用户名" })
+                @Html.ValidationMessageFor(t => t.TltUserName)
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>密码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltUserPassword, new { @class = "input-text", placeholder = "密码" })
+                @Html.ValidationMessageFor(t => t.TltUserPassword)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>私钥密码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                @Html.TextBoxFor(t => t.TltPrivateKeyPassword, new { @class = "input-text", placeholder = "私钥密码" })
+                @Html.ValidationMessageFor(t => t.TltPrivateKeyPassword)
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>通联通安全证书：</label>
+            <div class="formControls col-xs-3 col-sm-4">
+                <input type="text" name="TLTSecurityCerName" id="TLTSecurityCerName" class="input-text" placeholder="通联通安全证书上传 *.cer" />
+            </div>
+            <div class="formControls col-xs-3 col-sm-4">
+                <input type="hidden" name="TLTSecurityCer" id="hidTLTSecurityCer" value="" />
+                <input type="button" name="uploadFile" id="uploadTLTSecurityCer">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>通联通私钥证书：</label>
+            <div class="formControls col-xs-3 col-sm-4">
+                <input type="text" name="TLTPrivateKeyCerName" id="TLTPrivateKeyCerName" class="input-text" placeholder="通联通私钥证书上传 *.p12" />
+            </div>
+            <div class="formControls col-xs-3 col-sm-4">
+                <input type="hidden" name="TLTPrivateKeyCer" id="hidTLTPrivateKeyCer" value="" />
+                <input type="button" name="uploadFile" id="uploadTLTPrivateKeyCer">
+            </div>
+        </div>
+
+        <div class="row cl fixed-bottom">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button class="btn btn-primary radius" id="Save" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    $(function () {
+
+        $("[name='uploadFile']").each(function () {
+            var id = $(this).attr("id");
+            var tempID = $(this).attr("id").substr(6);   //截取id后从upload后的部分；
+
+            $("#" + id).uploadifive({
+                'fileSizeLimit': 2048,
+                'fileType': '*.*',
+                'width': 'auto',
+                'buttonClass': 'btn btn-primary radius',
+                'buttonText': '文件上传',
+                'auto': true,
+                'uploadScript': '/TLTPreferences/UploadFile',
+                'onInit': function () {
+                    $("#uploadifive-" + id + "-queue").hide();
+                },
+                'onUploadError': function (file, errorCode, errorMsg, errorString) {
+                    alert(errorCode + ',' + errorMsg + ',' + errorString);
+                },
+                'onUploadComplete': function (file, data) {
+                    debugger;
+                    var json = JSON.parse(data);
+                    if (json.Msg != "") {
+                        alert(json.Msg);
+                    }
+                    else {
+                        $("#hid" + tempID).val(json.Path);
+                        $("#" + tempID + "Name").val(json.FileName);
+                    }
+                }
+            });
+        });
+    });
+</script>

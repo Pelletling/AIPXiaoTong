@@ -1,0 +1,97 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class DistrictManagementController : BaseController
+    {
+        private IDistrictManagementService iDistrictManagementService;
+        private IEmployeeService iEmployeeService;
+
+        public DistrictManagementController(IDistrictManagementService iDistrictManagementService,
+                                             IEmployeeService iEmployeeService)
+        {
+            this.iDistrictManagementService = iDistrictManagementService;
+            this.iEmployeeService = iEmployeeService;
+        }
+
+        public ActionResult Index(DistrictManagementQM model)
+        {
+            var list = this.iDistrictManagementService.GetListModel<DistrictManagementLM, DistrictManagementQM>(model);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+            else
+            {
+                BindData();
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+
+        }
+
+        public ActionResult Create(long? ID = null)
+        {
+            var model = iDistrictManagementService.GetViewModel<DistrictManagementCM>(ID);
+
+            BindData();
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Create(DistrictManagementCM m)
+        {
+            var entity = iDistrictManagementService.Get(m.ID) ?? new DistrictManagement();
+
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    entity.MerchantID = empInfo.MerchantID;
+                    entity.DistrictName = m.DistrictName;
+                    entity.Remark = m.Remark;
+
+                    iDistrictManagementService.Save(entity);
+                    iDistrictManagementService.Commit();
+
+                    this.ShowTip();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                this.AddError(ErrorCode.Exception,ex.Message);
+            }
+
+            return RedirectToAction("Create", new { ID = entity.ID });
+        }
+
+        public JsonResult CodeIsExists(long ID, string DistrictName)
+        {
+            return Json(!iDistrictManagementService.Exists(t => t.ID != ID && t.DistrictName == DistrictName.Trim()), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Delete(long ID)
+        {
+            var result = iDistrictManagementService.AjaxDelete(ID);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

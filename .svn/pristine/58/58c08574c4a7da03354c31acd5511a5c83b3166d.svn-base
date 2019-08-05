@@ -1,0 +1,49 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class PosAgreementController : BaseController
+    {
+        private IMemberService iMemberService;
+
+        public PosAgreementController(IMemberService iMemberService)
+        {
+            this.iMemberService = iMemberService;
+        }
+
+        /// <summary>
+        /// 【通联支付】-中国光大银行电子账户业务服务协议
+        /// </summary>
+        /// <param name="MemberID"></param>
+        /// <returns></returns>
+        public ActionResult GuangDaAccountAgreement(long? MemberID)
+        {
+            var member = this.iMemberService.Get(t => t.ID == MemberID)?? new Member();
+
+            ViewBag.MemberName = member.Name;
+
+            return View();
+        }
+
+        /// <summary>
+        /// 小通房产项目预存预缴服务协议
+        /// </summary>
+        /// <param name="MemberID"></param>
+        /// <returns></returns>
+        public ActionResult DepositAndPayAgreement(long? MemberID)
+        {
+            var member = this.iMemberService.Get(t => t.ID == MemberID)?? new Member();
+
+            ViewBag.MemberName = member.Name;
+
+            return View();
+        }
+
+    }
+}

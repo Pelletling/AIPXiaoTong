@@ -1,0 +1,343 @@
+﻿@{
+    var url = Request.Url.AbsolutePath;
+
+    var Controller = ViewContext.RouteData.Values["Controller"] as string;//获取控制器名称
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.css" />
+    <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Hui-iconfont/1.0.7/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/icheck/icheck.css" />
+    <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Content/Pager.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Content/site.css" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <link rel="stylesheet" href="/Content/font-awesome.min.css" />
+
+
+    <link rel="stylesheet" href="/Scripts/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css">
+    <link rel="stylesheet" href="/Scripts/Viewer/css/viewer.min.css" type="text/css">
+    <link rel="stylesheet" href="/Scripts/webuploader/webuploader.css" type="text/css">
+
+
+    <title>@ViewBag.Title - 通联支付-深圳分公司</title>
+</head>
+<body>
+    @Html.Partial("_Bread")
+
+    @RenderBody()
+
+
+
+
+    <!--加载等待图标-->
+    <div class="icon-position" id="LoadIcon" style="display:none;">
+        <i class="icon-spinner icon-spin icon-4x"></i>
+    </div>
+
+    @Html.Partial("Tip")
+
+
+    <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="/Scripts/Common.js"></script>
+    <script type="text/javascript" src="/Scripts/layer/2.1/layer.js"></script>
+    <script type="text/javascript" src="/Scripts/layer/2.1/extend/layer.ext.js"></script>
+    <script type="text/javascript" src="/Content/icheck/jquery.icheck.min.js"></script>
+    <script type="text/javascript" src="/static/h-ui/js/H-ui.js"></script>
+    <script type="text/javascript" src="/static/h-ui.admin/js/H-ui.admin.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+
+
+
+    <script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+    <script type="text/javascript" src="/Scripts/Viewer/js/viewer.min.js"></script>
+    <script type="text/javascript" src="/Scripts/Viewer/js/viewer-jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/uploadifive/jquery.uploadifive.min.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/Scripts/Viewer/js/viewer.min.js"></script>
+    <script type="text/javascript" src="/Scripts/Viewer/js/viewer-jquery.min.js"></script>
+
+</body>
+</html>
+
+
+<script>
+    $(function () {
+
+
+        //ajax全局事件
+        $(document).ajaxStart(function (event, jqXHR, ajaxOptions) {
+            AjaxStart();
+        }).ajaxComplete(function (event, XMLHttpRequest, ajaxOptions) {
+            AjaxComplete(event, XMLHttpRequest, ajaxOptions);
+        }).ajaxError(function () {
+            AjaxError();
+        }).ajaxSend(function (event, jqXHR, ajaxOptions) {
+            AjaxSend(event, jqXHR, ajaxOptions);
+        });
+
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        BindAddDetail();
+
+        BindRegion();
+        BindCity();
+    });
+
+    function DisplayError(msg) {
+        CloseAllDisplay();
+        var error = $("#DisplayError").clone();
+        $("#DisplayError").after(error);
+        $(error).show().find("#JSError ul").html("").append("<li>" + msg + "</li>");
+    }
+    function DisplaySuccess(msg) {
+        CloseAllDisplay();
+        var error = $("#DisplaySuccess").clone();
+        $("#DisplaySuccess").after(error);
+        $(error).show().find("#JSError ul").html("").append("<li>" + msg + "</li>");
+    }
+    function AlertMsg(msg) {
+        //layer.msg(msg);
+        layer.alert(msg, {
+            skin: 'layui-layer-lan' //样式类名
+             , closeBtn: 0
+            , shift: 4
+        });
+    }
+    function CloseAllDisplay() {
+        $("div[class$='alert-danger']").filter(":visible").remove();
+        $("div[class$='alert-success']").filter(":visible").remove();
+    }
+
+    //导出文件
+    function ExportFile() {
+        var temp = document.createElement("form");
+        temp.action = '/@Controller/Export';
+        temp.method = "post";
+        temp.style.display = "none";
+
+        var opt = document.createElement("textarea");
+        opt.name = 'QueryJson';
+        opt.value = $("#QueryJson").val();
+        temp.appendChild(opt);
+
+        document.body.appendChild(temp);
+        temp.submit();
+        return temp;
+
+    }
+
+    function AjaxStart() {
+        //$("#Query").button('loading');
+        //显示加载
+        //$("#LoadIcon").show();
+
+        $(".icon-position").show();
+    }
+
+    //AJAX失败之后
+    function AjaxError(data, status, xhr) {
+        alert('操作错误,请联系管理员!' + xhr);
+        AjaxComplete();
+    }
+
+    //添加随机数，避免缓存
+    function AjaxSend(event, jqXHR, ajaxOptions) {
+        if (ajaxOptions.url.indexOf("?") > -1) {
+            ajaxOptions.url = ajaxOptions.url + "&r=" + Math.random();
+        }
+        else {
+            ajaxOptions.url = ajaxOptions.url + "?r=" + Math.random();
+        }
+    }
+
+    //AJAX完成之后
+    function AjaxComplete(event, XMLHttpRequest, ajaxOptions) {
+
+        //隐藏加载
+        //$("#LoadIcon").hide();
+        $(".icon-position").hide();
+
+        //$("#Query").button('reset');
+
+        //$("[name='Query']").each(function(){
+        //    $(this).button('reset');
+        //});
+    }
+
+    $("#checkAll").change(function () {
+        $(":checkbox[data-name='checkbox']").not("[disabled='disabled']").prop("checked", $(this).prop("checked"));
+    });
+
+    function checkall() {
+        $(":checkbox[data-name='checkbox']").not("[disabled='disabled']").prop("checked", $("#checkAll").prop("checked"));
+    }
+
+    function setDisabled(obj) {
+        $(obj).attr("disabled", "disabled");
+    }
+
+    function removeDisabled(obj) {
+        $(obj).removeAttr("disabled");
+    }
+
+    function DeleteNoID(obj) {
+        layer.confirm('确认要删除吗？', function (index) {
+            layer.closeAll();
+            layer.msg("删除完成");
+            $(obj).closest("tr").remove();
+        });
+    }
+
+    function Delete(id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            layer.closeAll();
+            var url = "@("/" + Controller + "/Delete/")" + id;
+            $.get(url, {}, function (data) {
+                var result = data.ResultMessage;
+                if (result == "") {
+                    layer.msg("删除完成");
+                    $("#tr_" + id).remove();
+                }
+                else {
+                    AlertMsg(result);
+                }
+            });
+        });
+    }
+
+    function Audit(id) {
+        layer.confirm('确认要审核吗？', function (index) {
+            layer.closeAll();
+            var url = "/@Controller/Audit/" + id;
+            $.get(url, {}, function (data) {
+                var result = data.ResultMessage;
+                if (result == "") {
+                    layer.msg("操作完成");
+                }
+                else {
+                    AlertMsg(result);
+                }
+            });
+        });
+    }
+
+    function NotPass(id) {
+        layer.confirm('确认不通过吗？', function (index) {
+            layer.closeAll();
+            var url = "/@Controller/NoPass/" + id;
+            $.get(url, {}, function (data) {
+                var result = data.ResultMessage;
+                if (result == "") {
+                    layer.msg("操作完成");
+                }
+                else {
+                    AlertMsg(result);
+                }
+            });
+        });
+    }
+
+    function NotPassAndReason(id) {
+
+        layer.prompt({ title: '请输入未通过原因', formType: 2 }, function (msg, index) {
+            layer.close(index);
+
+            var url = "/@Controller/NoPass/";
+            $.get(url, { id: id, msg: msg }, function (data) {
+                var result = data.ResultMessage;
+                if (result == "") {
+                    layer.msg("操作完成");
+                }
+                else {
+                    AlertMsg(result);
+                }
+            });
+        });
+    }
+
+    //绑定新增明细空白行
+    function BindAddDetail() {
+        $("[data-name='AddDetail']").click(function () {
+            var table = $(this).closest("table");
+            var clone = $($(table).find("thead").find("tr")[0]).clone();
+
+            $(table).find("tbody").append(clone.removeClass("hidden"));
+        });
+    }
+
+    function BindRegion() {
+        $("#RegionCode").change(function () {
+
+            var parentCode = $(this).val();
+
+            LoadCity(parentCode);
+        });
+    }
+
+    function LoadCity(parentCode, value, callback) {
+
+        $("#CityCode option[value!='']").remove();
+        $("#DistrictCode option[value!='']").remove();
+
+        if (parentCode != "" && parentCode != null) {
+            $.get("/Area/GetChildren", { ParentCode: parentCode }, function (data) {
+                $(data).each(function (index) {
+                    $("#CityCode").append('<option value="' + data[index].Code + '">' + data[index].Name + '</option>');
+                });
+                $("#CityCode").find("option[value=" + value + "]").attr("selected", true);
+
+                if (typeof callback === "function") {
+                    callback();
+                }
+            });
+        }
+    }
+
+    function BindCity() {
+        $("#CityCode").change(function () {
+            var parentCode = $(this).val();
+
+            LoadDistrict(parentCode);
+        });
+    }
+
+    function LoadDistrict(parentCode, value, callback) {
+
+        $("#DistrictCode option[value!='']").remove();
+
+        if (parentCode != "" && parentCode != null) {
+            $.get("/Area/GetChildren", { ParentCode: parentCode }, function (data) {
+                $(data).each(function (index) {
+                    $("#DistrictCode").append('<option value="' + data[index].Code + '">' + data[index].Name + '</option>');
+                });
+                $("#DistrictCode").find("option[value=" + value + "]").attr("selected", true);
+                if (typeof callback === "function") {
+                    callback();
+                }
+            });
+        }
+    }
+</script>

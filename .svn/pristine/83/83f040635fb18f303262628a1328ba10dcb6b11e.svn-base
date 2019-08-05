@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class OrderPaidLM:BaseListModel
+    {
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        /// <summary>
+        public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public String ProjectName { get; set; }
+
+        /// <summary>
+        /// 设备编号
+        /// </summary>
+        /// <summary>
+        public string EquipmentNumber { get; set; }
+
+        /// <summary>
+        /// 操作员
+        /// </summary>
+        /// <summary>
+        public string Operator { get; set; }
+
+        /// <summary>
+        /// 交易金额
+        /// </summary>
+        public decimal TransactionAmount { get; set; }
+
+        /// <summary>
+        /// 流水号
+        /// </summary>
+        public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// 客户姓名
+        /// </summary>
+        public string CustomerName { get; set; }
+
+        /// <summary>
+        /// 手机
+        /// </summary>
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 付款状态
+        /// </summary>
+        public String PaymentStatusDesc { get; set; }
+
+        /// <summary>
+        /// 支付类型
+        /// </summary>
+        public string PaymentTypeDesc { get; set; }
+
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public string StatusDesc { get; set; }
+    }
+}

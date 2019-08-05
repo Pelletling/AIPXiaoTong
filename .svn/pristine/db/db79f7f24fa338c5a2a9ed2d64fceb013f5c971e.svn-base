@@ -1,0 +1,136 @@
+﻿using Framework.Common;
+using Framework.Requests;
+using Framework.Security;
+using Newtonsoft.Json.Linq;
+using NLog;
+using PingAnAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PingAnAPI
+{
+    public class PingAnExec
+    {
+        public ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public PingAnExec(string url, string privateKeyPath = "", string publicKeyPath = "", string returnUrl = "")
+        {
+            PingAnConfig.url = url;
+            PingAnConfig.privateKey = privateKeyPath;
+            PingAnConfig.publicKey = publicKeyPath;
+            PingAnConfig.returnUrl = returnUrl;
+        }
+
+        public string GetParam<T>(IBaseRequest<T> request) where T : BaseResponse
+        {
+            string signContent = "";
+            string postContent = "";
+
+            Dictionary<string, string> postParams = request.GetParameters();
+
+            foreach (var m in postParams.Where(t => !string.IsNullOrWhiteSpace(t.Value)).OrderBy(t => t.Key))
+            {
+                signContent += "&" + m.Key + "=" + m.Value;
+                postContent += "&" + m.Key + "=" + m.Value;
+            }
+
+            signContent = signContent.Substring(1);
+            postContent = postContent.Substring(1);
+
+            var sign = Framework.Security.RSAHelper.SHA1WithRSA(signContent, PingAnConfig.privateKey);
+
+            postContent += "&sign=" + sign;
+
+            return postContent;
+        }
+
+        public BaseResponse Exec<T>(IBaseRequest<T> request) where T : BaseResponse, new()
+        {
+            //拼接成URL
+            string url = PingAnConfig.url + request.GetApiName();
+
+            string txtParams = GetParam(request);
+
+            string result = "";
+            string exception = "";
+
+            try
+            {
+                result = Request.Post(url, txtParams);
+
+                if (JObject.Parse(result)["responseCode"].ToString() == "000000")
+                {
+                    if (IsVerify(JsonHelper.Deserialize<Dictionary<string, string>>(result))) //返回信息公钥验签成功
+                    {
+                        return JsonHelper.Deserialize<T>(result);
+                    }
+                    else
+                    {
+                        var resultInfo = JsonHelper.Deserialize<T>(result);   //返回信息公钥验签失败时信息
+                        resultInfo.responseMsg = "系统异常";
+                        resultInfo.responseCode = "650607";
+                        resultInfo.data = "";
+
+                        return resultInfo;
+                    }
+                }
+
+                //把返回的内容序列化成对象
+                return JsonHelper.Deserialize<T>(result);
+            }
+            catch (Exception ex)
+            {
+                exception = ex.Message;
+            }
+            finally
+            {
+                logger.Trace("（普通请求）请求地址：" + PingAnConfig.url + "，内容：" + txtParams + "，返回：" + result + ",http异常:" + exception);
+            }
+
+            return new T();
+        }
+
+        public bool IsVerify(Dictionary<string, string> dicVerify)
+        {
+            string signString = "";
+            try
+            {
+                //返回验签
+                if (!dicVerify.ContainsKey("sign"))
+                    throw new Exception("验签失败，返回内容未包含sign信息");
+
+                string resultSign = dicVerify["sign"];
+
+                dicVerify.Remove("sign");
+
+                foreach (var m in dicVerify.Where(t => !string.IsNullOrWhiteSpace(t.Value)).OrderBy(t => t.Key))
+                {
+                    signString += "&" + m.Key + "=" + m.Value;
+                }
+
+                signString = signString.Substring(1);
+
+                if (RSAHelper.SHA1WithRSAVerify(signString, resultSign, PingAnConfig.publicKey))
+                {
+                    return true;
+                }
+                else
+                {
+                    logger.Trace("验签失败，签名原串为:" + signString + "，加密sign为：" + resultSign);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Trace("验签失败，签名原串为:" + signString + "，错误为：" + ex.Message);
+                return false;
+            }
+
+        }
+
+
+    }
+}

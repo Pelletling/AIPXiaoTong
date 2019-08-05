@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIPXiaoTong.Model.Site
+{
+    public class AccountPingAnTransDataDM
+    {
+        public string channel { get; set; }
+        public Data data { get; set; }
+        public class Data
+        {
+            public string cnName { get; set; }
+            public string inCardNo { get; set; }
+            public string inCardNoType { get; set; }
+            public string outCardNo { get; set; }
+            public decimal amount { get; set; }
+            public string OrderNumber { get; set; }
+            public string AutoLoginUrl { get; set; }
+        }
+    }
+}

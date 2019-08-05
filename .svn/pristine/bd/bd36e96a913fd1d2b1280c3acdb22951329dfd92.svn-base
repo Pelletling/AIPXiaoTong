@@ -1,0 +1,53 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class OrderHousePaymentController : BaseController
+    {
+        private IOrderHousePaymentService iOrderHousePaymentService;
+
+        public OrderHousePaymentController(IOrderHousePaymentService iOrderHousePaymentService)
+        {
+            this.iOrderHousePaymentService = iOrderHousePaymentService;
+        }
+        public ActionResult Index(OrderHousePaymentQM model)
+        {
+            var list = this.iOrderHousePaymentService.GetListModel<OrderHousePaymentLM, OrderHousePaymentQM>(model);
+
+            BindData();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+
+        }
+
+        public ActionResult Export(string QueryJson)
+        {
+            var orderHousePaymentQM = JsonHelper.Deserialize<OrderHousePaymentQM>(System.Web.HttpUtility.UrlDecode(QueryJson));
+
+            var list = iOrderHousePaymentService.Export(orderHousePaymentQM);
+
+            var ms = iOrderHousePaymentService.ExportNPOI<OrderHousePaymentEM>(list);
+
+            return File(ms, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "房款订单-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls");
+
+
+        }
+    }
+}

@@ -1,0 +1,18 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@using Framework.Models;
+@{
+
+}
+@model  PagerModel
+@Html.Hidden("CurrentPageIndex", Model.CurrentPageIndex)
+
+<div style="text-align:center;">
+    <ul>
+        @Ajax.Pager(Model.TotalItemCount, Model.PageSize, Model.CurrentPageIndex, new PagerOptions { PageIndexParameterName = "id", PrevPageText = "上一页", NextPageText = "下一页", PagerItemTemplate = "<li>{0}</li>", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", FirstPageText = "1    «", LastPageText = "»    " + Model.TotalItemCount, CssClass = "pagination",PageIndexOutOfRangeErrorMessage="" }, new MvcAjaxOptions { UpdateTargetId = "resultList", HttpMethod = "Get", DataFormId = "searchForm" })
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function () {
+        @{ Ajax.LoadMvcPagerScript(); }
+    });
+</script>

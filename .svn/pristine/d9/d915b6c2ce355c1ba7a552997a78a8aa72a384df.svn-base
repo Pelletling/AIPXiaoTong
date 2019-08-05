@@ -1,0 +1,87 @@
+﻿namespace AIPXiaoTong.Model
+{
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+
+    public class AIPXiaoTongDb : DbContext
+    {
+        /// 数据库升级
+        ///1、输入 Add-Migration AddUrl
+        ///2、输入 update-database
+        /// 
+        /// 
+        /// 降级:   Update-Database –TargetMigration: 类名 
+        /// 
+        /// 生成SQL语句：    update-database -script 
+        /// 
+
+        public AIPXiaoTongDb()
+            : base("name=AIPXiaoTong")
+        { }
+
+        public DbSet<Menu> Menu { get; set; }
+        public DbSet<MenuAction> MenuAction { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Merchant> Merchant { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<EmployeeMenu> EmployeeMenu { get; set; }
+        public DbSet<EmployeeMenuAction> EmployeeMenuAction { get; set; }
+        public DbSet<EmployeeRole> EmployeeRole { get; set; }
+        public DbSet<EmployeeDepartment> EmployeeDepartment { get; set; }
+        public DbSet<Preferences> Preferences { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<HouseTypeShow> HouseTypeShow { get; set; }
+        public DbSet<Member> Member { get; set; }
+        public DbSet<Area> Area { get; set; }
+        public DbSet<OrderBooking> OrderBooking { get; set; }
+        public DbSet<OrderHousePayment> OrderHousePayment { get; set; }
+        public DbSet<OrderPaid> OrderPaid { get; set; }
+        public DbSet<Equipment> Equipment { get; set; }
+        public DbSet<ProceedsType> ProceedsType { get; set; }
+        public DbSet<BankCard> BankCard { get; set; }
+        public DbSet<AreaGuangDa> AreaGuangDa { get; set; }
+        public DbSet<OrderPaidRecharge> OrderPaidRecharge { get; set; }
+        public DbSet<OrderPaidFreeze> OrderPaidFreeze { get; set; }
+        public DbSet<OrderPaidUnFreeze> OrderPaidUnFreeze { get; set; }
+        public DbSet<OrderPaidWithdraw> OrderPaidWithdraw { get; set; }
+        public DbSet<MemberBalanceHistory> MemberBalanceHistory { get; set; }
+        public DbSet<GuangDaECIF> GuangDaECIF { get; set; }
+        public DbSet<GuangDaArea> GuangDaArea { get; set; }
+        public DbSet<PingAnOrderPaid> PingAnOrderPaid { get; set; }
+        public DbSet<AccountPingAn> AccountPingAn { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
+
+            ForeignKey(modelBuilder);
+        }
+
+        /// <summary>
+        /// 设置关联
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        private void ForeignKey(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Department>().HasMany(e => e.ChildDepartment).WithOptional(e => e.ParentDepartment).HasForeignKey(e => e.ParentID);
+            modelBuilder.Entity<Department>().HasMany(e => e.UserList).WithOptional(e => e.Department).HasForeignKey(e => e.DepartmentID);
+
+            modelBuilder.Entity<EmployeeDepartment>().HasMany(e => e.ChildDepartment).WithOptional(e => e.ParentDepartment).HasForeignKey(e => e.ParentID);
+            modelBuilder.Entity<EmployeeDepartment>().HasMany(e => e.EmployeeList).WithOptional(e => e.EmployeeDepartment).HasForeignKey(e => e.EmployeeDepartmentID);
+
+            modelBuilder.Entity<Project>().Property(t => t.ProjectAmount).HasPrecision(18, 2);
+            //modelBuilder.Entity<Project>().Property(t => t.ResidueAmount).HasPrecision(18, 2);
+
+            modelBuilder.Entity<HouseTypeShow>().Property(t => t.HouseTypeArea).HasPrecision(18, 2);
+
+            modelBuilder.Entity<OrderHousePayment>().Property(t => t.TransactionAmount).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderPaid>().Property(t => t.TransactionAmount).HasPrecision(18, 2);
+
+        }
+    }
+
+
+}

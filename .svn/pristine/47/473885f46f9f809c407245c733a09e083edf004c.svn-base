@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace Framework.Security
+{
+    public class RSAHelper
+    {
+        /// <summary>    
+        /// RSA私钥格式转换，java->.net
+        /// </summary>    
+        /// <param name="privateKey">java生成的RSA私钥</param>    
+        /// <returns></returns>    
+        public static string RSAPrivateKeyJava2DotNet(string privateKey)
+        {
+            return RSAConvert.RSA.RSAPrivateKeyJava2DotNet(privateKey);
+        }
+
+        /// <summary>    
+        /// RSA私钥格式转换，.net->java    
+        /// </summary>    
+        /// <param name="privateKey">.net生成的私钥</param>    
+        /// <returns></returns>    
+        public static string RSAPrivateKeyDotNet2Java(string privateKey)
+        {
+            return RSAConvert.RSA.RSAPrivateKeyDotNet2Java(privateKey);
+        }
+
+
+        /// <summary>    
+        /// RSA公钥格式转换，java->.net    
+        /// </summary>    
+        /// <param name="publicKey">java生成的公钥</param>    
+        /// <returns></returns>    
+        public static string RSAPublicKeyJava2DotNet(string publicKey)
+        {
+            return RSAConvert.RSA.RSAPublicKeyJava2DotNet(publicKey);
+        }
+
+        /// <summary>    
+        /// RSA公钥格式转换，.net->java    
+        /// </summary>    
+        /// <param name="publicKey">.net生成的公钥</param>    
+        /// <returns></returns>    
+        public static string RSAPublicKeyDotNet2Java(string publicKey)
+        {
+            return RSAConvert.RSA.RSAPublicKeyDotNet2Java(publicKey);
+        }
+
+        /// <summary>
+        /// 根据私钥加密
+        /// </summary>
+        /// <param name="privateKey"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string Encrypt(string privateKeyString, string text)
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+
+            rsa.FromXmlString(privateKeyString);
+
+            var sign = Convert.ToBase64String(rsa.Encrypt(Encoding.UTF8.GetBytes(text), false));
+
+            return sign;
+        }
+
+        /// <summary>
+        /// 根据JAVA（SHA1WithRSA）加密
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="privateKey"></param>
+        /// <param name="input_charset"></param>
+        /// <returns></returns>
+        public static string SHA1WithRSA(string content, string privateKey, Encoding encoding = null)
+        {
+            if (encoding == null) encoding = Encoding.UTF8;
+            byte[] Data = encoding.GetBytes(content);
+            RSACryptoServiceProvider rsa = RSAExt.DecodePemPrivateKey(privateKey);
+            SHA1 sh = new SHA1CryptoServiceProvider();
+            byte[] signData = rsa.SignData(Data, sh);
+            return Convert.ToBase64String(signData);
+        }
+
+        /// <summary>  
+        /// 根据JAVA（SHA1WithRSA）验签  
+        /// </summary>  
+        /// <param name="content">待验签字符串</param>  
+        /// <param name="signedString">签名</param>  
+        /// <param name="publicKey">公钥</param>  
+        /// <param name="input_charset">编码格式</param>  
+        /// <returns>true(通过),false(不通过)</returns>  
+        public static bool SHA1WithRSAVerify(string content, string signedString, string publicKey, Encoding encoding = null)
+        {
+            if (encoding == null) encoding = Encoding.UTF8;
+            bool result = false;
+            byte[] Data = encoding.GetBytes(content);
+            byte[] data = Convert.FromBase64String(signedString);
+            RSAParameters paraPub = RSAExt.ConvertFromPublicKey(publicKey);
+            RSACryptoServiceProvider rsaPub = new RSACryptoServiceProvider();
+            rsaPub.ImportParameters(paraPub);
+            SHA1 sh = new SHA1CryptoServiceProvider();
+            result = rsaPub.VerifyData(Data, sh, data);
+            return result;
+        }
+
+    }
+}

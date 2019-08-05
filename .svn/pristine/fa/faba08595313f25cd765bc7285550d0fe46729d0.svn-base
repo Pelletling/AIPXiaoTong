@@ -1,0 +1,60 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Admin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Admin.Controllers
+{
+    public class OrderPaidController : BaseController
+    {
+        private IOrderPaidService iOrderPaidService;
+        private IEmployeeService iEmployeeService;
+        private IMerchantService iMerchantService;
+        private IProjectService iProjectService;
+
+        public OrderPaidController(IOrderPaidService iOrderPaidService,
+                                   IEmployeeService iEmployeeService,
+                                   IMerchantService iMerchantService,
+                                   IProjectService iProjectService)
+        {
+            this.iOrderPaidService = iOrderPaidService;
+            this.iMerchantService = iMerchantService;
+            this.iEmployeeService = iEmployeeService;
+            this.iProjectService = iProjectService;
+        }
+        public ActionResult Index(OrderPaidQM model)
+        {
+            var list = this.iOrderPaidService.GetListModel<OrderPaidLM, OrderPaidQM>(model);
+
+            BindData();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            ViewBag.merInfo = iMerchantService.Get(empInfo.MerchantID);
+
+            ViewBag.ProjectList = iProjectService.GetListModel<ProjectLM, ProjectQM>();
+        }
+
+        public ActionResult Details(long ID)
+        {
+            var model = iOrderPaidService.Get(ID);
+
+            return View(model);
+        }
+
+    }
+}

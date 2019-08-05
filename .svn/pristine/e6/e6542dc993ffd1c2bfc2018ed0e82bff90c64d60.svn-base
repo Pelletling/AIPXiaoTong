@@ -1,0 +1,202 @@
+﻿using Framework.Common;
+using Framework.Requests;
+using Framework.Security;
+using Newtonsoft.Json.Linq;
+using NLog;
+using PingAnAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace PingAnAPI
+{
+    public class PingAnExec
+    {
+        public ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public PingAnExec(string url, string publicKey, string privateKey, string autoLoginUrl, string sha1Key, string autoLoginPublicKey)
+        {
+            PingAnConfig.url = url;
+            PingAnConfig.privateKey = privateKey;
+            PingAnConfig.publicKey = publicKey;
+           // PingAnConfig.redirectUrl = redirectUrl;
+            PingAnConfig.autoLoginUrl = autoLoginUrl;
+           // PingAnConfig.returnUrl = returnUrl;
+            PingAnConfig.sha1Key = sha1Key;
+            PingAnConfig.autoLoginPublicKey = autoLoginPublicKey;
+        }
+
+        public string GetParam<T>(IBaseRequest<T> request) where T : BaseResponse
+        {
+            string signContent = "";
+            string postContent = "";
+
+            Dictionary<string, string> postParams = request.GetParameters();
+
+            foreach (var m in postParams.Where(t => !string.IsNullOrWhiteSpace(t.Value)).OrderBy(t => t.Key))
+            {
+                signContent += "&" + m.Key + "=" + m.Value;
+                postContent += "&" + m.Key + "=" + m.Value;
+            }
+
+            signContent = signContent.Substring(1);
+            postContent = postContent.Substring(1);
+
+            var sign = Framework.Security.RSAHelper.SHA1WithRSA(signContent, PingAnConfig.privateKey);
+
+            postContent += "&sign=" + sign;
+
+            return postContent;
+        }
+
+        public BaseResponse Exec<T>(IBaseRequest<T> request) where T : BaseResponse, new()
+        {
+            //拼接成URL
+            string url = PingAnConfig.url + request.GetApiName();
+
+            string txtParams = GetParam(request);
+
+            string result = "";
+            string exception = "";
+            var response = new T();
+
+            try
+            {
+                result = Request.Post(url, txtParams, System.Net.SecurityProtocolType.Tls12);
+
+                if (JsonHelper.Verify(result))
+                {
+                    //把返回的内容序列化成对象
+                    response = JsonHelper.Deserialize<T>(result);
+
+                    if (response.IsOK)
+                    {
+                        if (IsVerify(JsonHelper.Deserialize<Dictionary<string, string>>(result))) //返回信息公钥验签成功
+                        {
+                            return response;
+                        }
+                        else
+                        {
+                            throw new Exception("验签失败");
+                        }
+                    }
+                    else
+                    {
+                        return response;
+                    }
+                }
+                else
+                {
+                    throw new Exception(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.responseMsg = ex.Message;
+            }
+            finally
+            {
+                logger.Trace("（普通请求）请求地址：" + PingAnConfig.url + "，内容：" + txtParams + "，返回：" + result + ",http异常:" + exception);
+            }
+
+            return response;
+        }
+
+        public bool IsVerify(Dictionary<string, string> dicVerify)
+        {
+            string signString = "";
+            try
+            {
+                //返回验签
+                if (!dicVerify.ContainsKey("sign"))
+                    throw new Exception("验签失败，返回内容未包含sign信息");
+
+                string resultSign = dicVerify["sign"];
+
+                dicVerify.Remove("sign");
+
+                foreach (var m in dicVerify.Where(t => !string.IsNullOrWhiteSpace(t.Value)).OrderBy(t => t.Key))
+                {
+                    signString += "&" + m.Key + "=" + m.Value;
+                }
+
+                signString = signString.Substring(1);
+
+                if (RSAHelper.SHA1WithRSAVerify(signString, resultSign, PingAnConfig.publicKey))
+                {
+                    return true;
+                }
+                else
+                {
+                    logger.Trace("验签失败，签名原串为:" + signString + "，加密sign为：" + resultSign);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Trace("验签失败，签名原串为:" + signString + "，错误为：" + ex.Message);
+                return false;
+            }
+        }
+
+        public AutoLoginResponse GetAutoLoginPath(AutoLoginRequest request)
+        {
+            string encryptDataInfo = "";
+            var result = new AutoLoginResponse();
+            string encryptKey = "clientIdType;clientIdNo;clientName;telNo;accNo;thirdMid;timestamp";  //需加签加密字段key
+
+            Dictionary<string, string> postParams = request.GetParameters();
+
+            foreach (var m in postParams.Where(t => !string.IsNullOrWhiteSpace(t.Value)).OrderBy(t => t.Key))
+            {
+                if (encryptKey.ToLower().Contains(m.Key.ToLower()))
+                {
+                    encryptDataInfo += "&" + m.Key + "=" + m.Value;
+                }
+            }
+
+            encryptDataInfo = encryptDataInfo.Substring(1);       //需加签加密字段
+
+            try
+            {
+                var signature = Framework.Security.Crypt.SHA1(encryptDataInfo.ToLower() + PingAnConfig.sha1Key);
+
+                string predata = encryptDataInfo + "&signature=" + signature.ToLower().ToLower();
+
+                var publicKey = RSAHelper.RSAPublicKeyJava2DotNet(PingAnConfig.autoLoginPublicKey);
+
+                string encryptData = HexHelper.byteTo16HexStr(RSAHelper.SectionEncrypt(predata, publicKey));
+
+                result.autoLoginPath = PingAnConfig.autoLoginUrl + "?mchId=" + request.mchId + "&encryptData=" + encryptData;
+
+                if (!string.IsNullOrWhiteSpace(request.redirectUrl))
+                {
+                    string redirectUrl = HttpUtility.UrlEncode(request.redirectUrl, System.Text.Encoding.UTF8);
+
+                    result.autoLoginPath += "&redirectUrl=" + redirectUrl;
+                }
+
+                if (!string.IsNullOrWhiteSpace(request.state))
+                {
+                    string returnUrl = HttpUtility.UrlEncode(request.state, Encoding.UTF8);
+
+                    string state = HttpUtility.UrlEncode("returnUrl=" + returnUrl, Encoding.UTF8);
+
+                    result.autoLoginPath += "&state=" + state;
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("返回异常");
+            }
+        }
+    }
+}

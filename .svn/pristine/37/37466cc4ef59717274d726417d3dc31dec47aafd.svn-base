@@ -1,0 +1,80 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@using Framework.Common;
+@using AIPXiaoTong.Model.Site;
+@using Framework.Models;
+@using AIPXiaoTong.Model;
+
+@model PagedList<AdvertisingManagementLM>
+
+@Html.Partial("_Grid", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+<div class="mt-20">
+    <div class="dataTables_wrapper no-footer table-scroll">
+        <table class="table table-border table-bordered table-bg table-hover table-sort dataTable no-footer table-word-break" id="resultTable">
+            <thead>
+                <tr class="text-c" role="row">
+                    <th><input type="checkbox" id="checkAll" onclick="checkall();"></th>
+                    <th>操作</th>
+                    <th>序号</th>
+                    <th>项目名称</th>
+                    <th>广告图片</th>
+                    <th>广告类型</th>
+                    <th>备注</th>
+                    <th>播放时长</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        var m = Model[i] as AdvertisingManagementLM;
+                        <tr class="text-c odd" role="row" id="tr_@m.ID">
+                            <td><input type="checkbox" data-name="checkbox" value="@m.ID" id="chk_@m.ID" name="chkIDs"></td>
+                            <td class="f-14 td-manage">
+                                @Html.Partial("_Edit", new EntityModel() { ID = m.ID })
+                            </td>
+                            <td class="sorting_1">@((Model.PageSize * (Model.CurrentPageIndex - 1)) + i + 1)</td>
+                            <td>@m.ProjetName</td>
+                            <td><img src="@(GlobalConfig.WebConfig.SiteImageUrl + m.AdvertisingImg)" layer-src="@(GlobalConfig.WebConfig.SiteImageUrl + m.AdvertisingImg)" width="32" height="32" /></td>
+                            <td>@m.AdvertisingTypeDesc</td>
+                            <td>@m.Remark</td>
+                            <td>@m.PlayTime</td>                
+                            <th>@m.CreateDatetime</th>
+                            <th>@m.ModifyDatetime</th>
+                            <td class="td-status">
+                                @if (m.Status == AdvertisingManagementStatus.Pass.ToInt())
+                                {
+                                    <span class="label label-success radius">@m.StatusDesc</span>
+                                }
+                                else if (m.Status == AdvertisingManagementStatus.AlreadySubmit.ToInt())
+                                {
+                                    <span class="label label-secondary radius">@m.StatusDesc</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-secondary radius">@m.StatusDesc</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("Pager", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+
+
+
+
+
+
+
+
+
+
+
+

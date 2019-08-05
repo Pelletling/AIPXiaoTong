@@ -1,0 +1,156 @@
+﻿
+@using AIPXiaoTong.Model;
+@using Framework.Common;
+
+@{
+
+}
+@model PingAnOrderPaidRecharge
+
+
+
+<div class="page-container page-container-custom">
+    <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+
+        <div class="panel panel-default">
+            <div class="panel-header">基本信息</div>
+
+            <div class="panel-body">
+                <div class="panel-body">
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">订单编号：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.OrderPaid.OrderNumber</strong>
+                        </div>
+
+                        @*<label class="form-label col-xs-2 col-sm-2">通联通流水号：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.TransNumber</strong>
+                        </div>*@
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">银行卡号：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.BankCardNumber</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">交易金额：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.Amount</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">持卡人姓名：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.Name</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">持卡人手机号：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.Mobile</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">代付返回码：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.ResponseCode</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">代付返回信息：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.ResponseMessage</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">持卡人身份证号：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.RechargeIDNumber</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">创建时间：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.CreateDatetime</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">订单状态：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.StatusDesc</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-header">补充信息</div>
+            <div class="panel-body">
+
+                <div class="panel-body">
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">银行代码：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.BankCode</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">开户行名称：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.BankName</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">账号类型：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@(Model.AccountType == null ? "" : (Model.AccountType == "00" ? "银行卡" : (Model.AccountType == "01" ? "存折" : "信用卡")))</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">开户行所在省：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@Model.Province</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">开户行所在市：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.City</strong>
+                        </div>
+                    </div>
+
+                    <div class="row cl">
+                        <label class="form-label col-xs-3 col-sm-3">账号属性：</label>
+                        <div class="formControls col-xs-3 col-sm-3">
+                            <strong>@(Model.AccountProp == null ? "" : (Model.AccountProp == "0" ? "私人" : "公司"))</strong>
+                        </div>
+
+                        <label class="form-label col-xs-2 col-sm-2">支付行号：</label>
+                        <div class="formControls col-xs-4 col-sm-4">
+                            <strong>@Model.UnionBank</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+

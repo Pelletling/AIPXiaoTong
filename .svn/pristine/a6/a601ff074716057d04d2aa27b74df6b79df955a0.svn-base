@@ -1,0 +1,125 @@
+﻿@using AIPXiaoTong.Model.Admin;
+@using AIPXiaoTong.Model;
+@using Framework.Common;
+
+@{
+    var merchantInfo = ViewBag.MerchantInfo as Merchant;
+}
+
+@model MemberCM
+
+@if (merchantInfo != null)
+{
+    if (merchantInfo.AccountBank == AccountBankOption.PingAn.ToInt())
+    {
+        <div class="page-container page-container-custom">
+            <form action="" method="post" class="form form-horizontal" id="CreateFrom">
+                @Html.HiddenFor(t => t.ID)
+                @Html.AntiForgeryToken()
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">银行代码：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(t => t.AccountPingAn.BankCode, new { @class = "input-text", placeholder = "" })
+                        @Html.ValidationMessageFor(t => t.AccountPingAn.BankCode)
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">开户行名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(t => t.AccountPingAn.BankName, new { @class = "input-text", placeholder = "" })
+                        @Html.ValidationMessageFor(t => t.AccountPingAn.BankName)
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">账号类型：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(t => t.AccountPingAn.AccountType, new { @class = "input-text", placeholder = "" })
+                        @Html.ValidationMessageFor(t => t.AccountPingAn.AccountType)
+                    </div>
+                </div>
+
+                @*<div class="row cl">
+                        <label class="form-label col-xs-4 col-sm-2">账号类型2：</label>
+                        <div class="formControls col-xs-8 col-sm-9">
+                            <span class="select-box inline">
+                                <select id="AccountTypeVal" name="AccountTypeVal" style="width:80px;" class="select">
+                                    <option value=""></option>
+                                    <option value="1">存折</option>
+                                    <option value="0">银行卡</option>
+                                    <option value="2">信用卡</option>
+                                </select>
+                                @Html.HiddenFor(t => t.AccountPingAn.AccountType)
+                                @Html.ValidationMessageFor(t => t.AccountPingAn.AccountType)
+                            </span>
+                        </div>
+                    </div>*@
+
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">开户行所在省：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(t => t.AccountPingAn.Province, new { @class = "input-text", placeholder = "" })
+                        @Html.ValidationMessageFor(t => t.AccountPingAn.Province)
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">开户行所在市：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(t => t.AccountPingAn.City, new { @class = "input-text", placeholder = "" })
+                        @Html.ValidationMessageFor(t => t.AccountPingAn.City)
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">账号属性：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(t => t.AccountPingAn.AccountProp, new { @class = "input-text", placeholder = "" })
+                        @Html.ValidationMessageFor(t => t.AccountPingAn.AccountProp)
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-2">支付行号：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        @Html.TextBoxFor(t => t.AccountPingAn.UnionBank, new { @class = "input-text", placeholder = "" })
+                        @Html.ValidationMessageFor(t => t.AccountPingAn.UnionBank)
+                    </div>
+                </div>
+
+                @Html.Partial("_Save", new EntityModel() { Status = Model.Status })
+
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="page-container page-container-custom">
+            无数据
+        </div>
+    }
+}
+else
+{
+    <div class="page-container page-container-custom">
+        无数据
+    </div>
+}
+
+
+@*<script>
+        $(function () {
+            $("#Save").click(function () {
+
+                var accountTypeVal = $("#AccountTypeVal").find("option:selected").val();
+                alert(accountTypeVal);
+                $("#AccountType").val(accountTypeVal);
+
+            });
+        });
+
+    </script>*@
+

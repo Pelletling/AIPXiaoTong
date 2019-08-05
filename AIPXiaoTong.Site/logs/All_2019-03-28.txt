@@ -1,0 +1,932 @@
+2019-03-28 10:32:30.2194|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：GetOrderMsg|appid=00008692&bizseq=201903271613341276&cusid=142581072993330&randomstr=945282&sign=740996e513ef6b37e514945ce39d2250&termid=11050705&timestamp=20190328103213&trxcode=T001&trxreserve=05%23&version=01
+2019-03-28 10:32:30.7454|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：GetOrderMsg|
+2019-03-28 10:32:48.3904|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=749676&sign=3bde9ce36eac23af7ab340bc2e1e4695&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328103242&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:32:48.5914|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=749676&sign=3bde9ce36eac23af7ab340bc2e1e4695&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328103242&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:32:58.5834|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281032490104&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281032491114&ReqTime=2019-03-28 10:32:49&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=BDkojEi1jSYUM%2bUFeZtd0OuQOynWLOOSOuPKBMk42wzJYxjkypQqkhJR9HtoAtOT35BZjLV2zaPDJaSAyEdBycbjVT4IBgYin5AhmgZlDzem5ksNOyr3LEuBdOoykYcMCdYo8u%2byKxW08KQI50%2btPxm9ECTLjNwqQAT1JtbskAs%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281032491114</ReqJnlNo>
+		<ResJnlNo>3980478</ResJnlNo>
+		<ResTime>2019-03-28 10:34:33</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281032490104</CoPatrnerJnlNo>
+		<EbankJnlNo>3980478</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:34:33</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f36023724</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:32:59.6484|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281032587804&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281032588084&ReqTime=2019-03-28 10:32:58&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=pXCdVwHqj28rl9g4kTxBmLRTxmMQQvgFtyntVuoToXLAWI4tfdL9q1oIlSFnFa6pIpYnqbH%2fqtsPWJr9G%2ftb4TFQeGJPYr5wDul6db0VXqQPbuLyYMefvVSp99k0ZhXmo5vfBj%2f9nJBo9PbRolIghZcPRHA5ITtgZhzhezJ4nhM%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281032588084</ReqJnlNo>
+		<ResJnlNo>3980479</ResJnlNo>
+		<ResTime>2019-03-28 10:34:34</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281032587804</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.02</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:32:59.6804|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:32:59.6804|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:38:09.8944|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=096320&sign=7a9b4be4f68c2552da14030850728ffe&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328103753&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:38:10.2454|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=096320&sign=7a9b4be4f68c2552da14030850728ffe&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328103753&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:38:11.8914|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281038107634&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281038108374&ReqTime=2019-03-28 10:38:10&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=NLr%2fHHRRtVJPOk6d257K2HLWLK0oh74sXM6mhL8aFwjafD7F5mBNOnzklgsAqjxeEmusRqmpxL8wcMNGej%2fL3xZonnextv5LKQNUlSUNgejPuaDH%2b61JFgiceTTkWBawExsEHYV25lqeC0M3mVdOGp4CpVTGclw3EUqa0nzUkMs%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281038108374</ReqJnlNo>
+		<ResJnlNo>3980481</ResJnlNo>
+		<ResTime>2019-03-28 10:39:46</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281038107634</CoPatrnerJnlNo>
+		<EbankJnlNo>3980481</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:39:46</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f38023749</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:38:12.6074|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281038120404&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281038120754&ReqTime=2019-03-28 10:38:12&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=VtEBcJyP7pShgZ5r2LO5vROcPnhdg24m9YDt3YotXp9YIS045O%2flxFaEjr9fYWRVZroqYPJxUgCqQ%2fqmh%2fUQTUrJAyYcq48Ex%2bsjyXWedBHFHUD6b8xQdz%2bH2aRcQguhRyJqufF6xU43fJX9uRuUR4Snycwysa3iVAds5D76MWs%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281038120754</ReqJnlNo>
+		<ResJnlNo>3980482</ResJnlNo>
+		<ResTime>2019-03-28 10:39:47</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281038120404</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.03</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:38:12.6344|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:38:12.6634|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:42:27.8454|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：GetOrderMsg|appid=00008692&bizseq=201903281041526398&cusid=142581072993330&randomstr=736054&sign=88faa1a7bc97f3faa826b52fa61590ca&termid=11050705&timestamp=20190328104221&trxcode=T001&trxreserve=05%23&version=01
+2019-03-28 10:42:27.9604|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：GetOrderMsg|
+2019-03-28 10:42:32.7994|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=223187&sign=ff8b01e1fbb5c6966dd60168c2c72b61&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328104226&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:42:32.8464|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=223187&sign=ff8b01e1fbb5c6966dd60168c2c72b61&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328104226&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:42:33.6384|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281042328744&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281042328834&ReqTime=2019-03-28 10:42:32&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=E9NseGqLfTxa4RWVGNSTJq31iyd2zr7qVSU02xZwxCyNvyPzeOGPKI%2fq12P7Tvup3O%2f7NtMt5eGAGazulWxvx5TUT1WibcreZ92BUsUIDCITm6YtktvKznRn1f3KHoXvd9t3Lws1fS%2boDkWF15QSq10DSe4SVNLKwWg0MFELgNs%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281042328834</ReqJnlNo>
+		<ResJnlNo>3980486</ResJnlNo>
+		<ResTime>2019-03-28 10:44:08</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281042328744</CoPatrnerJnlNo>
+		<EbankJnlNo>3980486</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.04</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:44:08</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f31023730</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:42:34.1024|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281042337024&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281042337124&ReqTime=2019-03-28 10:42:33&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=Q4FMp0iDsxSx37CskxDuE0mx2eMBjMUEX3QFY9L7japgQsFI8xxZ88vlySIe0vhg%2f2LWg1Kw8jfNdUxTFhMZeBo2HCKHDZKJB0chjzHduh8hN27GIp25frdLoy8Ow5EXIvVsS3BIZd4yz8UrqBNT7YvUDsjJJSh6dO93RwrVGOk%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281042337124</ReqJnlNo>
+		<ResJnlNo>3980487</ResJnlNo>
+		<ResTime>2019-03-28 10:44:09</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281042337024</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.07</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:42:34.1274|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:42:34.1274|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:43:18.8324|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：GetOrderMsg|appid=00008692&bizseq=201903281042433555&cusid=142581072993330&randomstr=803348&sign=44b59b1a6a75a47ec6ad02b8bf7c183c&termid=11050705&timestamp=20190328104312&trxcode=T001&trxreserve=05%23&version=01
+2019-03-28 10:43:18.8494|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：GetOrderMsg|
+2019-03-28 10:43:23.7724|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=666906&sign=7ef4f7defe3fed68e18f88269f773be6&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328104317&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:43:23.8174|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=666906&sign=7ef4f7defe3fed68e18f88269f773be6&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328104317&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:43:24.5124|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281043238494&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281043238614&ReqTime=2019-03-28 10:43:23&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=kAr96MAyyyuga1NmLe31LTKiC4nRQvndLentMkQrTXDkGF28xOfqv%2b6JyWZaiVdMZcVzRDP%2bai5xey8saUwFPFwAqlpfb52RJuHnvKRKVFfvivUKxN2Y%2bwLNAE%2fmloZqjdrUQ01EviJCPjJ0C8VEYRjZN7bH4dOzKn4MsKn8ya8%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281043238614</ReqJnlNo>
+		<ResJnlNo>3980488</ResJnlNo>
+		<ResTime>2019-03-28 10:44:59</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281043238494</CoPatrnerJnlNo>
+		<EbankJnlNo>3980488</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:44:59</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f33023810</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:43:24.9514|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281043245484&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281043245574&ReqTime=2019-03-28 10:43:24&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=UKWsFyBG9QcXznke5cQCFdE3zscBxftR1qOp7D5kBJZFgOH8mDZnwnaF7VUEK6qrVrBbanEpEy9jXZhXNnH5NOkPptRX%2bGQ9Mdq%2funq4x1%2bcqmxwxderkuklow0reWOFvnMeNtr6I8K5kdE59bifKjJmRhgj7cl9%2bLCPUzcjEiE%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281043245574</ReqJnlNo>
+		<ResJnlNo>3980489</ResJnlNo>
+		<ResTime>2019-03-28 10:45:00</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281043245484</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.08</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:43:24.9714|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:43:24.9714|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:43:42.7684|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：GetOrderMsg|appid=00008692&bizseq=201903281034503783&cusid=142581072993330&randomstr=349927&sign=122f6d6490a95892cd431a73f750f4cc&termid=11050705&timestamp=20190328104336&trxcode=T001&trxreserve=05%23&version=01
+2019-03-28 10:43:42.7874|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：GetOrderMsg|
+2019-03-28 10:44:10.0954|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：GetOrderMsg|appid=00008692&bizseq=201903281034503783&cusid=142581072993330&randomstr=723369&sign=01ced43a647d95b2bf7e12ab7bf5120b&termid=11050705&timestamp=20190328104404&trxcode=T001&trxreserve=05%23&version=01
+2019-03-28 10:44:10.1254|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：GetOrderMsg|
+2019-03-28 10:44:23.6844|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=792940&sign=4ec380be99653a6cbbda2054a78e6b1d&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328104417&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:44:23.9774|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=792940&sign=4ec380be99653a6cbbda2054a78e6b1d&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328104417&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:44:24.6924|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.05&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281044239984&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281044240054&ReqTime=2019-03-28 10:44:24&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=p5b%2ba0o5xQ%2br2dMB2H7oos%2f6rO5R2jgFcbBtaOUJ%2b8pL9wlgYh3AMT7ywqLL9opyxUIBQOPln%2bD4vlpuRZntsE7Nxv4HuGAlJuNwbR1oJYkBsgeXgLdsi3Ryf%2bgkuFgvuUw6D%2fR55y5%2boOMYRLujC5G%2bjRkIFEuwRBQvXUgi3Tk%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281044240054</ReqJnlNo>
+		<ResJnlNo>3980492</ResJnlNo>
+		<ResTime>2019-03-28 10:45:59</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281044239984</CoPatrnerJnlNo>
+		<EbankJnlNo>3980492</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.05</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:45:59</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f35023682</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:44:25.2824|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.05&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281044247574&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281044247654&ReqTime=2019-03-28 10:44:24&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=JYKU6NaknFQJiEJY4yuuvnkniaSvk5KTo2OsGMhMXkjebc8fIcXTYIFmWtfqpX9uJJuEBXk9vgAk1JSPcNobkZog1ur%2brudKJ7Qaw3IYPZhkJzas0Tn5ml2XSK1MorOUxp9MHMyi9UPD1WtqnImyNLFcNKTuHYZU0wc%2fQyTvb2A%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281044247654</ReqJnlNo>
+		<ResJnlNo>3980493</ResJnlNo>
+		<ResTime>2019-03-28 10:46:00</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281044247574</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.13</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:44:25.3414|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:44:25.3414|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:47:34.1024|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=148263&sign=1bff230f418557cf57dcf9619eb7c83e&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328104728&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:47:34.1724|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=148263&sign=1bff230f418557cf57dcf9619eb7c83e&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328104728&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:47:35.0914|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281047341984&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281047342124&ReqTime=2019-03-28 10:47:34&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=d9sOL9uR0IwF44r7l%2f2ZGJVLbBWeqd0O%2fAtdb7IiDjA6D9SiOwLJr56EnY5ZbZyzxQLU75EpzvPdkFG4PGrWMtrVDdUfg1F6LjegdFsQI8CIdNV3CtqWJkByC4I9Epc8y9%2bcXOIiaGM32wA%2fxdFHkiW4OmZe0HwVt7QPk2PhF8Q%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281047342124</ReqJnlNo>
+		<ResJnlNo>3980494</ResJnlNo>
+		<ResTime>2019-03-28 10:49:10</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281047341984</CoPatrnerJnlNo>
+		<EbankJnlNo>3980494</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.04</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:49:10</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f38023750</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:47:35.5834|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281047351314&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281047351584&ReqTime=2019-03-28 10:47:35&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=Uhmbv%2fNVRnqWwPBOL6DSf0BbXlaMv8e68NiSFJsBCe9wFo3pKwpBKqRXiH%2f1Qv94wi8DMOolmkyzRJ1xl275QjO4KfJ1gTFnHvuOB%2bY3L2vdg%2fOTfvQuXRWTgvIq3Dn82vd93rMMlR76jq4MkgsChkbGUHrnb9kzP%2fZRvT7ClO4%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281047351584</ReqJnlNo>
+		<ResJnlNo>3980495</ResJnlNo>
+		<ResTime>2019-03-28 10:49:10</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281047351314</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.17</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:47:35.6184|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:47:35.6264|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:48:12.0904|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=227214&sign=335048b9ecfa80c5142a3912e21c586f&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328104806&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:48:12.1244|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=227214&sign=335048b9ecfa80c5142a3912e21c586f&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328104806&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:48:12.8244|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281048121564&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281048121664&ReqTime=2019-03-28 10:48:12&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=VXRHbFXMDW6Tzky95BucYVftBczJ1UrXU6XeMXMpw%2frMt86wZv6HYY%2b319G0wdkt%2bYmgdbD0gQgMDD37Y3Tc8GEmXBbrFA%2fozMIqptSP5epClzPR3Q%2fG7c426HKjHlsma0Qtt%2b1%2fHUun%2bs6KvcE%2frdY2hxP7wLYarNVhYu%2fFP9s%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281048121664</ReqJnlNo>
+		<ResJnlNo>3980496</ResJnlNo>
+		<ResTime>2019-03-28 10:49:47</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281048121564</CoPatrnerJnlNo>
+		<EbankJnlNo>3980496</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:49:47</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f30023832</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:48:13.3564|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281048128684&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281048128864&ReqTime=2019-03-28 10:48:12&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=eJ7gw2u1TNbfYcvoxBToZai3L%2fmYZ14lxuIRTncglsuKY5hxtWwA4tF8aYffqaxRsUrDkxFwjG4xRl8Djh7kf9nrBesCJynIFvvmkXF8qS3Mm%2ftc8FP%2bhtGTE%2fjFi0EwR0y9lQRJ%2ff1XLPGJaGNTfo%2fbRjbfc%2bnzxLFKvfPLzik%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281048128864</ReqJnlNo>
+		<ResJnlNo>3980497</ResJnlNo>
+		<ResTime>2019-03-28 10:49:48</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281048128684</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.18</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:48:13.3854|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:48:13.3934|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:48:24.0954|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=439902&sign=38355aacf6edc9d2b2e9920864caef58&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328104818&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:48:24.1454|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=439902&sign=38355aacf6edc9d2b2e9920864caef58&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328104818&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:48:24.9124|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281048242154&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281048242274&ReqTime=2019-03-28 10:48:24&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=Tis4SleqQSRBoSNWZawOD19W7KeobTgufCBZyY%2bZS555zprTb%2b9LP21goNwNOG%2bIPNBfneOaAKAwdkcDggyhykaFzOCmKYwdW1uidVdgDBgce9JysrtxC1sbKAAVDbRy6xN8Xhm25TFtr96E%2bU5Q6YPAYxk5CxgaYdyF%2fsWQ0vs%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281048242274</ReqJnlNo>
+		<ResJnlNo>3980498</ResJnlNo>
+		<ResTime>2019-03-28 10:49:59</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281048242154</CoPatrnerJnlNo>
+		<EbankJnlNo>3980498</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:50:00</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f32023841</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:48:25.3984|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281048249614&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281048249694&ReqTime=2019-03-28 10:48:24&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=Rlrsm1i%2fOMTiK%2bUMv4xReFfrQ5KsNZkBcofEryJp49bccUHVa5PIJ%2f4YlZ%2bLKP%2bA2Ak2Q%2bEyt8BxEBlnwpyLm44YINjb9pr5sV6NKRrZ1dnzNRv2ZwDxAcVUsL76zPlzx1ga2i4R%2bFyFSDwQjdIFTQwjFlNZ7ZZVo90%2bdEoKUVA%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281048249694</ReqJnlNo>
+		<ResJnlNo>3980501</ResJnlNo>
+		<ResTime>2019-03-28 10:50:00</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281048249614</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.19</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:48:25.4294|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:48:25.4294|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:49:43.5424|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=072695&sign=88cfa0ce029274d3d5b09a62bf3af964&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328104919&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:49:44.5324|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=072695&sign=88cfa0ce029274d3d5b09a62bf3af964&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328104919&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:49:50.6984|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.05&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281049460844&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281049461814&ReqTime=2019-03-28 10:49:46&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=OLjAt99OxE9A6w2Y3hvm5GLadrKrviSCQ76fkSyVhmmn5VxaUW%2bt9OkcNsDSOqvGHRtSuca6mu70L37BKw5WwbmnV2GOD1Qxedh5XnmyT621tyAWSIFVlU9PAGkh%2b4h6gy0sg1huq%2f2yf1LkHiMCQZf2APaOZgN26EwlWth6Src%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281049461814</ReqJnlNo>
+		<ResJnlNo>3980504</ResJnlNo>
+		<ResTime>2019-03-28 10:51:25</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281049460844</CoPatrnerJnlNo>
+		<EbankJnlNo>3980504</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.05</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:51:25</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f35023683</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:49:51.2964|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.05&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281049508484&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281049508724&ReqTime=2019-03-28 10:49:50&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=Gp%2bIVcJ88O%2bS0CE1WPcLArsJ81p%2b%2fsFyVF9ZWEtJcwyrqknBbSgDyGR8Mn3Vk%2bpX2XpPf8hAr180rYIXB5lmnTNFrfAz12MU5us2DcWMtuKgWnNCfcGIYBP2Qxw3aLrEQM%2fAZeQcQ%2fMNUoUrpA6q7gUM1i9h8zDL%2buZyt2ao%2fH4%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281049508724</ReqJnlNo>
+		<ResJnlNo>3980505</ResJnlNo>
+		<ResTime>2019-03-28 10:51:26</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281049508484</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.24</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:49:51.3214|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:49:51.3524|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:50:20.7074|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：GetOrderMsg|appid=00008692&bizseq=201903281033337041&cusid=142581072993330&randomstr=749115&sign=affd1e825157a703c333edb7f1fee6c7&termid=11050705&timestamp=20190328105014&trxcode=T001&trxreserve=05%23&version=01
+2019-03-28 10:50:20.7544|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：GetOrderMsg|
+2019-03-28 10:57:35.1014|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=130783&sign=3575a0d4c264df6ccc9c5a640b8fa2c9&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328105729&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:57:35.1534|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=130783&sign=3575a0d4c264df6ccc9c5a640b8fa2c9&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328105729&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:57:36.2144|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281057351784&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281057351854&ReqTime=2019-03-28 10:57:35&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=EwEzrmfAJfvCvSZE5BLoriw68CgzLBMqF01lGOePogzGxm%2brwv964nMcheKdDxR%2bsoT%2fvDiLnn2zPZ5fvtlMAs4jcBz7cVXWyQMMqTfxizGUIX1qZ5Qt2FbAE96lUJf09ti5Sbdo3Azc3%2blwGKfBo6VIE8cHJThF3Uqn90nQZVo%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281057351854</ReqJnlNo>
+		<ResJnlNo>3980510</ResJnlNo>
+		<ResTime>2019-03-28 10:59:11</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281057351784</CoPatrnerJnlNo>
+		<EbankJnlNo>3980510</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.04</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 10:59:11</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f38023751</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:57:36.7334|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281057362684&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281057362764&ReqTime=2019-03-28 10:57:36&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=ocYI2%2bXyQ3WhpleTKxwe1RmylA8LkUJjYs%2f0IDK2RVeFiLpxHjnz05iJe1J8qpk6HlYSbek9EQhUBo6k67OINxUFkBNVD3RQkvhAoGH92f%2fHPWeokSVqVcGg9Hgrz5sbsmasgTBEJSHqPzETqvWjQm0SZ%2bwoLRd0KmGo4ckkftQ%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281057362764</ReqJnlNo>
+		<ResJnlNo>3980511</ResJnlNo>
+		<ResTime>2019-03-28 10:59:11</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281057362684</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.28</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:57:36.7704|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:57:36.7764|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:58:25.0864|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=233662&sign=7437951b3faa778573815af1f949467b&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328105819&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:58:25.1014|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=233662&sign=7437951b3faa778573815af1f949467b&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328105819&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:58:25.7744|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281058251364&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281058251474&ReqTime=2019-03-28 10:58:25&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=Wm710%2boGEQa%2fg72EFCmYmcIpSWFgWamc9AHOIiO6ZGhPwuMdedaBJ4ba5qCehQmlQBBaiMDhSVy%2bWDR7kTMZddKCo85NDOA1rViEDrMmV0h9PTxv93jDLNwUBc0quGXRACH9R5fXg%2fdL8zl1YKeCndnBEyl6QCuI3EZWusWNnkk%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281058251474</ReqJnlNo>
+		<ResJnlNo>3980515</ResJnlNo>
+		<ResTime>2019-03-28 11:00:00</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281058251364</CoPatrnerJnlNo>
+		<EbankJnlNo>3980515</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 11:00:00</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f30023833</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 10:58:26.3864|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281058258294&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281058258364&ReqTime=2019-03-28 10:58:25&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=jsf5gZmdpNSnlFyleSHUkDkfePoJfkJkHdJPSO5HAsG26gV35NeA%2f2CLNuImT%2btNaVi0IlAeezmwbgeWNvvr63WfFrXBZl3mknVzetDrQcDJlIL1PZ1AZiNWTQO%2bIOGvIGG1jeiUDv%2bUt3oKXmCa2RbnF2mbaCiKc87NPSKssCY%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281058258364</ReqJnlNo>
+		<ResJnlNo>3980516</ResJnlNo>
+		<ResTime>2019-03-28 11:00:01</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281058258294</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.29</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 10:58:26.4134|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:58:26.4224|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:59:45.0854|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=595192&sign=3f40e731e7fd8f54205f9e3973dc3c64&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328105939&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:59:45.1214|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=595192&sign=3f40e731e7fd8f54205f9e3973dc3c64&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328105939&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 10:59:57.1434|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.05&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281059451444&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281059451504&ReqTime=2019-03-28 10:59:45&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=fzhxRMPKPutLKrvjodvV72SuIiW4DJRexNfiMi3Pr8KlaSMDA04wWB6fj2OSO9aP4M2KLqcnTVXSkbnlAKjDhh%2fHTCi8%2fWo7lfHWzr01fuD5%2fgHO6yAS0uxa%2bI%2fuC%2bCdzpZ9d41uGs8JkyzHhoail%2baX8NjAy%2b6sPaK8ELW1uD8%3d，返回：未能解析此远程名称: 'testopen.cebbank.com',http异常:
+2019-03-28 10:59:57.1904|Error|AIPXiaoTong.Site.Controllers.NotifyController.POSOrderPaidNotify|订单充值失败:AIPXiaoTong.Model.APIException: 充值失败：未能解析此远程名称: 'testopen.cebbank.com'
+   在 AIPXiaoTong.Service.OrderPaidService.Recharge(OrderPaid orderPaid) 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Service\OrderPaidService.cs:行号 619
+   在 AIPXiaoTong.Service.OrderPaidService.RechargeAndFreeze(OrderPaid orderPaid) 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Service\OrderPaidService.cs:行号 440
+   在 AIPXiaoTong.Site.Controllers.NotifyController.POSOrderPaidNotify() 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Controllers\NotifyController.cs:行号 164
+2019-03-28 10:59:57.1994|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 10:59:57.2074|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:03:13.0864|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=639640&sign=1ef91f383908fe95081b73f671578175&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328110307&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:03:13.1164|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903271613341276&cusid=142581072993330&fee=0&paytime=20190328103242&randomstr=639640&sign=1ef91f383908fe95081b73f671578175&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692882&timestamp=20190328110307&traceno=000024&trxcode=VSP001&trxday=20190328&trxid=111957690000692882&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903271613341276%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:03:13.9354|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281103131474&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281103131594&ReqTime=2019-03-28 11:03:13&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=ilHQbj9CT4WHOMnDJKxKEaaLZruu8ofb3Mg3RpJ8xwL5c6jNJjbxZSZw9n21bgnrAvdNZT3NPHJjGo1v2WRXn%2bD%2bqvXtSszjvnhZoAydA%2ffOAH0PL0nzndvyiaiz0mvfRHWBcP2sypPGWDDSVptqbY5YP49nyQgffEKIpKQCPis%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281103131594</ReqJnlNo>
+		<ResJnlNo>3980524</ResJnlNo>
+		<ResTime>2019-03-28 11:04:48</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281103131474</CoPatrnerJnlNo>
+		<EbankJnlNo>3980524</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 11:04:49</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f31023731</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 11:03:14.3914|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281103139704&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281103139864&ReqTime=2019-03-28 11:03:13&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=RhJnkwCiyXz%2fIuV7tMgAA9Y0CuX3H0PUPBAaBRUchMD9%2fo7s9cGaq7DcgOtpEmWxJoGq%2bFPd%2fJt66u1RQXHIdp8b7pMh1LS2gB0HRV5Klm3loLdf05sSgI5wYfJBGSw%2bLflYtGL3SHMKytbj%2fKVtdggtAwHM3V7YqdIO8C0VEM8%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281103139864</ReqJnlNo>
+		<ResJnlNo>3980525</ResJnlNo>
+		<ResTime>2019-03-28 11:04:49</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281103139704</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.30</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 11:03:14.4104|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:03:14.4104|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:12:47.6454|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=551091&sign=ea285757c1085d5363eba48f808e2597&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328111230&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:12:48.0504|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=4&appid=00008692&bizseq=201903281041526398&cusid=142581072993330&fee=0&paytime=20190328104226&randomstr=551091&sign=ea285757c1085d5363eba48f808e2597&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692903&timestamp=20190328111230&traceno=000026&trxcode=VSP001&trxday=20190328&trxid=111957690000692903&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281041526398%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:12:49.7794|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281112485664&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281112486424&ReqTime=2019-03-28 11:12:48&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=i0mufUoZdab7KbhBJbK7nl%2bh%2bcx4keKtthHkPguUYgoyHcvnhZOrWOmCrR6ychxXTn5IdzXNrIEbQ5un4Kh6DBZFRHAmgyNtwZqFycLc1DOJpSdML%2fjZiQvgoQyKW5pfUtFNqoY9u1v1WGN9jwNff0J%2fEV72EHzosq0HxehBPDE%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281112486424</ReqJnlNo>
+		<ResJnlNo>3980534</ResJnlNo>
+		<ResTime>2019-03-28 11:14:24</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281112485664</CoPatrnerJnlNo>
+		<EbankJnlNo>3980534</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.04</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 11:14:24</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f37023789</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 11:12:50.5074|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.04&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281112499544&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281112499764&ReqTime=2019-03-28 11:12:49&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=q5w%2fS8LRLtTFE0Fl9xMo%2fJxAl74g2qkIqDwTMSf8nVnM7pY%2bnVVnE93G7Y1YtAVzL1rWEVky7%2fMumd8XP%2fhOttTBfPxNtFwJEmy8wS9qGOsfcNHmQz1vs8pOLTpi0WD8xKI6dZB1tOaRvFDTwCdUx1igmhRSmJKGlx8OcSJi5XQ%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281112499764</ReqJnlNo>
+		<ResJnlNo>3980535</ResJnlNo>
+		<ResTime>2019-03-28 11:14:25</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281112499544</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.34</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 11:12:50.5334|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:12:50.5654|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:13:26.0954|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=137377&sign=684f779c29eb285d0c46710246d55f0f&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328111320&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:13:26.1124|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=1&appid=00008692&bizseq=201903281042433555&cusid=142581072993330&fee=0&paytime=20190328104317&randomstr=137377&sign=684f779c29eb285d0c46710246d55f0f&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692905&timestamp=20190328111320&traceno=000028&trxcode=VSP001&trxday=20190328&trxid=111957690000692905&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281042433555%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:13:26.7654|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281113261324&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281113261374&ReqTime=2019-03-28 11:13:26&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=BhTXbedml83th3Rbeab0URqEnfi2h1GqjMMS8wpEq4DFgwnWoQFqUaC%2fk%2btr9m2uIjh0L1ymQ4RUC0HuIA5km56fdtvh0HDQHt1LhHNOPSka3IfO6TNVwYf3bEUISoqLQTz8UIL%2bn5hUqXrdLKpRNRY8lg73rVrw1%2ffAJNKizWo%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281113261374</ReqJnlNo>
+		<ResJnlNo>3980537</ResJnlNo>
+		<ResTime>2019-03-28 11:15:01</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281113261324</CoPatrnerJnlNo>
+		<EbankJnlNo>3980537</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.01</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 11:15:01</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f29023906</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 11:13:27.2554|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.01&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281113267884&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281113267934&ReqTime=2019-03-28 11:13:26&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=dZQcksBdb7z2Wy1evwJfp1nvom4fbShGMsfz42kaYB0j28saus2R3CErKWeTKDx1TOFr8NykhhXmRNEzO%2fEndCO9qdY82eY0uXLkkbN%2brqh%2bkyscNkmcS8Vz3QwhK%2fSKFH8rDym5KLduq3RXvuR4stJ%2bMHQalpvM5Xs6ed%2bvchM%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281113267934</ReqJnlNo>
+		<ResJnlNo>3980538</ResJnlNo>
+		<ResTime>2019-03-28 11:15:02</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281113267884</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.35</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 11:13:27.2694|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:13:27.2754|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:14:57.0954|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=732864&sign=bc9073c6c62fbf9199f5741949a178d7&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328111451&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:14:57.1474|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuting|Action：POSOrderPaidNotify|acct=621483****6942&accttype=00&amount=5&appid=00008692&bizseq=201903281034503783&cusid=142581072993330&fee=0&paytime=20190328104417&randomstr=732864&sign=bc9073c6c62fbf9199f5741949a178d7&signtype=MD5&termbatchid=000001&termid=11050705&termrefnum=115769692907&timestamp=20190328111451&traceno=000031&trxcode=VSP001&trxday=20190328&trxid=111957690000692907&trxreserve=05%23%23%e5%bb%96%e6%ba%90%e6%b4%b2%2315245456565%23201903281034503783%23%23%23%23%23%23%23&trxstatus=0000
+2019-03-28 11:15:05.7464|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.05&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281114571664&Currency=CNY&Remark=资金转入&ReqId=BTrsIn&ReqJnlNo=201903281114571734&ReqTime=2019-03-28 11:14:57&Reserve1=&Reserve2=&Reserve3=&TrsDate=20190328&TrsType=0&UserId=tlzfsh&Sign=Fh1rMsUV2OttFOkvnG0muFgHMT9tDSihwwWQCixTIJpTHey6uEh3BE0n9AOHn5INQbOmM1RCSdwtyahldJyIROqF9%2btEDj7YRbLh4IbcXz%2bG3Q%2f9LAWznNKAE%2bGipv3J7f32un0XIkMwDktw6Qc3Up79a3Z20X2VcnYK8L4dKVg%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281114571734</ReqJnlNo>
+		<ResJnlNo>3980540</ResJnlNo>
+		<ResTime>2019-03-28 11:16:40</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281114571664</CoPatrnerJnlNo>
+		<EbankJnlNo>3980540</EbankJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Amount>0.05</Amount>
+		<TrsType>0</TrsType>
+		<Currency>CNY</Currency>
+		<CebTrsTime>2019-03-28 11:16:40</CebTrsTime>
+		<Remark>资金转入</Remark>
+		<Reserve1>901f32023842</Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+	</Body>
+</Message>
+,http异常:
+2019-03-28 11:15:07.0444|Trace|GuangDaAPI.GuangDaExec.Exec|（普通请求）请求地址：https://testopen.cebbank.com/portal/，内容：Amount=0.05&CEFlag=0&CifClientId=6d57392972f663e6&CoPatrnerJnlNo=201903281115057744&Currency=CNY&FreezeType=0&GroupNo=&ProtocolDate=&ProtocolNo=&Remark=&ReqId=CurrentFundFreeze&ReqJnlNo=201903281115057804&ReqTime=2019-03-28 11:15:05&Reserve1=&Reserve2=&Reserve3=&Reserve4=&Reserve5=&ThawDate=20190501&TravelEndDay=&TravelStartDay=&TrsDate=20190328&UserId=tlzfsh&Sign=W%2bWBRK5c9x8BmOmIcIVEwjRkiqWHWdS41SCiOca%2bl10iIPG6%2f242cj%2fer8Rn508knKPSoneZmtVwMM4WjO28WFxcSDsB6Dgp0C2ofTq%2fO%2bpTP8PNfuIuH91tb5AJOPfkYFG2MFAucha7uYxGIwdst7I5jQ8nmiJPaM7%2bbQmS7VQ%3d，返回：<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+	<Head>
+		<ReqJnlNo>201903281115057804</ReqJnlNo>
+		<ResJnlNo>3980541</ResJnlNo>
+		<ResTime>2019-03-28 11:16:41</ResTime>
+		<ResCode>000000</ResCode>
+		<ResMsg></ResMsg>
+	</Head>
+	<Body>
+		<CoPatrnerJnlNo>201903281115057744</CoPatrnerJnlNo>
+		<CifClientId>6d57392972f663e6</CifClientId>
+		<Balance>40.40</Balance>
+		<AcName>廖一</AcName>
+		<UnFreezeDate>2019-05-01</UnFreezeDate>
+		<FreezeState>S</FreezeState>
+		<Reserve1></Reserve1>
+		<Reserve2></Reserve2>
+		<Reserve3></Reserve3>
+		<Reserve4></Reserve4>
+		<Reserve5></Reserve5>
+	</Body>
+</Message>
+
+
+
+,http异常:
+2019-03-28 11:15:07.0814|Trace|AIPXiaoTong.Site.Controllers.NotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 11:15:07.0954|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：POSOrderPaidNotify|
+2019-03-28 13:56:51.1914|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：login|42|employeecode=admin1111&equipmentsnno=000002040820286756&key=1234567890&password=E10ADC3949BA59ABBE56E057F20F883E&requestno=CB799B5F-D487-48EB-BC00-7E12F0068535&sign=3086404479792C55948B2F5F88D66B1A
+2019-03-28 13:56:51.7374|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：login|42|{"employeecode":"admin1111","employeeid":"10017","merchantid":"10","requestno":"CB799B5F-D487-48EB-BC00-7E12F0068535","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 13:56:53.6804|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidList|45|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=&pageindex=1&pagesize=&projectname=&requestno=4A3B1DBB-521D-4152-9062-B9379F13D333&sign=02BFEBAEB65CB4D7259FBD1EE1B295C9&username=
+2019-03-28 13:56:54.0184|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidList|45|{"pagecount":42,"pageindex":1,"pagesize":10,"orderpaidlist":[{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737071844","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074164","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:40"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737049634","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619084162","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737011184","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074163","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:35"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271042228602","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"谢华伟","memberid":"59","membermobile":"13515965922","memberidnumber":"350783198502122530","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619024168","freezesuccesstime":"","createdatetime":"2019/3/27 10:41:57"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261731270546","projectname":"深圳万科","projectid":"10071","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":30000.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262619004155","freezesuccesstime":"","createdatetime":"2019/3/26 17:31:04"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261728239466","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618994156","freezesuccesstime":"","createdatetime":"2019/3/26 17:28:01"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261546011556","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974159","freezesuccesstime":"","createdatetime":"2019/3/26 15:45:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261530055426","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"刘勋","memberid":"53","membermobile":"15273738880","memberidnumber":"430981199211104634","status":"6","statusdesc":"已解冻","rmark":null,"bankorderno":"9230081903264984601929","freezesuccesstime":"2019/3/26 0:00:00","createdatetime":"2019/3/26 15:29:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261527059286","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618964160","freezesuccesstime":"","createdatetime":"2019/3/26 15:26:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261524281276","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974158","freezesuccesstime":"","createdatetime":"2019/3/26 15:24:05"}],"requestno":"4A3B1DBB-521D-4152-9062-B9379F13D333","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 13:56:56.3304|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidDetail|50|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=201903271737071844&requestno=5A3D41C9-33B2-46AA-B1D5-999280C0329E&sign=EF2907D1DE5BD51E5B4AAF2348B1226F
+2019-03-28 13:57:00.9864|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：bankOrderNo=9230081903272619074164&channel=1007041&pageIndex=1&pageSize=10&transCode=018&sign=OCQfJ2jCzCu6BumlzQjmdS9PhX2oHBmFZCXAheAHntATw5UM86rWS3w5gwzuG2fP2Sf4D6bip2g0mEjj5BoqrLede/n86qTWztfLVEAmj4+otJTP31mIwsw1B51xDX+xMD3L36o1CcFcgL8SHSv6mZjo3bd6xP/JvOlX2K9ZUOqNiI0kcwVlmpSc3Equ9S1+rlc343WQbaDy+Y05gMxsvQ34L2IzPT3lPirUX0wxMS500tg7NK7hwja2ZjiD0jA+GeG3jMpWvPMj6QRKgD3IOlzc9XA2qG7AEAPXuqvw5akKHswcnP4/8MOnwIMYtKGQ8DIdt1XhL367BMnqq8DOOQ==，返回：{"sign":"V3WKMMaPm9Cw60X2rimN+8031gSkmFL24eNh//EyH+cjFwMv1U64LCLX18n6594sRybnKuS3+r01TS9tYi104DewgP2KSRYDWmg8WYHquAZSmeQZg1wTa6CkjzvmbvmQnr9FtvlzFdZ60I32/UAa2n4ojw4imBVPt9vNrGMYdNxaFCKpgaMBQPpOmKrfPFaY2Qvaf5pcnNZ1XI71WSh5GVPY/7d/tfCFvqSCr3qPPxJqg4b7v32akJPWaD1DDw0IyXSH75EJW3jexy1NWyVxA+FkT8CJiZZ1LyzcKT9+0apkEZERC1vxfsBOaUs9mFoQ1h+qneaGJnL46FxiLga4gg==","responseCode":"000000","data":"{\"responseCode\":\"0\",\"totalRows\":1,\"currentPage\":1,\"marginsOrderInfoList\":[{\"freezeAmt\":1.0,\"bankOrderNo\":\"9230081903272619074164\",\"productCode\":\"\",\"cityName\":\"\",\"cityCode\":\"\",\"commercialShortNameII\":\"\",\"transStatus\":\"1\",\"finishTransferAmt\":0.0,\"commercialNoII\":\"\",\"activityNo\":\"\",\"mobilePhone\":\"18719720226\",\"userName\":\"王勇控\",\"freezeTime\":\"\",\"commercialOrderNo\":\"9230081903272619074164\",\"activityName\":\"\",\"productName\":\"\",\"orderAmt\":1.0,\"cardNumber\":\"3302**********7352\"}]}","responseMsg":"成功"},http异常:
+2019-03-28 13:57:01.1714|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidDetail|50|{"orderpaidid":"512","merchantid":"10","merchantname":"普惠","ordernumber":"201903271737071844","projectid":"10073","projectname":"迈瑞","equipmentsnno":"000002041170001186","transactionamount":"1.00","serialnumber":"","memberid":"54","membername":"王勇控","membermobile":"18719720226","memberidnumber":"330219197202267352","bankcardnumber":"62298002888333","remark":"","status":"0","statusdesc":"未支付","createdatetime":"2019/3/27 17:36:40","employeeid":"10017","employeename":"廖哲","bankorderno":"9230081903272619074164","autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=049209779102A579FD6EE468C98EA86F65E65B0326FD1663D8874A27DE73D45C29AC71523EB056904B5D2B8A0C5C476B36E6BCE22160DD82AB65722A4B7175F1A39DBCA30A902A0738A408F30C83CDB663BE1471D4E9D6B8C1D5ABFF33BE9F8BC47F0B941111C29ECF940ED9FF78253324A29842D3931FCE4BBB09DFEFB67D38BFF5A9494F96C245818529E1A556ED0A22A8BCAAF46B534BD5EB7B27799CC3D76C81DBC4026DA27FCF7D8B32123C4C3504C7EC2B31885EAAA629D8CA25174CB0B84AACD108C201F617AA415D621E518B1FDB3CA061790ED83FC46EB774F3E7316EBA65515EE652286E0C97663D06DF560F9A37DA1E92B071623BDA1F91F6A3ACCA04B7425C71&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903272619074164","freezesuccesstime":"","generalinfo":"","requestno":"5A3D41C9-33B2-46AA-B1D5-999280C0329E","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 13:57:55.0494|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidList|40|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=&pageindex=1&pagesize=&projectname=&requestno=71256983-8EEF-42B9-B583-49AE39A9C4ED&sign=C215D797AAF28933165C5A0527ECE544&username=
+2019-03-28 13:57:55.1674|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidList|40|{"pagecount":42,"pageindex":1,"pagesize":10,"orderpaidlist":[{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737071844","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074164","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:40"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737049634","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619084162","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737011184","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074163","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:35"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271042228602","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"谢华伟","memberid":"59","membermobile":"13515965922","memberidnumber":"350783198502122530","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619024168","freezesuccesstime":"","createdatetime":"2019/3/27 10:41:57"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261731270546","projectname":"深圳万科","projectid":"10071","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":30000.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262619004155","freezesuccesstime":"","createdatetime":"2019/3/26 17:31:04"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261728239466","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618994156","freezesuccesstime":"","createdatetime":"2019/3/26 17:28:01"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261546011556","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974159","freezesuccesstime":"","createdatetime":"2019/3/26 15:45:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261530055426","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"刘勋","memberid":"53","membermobile":"15273738880","memberidnumber":"430981199211104634","status":"6","statusdesc":"已解冻","rmark":null,"bankorderno":"9230081903264984601929","freezesuccesstime":"2019/3/26 0:00:00","createdatetime":"2019/3/26 15:29:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261527059286","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618964160","freezesuccesstime":"","createdatetime":"2019/3/26 15:26:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261524281276","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974158","freezesuccesstime":"","createdatetime":"2019/3/26 15:24:05"}],"requestno":"71256983-8EEF-42B9-B583-49AE39A9C4ED","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 13:57:58.2624|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidList|45|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=&pageindex=1&pagesize=&projectname=&requestno=E07DC478-59D1-4985-9C2C-88C0B2591792&sign=83226E1674FE1C4AB2F327C367FCC144&username=
+2019-03-28 13:57:58.3924|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidList|45|{"pagecount":42,"pageindex":1,"pagesize":10,"orderpaidlist":[{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737071844","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074164","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:40"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737049634","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619084162","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737011184","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074163","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:35"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271042228602","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"谢华伟","memberid":"59","membermobile":"13515965922","memberidnumber":"350783198502122530","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619024168","freezesuccesstime":"","createdatetime":"2019/3/27 10:41:57"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261731270546","projectname":"深圳万科","projectid":"10071","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":30000.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262619004155","freezesuccesstime":"","createdatetime":"2019/3/26 17:31:04"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261728239466","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618994156","freezesuccesstime":"","createdatetime":"2019/3/26 17:28:01"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261546011556","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974159","freezesuccesstime":"","createdatetime":"2019/3/26 15:45:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261530055426","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"刘勋","memberid":"53","membermobile":"15273738880","memberidnumber":"430981199211104634","status":"6","statusdesc":"已解冻","rmark":null,"bankorderno":"9230081903264984601929","freezesuccesstime":"2019/3/26 0:00:00","createdatetime":"2019/3/26 15:29:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261527059286","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618964160","freezesuccesstime":"","createdatetime":"2019/3/26 15:26:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261524281276","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974158","freezesuccesstime":"","createdatetime":"2019/3/26 15:24:05"}],"requestno":"E07DC478-59D1-4985-9C2C-88C0B2591792","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 13:58:00.5824|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidList|40|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=&pageindex=1&pagesize=&projectname=&requestno=D128EF4F-B75D-4C8C-9E32-5AE2919B3651&sign=9F6F0D39DDD44B629D9E6EAA29F130C4&username=
+2019-03-28 13:58:00.6534|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidList|40|{"pagecount":42,"pageindex":1,"pagesize":10,"orderpaidlist":[{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737071844","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074164","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:40"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737049634","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619084162","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737011184","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074163","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:35"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271042228602","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"谢华伟","memberid":"59","membermobile":"13515965922","memberidnumber":"350783198502122530","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619024168","freezesuccesstime":"","createdatetime":"2019/3/27 10:41:57"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261731270546","projectname":"深圳万科","projectid":"10071","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":30000.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262619004155","freezesuccesstime":"","createdatetime":"2019/3/26 17:31:04"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261728239466","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618994156","freezesuccesstime":"","createdatetime":"2019/3/26 17:28:01"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261546011556","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974159","freezesuccesstime":"","createdatetime":"2019/3/26 15:45:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261530055426","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"刘勋","memberid":"53","membermobile":"15273738880","memberidnumber":"430981199211104634","status":"6","statusdesc":"已解冻","rmark":null,"bankorderno":"9230081903264984601929","freezesuccesstime":"2019/3/26 0:00:00","createdatetime":"2019/3/26 15:29:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261527059286","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618964160","freezesuccesstime":"","createdatetime":"2019/3/26 15:26:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261524281276","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974158","freezesuccesstime":"","createdatetime":"2019/3/26 15:24:05"}],"requestno":"D128EF4F-B75D-4C8C-9E32-5AE2919B3651","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 13:58:02.5874|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidDetail|46|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=201903271737071844&requestno=38C11141-911D-4276-94D7-D4397201A25A&sign=2327937B0C3654C43981A1EC873DB0BB
+2019-03-28 13:58:02.7434|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：bankOrderNo=9230081903272619074164&channel=1007041&pageIndex=1&pageSize=10&transCode=018&sign=OCQfJ2jCzCu6BumlzQjmdS9PhX2oHBmFZCXAheAHntATw5UM86rWS3w5gwzuG2fP2Sf4D6bip2g0mEjj5BoqrLede/n86qTWztfLVEAmj4+otJTP31mIwsw1B51xDX+xMD3L36o1CcFcgL8SHSv6mZjo3bd6xP/JvOlX2K9ZUOqNiI0kcwVlmpSc3Equ9S1+rlc343WQbaDy+Y05gMxsvQ34L2IzPT3lPirUX0wxMS500tg7NK7hwja2ZjiD0jA+GeG3jMpWvPMj6QRKgD3IOlzc9XA2qG7AEAPXuqvw5akKHswcnP4/8MOnwIMYtKGQ8DIdt1XhL367BMnqq8DOOQ==，返回：{"sign":"oG2DaCL+ajsk1doKxKJSk6n+03QQtEuJ22NWS9aO4OVmKAI5vczCYgqQsVtaNEC1sQt0hULQPStI8lZqi1E9z/ySP83z8zK0zh6C3/jtc2fBshMWPtytDVms+62Ad0obOC9F44HVFsqxipnCClteWPSRx4brD8xwBu3eN5hJHV3xJfDhs2OvdB7oZ3V0CLz4meJp3aMMs0madGrdbal9hVTWEXxuQWcpvNO1El2EcAwuhd2obV1xzVfWitDplH9LQ3fLjbDT9l8xkKQ/ZZ843/K+hPj0ba94UF+BgIKBAD80wESG/KAqsdjXB2vYAwNfty8EUe702HmM/+fiHkYmmw==","responseCode":"000000","data":"{\"responseCode\":\"0\",\"totalRows\":1,\"currentPage\":1,\"marginsOrderInfoList\":[{\"freezeAmt\":1.0,\"bankOrderNo\":\"9230081903272619074164\",\"productCode\":\"\",\"cityName\":\"\",\"cityCode\":\"\",\"commercialShortNameII\":\"\",\"transStatus\":\"3\",\"finishTransferAmt\":0.0,\"commercialNoII\":\"\",\"activityNo\":\"\",\"mobilePhone\":\"18719720226\",\"userName\":\"王勇控\",\"freezeTime\":\"2019-03-28\",\"commercialOrderNo\":\"9230081903272619074164\",\"activityName\":\"\",\"productName\":\"\",\"orderAmt\":1.0,\"cardNumber\":\"3302**********7352\"}]}","responseMsg":"成功"},http异常:
+2019-03-28 13:58:03.1384|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidDetail|46|{"orderpaidid":"512","merchantid":"10","merchantname":"普惠","ordernumber":"201903271737071844","projectid":"10073","projectname":"迈瑞","equipmentsnno":"000002041170001186","transactionamount":"1.00","serialnumber":"","memberid":"54","membername":"王勇控","membermobile":"18719720226","memberidnumber":"330219197202267352","bankcardnumber":"62298002888333","remark":"","status":"4","statusdesc":"已冻结","createdatetime":"2019/3/27 17:36:40","employeeid":"10017","employeename":"廖哲","bankorderno":"9230081903272619074164","autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=0D97AAA8B7E819953EF28A5C26E09C9C9ED17F08A0C6ECAE46068344A402A0C00F89D558443050B3A88481173EA0F14DD59E1E7B4F5B1DD5A76A22B07F6F8729DD554D9EF0EC404ECF11A5A4D7BAF19D5B0E91F41972ABE0C4326E3FABD64249625FFED68639CA1C513319561EB9A78CA33159343849EB42CD11B47BBE5B9D5A745F991D13B858646CBEF047BAD8108A97A9797AD2CB090F8E3C3E768D060CA960587B55B329F0AAA5A2D4A0141955D96C4B5EA16C3BEC5E4BD0243CF9CDA9F7C833366AB672A0A90BD65B06D737FD10B1FB3FBF60287923899709DE06D4D0EB6A5B0A84388008C5D4D04831C08A224A8CFF15D21B3C5DD9E84415D1BE593E4FFC4F7AC0DAD0&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903272619074164","freezesuccesstime":"2019/3/28 0:00:00","generalinfo":"","requestno":"38C11141-911D-4276-94D7-D4397201A25A","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 13:58:07.2284|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidList|47|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=&pageindex=1&pagesize=&projectname=&requestno=9F9C81CA-6CE0-41D3-A2DC-036308BD4414&sign=1A9778C2CCA9E4FE218D0A7036B88A19&username=
+2019-03-28 13:58:07.3534|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidList|47|{"pagecount":42,"pageindex":1,"pagesize":10,"orderpaidlist":[{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737071844","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"4","statusdesc":"已冻结","rmark":null,"bankorderno":"9230081903272619074164","freezesuccesstime":"2019/3/28 0:00:00","createdatetime":"2019/3/27 17:36:40"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737049634","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619084162","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737011184","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074163","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:35"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271042228602","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"谢华伟","memberid":"59","membermobile":"13515965922","memberidnumber":"350783198502122530","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619024168","freezesuccesstime":"","createdatetime":"2019/3/27 10:41:57"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261731270546","projectname":"深圳万科","projectid":"10071","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":30000.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262619004155","freezesuccesstime":"","createdatetime":"2019/3/26 17:31:04"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261728239466","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618994156","freezesuccesstime":"","createdatetime":"2019/3/26 17:28:01"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261546011556","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974159","freezesuccesstime":"","createdatetime":"2019/3/26 15:45:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261530055426","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"刘勋","memberid":"53","membermobile":"15273738880","memberidnumber":"430981199211104634","status":"6","statusdesc":"已解冻","rmark":null,"bankorderno":"9230081903264984601929","freezesuccesstime":"2019/3/26 0:00:00","createdatetime":"2019/3/26 15:29:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261527059286","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618964160","freezesuccesstime":"","createdatetime":"2019/3/26 15:26:43"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261524281276","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618974158","freezesuccesstime":"","createdatetime":"2019/3/26 15:24:05"}],"requestno":"9F9C81CA-6CE0-41D3-A2DC-036308BD4414","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 14:08:01.7714|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryProjectList|71|equipmentsnno=000002040820286756&key=1234567890&pageindex=1&pagesize=&projectname=&requestno=0D52BB7E-CB5A-43A0-ABD3-CF075F167A51&sign=53D1AF2E19B0111C9071F92808A02A5C
+2019-03-28 14:08:02.3524|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryProjectList|71|{"pagecount":1,"pageindex":1,"pagesize":10,"projectlist":[{"merchantname":"普惠","merchantid":"10","projectname":"迈瑞","projectid":"10073","projectimage":"http://localhost:8023/Images/AdvertisingImge/40a9f81c-aa1a-4ab2-bba4-6d571c07003d.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/40a9f81c-aa1a-4ab2-bba4-6d571c07003d.png","http://localhost:8023/Images/AdvertisingImge/31430964-e577-40f8-b348-be21efc20eb0.png"],"projectamount":"100000000.00","residueamount":"99999993.79","deadline":"2020/4/10 0:00:00","description":null,"reason":"","status":"1","statusdesc":"审核通过","provincecode":"62","provincename":"甘肃省","citycode":"6201","cityname":"兰州市","starttime":"2019/3/25 0:00:00","guaranteeamount":"1.00","guaranteemonth":"4"},{"merchantname":"普惠","merchantid":"10","projectname":"平安公租房","projectid":"10072","projectimage":"http://localhost:8023/Images/AdvertisingImge/67bfb016-1de6-4098-8915-b6778d55890d.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/67bfb016-1de6-4098-8915-b6778d55890d.png","http://localhost:8023/Images/AdvertisingImge/50c287b2-71f0-42af-ab13-c633b02104d7.png"],"projectamount":"100000000.00","residueamount":"99999998.00","deadline":"2020/3/20 0:00:00","description":null,"reason":"","status":"1","statusdesc":"审核通过","provincecode":"11","provincename":"北京市","citycode":"1102","cityname":"县","starttime":"2019/3/25 0:00:00","guaranteeamount":"170000.00","guaranteemonth":"1"},{"merchantname":"普惠","merchantid":"10","projectname":"深圳万科","projectid":"10071","projectimage":"http://localhost:8023/Images/AdvertisingImge/30b642b1-56d0-4351-bdb2-ccd4c7a5f9ec.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/30b642b1-56d0-4351-bdb2-ccd4c7a5f9ec.png","http://localhost:8023/Images/AdvertisingImge/a108abb0-0bef-4f4c-81cb-133ecdb7a7fd.png"],"projectamount":"100000000.00","residueamount":"99999999.94","deadline":"2019/6/20 0:00:00","description":"新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中","reason":"","status":"1","statusdesc":"审核通过","provincecode":"44","provincename":"广东省","citycode":"4403","cityname":"深圳市","starttime":"2019/3/25 0:00:00","guaranteeamount":"30000.00","guaranteemonth":"5"},{"merchantname":"普惠","merchantid":"10","projectname":"湖北万科","projectid":"10070","projectimage":"http://localhost:8023/Images/AdvertisingImge/45e35415-ba0e-4250-bb8a-c8d5e36a82e5.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/45e35415-ba0e-4250-bb8a-c8d5e36a82e5.png","http://localhost:8023/Images/AdvertisingImge/116adb36-a606-4ffa-a361-b12a05554432.png"],"projectamount":"100000000.00","residueamount":"99999999.30","deadline":"2019/4/26 0:00:00","description":"湖北湖北","reason":"","status":"1","statusdesc":"审核通过","provincecode":"42","provincename":"湖北省","citycode":"4205","cityname":"宜昌市","starttime":"2019/3/25 0:00:00","guaranteeamount":"30000.00","guaranteemonth":"2"}],"requestno":"0D52BB7E-CB5A-43A0-ABD3-CF075F167A51","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 15:31:38.6264|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=62eb3b65181b243783208caeeee766b35d4c6c7a86ff9d55fd230f63b80ccdad0a5dc14100a035fd43f838c45446cee128975f7634c605faece8c0fee07286fac3e72f2d797cf4de4018aced7340d1b83ea850b17f3e77e06efcd176c4aff7dd54dd07f359510d22413f84db921cb82df0d29d61e5f414f65077ede8ed82b4457af077e477c9363830241bbb19fc6ebd9825410a6513525da3df2a9a0949d2fbe44bcefe1d852be39ddbd1d9204681b4c9500408b5278919b3f73a507494bca14af8f893c66ddd481e66b5c3de167a1cb33ca45d37818a4fa86dca07c20a648ed485c46b39c117a394d4128bb429abb472ba590fa8ec1f1ad021b2ff393139183cdaf84e4e8cb1e6e4d7b36792a4ef2d99dd6dc8e5e5c765c2a845e9d6270e3d6dd90970ed160640d42042585c2a31b7dfdd4890a29a0fac05d080af994e26c948ba6b484bc800364cea64750f660dcfa951f16b42eeca9201dda2a497bd1b375839e80d17462d4052cc0a82df6a91749903959ab6b996abbf4f5d14021011001201d6e70d5fdd047488a2aab21121f6533648b63f5968590b6ca113a622a58f222797caa90ed697aaf2fbeb35df394a6ad5f3f06cb8f37adeea2f1ff910e71809e4c4cdd9f104c9852843b6a6dcc2c177bd2b5c430a73e6cda022fd77785ad7c0fc0b06f1262fb53eae3d1d7e01ab91a51259b88bad97c77693316af628e230
+2019-03-28 15:31:39.0414|Error|AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify|数据异常:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify(String encryptData) 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Controllers\PingAnNotifyController.cs:行号 100
+2019-03-28 15:31:39.0504|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 15:32:15.2454|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=260fea9e49546a7de5686fb2cc2226a13664c2f734648d63198be84ceda25edd632561dfa6e7ff76de2a369822b4a14b7a6db64fd66719c1927ba871f0dbe692465955e488a0e4e146a7c07b2db9d681afed8f5064f4f4d4e8ff488954ebbbee66d917d99e30bf48f164e2312503191639a976fae78cd149a57ce2b22efeffa744ecb1352db56c6377bc9267fc31f3fe98799c97f76a09e77719000ab852a3d9e556dd663c42b464b485938c94208bede11f7a306b474a977eb00cbd3858a9c876bfb9794c3ceac522106ba73e9ca370bc28ad645c723277f464f9ffa107c15c574ce12bb6fbc03037afb570b128a24896918ea5016e5d263d4e2b6674c9a50e286ba0dd02df699278d53c0f71cf41cfe17ae9166e6dc3edf1fd1ed1daec1d885b9079d3bc3670c2b5148f1766bd3ddd45bf8a9728e678b953ad88c2e0fbeee251ce532ef7b4d433c8c2b39db66486c8b57a0ddec871cadd8f1b8abd36e122c04380adae8c28f7b1de2e0e028294f229e155ca513cce703c4d7041d286d9a5c3416155de8bf9a5ed0922d7f1720e496ec9ef4a69b94923f7997e65dc45aa9c422d7786cb4ab586258191f1ea76a87faddd6a75af415f5658df95b18b9d894d7593e7d42049112f48b461cdbb89588f6c8d6174f0c3ef4f9daf982e7e4120d2f3ea2a6cab1b7d6d4a5bc5985f53c1d5a30202528b0f399ba73c34e88e8045ad63
+2019-03-28 15:32:15.3044|Error|AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify|数据异常:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify(String encryptData) 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Controllers\PingAnNotifyController.cs:行号 100
+2019-03-28 15:32:15.3044|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 15:32:17.7804|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=32986f72e8a46f93ff9c885e9c6b432359f4f3a0b63396f250e0fd68b1cbe44879461ae7b2110e3bf222556449907ecb4ac31c6bdb32efdb69e61e1bba3703b964d774c6460168df8a5108678ba03495bf76899eb1717f67f110a39527aec4359d5b5867640c654ee03526b93c4000249347db1b0b78220afcf8c770479627dfa97c7a6f869c2fb1395a55ac897781b7a9f75a3db315a5c524b89cac3af2155d2e6b1c533c44736e837a58f2bb09d3ed7a1a768ce50f3056a9c123d17575172066c91e7adb48969f253ad3ecdd37327d9c4589645dabe3ef9c712515760863fcd228777f2aa7be8ccfddd6e4ec92a7ad87a74005abe9ca5034d757a60aa8a63231c9d24e58b02d6d0decce8e8df3b5223855e3078ad186902bd8781136b7a4009d3663ab006e9d93f4d0c3fdab84b0f30daf0192f4dac19c6c9407b68ad2ae3bd959d78f963fbde8992eaebcf951eb81fa8bc21a51e86690e480880281a53de154d099ab8de85e4f09ac70c231c9829c1db26e069d5d83d3898f9f69c8ae24dfac31bebebebcb4eb0c3d91de108635fa02ac8e7fe1204047f18914272ed2a5054b0fa9c345bc5b6a9e967b5a45201817189170729e78125cb579d07379fbbdd6ac0a47d34c89919fee7f413d51c91978401318013e98387b956f0aede58d5504d4a7d307199cfb3b752ef7da0db8f11e45776df37532d8230e5900d5adf33125
+2019-03-28 15:32:17.8344|Error|AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify|数据异常:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify(String encryptData) 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Controllers\PingAnNotifyController.cs:行号 100
+2019-03-28 15:32:17.8344|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 15:32:39.3464|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=0e7a222140a1c3dab9b3107374cb1d2bc1e7830257ccec1799ccbc059a321bab5f6dcc06a70c8cdf39ec20dff75adb6c6c0a004377717e0962d169e63eba09612e9dc28fc2c5938f83ffca572a173a320d107a51b3f75e11cc9e17ced7dd0bb327d50238e530cdd88865e4d6c5b5d1640d449b5f6b9ebdcd48cbbc50c4adfb877f334be996783364dd068d6962dc49768700ad01b968c6ab60d8c79615839f0faf90f192f47633131ea90cf5b25531b8f8b945af2d6d09dafd953bf4cc3f5313657d4c6645c2d1e00a693ccf4e7302e311aee8c0951b98fd73b39426bbf993eb88faa060f1181d1bc275808beb03f64095c32ae1119ae4d4f93e125253bc6e0a553e5468035723d43e4aa6081ec24e42bf5e4cb62295cc0a7724249970e1be68141df22f5cc49d99940fbd3e59528617abf942003ebcf40e71cef94995f5af34e08c4fffc864a025d3bcc11075d1c87fed1554a59f65cb6d1a8e38ce27176563ccfb6fc405115aaf8144ea676a071df62e91a43b6b2d88add17b45075e9ec23b6d0a14d2f73a4cdf88572c77a46cc7462c85d0be2d83e5ded5bd019cc2ee128f1aab0a7d2eddb8f1aaad9c8a2242658c7962c32ac3aae98815321a87713975245e4432594a937484461d3745b4526876f668db17fc8a8ea42bd0586343dfbc8cef6934e6b5f24783665875cd87437afea9a1953e293ea8ace5776bc756da569d
+2019-03-28 15:32:39.4114|Error|AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify|数据异常:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify(String encryptData) 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Controllers\PingAnNotifyController.cs:行号 100
+2019-03-28 15:32:39.4114|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 15:35:35.9244|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=062b0e3816c7e1a2ae32ba7a3547ed08869e6aab671464d1def7f9c88bba2f7cfed01b0d4f7fe94dae60994473a3104d42b830d5f2d405c0641dbffcf65eb5b6925cad6d5e0ce5e1e3240d0f7a55edc0ccc5126b99f749dde7b0e4de1d7675873de6f220000efbe075670aa1d694283e8026fbf802df85ef9e92b14bccdb3e8c3dbf32337cc53112f59034c6ecc9c1913fa5a33b7ea5586a0c8243fd82469050bbc4c563df16197a2ba1cce8b00199e2dde15c70f101756180d2ce66411d23f44a7298d1c6347728640ecb3cce61beb122827b59a5ab12cf74301c149fab6d47e6ebcfd0a7fbb133e1837c42d0229bd0d0e6a4d66917455564fd780b09f5649605e08337725168508e7620ea2b393df1a538688bae2630087acb07e11cb3f1a7aa912cd5c847292f484049c745204eb40f0470585e510fdfb8eff807f5a6ac556974bf2e12967d6afaedd8d91162e31ec957e006baabd44196ede39da67a0c21b186304fa8d1e9a8a67babb2e55c9451887de95145c3dbbf4b9786b12fffb8d736b338aa319bcbf0386341ae93ac5a59f925b34db78af700c4a585d85c579e700037e0912a11a56c709def79121c25456889d61c6e6294d8b3dba6fc1e6ba15c14d1449ecbff224b8a7dfb28bb0dc99969306e52c76e6a99fa26e463ab9e43599cb2611f5be4d870d9b3008c18ba9483ce4db25f2b990ab0db456a4df16fe2fb
+2019-03-28 15:35:35.9594|Error|AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify|数据异常:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 AIPXiaoTong.Site.Controllers.PingAnNotifyController.AccountNotify(String encryptData) 位置 D:\VS Project\Program\AIPXiaoTong\AIPXiaoTong.Site\Controllers\PingAnNotifyController.cs:行号 100
+2019-03-28 15:35:35.9674|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:06:50.7434|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryProjectDetail|6|equipmentsnno=000002040820286756&key=1234567890&projectid=10073&requestno=2E248F8D-5D9F-424A-98CF-E1172B96170F&sign=4673075ACFC4DEC29ECA9E4230EBB20A
+2019-03-28 16:06:51.4594|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryProjectDetail|6|{"merchantid":"10","merchantname":"普惠","projectid":"10073","projectname":"迈瑞","projectimage":"http://localhost:8023/Images/AdvertisingImge/40a9f81c-aa1a-4ab2-bba4-6d571c07003d.png","projectamount":"100000000.00","residueamount":"99999993.79","deadline":"2020/4/10 0:00:00","starttime":"2019/3/25 0:00:00","description":"","provincename":"甘肃省","provincecode":"62","citycode":"6201","cityname":"兰州市","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/40a9f81c-aa1a-4ab2-bba4-6d571c07003d.png","http://localhost:8023/Images/AdvertisingImge/31430964-e577-40f8-b348-be21efc20eb0.png"],"status":"1","statusdesc":"审核通过","reason":"","guaranteeamount":"1.00","guaranteemonth":"4","requestno":"2E248F8D-5D9F-424A-98CF-E1172B96170F","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:10:16.1864|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryProjectList|14|equipmentsnno=000002040820286756&key=1234567890&pageindex=1&pagesize=&projectname=&requestno=812F30C5-7886-4715-BDA1-2A00240F8574&sign=BAF735485B4230088B671E38956CAE5F
+2019-03-28 16:10:16.2634|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryProjectList|14|{"pagecount":1,"pageindex":1,"pagesize":10,"projectlist":[{"merchantname":"普惠","merchantid":"10","projectname":"迈瑞","projectid":"10073","projectimage":"http://localhost:8023/Images/AdvertisingImge/40a9f81c-aa1a-4ab2-bba4-6d571c07003d.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/40a9f81c-aa1a-4ab2-bba4-6d571c07003d.png","http://localhost:8023/Images/AdvertisingImge/31430964-e577-40f8-b348-be21efc20eb0.png"],"projectamount":"100000000.00","residueamount":"99999993.79","deadline":"2020/4/10 0:00:00","description":null,"reason":"","status":"1","statusdesc":"审核通过","provincecode":"62","provincename":"甘肃省","citycode":"6201","cityname":"兰州市","starttime":"2019/3/25 0:00:00","guaranteeamount":"1.00","guaranteemonth":"4"},{"merchantname":"普惠","merchantid":"10","projectname":"平安公租房","projectid":"10072","projectimage":"http://localhost:8023/Images/AdvertisingImge/67bfb016-1de6-4098-8915-b6778d55890d.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/67bfb016-1de6-4098-8915-b6778d55890d.png","http://localhost:8023/Images/AdvertisingImge/50c287b2-71f0-42af-ab13-c633b02104d7.png"],"projectamount":"100000000.00","residueamount":"99999998.00","deadline":"2020/3/20 0:00:00","description":null,"reason":"","status":"1","statusdesc":"审核通过","provincecode":"11","provincename":"北京市","citycode":"1102","cityname":"县","starttime":"2019/3/25 0:00:00","guaranteeamount":"0.01","guaranteemonth":"1"},{"merchantname":"普惠","merchantid":"10","projectname":"深圳万科","projectid":"10071","projectimage":"http://localhost:8023/Images/AdvertisingImge/30b642b1-56d0-4351-bdb2-ccd4c7a5f9ec.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/30b642b1-56d0-4351-bdb2-ccd4c7a5f9ec.png","http://localhost:8023/Images/AdvertisingImge/a108abb0-0bef-4f4c-81cb-133ecdb7a7fd.png"],"projectamount":"100000000.00","residueamount":"99999999.94","deadline":"2019/6/20 0:00:00","description":"新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中新京报讯（记者 张熙廷）3月12日，浙江嘉兴网友普遍反映称听到巨响。浙江地震局3月12日22时许回应称，经浙江省数字地震台网中心核实，嘉兴地震台在18时47分和20时52分分别监测到2个振动事件，而与嘉兴地震台距离最近的地震台——45公里外的海盐地震台，并没有监测到这两个振动事件，由此判断不是地震。至于造成振动的具体原因，地震局正在核查中","reason":"","status":"1","statusdesc":"审核通过","provincecode":"44","provincename":"广东省","citycode":"4403","cityname":"深圳市","starttime":"2019/3/25 0:00:00","guaranteeamount":"30000.00","guaranteemonth":"5"},{"merchantname":"普惠","merchantid":"10","projectname":"湖北万科","projectid":"10070","projectimage":"http://localhost:8023/Images/AdvertisingImge/45e35415-ba0e-4250-bb8a-c8d5e36a82e5.png","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/45e35415-ba0e-4250-bb8a-c8d5e36a82e5.png","http://localhost:8023/Images/AdvertisingImge/116adb36-a606-4ffa-a361-b12a05554432.png"],"projectamount":"100000000.00","residueamount":"99999999.30","deadline":"2019/4/26 0:00:00","description":"湖北湖北","reason":"","status":"1","statusdesc":"审核通过","provincecode":"42","provincename":"湖北省","citycode":"4205","cityname":"宜昌市","starttime":"2019/3/25 0:00:00","guaranteeamount":"30000.00","guaranteemonth":"2"}],"requestno":"812F30C5-7886-4715-BDA1-2A00240F8574","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:12:03.6444|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryProjectDetail|14|equipmentsnno=000002040820286756&key=1234567890&projectid=10072&requestno=A2C6C5A0-9D0E-41BC-8198-376807ADA3E4&sign=89E5AE5B2EA62AE63D0E5C1C6880346C
+2019-03-28 16:12:03.6864|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryProjectDetail|14|{"merchantid":"10","merchantname":"普惠","projectid":"10072","projectname":"平安公租房","projectimage":"http://localhost:8023/Images/AdvertisingImge/67bfb016-1de6-4098-8915-b6778d55890d.png","projectamount":"100000000.00","residueamount":"99999998.00","deadline":"2020/3/20 0:00:00","starttime":"2019/3/25 0:00:00","description":"","provincename":"北京市","provincecode":"11","citycode":"1102","cityname":"县","advertisingimgelist":["http://localhost:8023/Images/AdvertisingImge/67bfb016-1de6-4098-8915-b6778d55890d.png","http://localhost:8023/Images/AdvertisingImge/50c287b2-71f0-42af-ab13-c633b02104d7.png"],"status":"1","statusdesc":"审核通过","reason":"","guaranteeamount":"0.01","guaranteemonth":"1","requestno":"A2C6C5A0-9D0E-41BC-8198-376807ADA3E4","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:12:17.5644|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：GetPreparedFreezeOrder|14|cardnumber=430981199211104634&employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&projectid=10072&remark=&requestno=D9454079-A02D-49C3-B342-A40127C9CCDC&sign=3CF196835708F8CF0F3BF4CC9B57B619
+2019-03-28 16:12:18.1654|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：autoFreeze=01&businessName=平安公租房&cardNumber=430981199211104634&channel=1007041&freezeAmt=0.01&freezeProduct=1&freezeTimeLimit=30&mobile=15273738880&orderValidDay=1&transCode=001&userName=刘勋&sign=GvlI2Io5H0Rfrt/8xjzEtTME0/mzvswtql244WyVHrpB/IXEIyqeGAfSddmRkgqWNFF7pPp1CpnZWxTj/KZ39QgWpBLvBJMsJL50lU1cX+fYGbq+PYfc5tBa5Yp1FvIihckYa0tm/HuS9Bnz2PFyICsNsufquJcgUTVvYXeEzbk39YS2rTvfAPSsGOK4iIppzZdaPLJ0RLfiLhh72YkqyFpbRXifN/y15GmsI2U8Cffg+As6Sly/S/5tWjmKUJh/0pTichsZWrNNJ9whWHxL2dxVQHACN5RXYSHVgPO50IYGA9WWEaDAQ1xEuzzPzX9WYfQ1ONl3/kSzyNxK/08Wfg==，返回：{"sign":"ityRmeEWmszs6MyoKjJa6xsNdtDv/UhVLTgMp4CnJ8KyngGcJjxjrAyfu2jjgSqZ+z6svvqRgjus/rrnhg5w/k63hPXviQpmrtNfYn/xaBLnQ5XxiGaMuetNBioOLAoZzskbXZHnzm+ybO+igNgN9sjeb2iBYHf2cZqJ8UUhe8ZU7/HrGO8WuKP6mWxwI/UPD9WQt1MuFD207F0kMndJ22+SL5Ut77ddnZXsFNP73YnXmdwVLt1vhnnhdAzSZFkeWOPbUWUnMf7IFpV/RKD8sJgiCyUDjjDXIeQvIGN7OPYGC35pe1CPh9X28YO+3oHRcYnBtgK65l9XonVyP9WDFA==","responseCode":"000000","data":"{\"bankOrderNo\":\"9230081903282619104165\"}","responseMsg":"成功"},http异常:
+2019-03-28 16:12:18.6044|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：GetPreparedFreezeOrder|14|{"autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=34664385DF78F3C2744C582E67E698ED20B3B5BC243080820213EE9388F09ACA74E9E315AEB2C867B7673D8841A84855E77A4ACC5D733A9E26CE3DC3F515F1E04ACFE20F3B4D1651863E59268C7D0E6EB9F364A567D43AD0F1161493181B0CBBD40DFC8413D900C854B9C8643F42DDF897B55B9137599E5A8F7B7E0B7401C144868AF62B3C3FE0EA3140B869B58C4A74E39EC6C3F4BF3B7275B912B7B4BEAEF3627535EF32173DB123AC054E01EDE21A51354A770683CADB54D2B28D133F9DEE3F79DE78F0A40C36077E9676D3E8FDE4F089DB6ACC93DBCDB9145C8B902558258F5F776E757B2F9E8BE22B5B96335D936342FD437343CE1901586612C8616813465F85E9CB58&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903282619104165","bankorderno":"9230081903282619104165","orderpaidid":"518","ordernumber":"201903281612182804","requestno":"D9454079-A02D-49C3-B342-A40127C9CCDC","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:15:32.2684|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：GetPreparedFreezeOrder|14|requestno=12334567890&&&&&&equipmentsnno=000002041170001186&projectid=10072&employeeid=10017&transactionamount=0.01&cardnumber=330219197202267352
+2019-03-28 16:15:32.4014|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：autoFreeze=01&businessName=平安公租房&cardNumber=330219197202267352&channel=1007041&freezeAmt=0.01&freezeProduct=1&freezeTimeLimit=30&mobile=18719720226&orderValidDay=1&transCode=001&userName=王勇控&sign=XAlXBrnrNrvAphW3Ms85nTznLC2DAolMhVO3JmUFtUXkM8hewgK6sIcXr/FDm7SDfwceJ1eLPEjn90bN6AVv0zPPkS0OLb5cvXlkTru4uPceC1efH4R3i+kG5/Jf/EjIMc9AZBQ8EPXffpI1o7KFwEVR3A+lod6nMCZaK1v+OE3DOuYn2f6YX0PPxr/nBQBSw3lgw03jVhaVM6AzVP+OyBGigN58gV0KLgPG+3SBYKLspJFdGF/YwIr+bi5QO5l/4aDGIUP3X3MZOCYTpe9RIKD3BeUsWJcRBfcuArOrflCOe5yRwFLoyW8VaFdBcxvjD0I/n0Nxayzphq2BzTuAxg==，返回：{"sign":"UADSx+wlgYFc0qiaGoyTRGjA4FO9qt/TeeB5iE/ojvi3Z2w/23SlKAX+Jl/cXrZf0Zlr/XqamJdFc1AK/NnVxJIrDCGMCQDehQNJVNqmMbNhtG1isg4jKPfZHIUI2o6cwEilHYkydiTDw/fg+sqeCyboYajnSUzndshmNIWbONXC86a5By5C7hYagLbidq6g35P849clVgBibZE5QSGUsgw3bTHFZST/S+VsrV8A4XlfCnfW2EdX9kA7STRwzBEX/xxyV0Ox5TeK86DAT4WSTFrx5X7v0hY9qU7EoZfq8Ejt6w/CAKkfcQEaouuau1LawD/jqnP+e9BZuqaRwrg1Pg==","responseCode":"000000","data":"{\"bankOrderNo\":\"9230081903282619114160\"}","responseMsg":"成功"},http异常:
+2019-03-28 16:15:32.4204|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：GetPreparedFreezeOrder|14|{"autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=25181A2AD360E9021CF5E2CB70CC89FEBE0C3AFA45EA729CD57AFEB5B389C4D8C50B95FFAA8AD445433D826D13FADD012F723C442173CBDA7861948E95D825D27969E3F74CFFD2BB33D5C4E3DD1BAFE5B1BE5346D27E95F3A0678C975A16450E2CA092B278BEB8579742FC21523DA8EFD00D7CB9929C46E8AAF9D67A2EE6570F6117007FC6DC5ADC7615A961BCAD162E07881EB17300A351D19E2CAD29A4A1D3DC9E9DDFD82CB8CC23C14C30DB7A2C04807FBAFB534F33C8499BF2004BED313CD47A25AD3DE672F053EC0851224A6AC0E6D35317595973384D52BB71AA6FDCC16E6A469BB2BD77C53E733DFFC98DCCC875F9213FB6C45E590AA054279E78CE29AE060638084A&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903282619114160","bankorderno":"9230081903282619114160","orderpaidid":"519","ordernumber":"201903281615324084","requestno":"12334567890","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:15:35.4914|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：GetPreparedFreezeOrder|17|requestno=12334567890&&&&&&equipmentsnno=000002041170001186&projectid=10072&employeeid=10017&transactionamount=0.01&cardnumber=330219197202267352
+2019-03-28 16:15:35.5844|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：autoFreeze=01&businessName=平安公租房&cardNumber=330219197202267352&channel=1007041&freezeAmt=0.01&freezeProduct=1&freezeTimeLimit=30&mobile=18719720226&orderValidDay=1&transCode=001&userName=王勇控&sign=XAlXBrnrNrvAphW3Ms85nTznLC2DAolMhVO3JmUFtUXkM8hewgK6sIcXr/FDm7SDfwceJ1eLPEjn90bN6AVv0zPPkS0OLb5cvXlkTru4uPceC1efH4R3i+kG5/Jf/EjIMc9AZBQ8EPXffpI1o7KFwEVR3A+lod6nMCZaK1v+OE3DOuYn2f6YX0PPxr/nBQBSw3lgw03jVhaVM6AzVP+OyBGigN58gV0KLgPG+3SBYKLspJFdGF/YwIr+bi5QO5l/4aDGIUP3X3MZOCYTpe9RIKD3BeUsWJcRBfcuArOrflCOe5yRwFLoyW8VaFdBcxvjD0I/n0Nxayzphq2BzTuAxg==，返回：{"sign":"YAvKL9bvsGmuykFZejBgZopdcG2jnEGVGbWFdZ7knjWodboTGLRoZoUzDYiP3w4DKSSwiHxFfQtST6MgVvLyfACplH5AvH6Hg+jd38Cd/H0hM73FhkagR/SIzQZ/pavosXyKf/X6ZCdmurXy3nOVfTrzN7kcPBWWClfcrLcIwEpR607SVPuxUMsuOxKHNgf/NcIQjmjVAmfU+zj9bntyY9yLFjmd2aK0Bfkb5QQ1CF0AE7VvTRM/H9mazwAAkvk+fGlaJaT8xUndaLnO4pVaKeAZp16jEkyMw+NklfK+qmiEXR442Q3KU55eUHD1Y6ZKoRTGqM6IFTTrIrUUI4R6gw==","responseCode":"000000","data":"{\"bankOrderNo\":\"9230081903282619104166\"}","responseMsg":"成功"},http异常:
+2019-03-28 16:15:35.6164|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：GetPreparedFreezeOrder|17|{"autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=5F469CA1C3E7DD887E8FFE3B0268E9984AEFAAED839B6A395C3CAB89E95D0089322C32697582071B9C5D98302DC2E186DF1F2708F51BEAAE0FA5C96C6622DA0CBAAD8F947773443BB57B799E86345DADAD2CAC5691B63672B61E69F3AFE5DA94D2186804CEB38D85864D78F85149D4AE98AC10B47322A91A65E82F4252487E8FCBC1F66041BB3AA305F9496D40D7ADBE336FE283C801236CEB9DCD799B51E59D32431F3B77A2672D0810B7BEA884FCBAA1F973E65E56BA09718C83E5709864315FC61C7C837B1BA9474EE6AC65E0A92DA3772FC48C81D3BAF78C450A32729272366735DABEB77477DC406C996D31B112C98D4B75D87CD5D2DF353BFF0F496EEFBC47EF6E6CFB&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903282619104166","bankorderno":"9230081903282619104166","orderpaidid":"520","ordernumber":"201903281615355964","requestno":"12334567890","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:15:38.7484|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：GetPreparedFreezeOrder|14|requestno=12334567890&&&&&&equipmentsnno=000002041170001186&projectid=10072&employeeid=10017&transactionamount=0.01&cardnumber=330219197202267352
+2019-03-28 16:15:38.8364|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：autoFreeze=01&businessName=平安公租房&cardNumber=330219197202267352&channel=1007041&freezeAmt=0.01&freezeProduct=1&freezeTimeLimit=30&mobile=18719720226&orderValidDay=1&transCode=001&userName=王勇控&sign=XAlXBrnrNrvAphW3Ms85nTznLC2DAolMhVO3JmUFtUXkM8hewgK6sIcXr/FDm7SDfwceJ1eLPEjn90bN6AVv0zPPkS0OLb5cvXlkTru4uPceC1efH4R3i+kG5/Jf/EjIMc9AZBQ8EPXffpI1o7KFwEVR3A+lod6nMCZaK1v+OE3DOuYn2f6YX0PPxr/nBQBSw3lgw03jVhaVM6AzVP+OyBGigN58gV0KLgPG+3SBYKLspJFdGF/YwIr+bi5QO5l/4aDGIUP3X3MZOCYTpe9RIKD3BeUsWJcRBfcuArOrflCOe5yRwFLoyW8VaFdBcxvjD0I/n0Nxayzphq2BzTuAxg==，返回：{"sign":"yC+KqeJQ0lO1bBl0tsMvivZ63eLJjV/CmvbJhUuTfnrqFtId5CcLUPG4hHOOAefVatgBqlhWIlLVxaFoQWIoi4d+T7o1ufyFc1K/6h7wfG7bGioQppuDLqtL8zYdWKSYaEqlrfJSisQpvz2bRW4TvMhIIUWgViM/DbHTpsCSxo8JAofZNxWqOXJU0uqRfESAOn4qjEE5F0l90Ie3I6UVN1Pde8f8mL4dMiniTEd9rv+JgYBnaWqCGhBQgJPF6VqsFr+4Evj1bQ3M5cx9grDcfHciieB3RgbNV0gpArB0UpX2TeEKOIiuQRMZlod69B7QW74u3Dkob6ciDgvfv0UNHQ==","responseCode":"000000","data":"{\"bankOrderNo\":\"9230081903282619114161\"}","responseMsg":"成功"},http异常:
+2019-03-28 16:15:38.8544|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：GetPreparedFreezeOrder|14|{"autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=0294BD1EFC3027A0C1B91F112AADCA814EFB055BEC9152572088C8184812BD71F7C2CCB935E0312AD1A5E1AF82086FCF16D7C3C95F851A2CD94D8B5AA326D8609AFF160F1B20FB481893A236B7299206014A71D51E5901F3D361150DEFB00801AE347AA5348F14C15797749814B642A08190E2F941F78B63416966D710234D299E6364518BABE20871834BD050E5CD91D46F39C4C1978BEF59E09D1EFC528132FAD74DAC863ACAD8E6E88E53516DF9F60DCF65F8B9946159A01008DDCFBDE8078B2FC10A55FD96A0A4B7A67887BEB52640CE33DA473762B9FBC1E4114C8366FCD40B064441592FC3223725A262E1C56352114211CDEB2BCDE4103197246D64B600E49A86357F&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903282619114161","bankorderno":"9230081903282619114161","orderpaidid":"521","ordernumber":"201903281615388424","requestno":"12334567890","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:15:44.8334|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidList|29|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=&pageindex=1&pagesize=&projectname=&requestno=8CD8FF2A-0F33-46AC-954D-EFD79D385B64&sign=41B3B9BF3DA0DC6D92E81548789935F3&username=
+2019-03-28 16:15:45.1044|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidList|29|{"pagecount":43,"pageindex":1,"pagesize":10,"orderpaidlist":[{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281615388424","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619114161","freezesuccesstime":"","createdatetime":"2019/3/28 16:15:09"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281615355964","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619104166","freezesuccesstime":"","createdatetime":"2019/3/28 16:15:06"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281615324084","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619114160","freezesuccesstime":"","createdatetime":"2019/3/28 16:15:02"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281612182804","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002040820286756","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"刘勋","memberid":"53","membermobile":"15273738880","memberidnumber":"430981199211104634","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619104165","freezesuccesstime":"","createdatetime":"2019/3/28 16:11:49"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737071844","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"4","statusdesc":"已冻结","rmark":null,"bankorderno":"9230081903272619074164","freezesuccesstime":"2019/3/28 0:00:00","createdatetime":"2019/3/27 17:36:40"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737049634","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619084162","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737011184","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074163","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:35"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271042228602","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"谢华伟","memberid":"59","membermobile":"13515965922","memberidnumber":"350783198502122530","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619024168","freezesuccesstime":"","createdatetime":"2019/3/27 10:41:57"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261731270546","projectname":"深圳万科","projectid":"10071","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":30000.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262619004155","freezesuccesstime":"","createdatetime":"2019/3/26 17:31:04"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261728239466","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618994156","freezesuccesstime":"","createdatetime":"2019/3/26 17:28:01"}],"requestno":"8CD8FF2A-0F33-46AC-954D-EFD79D385B64","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:15:48.5434|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidDetail|17|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=201903281615388424&requestno=030BB8A2-0655-4104-8ABE-0AFEB1A8210E&sign=BD8E20E72172DD8F4F4D07F732A8970B
+2019-03-28 16:15:48.6364|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：bankOrderNo=9230081903282619114161&channel=1007041&pageIndex=1&pageSize=10&transCode=018&sign=WhUYPoTiBYfcbD5eY/59Pedtuspux3kIFpJf8pHYKSFzgY2STCGR8WpNHH/BjMjZTpqXy7E41/nPeY7L+1zaDycKXTQARcddg5F240CV7Ah6JQ7YqgTSWe7x3BHpwof8Q7hJbFts4Y5caHK9w0ha+1zlbDXp68Gt2NgZUaH0tRSJdVdzzv9Z1jAZA/Tmt3ni5e0sRt5HP1st9/H3bYIlkHfdEx+ddu9seNtEy4pKBoerMacAGh8tWdpkPAlbb/7Tj3fgVZakcKKWhoA9es/Q+kjQgRujFAq4yhtUO7Tj0jMPJPdM4YgHx1kxL7hVxc5ipJwHik/0PBUdFHtloYFjtA==，返回：{"sign":"kgBaxMmQQt8Mg8IqVdAksW91YROwx4wALUTZg2amKGXrGuYWpqZLiAAcRvgJOfsoQTE5kFvfWVkPz7WkHs8pYCRrLezevRtu7hwpCdKGl1K8awp0TOMRZNSQ4fQPIuf5bpqxlWyFcEuUN5TszY8uKLf9oLq+Er3x5pMwisYncR2PC5a2cGOgR0qTxBP/+kac2YTIH8vziG5k2PxbGYis9FXP1+gmmHN/hC3/i7vj9fJCR55N9qq4mE/20H5PARIcPkG1DLMfYJnIbPiTPsWxwVOz8JjZm9OVYKgYAaVXBv1DYkxRJF0yJfgO/eSPI3qp58KfZBYU+aHDxBNpPBpwJg==","responseCode":"000000","data":"{\"responseCode\":\"0\",\"totalRows\":1,\"currentPage\":1,\"marginsOrderInfoList\":[{\"freezeAmt\":0.01,\"bankOrderNo\":\"9230081903282619114161\",\"productCode\":\"\",\"cityName\":\"\",\"cityCode\":\"\",\"commercialShortNameII\":\"\",\"transStatus\":\"1\",\"finishTransferAmt\":0.0,\"commercialNoII\":\"\",\"activityNo\":\"\",\"mobilePhone\":\"18719720226\",\"userName\":\"王勇控\",\"freezeTime\":\"\",\"commercialOrderNo\":\"9230081903282619114161\",\"activityName\":\"\",\"productName\":\"\",\"orderAmt\":0.01,\"cardNumber\":\"3302**********7352\"}]}","responseMsg":"成功"},http异常:
+2019-03-28 16:15:48.7264|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidDetail|17|{"orderpaidid":"521","merchantid":"10","merchantname":"普惠","ordernumber":"201903281615388424","projectid":"10072","projectname":"平安公租房","equipmentsnno":"000002041170001186","transactionamount":"0.01","serialnumber":"","memberid":"54","membername":"王勇控","membermobile":"18719720226","memberidnumber":"330219197202267352","bankcardnumber":"62298002888333","remark":"","status":"0","statusdesc":"未支付","createdatetime":"2019/3/28 16:15:09","employeeid":"10017","employeename":"廖哲","bankorderno":"9230081903282619114161","autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=292517C82918ACA65B35B495A904889E0BE039B8A8019A4A810642958F7B46DEF6C9319594880A51E1FA28344C5A3464E7CBB684740985FF73254C48C8BEA213A39553EF8E7883FDCA4DD050556CE84455026FE0BD70A29535C7C030126C2BC8D20C508B0C5E886674E40BF3E83108190862D89A6EAA76A6DC3EE98A48827A5BEFC02F43248B0FEC842E87583392A08C15799ECA6AA330F0E2F4ABED5744B5B89DD4EEEAAEB004334342214324C28916E1D16798D5FF61CCFB4E80C53C75F066A4F7BA65BD9319241427DD0E990A14E9045DD2C7BC5B95ED62E78AC7F97B2FA4FBB272673D700006C5FE538EDCCBFAFB3420CE18993861AFAC9089A4230895C8C266D6043940&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903282619114161","freezesuccesstime":"","generalinfo":"","requestno":"030BB8A2-0655-4104-8ABE-0AFEB1A8210E","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:17:20.2494|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7e4902975a36b8239496a826774793d08727a0d99eefea5857cc718a22fafbb4fd434301a800a002bee577b4619051fb341102b4fa46b811c0d67379ebc243769411ca1a97136ec7faa6766f81b41e3961ebe1614cf0088c41afca1503b3a968269d4d3270cc5b26fb1dc104e51c171c268f31a09c08355eb3113b727648d68814ce22c1f0cbb1265bab9ec8bfb304b4b9eb1b2c6acb3a1fb64319724291ad63bc1fdc1bfd6e9c0695943c61a6f948a96b4f466b46e511a655aaea52666ef1c05949bc38a5b1376c56313234eff0a5bdb5a199c3676824e3166a59cab6b7eada1e9c8fb2fc1ecfe7225240cc9cb4c66eba9ad57d86a5c03b7d9f264d7fe90d8b68f7a134811f8d94219feb62ab9d0789541d7d46a995e8942bda41cde9bd34ca31c6f6ede0c5515ab0dd7577d3fa3dad955e8ad17317b7319354c1aee80c5762ac37eb1468353cab42ad6ad0f95f09a6e7e7fbe2c6526479296280b451ffa8220f6a16029a7e8e02c23fde919e21f592310fea823e7e21ab2b5b31aec895234370cba98e5d94b7acfebcf96f2bcf880809764931fd952832d4342869a4941c0edb78546962e9b1c33fdbda36d2d50230d53ba9e87a08847b191a4d76bc34c270322ed78ce9770f27cff4a1606a5369cb0e71ed3f56d9b073ac7574c61cbcac1e7edf9cb09051932d65c6a150567c97f79b91f24770be08edd81ed50f2945f83c
+2019-03-28 16:18:23.1424|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:24:40.3914|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidList|11|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=&pageindex=1&pagesize=&projectname=&requestno=CCE73E51-B77B-4E0F-A39E-3FF39B612B46&sign=37F22B319B70AD649914BB3BDE5E0CA6&username=
+2019-03-28 16:24:40.7344|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidList|11|{"pagecount":43,"pageindex":1,"pagesize":10,"orderpaidlist":[{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281615388424","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619114161","freezesuccesstime":"","createdatetime":"2019/3/28 16:15:09"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281615355964","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619104166","freezesuccesstime":"","createdatetime":"2019/3/28 16:15:06"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281615324084","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619114160","freezesuccesstime":"","createdatetime":"2019/3/28 16:15:02"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903281612182804","projectname":"平安公租房","projectid":"10072","equipmentsnno":"000002040820286756","employeename":"廖哲","employeeid":"10017","transactionamount":0.01,"serialnumber":null,"membername":"刘勋","memberid":"53","membermobile":"15273738880","memberidnumber":"430981199211104634","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903282619104165","freezesuccesstime":"","createdatetime":"2019/3/28 16:11:49"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737071844","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"4","statusdesc":"已冻结","rmark":null,"bankorderno":"9230081903272619074164","freezesuccesstime":"2019/3/28 0:00:00","createdatetime":"2019/3/27 17:36:40"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737049634","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619084162","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:38"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271737011184","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"王勇控","memberid":"54","membermobile":"18719720226","memberidnumber":"330219197202267352","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619074163","freezesuccesstime":"","createdatetime":"2019/3/27 17:36:35"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903271042228602","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"谢华伟","memberid":"59","membermobile":"13515965922","memberidnumber":"350783198502122530","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903272619024168","freezesuccesstime":"","createdatetime":"2019/3/27 10:41:57"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261731270546","projectname":"深圳万科","projectid":"10071","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":30000.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262619004155","freezesuccesstime":"","createdatetime":"2019/3/26 17:31:04"},{"merchantname":"普惠","merchantid":"10","ordernumber":"201903261728239466","projectname":"迈瑞","projectid":"10073","equipmentsnno":"000002041170001186","employeename":"廖哲","employeeid":"10017","transactionamount":1.00,"serialnumber":null,"membername":"章寿尘","memberid":"49","membermobile":"15601010001","memberidnumber":"330219196609107006","status":"0","statusdesc":"未支付","rmark":null,"bankorderno":"9230081903262618994156","freezesuccesstime":"","createdatetime":"2019/3/26 17:28:01"}],"requestno":"CCE73E51-B77B-4E0F-A39E-3FF39B612B46","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:28:11.5364|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuting|Action：QueryOrderPaidDetail|13|employeeid=10017&equipmentsnno=000002040820286756&key=1234567890&ordernumber=201903281615388424&requestno=7A2A3174-43BC-4D6D-9A6A-F4103881BE49&sign=BE5242F4626566B50EBE3C6A62D23C6D
+2019-03-28 16:28:17.6354|Trace|PingAnAPI.PingAnExec.Exec|（普通请求）请求地址：https://bbc-stg1.pingan.com.cn/bbc/openapi/，内容：bankOrderNo=9230081903282619114161&channel=1007041&pageIndex=1&pageSize=10&transCode=018&sign=WhUYPoTiBYfcbD5eY/59Pedtuspux3kIFpJf8pHYKSFzgY2STCGR8WpNHH/BjMjZTpqXy7E41/nPeY7L+1zaDycKXTQARcddg5F240CV7Ah6JQ7YqgTSWe7x3BHpwof8Q7hJbFts4Y5caHK9w0ha+1zlbDXp68Gt2NgZUaH0tRSJdVdzzv9Z1jAZA/Tmt3ni5e0sRt5HP1st9/H3bYIlkHfdEx+ddu9seNtEy4pKBoerMacAGh8tWdpkPAlbb/7Tj3fgVZakcKKWhoA9es/Q+kjQgRujFAq4yhtUO7Tj0jMPJPdM4YgHx1kxL7hVxc5ipJwHik/0PBUdFHtloYFjtA==，返回：{"sign":"kgBaxMmQQt8Mg8IqVdAksW91YROwx4wALUTZg2amKGXrGuYWpqZLiAAcRvgJOfsoQTE5kFvfWVkPz7WkHs8pYCRrLezevRtu7hwpCdKGl1K8awp0TOMRZNSQ4fQPIuf5bpqxlWyFcEuUN5TszY8uKLf9oLq+Er3x5pMwisYncR2PC5a2cGOgR0qTxBP/+kac2YTIH8vziG5k2PxbGYis9FXP1+gmmHN/hC3/i7vj9fJCR55N9qq4mE/20H5PARIcPkG1DLMfYJnIbPiTPsWxwVOz8JjZm9OVYKgYAaVXBv1DYkxRJF0yJfgO/eSPI3qp58KfZBYU+aHDxBNpPBpwJg==","responseCode":"000000","data":"{\"responseCode\":\"0\",\"totalRows\":1,\"currentPage\":1,\"marginsOrderInfoList\":[{\"freezeAmt\":0.01,\"bankOrderNo\":\"9230081903282619114161\",\"productCode\":\"\",\"cityName\":\"\",\"cityCode\":\"\",\"commercialShortNameII\":\"\",\"transStatus\":\"1\",\"finishTransferAmt\":0.0,\"commercialNoII\":\"\",\"activityNo\":\"\",\"mobilePhone\":\"18719720226\",\"userName\":\"王勇控\",\"freezeTime\":\"\",\"commercialOrderNo\":\"9230081903282619114161\",\"activityName\":\"\",\"productName\":\"\",\"orderAmt\":0.01,\"cardNumber\":\"3302**********7352\"}]}","responseMsg":"成功"},http异常:
+2019-03-28 16:28:23.1654|Trace|AIPXiaoTong.Site.Controllers.PingAnAPIController.OnActionExecuted|Action：QueryOrderPaidDetail|13|{"orderpaidid":"521","merchantid":"10","merchantname":"普惠","ordernumber":"201903281615388424","projectid":"10072","projectname":"平安公租房","equipmentsnno":"000002041170001186","transactionamount":"0.01","serialnumber":"","memberid":"54","membername":"王勇控","membermobile":"18719720226","memberidnumber":"330219197202267352","bankcardnumber":"6222981472988013","remark":"","status":"0","statusdesc":"未支付","createdatetime":"2019/3/28 16:15:09","employeeid":"10017","employeename":"廖哲","bankorderno":"9230081903282619114161","autologinurl":"https://rmb-stg.pingan.com.cn/brcp/uc/cust/uc-third-auth.autoLogin.do?mchId=1007041&encryptData=35877F9CD3DCE8C11786217EBFB65664B72F245FE880E79BF83A2E09674626D81ECB12C3851F8B4631ED4E9A5A26079E87A4C99F68DC3008BDCE244C78EEA826544F4DAEAD1C165528D1BFF65AD610EDEE8E93F9CF39703DC171A2631642B6BB1A7874CAD77DC4EE7161A65AC34A35E75EF8F39190EEB0CDA68E1CE03ACEC42E6C3709548F9F0E6F6A3D532349D875BDD24716CBF8186DC60B2FDCE8096A8873DA03C363F21DC176FDD200A27BDF41A0D8F9D689195F87E49D523CAE0FCCA1EB2E10F8167E09255A849F5EEB886BA6F48940642BB36E5E994F57C256235DBE42E927CC96CF1F1097515B42CA19264B60AFEC36E60D0CC931E9E1E2370C7318B217AA88C0E6A2&state=returnUrl%3dhttp%253a%252f%252fxiaotong.test.allinpaysz.com%253forderNo%253d9230081903282619114161","freezesuccesstime":"","generalinfo":"","requestno":"7A2A3174-43BC-4D6D-9A6A-F4103881BE49","resultstatus":"ok","resultmsg":"","resultcode":""}
+2019-03-28 16:29:06.5864|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:29:24.5214|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:29:41.6784|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:29:58.1384|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:35:11.6724|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:35:51.2104|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:36:20.3014|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:36:53.0574|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:38:21.8974|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:38:30.4984|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:39:30.0984|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:39:34.7004|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:56:49.7654|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:58:55.1594|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|
+2019-03-28 16:58:55.6134|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuting|Action：AccountNotify|encryptData=7703160ceea44cd95cc709d20f8fcec8621ab877c9ad8a59d7134d4de760d2ccda98bcfe1108bdb6a0daf531d9223901fd2ead6ac7bfa067c776bddcc9638a8a19fe886ae0241ee851a937a256d2b654f1d8bf591d38aa3fa7397e27e5d06062a2526753a41e0cb9e6d47df1f5fc70d7e4cbc9f3044ef97f1a8ded71e05669a72809943ffef5b3d504718c88876a64d8acc90934d13dd86b05f3a43c2c9692b70b52480509af12d403ff73d5833f8091a040b736f0c80da736c8a194fc2bc7fef243c8101c5acf8f9585093fb84402e0c56891d2f9c99b288e176830587291ed9d2c9e567c5debbf29e0ea95000e90ac1f1cca3473c0a6d8741b549642b52b6c6a247147982ac49540e1647a65804bbe7d66bacc74aaa892b02b10811d45dc3a92e5e5658eac4b20bf289537722917ec41b6df59e607df6bb9710cd543d905c249bf69020721082b2ad7372dbc97b28502ac79a314fb1d6277688995a198efc5858f84bec2731f6ad171a74d60d700ad12f2fb53b2bd0e6881974f057e789e46a967fc813e604f44596dd68d138563d4543c20c5684b89fc482b3a79782fc5f8a2ae86be30b15a28a1ba2c7a179dec5553402a38978895f744cbe229e945eb9f02f6913395c735b8c9b2a846de4b3a14feadaca6ad485dd280feccbbb85872d315ed4ea329e8215380d6bec50de25a640f77791d86409216de3b9953db671b9f
+2019-03-28 16:59:31.7354|Trace|AIPXiaoTong.Site.Controllers.PingAnNotifyController.OnActionExecuted|Action：AccountNotify|

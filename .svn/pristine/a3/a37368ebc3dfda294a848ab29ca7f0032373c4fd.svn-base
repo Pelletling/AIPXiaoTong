@@ -1,0 +1,17 @@
+﻿using PingAnAPI.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+namespace AIPXiaoTong.IService
+{
+    public interface IPingAnAPIService
+    {
+        PreparedFreezeOrderResponse PreparedFreezeOrder();
+        QueryMarginsOrderDetailResponse QueryMarginsOrderDetail();
+        UnFreezeMarginsOrderResponse UnFreezeMarginsOrder();
+
+    }
+}

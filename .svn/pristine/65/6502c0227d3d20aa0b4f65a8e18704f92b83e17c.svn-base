@@ -1,0 +1,62 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@using Framework.Common;
+@using AIPXiaoTong.Model.Admin;
+@using Framework.Models;
+@using AIPXiaoTong.Model;
+
+@model PagedList<TLTPreferencesLM>
+
+@Html.Partial("_Grid", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+<div class="mt-20">
+    <div class="dataTables_wrapper no-footer table-scroll">
+        <table class="table table-border table-bordered table-bg table-hover table-sort dataTable no-footer table-word-break" id="resultTable">
+            <thead>
+                <tr class="text-c" role="row">
+                    <th><input type="checkbox" id="checkAll" onclick="checkall();"></th>
+                    <th>操作</th>
+                    <th>序号</th>
+                    <th>商户名称</th>
+                    <th>通联通商户ID</th>
+                    <th>通联通用户名</th>
+                    <th>密码</th>
+                    <th>私钥密码</th>
+                    <th>创建时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    for (int i = 0; i < Model.Count(); i++)
+                    {
+                        var m = Model[i] as TLTPreferencesLM;
+                        <tr class="text-c odd" role="row" id="tr_@m.ID">
+                            <td><input type="checkbox" data-name="checkbox" value="@m.ID" id="chk_@m.ID" name="chkIDs"></td>
+                            <td class="f-14 td-manage">
+                                @Html.Partial("_Edit", new EntityModel() { ID = m.ID })
+                            </td>
+                            <td class="sorting_1">@((Model.PageSize * (Model.CurrentPageIndex - 1)) + i + 1)</td>
+                            <td>@m.MerchantName</td>
+                            <td>@m.TltMerchantId</td>
+                            <th>@m.TltUserName</th>
+                            <th>@m.TltUserPassword</th>
+                            <th>@m.TltPrivateKeyPassword</th>
+                            <td>@m.CreateDatetime</td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("Pager", Model != null ? new PagerModel() { TotalItemCount = Model.TotalItemCount, PageSize = Model.PageSize, CurrentPageIndex = Model.CurrentPageIndex } : new PagerModel() { TotalItemCount = 0, PageSize = 1, CurrentPageIndex = 1 })
+
+
+
+
+
+
+
+
+
+

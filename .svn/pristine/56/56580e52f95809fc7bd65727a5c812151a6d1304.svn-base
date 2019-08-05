@@ -1,0 +1,312 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.PingAnAPI;
+using Framework.Common;
+using Framework.LambdaExpression;
+using NLog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    [AllowAnonymous]
+    public class PingAnAPIController : Controller
+    {
+        public ILogger logger;
+        private IEquipmentService iEquipmentService;
+        private IMemberService iMemberService;
+        private IEmployeeService iEmployeeService;
+        private IProjectService iProjectService;
+        private IPingAnAPIService iPingAnAPIService;
+        private IOrderPaidService iOrderPaidService;
+        private IPingAnOrderPaidService iPingAnOrderPaidService;
+        private IAccountPingAnService iAccountPingAnService;
+
+
+
+
+        private long merchantID { get; set; }
+        private Merchant merchant { get; set; }
+        public PingAnAPIController(IEquipmentService iEquipmentService,
+                                   IMemberService iMemberService,
+                                   IEmployeeService iEmployeeService,
+                                   IProjectService iProjectService,
+                                   IPingAnAPIService iPingAnAPIService,
+                                   IOrderPaidService iOrderPaidService,
+                                   IPingAnOrderPaidService iPingAnOrderPaidService,
+                                   IAccountPingAnService iAccountPingAnService)
+        {
+            this.iEquipmentService = iEquipmentService;
+            this.iMemberService = iMemberService;
+            this.iEmployeeService = iEmployeeService;
+            this.iProjectService = iProjectService;
+            this.iPingAnAPIService = iPingAnAPIService;
+            this.iOrderPaidService = iOrderPaidService;
+            this.iPingAnOrderPaidService = iPingAnOrderPaidService;
+            this.iAccountPingAnService = iAccountPingAnService;
+
+            logger = LogManager.GetCurrentClassLogger();
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            string content = Request.Form.ToString();
+
+            if (string.IsNullOrWhiteSpace(content))
+                content = Request.QueryString.ToString();
+
+
+            logger.Trace("Action：" + filterContext.RouteData.Values["action"] + "|" + System.Threading.Thread.CurrentThread.ManagedThreadId + "|" + content);
+
+            BaseResponse response = new BaseResponse();
+            response.requestno = Request["requestno"] ?? "";
+
+            //检查数据合法性
+            if (!ModelState.IsValid)
+            {
+                response.responseMsg = "数据不合法：" + ModelState.Values.Where(t => t.Errors.Count > 0).FirstOrDefault().Errors.FirstOrDefault().ErrorMessage;
+                filterContext.Result = new JsonResult { Data = response, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                logger.Trace("Action：" + filterContext.RouteData.Values["action"] + "|" + response.responseMsg);
+                return;
+            }
+
+            //检查SN号
+            var equipmentsnno = Request["equipmentsnno"];
+            var equipment = iEquipmentService.Get(t => t.EquipmentSNNo == equipmentsnno);
+            if (equipment == null)
+            {
+                response.responseMsg = "设备SN号未绑定";
+                filterContext.Result = new JsonResult { Data = response, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                logger.Trace("Action：" + filterContext.RouteData.Values["action"] + "|" + response.responseMsg);
+                return;
+            }
+            else if (equipment.Status <= 0)
+            {
+                response.responseMsg = "设备" + equipment.StatusDesc;
+                filterContext.Result = new JsonResult { Data = response, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                logger.Trace("Action：" + filterContext.RouteData.Values["action"] + "|" + response.responseMsg);
+                return;
+            }
+            else
+            {
+                merchantID = equipment.MerchantID;
+                merchant = equipment.Merchant;
+            }
+        }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            logger.Trace("Action：" + filterContext.RouteData.Values["action"] + "|" + System.Threading.Thread.CurrentThread.ManagedThreadId + "|" + (filterContext.Result as ContentResult)?.Content);
+
+            base.OnActionExecuted(filterContext);
+        }
+
+
+        /// <summary>
+        ///平安银行创建订单（预下单接口）
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string GetPreparedFreezeOrder(GetPreparedFreezeOrderRequest request)
+        {
+            var result = new GetPreparedFreezeOrderResponse() { requestno = request.requestno.Trim() };
+
+            try
+            {
+                var employee = iEmployeeService.Get(t => t.ID == request.employeeid && t.MerchantID == merchantID);
+
+                if (employee == null)
+                    throw new APIException("员工不存在");
+
+                var member = iMemberService.Get(t => t.IDNumber == request.cardnumber.Trim());
+
+                if (member == null)
+                    throw new APIException("会员未创建");
+
+                var project = iProjectService.Get(t => t.ID == request.projectid);
+
+                if (project == null)
+                    throw new APIException("项目不存在");
+
+                if (request.transactionamount > project.ResidueAmount)
+                    throw new APIException("剩余认筹额度不足");
+
+                if (DateTime.Now > project.Deadline)
+                    throw new Exception("已过截止日期");
+
+                var orderPaid = new OrderPaid();
+                var pingAnOrderPaid = new PingAnOrderPaid();
+
+                orderPaid.MerchantID = merchantID;
+                orderPaid.TransactionAmount = request.transactionamount;
+                orderPaid.ProjectID = project.ID;
+                orderPaid.EquipmentSNNo = request.equipmentsnno;
+                orderPaid.Remark = request.remark;
+                orderPaid.EmployeeID = employee.ID;
+                orderPaid.MemberID = member.ID;
+                orderPaid.Member = member;
+                orderPaid.Project = project;
+
+                pingAnOrderPaid.OrderPaidID = orderPaid.ID;
+                // pingAnOrderPaid.Channel = request.channel;
+                pingAnOrderPaid.Channel = "1007041"; //合作方渠道ID,可写在配置文件
+                pingAnOrderPaid.ClientNo = request.clientno;
+                pingAnOrderPaid.BusinessName = request.businessname;
+                pingAnOrderPaid.OrderValidDay = request.ordervalidday;
+                pingAnOrderPaid.FreezeTimeLimit = request.freezetimelimit;
+                pingAnOrderPaid.FreezeProduct = request.freezeproduct;
+                pingAnOrderPaid.AutoFreeze = request.autofreeze;
+                //pingAnOrderPaid.TransCode = request.transcode;
+                pingAnOrderPaid.TransCode = "001";
+
+                var preparedFreezeOrderResponse = iPingAnAPIService.PreparedFreezeOrder(orderPaid, pingAnOrderPaid);
+
+                if (preparedFreezeOrderResponse.responseCode == "000000")
+                {
+                    pingAnOrderPaid.BankOrderNo = JsonHelper.Deserialize<Dictionary<string, string>>(preparedFreezeOrderResponse.data).FirstOrDefault().Value;
+
+                    var autoLoginUrl = iPingAnAPIService.AutoLogin(pingAnOrderPaid, member);
+
+                    if (!string.IsNullOrWhiteSpace(autoLoginUrl.autoLoginPath))
+                    {
+                        result.autologinurl = autoLoginUrl.autoLoginPath;
+                    }
+
+                    iOrderPaidService.Save(orderPaid);
+                    iPingAnOrderPaidService.Save(pingAnOrderPaid);
+
+                    iOrderPaidService.Commit();
+                    iPingAnOrderPaidService.Commit();
+                }
+
+                result.bankorderno = pingAnOrderPaid.BankOrderNo;
+                result.orderpaidid = orderPaid.ID.ToString();
+            }
+            catch (Exception ex)
+            {
+                result.responseMsg = ex.Message;
+                result.responseCode = (ex as APIException)?.ErrorCode;
+            }
+            return JsonHelper.Serialize(result);
+        }
+
+        /// <summary>
+        /// 免登路径获取
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        //public string GetAutoLoginPath(GetAutoLoginPathRequst request)
+        //{
+        //    var result = new GetAutoLoginPathResponse();
+
+        //    try
+        //    {
+        //        var member = iMemberService.Get(t => t.IDNumber == request.clientidno.Trim());
+
+        //        if (member == null)
+        //            throw new APIException("会员未创建");
+
+        //        var getAutoLoginPathResponse = iPingAnAPIService.AutoLogin(request, member);
+
+        //        if (getAutoLoginPathResponse.autoLoginPath != "")
+        //        {
+        //            result.autologinurl = getAutoLoginPathResponse.autoLoginPath;
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.responseMsg = ex.Message;
+        //        result.responseCode = (ex as APIException)?.ErrorCode;
+        //    }
+
+
+        //    return JsonHelper.Serialize(result);
+        //}
+
+        /// <summary>
+        /// 会员信息创建接口(身份证创建)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public string CreateMember(CreateMemberRequst request)
+        {
+            var result = new CreateMemberResponse();
+
+            try
+            {
+                var member = iMemberService.Get(t => t.IDNumber == request.idnumber.Trim());
+
+                if (member != null)
+                    throw new APIException("身份证已注册!");
+
+                member = new Member();
+
+                var IDImageFrontPath = GlobalConfig.WebConfig.PingAn_IDImagesPath + Guid.NewGuid() + ".jpg";
+                var IDImageOppositePath = GlobalConfig.WebConfig.PingAn_IDImagesPath + Guid.NewGuid() + ".jpg";
+
+                ImageHelper.Base64StringToImage(Server.MapPath(IDImageFrontPath), request.idimagefront);
+                ImageHelper.Base64StringToImage(Server.MapPath(IDImageOppositePath), request.idimageopposite);
+
+                member.Name = request.name.Trim();
+                member.IDNumber = request.idnumber.Trim();
+                member.Mobile = request.mobile.Trim();
+
+                if (merchant.AccountBank == AccountBankOption.PingAn.ToInt())
+                {
+                    var account = new AccountPingAn();
+
+                    account.IdExpiredDate = request.idexpireddate.ToDateTime("yyyyMMdd");
+                    account.Mobile = request.mobile.Trim();
+
+                    account.IDImageFront = IDImageFrontPath;
+                    account.IDImageOpposite = IDImageOppositePath;
+
+                    iAccountPingAnService.Save(account);
+                }
+
+                iMemberService.Save(member);
+
+                iMemberService.Commit();
+
+                result.memberid = member.ID.ToString();
+            }
+            catch (Exception ex)
+            {
+                result.responseMsg = ex.Message;
+                result.responseCode = (ex as APIException)?.ErrorCode;
+            }
+
+            return JsonHelper.Serialize(result);
+        }
+
+
+
+        /// <summary>
+        /// 查询订单接口
+        /// </summary>
+        /// <returns></returns>
+        //public QueryMarginsOrderDetailResponse QueryMarginsOrderDetail()
+        //{
+        //    QueryMarginsOrderDetailRequest request = new QueryMarginsOrderDetailRequest();
+        //    request.channel = "1007041";
+        //    request.bankOrderNo = "9230081901312615814160";
+        //    //request.cardNumber = "430981199211104634";
+        //    request.transCode = "002";
+        //    //request.accountType = "2";
+
+        //    //var response = PingAnExec.Exec(request);
+        //    var response = iPingAnAPIService.QueryMarginsOrderDetail(request);
+
+        //    return response as QueryMarginsOrderDetailResponse;
+        //}
+
+
+
+
+    }
+}

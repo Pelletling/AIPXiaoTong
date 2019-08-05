@@ -1,0 +1,237 @@
+﻿using AIPXiaoTong.IService;
+using AIPXiaoTong.Model;
+using AIPXiaoTong.Model.Site;
+using Framework.Common;
+using Framework.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AIPXiaoTong.Site.Controllers
+{
+    public class AdvertisingManagementController : BaseController
+    {
+        private IAdvertisingManagementService iAdvertisingManagementService;
+        private IEmployeeService iEmployeeService;
+        private IMerchantService iMerchantService;
+        private IProjectManagementService iProjectManagementService;
+
+        public AdvertisingManagementController(IAdvertisingManagementService iAdvertisingManagementService,
+                                               IEmployeeService iEmployeeService,
+                                               IMerchantService iMerchantService,
+                                               IProjectManagementService iProjectManagementService)
+        {
+            this.iAdvertisingManagementService = iAdvertisingManagementService;
+            this.iEmployeeService = iEmployeeService;
+            this.iMerchantService = iMerchantService;
+            this.iProjectManagementService = iProjectManagementService;
+        }
+
+        public ActionResult Index(AdvertisingManagementQM model)
+        {
+            var list = this.iAdvertisingManagementService.GetListModel<AdvertisingManagementLM, AdvertisingManagementQM>(model);
+
+            BindData();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("Grid", list);
+            }
+
+            return View(list);
+        }
+
+        private void BindData()
+        {
+            var empInfo = iEmployeeService.Get(currentUser.ID) ?? new Employee();
+
+            ViewBag.merInfo = iMerchantService.Get(empInfo.MerchantID);
+
+            ViewBag.ProjectManagementList = iProjectManagementService.GetListModel<ProjectManagementLM, ProjectManagementQM>();
+        }
+
+        public ActionResult Create(long? ID = null)
+        {
+            var model = iAdvertisingManagementService.GetViewModel<AdvertisingManagementCM>(ID);
+
+            BindData();
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Create(AdvertisingManagementCM m)
+        {
+            var entity = iAdvertisingManagementService.Get(m.ID) ?? new AdvertisingManagement();
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var FileType = m.AdvertisingImg.Substring(m.AdvertisingImg.LastIndexOf("."));
+                    var PicType = ".jpg.png.jpeg.bmp.gif";
+                    var VideoType = ".mpg.mpeg.avi.rm.rmvb.mov.wmv.asf.dat";
+                    var AudioType = ".wav.aif.au.mp3.ram.wma.mmf.amr.aac.flac";
+
+                    entity.ProjectManagementID = m.ProjectManagementID;                  
+                    entity.Remark = m.Remark;
+
+                    if (m.PlayTime != null)
+                    {
+                        entity.PlayTime = m.PlayTime.ToInt();
+                    }
+                    else
+                    {
+                        entity.PlayTime = 5;
+                    }
+                  
+
+                    if (entity.AdvertisingImg != m.AdvertisingImg)
+                    {
+                        var TemFilePath = @"\Temp\TemAdvertisingImge" + m.AdvertisingImg.Substring(m.AdvertisingImg.LastIndexOf("\\"));                      
+
+                        entity.AdvertisingImg = @"\Images\AdvertisingImge\" + Guid.NewGuid() + FileType;
+                        System.IO.File.Copy(Server.MapPath(TemFilePath), Server.MapPath(entity.AdvertisingImg));
+
+                        if (PicType.Contains(FileType))   //根据上传的文件判断文件类型
+                        {
+                            entity.AdvertisingType = AdvertisingTypeStatus.Picture.ToInt();
+                        }
+                        else if (VideoType.Contains(FileType))
+                        {
+                            entity.AdvertisingType = AdvertisingTypeStatus.Video.ToInt();
+                        }
+                        else if (AudioType.Contains(FileType))
+                        {
+                            entity.AdvertisingType = AdvertisingTypeStatus.Audio.ToInt();
+                        }
+                        else
+                        {
+                            entity.AdvertisingType = AdvertisingTypeStatus.Other.ToInt();
+                        }
+                    }
+                  
+                    entity.Status = AdvertisingManagementStatus.AlreadySubmit.ToInt();  //默认状态为未发布
+
+                    iAdvertisingManagementService.Save(entity);
+                    iAdvertisingManagementService.Commit();
+
+                    this.ShowTip();
+
+                }
+                else
+                {
+                    AddError();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                this.AddError(ErrorCode.Exception, ex.Message);
+            }
+
+            return RedirectToAction("Create", new { ID = entity.ID });
+        }
+
+
+        public JsonResult Delete(long ID)
+        {
+            var result = iAdvertisingManagementService.AjaxDelete(ID);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult UploadFile()
+        {
+            return UploadFile("/Temp/TemAdvertisingImge/", Request.Files[0].FileName);
+        }
+
+        protected JsonResult UploadFile(string path, string fileName)
+        {
+            try
+            {
+                var file = Request.Files[0];
+                path = System.Web.HttpContext.Current.Server.MapPath(path);
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+                string FilePath = path + fileName;
+                file.SaveAs(FilePath);
+                return Json(new { Msg = "", Path = FilePath, FileName = fileName }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Msg = ex.Message, Path = "", FileName = fileName }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult NoPass(long ID, string Msg)
+        {
+            ResultModel result = new ResultModel();
+            try
+            {
+                var status = ProjectManagementStatus.Pass.ToInt();
+
+                var e = iAdvertisingManagementService.Get(t => t.ID == ID && t.Status == status);
+
+                if (e == null)
+                    throw new Exception("记录不存在，请刷新页面");
+
+                e.Status = AdvertisingManagementStatus.AlreadySubmit.ToInt();
+                e.Reason = Msg;
+
+                iAdvertisingManagementService.Save(e);
+
+                iAdvertisingManagementService.Commit();
+
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                result.ResultMessage = ex.InnerException.InnerException.Message;
+            }
+            catch (Exception ex)
+            {
+                result.ResultMessage = ex.Message;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Audit(long ID)
+        {
+            ResultModel result = new ResultModel();
+            try
+            {
+                var status = AdvertisingManagementStatus.AlreadySubmit.ToInt();
+
+                var e = iAdvertisingManagementService.Get(t => t.ID == ID && t.Status == status);
+
+                if (e == null)
+                    throw new Exception("记录不存在，请刷新页面");
+
+                e.Status = ProjectManagementStatus.Pass.ToInt();
+
+                iAdvertisingManagementService.Save(e);
+
+                iAdvertisingManagementService.Commit();
+
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                result.ResultMessage = ex.InnerException.InnerException.Message;
+            }
+            catch (Exception ex)
+            {
+                result.ResultMessage = ex.Message;
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+    }
+}
